@@ -4,12 +4,14 @@ import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
@@ -22,6 +24,13 @@ public class CrumblingStoneBlock extends Block {
     public CrumblingStoneBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(LEVEL, 1));
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
+        this.tryBreakStone(world, state, hit.getBlockPos(), 1);
+        super.onProjectileHit(world, state, hit, projectile);
     }
 
     @Override

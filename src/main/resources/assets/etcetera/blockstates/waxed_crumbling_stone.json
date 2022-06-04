@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "level=1": {
+      "model": "etcetera:block/crumbling_stone_1"
+    },
+    "level=2": {
+      "model": "etcetera:block/crumbling_stone_2"
+    },
+    "level=3": {
+      "model": "etcetera:block/crumbling_stone_3"
+    }
+  }
+}

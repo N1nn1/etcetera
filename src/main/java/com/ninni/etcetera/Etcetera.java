@@ -1,10 +1,18 @@
 package com.ninni.etcetera;
 
+import com.google.common.collect.Maps;
 import com.google.common.reflect.Reflection;
 import com.ninni.etcetera.block.EtceteraBlocks;
 import com.ninni.etcetera.item.EtceteraItems;
 import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
+import net.minecraft.block.Block;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+
+import static com.ninni.etcetera.block.EtceteraBlocks.*;
 
 public class Etcetera implements ModInitializer {
 	public static final String MOD_ID = "etcetera";
@@ -17,5 +25,14 @@ public class Etcetera implements ModInitializer {
 			EtceteraItems.class,
 			EtceteraBlocks.class
 		);
+
+
+		LinkedHashMap<Block, Block> crumblingStone = Maps.newLinkedHashMap();
+		crumblingStone.put(CRUMBLING_STONE, WAXED_CRUMBLING_STONE);
+
+		crumblingStone.forEach(OxidizableBlocksRegistry::registerWaxableBlockPair);
+
+		List<Block> unwaxedCrumblingStone = List.copyOf(crumblingStone.keySet());
+		for (int i = 0, l = crumblingStone.size() - 1; i < l; i++) OxidizableBlocksRegistry.registerOxidizableBlockPair(unwaxedCrumblingStone.get(i), unwaxedCrumblingStone.get(i + 1));
 	}
 }
