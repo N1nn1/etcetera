@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "etcetera:leveled_stone"
+    }
+  },
+  "result": {
+    "item": "etcetera:leveled_stone_stairs",
+    "count": 4
+  }
+}

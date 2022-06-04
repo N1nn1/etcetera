@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "etcetera:crumbling_stone",
+    "etcetera:leveled_stone",
+    "etcetera:leveled_stone_stairs",
+    "etcetera:leveled_stone_slab",
+    "etcetera:smooth_stone_bricks",
+    "etcetera:smooth_stone_brick_stairs",
+    "etcetera:smooth_stone_brick_slab",
+    "etcetera:smooth_stone_brick_wall"
+  ]
+}

@@ -38,5 +38,13 @@
       "etcetera:block/squid_lamp/light2",
       "etcetera:block/squid_lamp/light3"
     ]
+  },
+  "block.crumbling_stone.crumble": {
+    "sounds": [
+      "etcetera:block/crumbling_stone/crumble1",
+      "etcetera:block/crumbling_stone/crumble2",
+      "etcetera:block/crumbling_stone/crumble3"
+    ],
+    "subtitle": "subtitles.block.etcetera.crumbling_stone.crumble"
   }
 }

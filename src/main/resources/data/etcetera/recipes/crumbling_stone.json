@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "etcetera:leveled_stone"
+  },
+  "result": "etcetera:crumbling_stone",
+  "experience": 0.35,
+  "cookingtime": 200
+}
