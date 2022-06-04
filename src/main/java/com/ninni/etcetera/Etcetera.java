@@ -10,7 +10,6 @@ import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.minecraft.block.Block;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import static com.ninni.etcetera.block.EtceteraBlocks.*;
 
