@@ -29,10 +29,6 @@ public class Etcetera implements ModInitializer {
 
 		LinkedHashMap<Block, Block> crumblingStone = Maps.newLinkedHashMap();
 		crumblingStone.put(CRUMBLING_STONE, WAXED_CRUMBLING_STONE);
-
 		crumblingStone.forEach(OxidizableBlocksRegistry::registerWaxableBlockPair);
-
-		List<Block> unwaxedCrumblingStone = List.copyOf(crumblingStone.keySet());
-		for (int i = 0, l = crumblingStone.size() - 1; i < l; i++) OxidizableBlocksRegistry.registerOxidizableBlockPair(unwaxedCrumblingStone.get(i), unwaxedCrumblingStone.get(i + 1));
 	}
 }
