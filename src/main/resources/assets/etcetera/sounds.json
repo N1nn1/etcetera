@@ -26,9 +26,10 @@
   },
   "block.squid_lamp.place": {
     "sounds": [
-      "etcetera:block/squid_lamp/light1",
-      "etcetera:block/squid_lamp/light2",
-      "etcetera:block/squid_lamp/light3"
+      "etcetera:block/squid_lamp/heavy1",
+      "etcetera:block/squid_lamp/heavy2",
+      "etcetera:block/squid_lamp/heavy3",
+      "etcetera:block/squid_lamp/heavy4"
     ],
     "subtitle": "subtitles.block.generic.place"
   },
