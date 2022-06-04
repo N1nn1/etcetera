@@ -1,0 +1,42 @@
+{
+  "block.squid_lamp.break": {
+    "sounds": [
+      "etcetera:block/squid_lamp/heavy1",
+      "etcetera:block/squid_lamp/heavy2",
+      "etcetera:block/squid_lamp/heavy3",
+      "etcetera:block/squid_lamp/heavy4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.squid_lamp.step": {
+    "sounds": [
+      "etcetera:block/squid_lamp/light1",
+      "etcetera:block/squid_lamp/light2",
+      "etcetera:block/squid_lamp/light3"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.squid_lamp.hit": {
+    "sounds": [
+      "etcetera:block/squid_lamp/light1",
+      "etcetera:block/squid_lamp/light2",
+      "etcetera:block/squid_lamp/light3"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.squid_lamp.place": {
+    "sounds": [
+      "etcetera:block/squid_lamp/light1",
+      "etcetera:block/squid_lamp/light2",
+      "etcetera:block/squid_lamp/light3"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.squid_lamp.fall": {
+    "sounds": [
+      "etcetera:block/squid_lamp/light1",
+      "etcetera:block/squid_lamp/light2",
+      "etcetera:block/squid_lamp/light3"
+    ]
+  }
+}
