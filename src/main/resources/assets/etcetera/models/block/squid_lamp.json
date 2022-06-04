@@ -1,0 +1,32 @@
+{
+	"textures": {
+		"0": "etcetera:block/squid_lamp",
+		"particle": "etcetera:block/squid_lamp"
+	},
+	"elements": [
+		{
+			"from": [7, 0, 7],
+			"to": [9, 4, 9],
+			"faces": {
+				"north": {"uv": [14, 8, 16, 12], "texture": "#0"},
+				"east": {"uv": [14, 8, 16, 12], "texture": "#0"},
+				"south": {"uv": [14, 8, 16, 12], "texture": "#0"},
+				"west": {"uv": [14, 8, 16, 12], "texture": "#0"},
+				"up": {"uv": [14, 12, 16, 14], "texture": "#0"},
+				"down": {"uv": [14, 14, 16, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [5, 4, 5],
+			"to": [11, 10, 11],
+			"faces": {
+				"north": {"uv": [3, 4, 9, 10], "texture": "#0"},
+				"east": {"uv": [3, 4, 9, 10], "texture": "#0"},
+				"south": {"uv": [3, 4, 9, 10], "texture": "#0"},
+				"west": {"uv": [3, 4, 9, 10], "texture": "#0"},
+				"up": {"uv": [6, 10, 12, 16], "texture": "#0"},
+				"down": {"uv": [0, 10, 6, 16], "texture": "#0"}
+			}
+		}
+	]
+}
