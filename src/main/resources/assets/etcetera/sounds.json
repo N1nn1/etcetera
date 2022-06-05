@@ -40,6 +40,15 @@
       "etcetera:block/squid_lamp/light3"
     ]
   },
+  "block.terracotta_vase.break": {
+    "sounds": [
+      "etcetera:block/terracotta_vase/heavy1",
+      "etcetera:block/terracotta_vase/heavy2",
+      "etcetera:block/terracotta_vase/heavy3",
+      "etcetera:block/terracotta_vase/heavy4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
   "block.crumbling_stone.crumble": {
     "sounds": [
       "etcetera:block/crumbling_stone/crumble1",

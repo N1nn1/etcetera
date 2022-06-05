@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "#D#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:brick"
+    },
+    "D": {
+      "item": "minecraft:rooted_dirt"
+    }
+  },
+  "result": {
+    "item": "etcetera:terracotta_vase",
+    "count": 1
+  }
+}

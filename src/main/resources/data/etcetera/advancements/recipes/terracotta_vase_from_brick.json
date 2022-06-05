@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "etcetera:terracotta_vase"
+    ]
+  },
+  "criteria": {
+    "has_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:brick"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "etcetera:terracotta_vase"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

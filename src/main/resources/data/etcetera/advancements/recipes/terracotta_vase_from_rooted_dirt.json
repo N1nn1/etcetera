@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "etcetera:terracotta_vase"
+    ]
+  },
+  "criteria": {
+    "has_rooted_dirt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:rooted_dirt"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "etcetera:terracotta_vase"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rooted_dirt",
+      "has_the_recipe"
+    ]
+  ]
+}

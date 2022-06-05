@@ -1,10 +1,12 @@
 {
   "block.etcetera.bouquet": "Bouquet",
+  "block.etcetera.terracotta_vase": "Terracotta Vase",
 
   "block.etcetera.squid_lamp": "Squid Lamp",
 
   "block.etcetera.crumbling_stone": "Crumbling Stone",
   "block.etcetera.waxed_crumbling_stone": "Waxed Crumbling Stone",
+
   "block.etcetera.leveled_stone": "Leveled Stone",
   "block.etcetera.leveled_stone_slab": "Leveled Stone Slab",
   "block.etcetera.leveled_stone_stairs": "Leveled Stone Stairs",

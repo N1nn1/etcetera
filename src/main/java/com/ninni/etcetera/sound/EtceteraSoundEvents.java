@@ -15,6 +15,10 @@ public interface EtceteraSoundEvents {
     SoundEvent BLOCK_SQUID_LAMP_FALL  = squid_lamp("fall");
     private static SoundEvent squid_lamp(String type) { return createBlockSound("squid_lamp", type); }
 
+    SoundEvent BLOCK_TERRACOTTA_VASE_BREAK = terracotta_vase("break");
+    private static SoundEvent terracotta_vase(String type) { return createBlockSound("terracotta_vase", type); }
+
+
     SoundEvent BLOCK_CRUMBLING_STONE_CRUMBLE = crumbling_stone("crumble");
     private static SoundEvent crumbling_stone(String type) { return createBlockSound("crumbling_stone", type); }
 
