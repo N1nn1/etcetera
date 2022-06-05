@@ -9,6 +9,7 @@ import net.minecraft.block.Waterloggable;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
@@ -16,8 +17,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+
+import java.util.Random;
 
 @SuppressWarnings("deprecation")
 public class SquidLampBlock extends Block implements Waterloggable {
@@ -37,6 +41,14 @@ public class SquidLampBlock extends Block implements Waterloggable {
         BlockPos blockPos = ctx.getBlockPos();
         boolean bl = worldAccess.getFluidState(blockPos).getFluid() == Fluids.WATER;
         return this.getDefaultState().with(WATERLOGGED, bl);
+    }
+
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        double x = (double)pos.getX() + random.nextDouble();
+        double y = (double)pos.getY() + 0.7;
+        double z = (double)pos.getZ() + random.nextDouble();
+        if (state.get(WATERLOGGED)) world.addParticle(ParticleTypes.GLOW, x, y, z, 0.0, 0.0, 0.0);
     }
 
     @Override

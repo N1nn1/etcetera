@@ -10,6 +10,7 @@ import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.BlockMirror;
@@ -18,11 +19,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
+import java.util.Random;
 
 @SuppressWarnings("deprecation")
 public class WallSquidLampBlock extends SquidLampBlock {
@@ -59,6 +62,14 @@ public class WallSquidLampBlock extends SquidLampBlock {
             return blockState.with(WATERLOGGED, bl);
         }
         return null;
+    }
+
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        double x = (double)pos.getX() + random.nextDouble();
+        double y = (double)pos.getY() + 0.7;
+        double z = (double)pos.getZ() + random.nextDouble();
+        if (state.get(WATERLOGGED)) world.addParticle(ParticleTypes.GLOW, x, y, z, 0.0, 0.0, 0.0);
     }
 
     @Override
