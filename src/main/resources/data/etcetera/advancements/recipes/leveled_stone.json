@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "etcetera:leveled_stone_from_smooth_stone_stonecutting"
+      "etcetera:leveled_stone"
     ]
   },
   "criteria": {
@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:smooth_stone"
+            "items": [
+              "minecraft:smooth_stone"
+            ]
           }
         ]
       }
@@ -19,7 +21,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "etcetera:leveled_stone_from_smooth_stone_stonecutting"
+        "recipe": "etcetera:leveled_stone"
       }
     }
   },
