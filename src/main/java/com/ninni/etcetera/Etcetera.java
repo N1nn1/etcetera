@@ -53,5 +53,5 @@ public class Etcetera implements ModInitializer {
 	}
 
 	private static final ConfiguredFeature<?, ?> NETHER_BISMUTH_ORE_CONFIGURED_FEATURE = new ConfiguredFeature<> (Feature.ORE, new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, NETHER_BISMUTH_ORE.getDefaultState(),9));
-	public static PlacedFeature NETHER_BISMUTH_ORE_PLACED_FEATURE = new PlacedFeature( RegistryEntry.of(NETHER_BISMUTH_ORE_CONFIGURED_FEATURE), Arrays.asList( CountPlacementModifier.of(20), SquarePlacementModifier.of(), HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(64))));
+	public static PlacedFeature NETHER_BISMUTH_ORE_PLACED_FEATURE = new PlacedFeature( RegistryEntry.of(NETHER_BISMUTH_ORE_CONFIGURED_FEATURE), Arrays.asList( CountPlacementModifier.of(10), SquarePlacementModifier.of(), HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(64))));
 }
