@@ -9,11 +9,12 @@ public class EtceteraClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-
 		BlockRenderLayerMap.INSTANCE.putBlocks(
 			RenderLayer.getTranslucent(),
-
-			EtceteraBlocks.IRIDESCENT_GLASS,
+			EtceteraBlocks.IRIDESCENT_GLASS
+		);
+		BlockRenderLayerMap.INSTANCE.putBlocks(
+			RenderLayer.getCutout(),
 			EtceteraBlocks.BOUQUET,
 			EtceteraBlocks.POTTED_BOUQUET
 		);
