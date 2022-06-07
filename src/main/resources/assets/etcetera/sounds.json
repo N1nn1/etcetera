@@ -55,5 +55,99 @@
       "etcetera:block/crumbling_stone/crumble2",
       "etcetera:block/crumbling_stone/crumble3"
     ]
+  },
+  "block.nether_bismuth_ore.break": {
+    "sounds": [
+      "etcetera:block/nether_bismuth_ore/heavy1",
+      "etcetera:block/nether_bismuth_ore/heavy2",
+      "etcetera:block/nether_bismuth_ore/heavy3",
+      "etcetera:block/nether_bismuth_ore/heavy4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.nether_bismuth_ore.step": {
+    "sounds": [
+      "etcetera:block/nether_bismuth_ore/light1",
+      "etcetera:block/nether_bismuth_ore/light2",
+      "etcetera:block/nether_bismuth_ore/light3",
+      "etcetera:block/nether_bismuth_ore/light4",
+      "etcetera:block/nether_bismuth_ore/light5"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.nether_bismuth_ore.hit": {
+    "sounds": [
+      "etcetera:block/nether_bismuth_ore/light1",
+      "etcetera:block/nether_bismuth_ore/light2",
+      "etcetera:block/nether_bismuth_ore/light3",
+      "etcetera:block/nether_bismuth_ore/light4",
+      "etcetera:block/nether_bismuth_ore/light5"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.nether_bismuth_ore.place": {
+    "sounds": [
+      "etcetera:block/nether_bismuth_ore/heavy1",
+      "etcetera:block/nether_bismuth_ore/heavy2",
+      "etcetera:block/nether_bismuth_ore/heavy3",
+      "etcetera:block/nether_bismuth_ore/heavy4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.nether_bismuth_ore.fall": {
+    "sounds": [
+      "etcetera:block/nether_bismuth_ore/light1",
+      "etcetera:block/nether_bismuth_ore/light2",
+      "etcetera:block/nether_bismuth_ore/light3",
+      "etcetera:block/nether_bismuth_ore/light4",
+      "etcetera:block/nether_bismuth_ore/light5"
+    ]
+  },
+  "block.bismuth_block.break": {
+    "sounds": [
+      "etcetera:block/bismuth_block/heavy1",
+      "etcetera:block/bismuth_block/heavy2",
+      "etcetera:block/bismuth_block/heavy3",
+      "etcetera:block/bismuth_block/heavy4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.bismuth_block.step": {
+    "sounds": [
+      "etcetera:block/bismuth_block/light1",
+      "etcetera:block/bismuth_block/light2",
+      "etcetera:block/bismuth_block/light3",
+      "etcetera:block/bismuth_block/light4",
+      "etcetera:block/bismuth_block/light5"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.bismuth_block.hit": {
+    "sounds": [
+      "etcetera:block/bismuth_block/light1",
+      "etcetera:block/bismuth_block/light2",
+      "etcetera:block/bismuth_block/light3",
+      "etcetera:block/bismuth_block/light4",
+      "etcetera:block/bismuth_block/light5"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.bismuth_block.place": {
+    "sounds": [
+      "etcetera:block/bismuth_block/heavy1",
+      "etcetera:block/bismuth_block/heavy2",
+      "etcetera:block/bismuth_block/heavy3",
+      "etcetera:block/bismuth_block/heavy4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.bismuth_block.fall": {
+    "sounds": [
+      "etcetera:block/bismuth_block/light1",
+      "etcetera:block/bismuth_block/light2",
+      "etcetera:block/bismuth_block/light3",
+      "etcetera:block/bismuth_block/light4",
+      "etcetera:block/bismuth_block/light5"
+    ]
   }
 }

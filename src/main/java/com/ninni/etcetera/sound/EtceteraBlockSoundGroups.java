@@ -8,21 +8,21 @@ public class EtceteraBlockSoundGroups {
     public static final BlockSoundGroup NETHER_BISMUTH_ORE = new BlockSoundGroup(
         1.0F, 1.0F,
 
-        SoundEvents.BLOCK_NETHER_GOLD_ORE_BREAK,
-        SoundEvents.BLOCK_NETHER_GOLD_ORE_STEP,
-        SoundEvents.BLOCK_NETHER_GOLD_ORE_PLACE,
-        SoundEvents.BLOCK_NETHER_GOLD_ORE_HIT,
-        SoundEvents.BLOCK_NETHER_GOLD_ORE_FALL
+        EtceteraSoundEvents.BLOCK_NETHER_BISMUTH_ORE_BREAK,
+        EtceteraSoundEvents.BLOCK_NETHER_BISMUTH_ORE_STEP,
+        EtceteraSoundEvents.BLOCK_NETHER_BISMUTH_ORE_PLACE,
+        EtceteraSoundEvents.BLOCK_NETHER_BISMUTH_ORE_HIT,
+        EtceteraSoundEvents.BLOCK_NETHER_BISMUTH_ORE_FALL
     );
 
     public static final BlockSoundGroup BISMUTH_BLOCK = new BlockSoundGroup(
-        1.0F, 1.0F,
+        0.2F, 1.0F,
 
-        SoundEvents.BLOCK_STONE_BREAK,
-        SoundEvents.BLOCK_STONE_STEP,
-        SoundEvents.BLOCK_STONE_PLACE,
-        SoundEvents.BLOCK_STONE_HIT,
-        SoundEvents.BLOCK_STONE_FALL
+        EtceteraSoundEvents.BLOCK_BISMUTH_BLOCK_BREAK,
+        EtceteraSoundEvents.BLOCK_BISMUTH_BLOCK_STEP,
+        EtceteraSoundEvents.BLOCK_BISMUTH_BLOCK_PLACE,
+        EtceteraSoundEvents.BLOCK_BISMUTH_BLOCK_HIT,
+        EtceteraSoundEvents.BLOCK_BISMUTH_BLOCK_FALL
     );
 
     public static final BlockSoundGroup SQUID_LAMP = new BlockSoundGroup(
