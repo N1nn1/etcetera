@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "etcetera:block/bismuth_block"
+    "end": "etcetera:block/bismuth_block_top",
+    "side": "etcetera:block/bismuth_block"
   }
 }
