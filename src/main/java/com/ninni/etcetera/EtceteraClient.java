@@ -11,8 +11,9 @@ public class EtceteraClient implements ClientModInitializer {
 	public void onInitializeClient() {
 
 		BlockRenderLayerMap.INSTANCE.putBlocks(
-			RenderLayer.getCutout(),
+			RenderLayer.getTranslucent(),
 
+			EtceteraBlocks.IRIDESCENT_GLASS,
 			EtceteraBlocks.BOUQUET,
 			EtceteraBlocks.POTTED_BOUQUET
 		);
