@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing",
   "base": {
-    "item": "minecraft:terracotta"
+    "tag": "minecraft:terracotta"
   },
   "addition": {
     "item": "etcetera:bismuth_ingot"
