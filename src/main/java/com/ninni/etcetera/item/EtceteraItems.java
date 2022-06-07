@@ -2,6 +2,7 @@ package com.ninni.etcetera.item;
 
 import com.ninni.etcetera.block.EtceteraBlocks;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -34,4 +35,6 @@ public class EtceteraItems {
     private static Item register(String id, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(MOD_ID, id), item);
     }
+
+    static { CompostingChanceRegistry.INSTANCE.add(BOUQUET, 0.85f); }
 }
