@@ -12,10 +12,10 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class WaxedCrumblingStoneBlock extends Block {
+public class AbstractCrumblingStoneBlock extends Block {
     public static final IntProperty LEVEL = Properties.LEVEL_3;
 
-    public WaxedCrumblingStoneBlock(Settings settings) {
+    public AbstractCrumblingStoneBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(LEVEL, 1));
     }

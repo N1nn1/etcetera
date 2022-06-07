@@ -5,26 +5,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.particle.BlockStateParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEvents;
 
-import java.util.Random;
+public class CrumblingStoneBlock extends AbstractCrumblingStoneBlock {
 
-public class CrumblingStoneBlock extends Block {
-    public static final IntProperty LEVEL = Properties.LEVEL_3;
-
-    public CrumblingStoneBlock(Settings settings) {
-        super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(LEVEL, 1));
-    }
+    public CrumblingStoneBlock(Settings settings) { super(settings); }
 
     @Override
     @SuppressWarnings("deprecation")
@@ -56,17 +45,4 @@ public class CrumblingStoneBlock extends Block {
             world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
         }
     }
-
-
-    @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (random.nextInt(16) == 0 && state.get(LEVEL) >= 2) {
-            double x = (double)pos.getX() + random.nextDouble();
-            double y = (double)pos.getY() - 0.05;
-            double z = (double)pos.getZ() + random.nextDouble();
-            world.addParticle(new BlockStateParticleEffect(ParticleTypes.FALLING_DUST, state), x, y, z, 0.0, 0.0, 0.0);
-        }
-    }
-
-    @Override protected void appendProperties(StateManager.Builder<Block, BlockState> builder) { builder.add(LEVEL); }
 }
