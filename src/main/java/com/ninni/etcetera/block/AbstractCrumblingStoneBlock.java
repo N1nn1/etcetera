@@ -7,6 +7,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -22,13 +23,14 @@ public class AbstractCrumblingStoneBlock extends Block {
 
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        if (random.nextInt(16) == 0 && state.get(LEVEL) >= 2) {
+        if (random.nextInt(16) == 0 && state.get(LEVEL) >= 2 && canDisplayParticles(world.getBlockState(pos = pos.down()))) {
             double x = (double)pos.getX() + random.nextDouble();
             double y = (double)pos.getY() - 0.05;
             double z = (double)pos.getZ() + random.nextDouble();
             world.addParticle(new BlockStateParticleEffect(ParticleTypes.FALLING_DUST, state), x, y, z, 0.0, 0.0, 0.0);
         }
     }
+    public static boolean canDisplayParticles(BlockState state) { return state.isAir() || state.isIn(BlockTags.FIRE) || state.getMaterial().isLiquid() || state.getMaterial().isReplaceable(); }
 
     @Override protected void appendProperties(StateManager.Builder<Block, BlockState> builder) { builder.add(LEVEL); }
 }
