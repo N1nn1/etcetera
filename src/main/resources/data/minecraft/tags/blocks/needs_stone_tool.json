@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "etcetera:nether_bismuth_ore",
+    "etcetera:raw_bismuth_block",
+    "etcetera:bismuth_block"
+  ]
+}

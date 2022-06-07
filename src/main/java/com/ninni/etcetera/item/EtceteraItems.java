@@ -15,6 +15,12 @@ import static com.ninni.etcetera.Etcetera.*;
 @SuppressWarnings("unused")
 public class EtceteraItems {
 
+    public static final Item RAW_BISMUTH_BLOCK = register("raw_bismuth_block", new BlockItem(EtceteraBlocks.RAW_BISMUTH_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+    public static final Item BISMUTH_BLOCK = register("bismuth_block", new BlockItem(EtceteraBlocks.BISMUTH_BLOCK, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+    public static final Item NETHER_BISMUTH_ORE = register("nether_bismuth_ore", new BlockItem(EtceteraBlocks.NETHER_BISMUTH_ORE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+    public static final Item RAW_BISMUTH = register("raw_bismuth", new Item(new FabricItemSettings().group(ItemGroup.MISC)));
+    public static final Item BISMUTH_INGOT = register("bismuth_ingot", new Item(new FabricItemSettings().group(ItemGroup.MISC)));
+
     public static final Item BOUQUET = register("bouquet", new BlockItem(EtceteraBlocks.BOUQUET, new FabricItemSettings().group(ItemGroup.DECORATIONS).maxCount(16)));
     public static final Item TERRACOTTA_VASE = register("terracotta_vase", new BlockItem(EtceteraBlocks.TERRACOTTA_VASE, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
 

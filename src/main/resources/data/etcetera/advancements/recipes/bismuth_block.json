@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "etcetera:bismuth_block"
+    ]
+  },
+  "criteria": {
+    "has_bismuth_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "etcetera:bismuth_ingot"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "etcetera:bismuth_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bismuth_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}

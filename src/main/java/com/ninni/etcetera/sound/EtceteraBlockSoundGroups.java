@@ -5,6 +5,26 @@ import net.minecraft.sound.SoundEvents;
 
 public class EtceteraBlockSoundGroups {
 
+    public static final BlockSoundGroup NETHER_BISMUTH_ORE = new BlockSoundGroup(
+        1.0F, 1.0F,
+
+        SoundEvents.BLOCK_NETHER_GOLD_ORE_BREAK,
+        SoundEvents.BLOCK_NETHER_GOLD_ORE_STEP,
+        SoundEvents.BLOCK_NETHER_GOLD_ORE_PLACE,
+        SoundEvents.BLOCK_NETHER_GOLD_ORE_HIT,
+        SoundEvents.BLOCK_NETHER_GOLD_ORE_FALL
+    );
+
+    public static final BlockSoundGroup BISMUTH_BLOCK = new BlockSoundGroup(
+        1.0F, 1.0F,
+
+        SoundEvents.BLOCK_STONE_BREAK,
+        SoundEvents.BLOCK_STONE_STEP,
+        SoundEvents.BLOCK_STONE_PLACE,
+        SoundEvents.BLOCK_STONE_HIT,
+        SoundEvents.BLOCK_STONE_FALL
+    );
+
     public static final BlockSoundGroup SQUID_LAMP = new BlockSoundGroup(
         1.0F, 1.0F,
 

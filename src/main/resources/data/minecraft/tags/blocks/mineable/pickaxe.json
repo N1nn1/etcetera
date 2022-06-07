@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "etcetera:raw_bismuth_block",
+    "etcetera:bismuth_block",
+    "etcetera:nether_bismuth_ore",
     "etcetera:terracotta_vase",
     "etcetera:crumbling_stone",
     "etcetera:waxed_crumbling_stone",

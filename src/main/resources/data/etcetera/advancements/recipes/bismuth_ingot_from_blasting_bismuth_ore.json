@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "etcetera:bismuth_ingot_from_blasting_bismuth_ore"
+    ]
+  },
+  "criteria": {
+    "has_bismuth_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "etcetera:bismuth_ore"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "etcetera:bismuth_ingot_from_blasting_bismuth_ore"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bismuth_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

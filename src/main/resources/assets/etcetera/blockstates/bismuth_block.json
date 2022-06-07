@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "axis=x": [
+      {
+        "model": "etcetera:block/bismuth_block",
+        "x": 90,
+        "y": 90
+      }
+    ],
+    "axis=y": [
+      {
+        "model": "etcetera:block/bismuth_block"
+      }
+    ],
+    "axis=z": [
+      {
+        "model": "etcetera:block/bismuth_block",
+        "x": 90
+      }
+    ]
+  }
+}
