@@ -16,7 +16,7 @@ public class EtceteraBlockSoundGroups {
     );
 
     public static final BlockSoundGroup BISMUTH_BLOCK = new BlockSoundGroup(
-        0.2F, 1.0F,
+        1.0F, 1.0F,
 
         EtceteraSoundEvents.BLOCK_BISMUTH_BLOCK_BREAK,
         EtceteraSoundEvents.BLOCK_BISMUTH_BLOCK_STEP,
