@@ -3,9 +3,7 @@
   "minVersion": "0.8",
   "package": "com.ninni.etcetera.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-    "AbstractBlockStateMixin"
-  ],
+  "mixins": [ "AbstractBlockStateMixin" ],
   "client": [],
   "injectors": {
     "defaultRequire": 1 }
