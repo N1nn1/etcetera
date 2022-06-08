@@ -22,7 +22,7 @@ public class SextantItem extends Item {
             player.sendMessage(Text.translatable(this.getTranslationKey() + ".actionbar", player.getBlockX(), player.getBlockZ()), true);
             player.getItemCooldownManager().set(this, 30);
             player.incrementStat(Stats.USED.getOrCreateStat(this));
-            player.playSound(EtceteraSoundEvents.ITEM_SEXTANT_SUCCESS, 1, 1);
+            player.playSound(EtceteraSoundEvents.ITEM_SEXTANT_SUCCESS, 2, 1);
             Vec3d vec3d = player.getBoundingBox().getCenter();
             net.minecraft.util.math.random.Random random = world.getRandom();
             for (int i = 0; i < 25; ++i) {
@@ -34,7 +34,7 @@ public class SextantItem extends Item {
             return TypedActionResult.success(player.getStackInHand(hand));
         }
         player.getItemCooldownManager().set(this, 15);
-        player.playSound(EtceteraSoundEvents.ITEM_SEXTANT_FAIL, 1, 1);
+        player.playSound(EtceteraSoundEvents.ITEM_SEXTANT_FAIL, 2, 1);
         return TypedActionResult.success(player.getStackInHand(hand));
     }
 }
