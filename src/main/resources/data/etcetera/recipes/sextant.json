@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " iA",
+    "iQi",
+    "iIi"
+  ],
+  "key": {
+    "i": {
+      "item": "etcetera:bismuth_ingot"
+    },
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "I": {
+      "item": "etcetera:bismuth_block"
+    }
+  },
+  "result": {
+    "item": "etcetera:sextant",
+    "count": 1
+  }
+}
