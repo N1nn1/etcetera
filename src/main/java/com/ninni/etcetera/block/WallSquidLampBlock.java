@@ -25,7 +25,6 @@ import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
-import java.util.Random;
 
 @SuppressWarnings("deprecation")
 public class WallSquidLampBlock extends SquidLampBlock {
@@ -65,7 +64,7 @@ public class WallSquidLampBlock extends SquidLampBlock {
     }
 
     @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, net.minecraft.util.math.random.Random random) {
         double x = (double)pos.getX() + random.nextDouble();
         double y = (double)pos.getY() + 0.7;
         double z = (double)pos.getZ() + random.nextDouble();

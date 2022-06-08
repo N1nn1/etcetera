@@ -21,8 +21,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-import java.util.Random;
-
 @SuppressWarnings("deprecation")
 public class SquidLampBlock extends Block implements Waterloggable {
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
@@ -44,7 +42,7 @@ public class SquidLampBlock extends Block implements Waterloggable {
     }
 
     @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, net.minecraft.util.math.random.Random random) {
         double x = (double)pos.getX() + random.nextDouble();
         double y = (double)pos.getY() + 0.7;
         double z = (double)pos.getZ() + random.nextDouble();
