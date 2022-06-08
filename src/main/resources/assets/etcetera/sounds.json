@@ -1,61 +1,4 @@
 {
-  "block.squid_lamp.break": {
-    "sounds": [
-      "etcetera:block/squid_lamp/heavy1",
-      "etcetera:block/squid_lamp/heavy2",
-      "etcetera:block/squid_lamp/heavy3",
-      "etcetera:block/squid_lamp/heavy4"
-    ],
-    "subtitle": "subtitles.block.generic.break"
-  },
-  "block.squid_lamp.step": {
-    "sounds": [
-      "etcetera:block/squid_lamp/light1",
-      "etcetera:block/squid_lamp/light2",
-      "etcetera:block/squid_lamp/light3"
-    ],
-    "subtitle": "subtitles.block.generic.footsteps"
-  },
-  "block.squid_lamp.hit": {
-    "sounds": [
-      "etcetera:block/squid_lamp/light1",
-      "etcetera:block/squid_lamp/light2",
-      "etcetera:block/squid_lamp/light3"
-    ],
-    "subtitle": "subtitles.block.generic.hit"
-  },
-  "block.squid_lamp.place": {
-    "sounds": [
-      "etcetera:block/squid_lamp/heavy1",
-      "etcetera:block/squid_lamp/heavy2",
-      "etcetera:block/squid_lamp/heavy3",
-      "etcetera:block/squid_lamp/heavy4"
-    ],
-    "subtitle": "subtitles.block.generic.place"
-  },
-  "block.squid_lamp.fall": {
-    "sounds": [
-      "etcetera:block/squid_lamp/light1",
-      "etcetera:block/squid_lamp/light2",
-      "etcetera:block/squid_lamp/light3"
-    ]
-  },
-  "block.terracotta_vase.break": {
-    "sounds": [
-      "etcetera:block/terracotta_vase/heavy1",
-      "etcetera:block/terracotta_vase/heavy2",
-      "etcetera:block/terracotta_vase/heavy3",
-      "etcetera:block/terracotta_vase/heavy4"
-    ],
-    "subtitle": "subtitles.block.generic.break"
-  },
-  "block.crumbling_stone.crumble": {
-    "sounds": [
-      "etcetera:block/crumbling_stone/crumble1",
-      "etcetera:block/crumbling_stone/crumble2",
-      "etcetera:block/crumbling_stone/crumble3"
-    ]
-  },
   "block.nether_bismuth_ore.break": {
     "sounds": [
       "etcetera:block/nether_bismuth_ore/heavy1",
@@ -149,5 +92,75 @@
       "etcetera:block/bismuth_block/light4",
       "etcetera:block/bismuth_block/light5"
     ]
+  },
+  "item.sextant.success": {
+    "sounds": [
+      "etcetera:item/sextant/success"
+    ],
+    "subtitle": "subtitles.item.etcetera.sextant.success"
+  },
+  "item.sextant.fail": {
+    "sounds": [
+      "etcetera:item/sextant/fail"
+    ],
+    "subtitle": "subtitles.item.etcetera.sextant.fail"
+  },
+  "block.squid_lamp.break": {
+    "sounds": [
+      "etcetera:block/squid_lamp/heavy1",
+      "etcetera:block/squid_lamp/heavy2",
+      "etcetera:block/squid_lamp/heavy3",
+      "etcetera:block/squid_lamp/heavy4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.squid_lamp.step": {
+    "sounds": [
+      "etcetera:block/squid_lamp/light1",
+      "etcetera:block/squid_lamp/light2",
+      "etcetera:block/squid_lamp/light3"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.squid_lamp.hit": {
+    "sounds": [
+      "etcetera:block/squid_lamp/light1",
+      "etcetera:block/squid_lamp/light2",
+      "etcetera:block/squid_lamp/light3"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.squid_lamp.place": {
+    "sounds": [
+      "etcetera:block/squid_lamp/heavy1",
+      "etcetera:block/squid_lamp/heavy2",
+      "etcetera:block/squid_lamp/heavy3",
+      "etcetera:block/squid_lamp/heavy4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.squid_lamp.fall": {
+    "sounds": [
+      "etcetera:block/squid_lamp/light1",
+      "etcetera:block/squid_lamp/light2",
+      "etcetera:block/squid_lamp/light3"
+    ]
+  },
+  "block.terracotta_vase.break": {
+    "sounds": [
+      "etcetera:block/terracotta_vase/heavy1",
+      "etcetera:block/terracotta_vase/heavy2",
+      "etcetera:block/terracotta_vase/heavy3",
+      "etcetera:block/terracotta_vase/heavy4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.crumbling_stone.crumble": {
+    "sounds": [
+      "etcetera:block/crumbling_stone/crumble1",
+      "etcetera:block/crumbling_stone/crumble2",
+      "etcetera:block/crumbling_stone/crumble3"
+    ],
+    "subtitle": "subtitles.block.etcetera.crumbling_stone.crumble"
   }
 }

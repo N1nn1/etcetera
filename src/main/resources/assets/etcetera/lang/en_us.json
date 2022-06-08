@@ -1,6 +1,9 @@
 {
+
   "item.etcetera.raw_bismuth": "Raw Bismuth",
   "item.etcetera.bismuth_ingot": "Bismuth Ingot",
+  "item.etcetera.sextant": "Sextant",
+  "item.etcetera.sextant.actionbar": "X: %s Z: %s",
   "block.etcetera.raw_bismuth_block": "Block of Raw Bismuth",
   "block.etcetera.bismuth_block": "Block of Bismuth",
   "block.etcetera.bismuth_bars": "Bismuth Bars",
@@ -24,5 +27,10 @@
   "block.etcetera.smooth_stone_bricks": "Smooth Stone Bricks",
   "block.etcetera.smooth_stone_brick_wall": "Smooth Stone Brick Wall",
   "block.etcetera.smooth_stone_brick_slab": "Smooth Stone Brick Slab",
-  "block.etcetera.smooth_stone_brick_stairs": "Smooth Stone Brick Stairs"
+  "block.etcetera.smooth_stone_brick_stairs": "Smooth Stone Brick Stairs",
+
+
+  "subtitles.item.etcetera.sextant.success": "Sextant measures",
+  "subtitles.item.etcetera.sextant.fail": "Sextant doesn't see the horizon",
+  "subtitles.block.etcetera.crumbling_stone.crumble": "Block crumbles"
 }
