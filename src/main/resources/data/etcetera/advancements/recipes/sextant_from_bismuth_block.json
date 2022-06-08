@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "etcetera:sextant"
+    ]
+  },
+  "criteria": {
+    "has_bismuth_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "etcetera:bismuth_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "etcetera:sextant_from_bismuth_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bismuth_block",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "etcetera:item/handheld_sextant",
+  "textures": {
+    "layer0": "etcetera:item/sextant"
+  }
+}

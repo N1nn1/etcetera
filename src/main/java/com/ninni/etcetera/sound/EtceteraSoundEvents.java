@@ -6,14 +6,8 @@ import net.minecraft.util.registry.Registry;
 
 import static com.ninni.etcetera.Etcetera.*;
 
+@SuppressWarnings("unused")
 public interface EtceteraSoundEvents {
-    
-    SoundEvent BLOCK_SQUID_LAMP_BREAK = squid_lamp("break");
-    SoundEvent BLOCK_SQUID_LAMP_STEP  = squid_lamp("step");
-    SoundEvent BLOCK_SQUID_LAMP_PLACE = squid_lamp("place");
-    SoundEvent BLOCK_SQUID_LAMP_HIT   = squid_lamp("hit");
-    SoundEvent BLOCK_SQUID_LAMP_FALL  = squid_lamp("fall");
-    private static SoundEvent squid_lamp(String type) { return createBlockSound("squid_lamp", type); }
 
     SoundEvent BLOCK_NETHER_BISMUTH_ORE_BREAK = nether_bismuth_ore("break");
     SoundEvent BLOCK_NETHER_BISMUTH_ORE_STEP  = nether_bismuth_ore("step");
@@ -29,6 +23,17 @@ public interface EtceteraSoundEvents {
     SoundEvent BLOCK_BISMUTH_BLOCK_FALL  = bismuth_block("fall");
     private static SoundEvent bismuth_block(String type) { return createBlockSound("bismuth_block", type); }
 
+    SoundEvent ITEM_SEXTANT_SUCCESS  = sextant("success");
+    SoundEvent ITEM_SEXTANT_FAIL     = sextant("fail");
+    private static SoundEvent sextant(String type) { return createItemSound("sextant", type); }
+
+    SoundEvent BLOCK_SQUID_LAMP_BREAK = squid_lamp("break");
+    SoundEvent BLOCK_SQUID_LAMP_STEP  = squid_lamp("step");
+    SoundEvent BLOCK_SQUID_LAMP_PLACE = squid_lamp("place");
+    SoundEvent BLOCK_SQUID_LAMP_HIT   = squid_lamp("hit");
+    SoundEvent BLOCK_SQUID_LAMP_FALL  = squid_lamp("fall");
+    private static SoundEvent squid_lamp(String type) { return createBlockSound("squid_lamp", type); }
+
     SoundEvent BLOCK_TERRACOTTA_VASE_BREAK = terracotta_vase("break");
     private static SoundEvent terracotta_vase(String type) { return createBlockSound("terracotta_vase", type); }
 
@@ -41,7 +46,6 @@ public interface EtceteraSoundEvents {
         return Registry.register(Registry.SOUND_EVENT, identifier, new SoundEvent(identifier));
     }
 
-    private static SoundEvent createBlockSound(String block, String type) {
-        return register("block." + block + "." + type);
-    }
+    private static SoundEvent createBlockSound(String block, String type) { return register("block." + block + "." + type); }
+    private static SoundEvent createItemSound(String item, String type) { return register("item." + item + "." + type); }
 }
