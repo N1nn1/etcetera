@@ -1,5 +1,6 @@
 package com.ninni.etcetera.block;
 
+import com.ninni.etcetera.block.vanilla.PublicPaneBlock;
 import com.ninni.etcetera.block.vanilla.PublicStairsBlock;
 import com.ninni.etcetera.sound.EtceteraBlockSoundGroups;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -25,6 +26,7 @@ public class EtceteraBlocks {
 
     public static final Block RAW_BISMUTH_BLOCK = register("raw_bismuth_block", new Block(FabricBlockSettings.copyOf(Blocks.RAW_COPPER_BLOCK).slipperiness(0.935f)));
     public static final Block BISMUTH_BLOCK = register("bismuth_block", new PillarBlock(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).sounds(EtceteraBlockSoundGroups.BISMUTH_BLOCK).slipperiness(0.935f)));
+    public static final Block BISMUTH_BARS = register("bismuth_bars", new PublicPaneBlock(FabricBlockSettings.copyOf(BISMUTH_BLOCK)));
     public static final Block NETHER_BISMUTH_ORE = register("nether_bismuth_ore", new OreBlock(FabricBlockSettings.of(Material.STONE, MapColor.DARK_RED).requiresTool().slipperiness(0.9f).strength(3.0f, 3.0f).sounds(EtceteraBlockSoundGroups.NETHER_BISMUTH_ORE), UniformIntProvider.create(1, 8)));
     public static final Block IRIDESCENT_GLASS = register("iridescent_glass", new GlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS).slipperiness(1.0F)));
     public static final Block IRIDESCENT_TERRACOTTA = register("iridescent_terracotta", new Block(FabricBlockSettings.copyOf(Blocks.TERRACOTTA).slipperiness(0.9f)));

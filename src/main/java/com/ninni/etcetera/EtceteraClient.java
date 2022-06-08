@@ -15,6 +15,7 @@ public class EtceteraClient implements ClientModInitializer {
 		);
 		BlockRenderLayerMap.INSTANCE.putBlocks(
 			RenderLayer.getCutout(),
+			EtceteraBlocks.BISMUTH_BARS,
 			EtceteraBlocks.BOUQUET,
 			EtceteraBlocks.POTTED_BOUQUET
 		);
