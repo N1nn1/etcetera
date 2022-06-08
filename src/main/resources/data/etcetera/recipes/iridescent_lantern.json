@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:sea_lantern"
+  },
+  "addition": {
+    "item": "etcetera:bismuth_ingot"
+  },
+  "result": {
+    "item": "etcetera:iridescent_lantern"
+  }
+}
