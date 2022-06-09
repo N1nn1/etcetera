@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i ",
+    " ii",
+    "i  "
+  ],
+  "key": {
+    "i": {
+      "item": "etcetera:bismuth_ingot"
+    }
+  },
+  "result": {
+    "item": "etcetera:wrench",
+    "count": 1
+  }
+}
