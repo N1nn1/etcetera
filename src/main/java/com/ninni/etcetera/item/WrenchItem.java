@@ -33,7 +33,6 @@ public class WrenchItem extends Item {
         World world = context.getWorld();
         BlockPos blockPos = context.getBlockPos();
         PlayerEntity player = context.getPlayer();
-        if (!player.getAbilities().creativeMode) context.getStack().damage(1, player, p -> p.sendToolBreakStatus(player.getActiveHand()));
         this.use(player, world.getBlockState(blockPos), world, blockPos, !player.isSneaking(), context.getStack());
         return ActionResult.SUCCESS;
     }
@@ -45,23 +44,32 @@ public class WrenchItem extends Item {
         String string = Registry.BLOCK.getId(block).toString();
         NbtCompound nbtCompound = stack.getOrCreateSubNbt("DebugProperty");
         Property<?> property = stateManager.getProperty(nbtCompound.getString(string));
-        player.getItemCooldownManager().set(this, 5);
-
-        if (collection.contains(Properties.AXIS)
-            || collection.contains(Properties.FACING)
+        if (state.isIn(EtceteraTags.NON_MODIFIABLE)) {
+            player.getItemCooldownManager().set(this, 15);
+            player.playSound(EtceteraSoundEvents.ITEM_WRENCH_FAIL, 1, 1);
+            player.sendMessage(Text.translatable(this.getTranslationKey() + ".block.invalid", block.getName()), true);
+        } else if (collection.contains(Properties.AXIS)
             || collection.contains(Properties.HORIZONTAL_FACING)
             || collection.contains(Properties.HORIZONTAL_AXIS)
             || collection.contains(Properties.STAIR_SHAPE))
         {
+            player.getItemCooldownManager().set(this, 5);
             player.incrementStat(Stats.USED.getOrCreateStat(this));
             if (update) {
                 if (property == null
                     || property == Properties.WATERLOGGED
-                    || property == Properties.LIT)
+                    || property == Properties.LIT
+                    || property == Properties.FACING
+                    || property == Properties.POWERED
+                    || property == Properties.ATTACHMENT
+                    || property == Properties.HAS_BOOK
+                    || property == Properties.OPEN
+                    || property == Properties.HONEY_LEVEL)
                     property = collection.iterator().next();
                 BlockState blockState = cycle(state, property, false);
                 world.setBlockState(pos, blockState, 18);
                 player.playSound(EtceteraSoundEvents.ITEM_WRENCH_MODIFY, 1, 1);
+                if (!player.getAbilities().creativeMode) stack.damage(1, player, p -> p.sendToolBreakStatus(player.getActiveHand()));
                 player.playSound(world.getBlockState(pos).getSoundGroup().getPlaceSound(), 1, 1);
             } else {
                 property = cycle(collection, property, false);
@@ -69,12 +77,19 @@ public class WrenchItem extends Item {
                 nbtCompound.putString(string, string3);
                 player.playSound(EtceteraSoundEvents.ITEM_WRENCH_SELECT, 1, 1);
                 if (property == Properties.WATERLOGGED
-                    || property == Properties.LIT) {
+                    || property == Properties.LIT
+                    || property == Properties.FACING
+                    || property == Properties.POWERED
+                    || property == Properties.ATTACHMENT
+                    || property == Properties.HAS_BOOK
+                    || property == Properties.OPEN
+                    || property == Properties.HONEY_LEVEL) {
                     player.sendMessage(Text.translatable(this.getTranslationKey() + ".invalid", property.getName()), true);
                 }
                 else player.sendMessage(Text.translatable(this.getTranslationKey() + ".select", property.getName()), true);
             }
         } else {
+            player.getItemCooldownManager().set(this, 15);
             player.playSound(EtceteraSoundEvents.ITEM_WRENCH_FAIL, 1, 1);
             player.sendMessage(Text.translatable(this.getTranslationKey() + ".block.invalid", block.getName()), true);
         }
