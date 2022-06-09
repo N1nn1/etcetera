@@ -35,7 +35,7 @@ public class WrenchItem extends Item {
         PlayerEntity player = context.getPlayer();
         if (!player.getAbilities().creativeMode) context.getStack().damage(1, player, p -> p.sendToolBreakStatus(player.getActiveHand()));
         this.use(player, world.getBlockState(blockPos), world, blockPos, !player.isSneaking(), context.getStack());
-        return ActionResult.FAIL;
+        return ActionResult.SUCCESS;
     }
 
     private void use(PlayerEntity player, BlockState state, WorldAccess world, BlockPos pos, boolean update, ItemStack stack) {
@@ -45,6 +45,7 @@ public class WrenchItem extends Item {
         String string = Registry.BLOCK.getId(block).toString();
         NbtCompound nbtCompound = stack.getOrCreateSubNbt("DebugProperty");
         Property<?> property = stateManager.getProperty(nbtCompound.getString(string));
+        player.getItemCooldownManager().set(this, 5);
 
         if (collection.contains(Properties.AXIS)
             || collection.contains(Properties.FACING)
@@ -52,27 +53,31 @@ public class WrenchItem extends Item {
             || collection.contains(Properties.HORIZONTAL_AXIS)
             || collection.contains(Properties.STAIR_SHAPE))
         {
-            player.playSound(EtceteraSoundEvents.ITEM_SEXTANT_SUCCESS, 2, 1);
             player.incrementStat(Stats.USED.getOrCreateStat(this));
-            player.getItemCooldownManager().set(this, 5);
-
             if (update) {
                 if (property == null
-                    || property == Properties.WATERLOGGED)
+                    || property == Properties.WATERLOGGED
+                    || property == Properties.LIT)
                     property = collection.iterator().next();
                 BlockState blockState = cycle(state, property, false);
                 world.setBlockState(pos, blockState, 18);
+                player.playSound(EtceteraSoundEvents.ITEM_SEXTANT_SUCCESS, 2, 1);
                 player.playSound(world.getBlockState(pos).getSoundGroup().getPlaceSound(), 2, 1);
             } else {
                 property = cycle(collection, property, false);
                 String string3 = property.getName();
                 nbtCompound.putString(string, string3);
-                if (property == Properties.WATERLOGGED) {
+                player.playSound(EtceteraSoundEvents.ITEM_SEXTANT_SUCCESS, 2, 1);
+                if (property == Properties.WATERLOGGED
+                    || property == Properties.LIT) {
                     player.sendMessage(Text.translatable(this.getTranslationKey() + ".invalid", property.getName()), true);
                 }
                 else player.sendMessage(Text.translatable(this.getTranslationKey() + ".select", property.getName()), true);
             }
-        } else player.sendMessage(Text.translatable(this.getTranslationKey() + ".block.invalid", block.getName()), true);
+        } else {
+            player.playSound(EtceteraSoundEvents.ITEM_SEXTANT_FAIL, 2, 1);
+            player.sendMessage(Text.translatable(this.getTranslationKey() + ".block.invalid", block.getName()), true);
+        }
     }
 
     private static <T extends Comparable<T>> BlockState cycle(BlockState state, Property<T> property, boolean inverse) { return state.with(property, cycle(property.getValues(), state.get(property), inverse)); }
