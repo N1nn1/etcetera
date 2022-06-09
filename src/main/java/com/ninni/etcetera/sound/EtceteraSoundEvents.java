@@ -30,6 +30,11 @@ public interface EtceteraSoundEvents {
     SoundEvent ITEM_MAGNIFYING_GLASS_USE  = magnifying_glass("use");
     private static SoundEvent magnifying_glass(String type) { return createItemSound("magnifying_glass", type); }
 
+    SoundEvent ITEM_WRENCH_SELECT  = wrench("select");
+    SoundEvent ITEM_WRENCH_MODIFY  = wrench("modify");
+    SoundEvent ITEM_WRENCH_FAIL    = wrench("fail");
+    private static SoundEvent wrench(String type) { return createItemSound("wrench", type); }
+
     SoundEvent BLOCK_SQUID_LAMP_BREAK = squid_lamp("break");
     SoundEvent BLOCK_SQUID_LAMP_STEP  = squid_lamp("step");
     SoundEvent BLOCK_SQUID_LAMP_PLACE = squid_lamp("place");

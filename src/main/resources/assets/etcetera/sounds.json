@@ -111,6 +111,24 @@
     ],
     "subtitle": "subtitles.item.etcetera.magnifying_glass.use"
   },
+  "item.wrench.select": {
+    "sounds": [
+      "etcetera:item/wrench/select"
+    ],
+    "subtitle": "subtitles.item.etcetera.wrench.select"
+  },
+  "item.wrench.fail": {
+    "sounds": [
+      "etcetera:item/wrench/fail"
+    ],
+    "subtitle": "subtitles.item.etcetera.wrench.fail"
+  },
+  "item.wrench.modify": {
+    "sounds": [
+      "etcetera:item/wrench/modify"
+    ],
+    "subtitle": "subtitles.item.etcetera.wrench.modify"
+  },
   "block.squid_lamp.break": {
     "sounds": [
       "etcetera:block/squid_lamp/heavy1",

@@ -61,13 +61,13 @@ public class WrenchItem extends Item {
                     property = collection.iterator().next();
                 BlockState blockState = cycle(state, property, false);
                 world.setBlockState(pos, blockState, 18);
-                player.playSound(EtceteraSoundEvents.ITEM_SEXTANT_SUCCESS, 2, 1);
-                player.playSound(world.getBlockState(pos).getSoundGroup().getPlaceSound(), 2, 1);
+                player.playSound(EtceteraSoundEvents.ITEM_WRENCH_MODIFY, 1, 1);
+                player.playSound(world.getBlockState(pos).getSoundGroup().getPlaceSound(), 1, 1);
             } else {
                 property = cycle(collection, property, false);
                 String string3 = property.getName();
                 nbtCompound.putString(string, string3);
-                player.playSound(EtceteraSoundEvents.ITEM_SEXTANT_SUCCESS, 2, 1);
+                player.playSound(EtceteraSoundEvents.ITEM_WRENCH_SELECT, 1, 1);
                 if (property == Properties.WATERLOGGED
                     || property == Properties.LIT) {
                     player.sendMessage(Text.translatable(this.getTranslationKey() + ".invalid", property.getName()), true);
@@ -75,7 +75,7 @@ public class WrenchItem extends Item {
                 else player.sendMessage(Text.translatable(this.getTranslationKey() + ".select", property.getName()), true);
             }
         } else {
-            player.playSound(EtceteraSoundEvents.ITEM_SEXTANT_FAIL, 2, 1);
+            player.playSound(EtceteraSoundEvents.ITEM_WRENCH_FAIL, 1, 1);
             player.sendMessage(Text.translatable(this.getTranslationKey() + ".block.invalid", block.getName()), true);
         }
     }
