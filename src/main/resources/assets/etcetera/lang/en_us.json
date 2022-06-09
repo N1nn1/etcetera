@@ -11,7 +11,7 @@
   "item.etcetera.wrench": "Wrench",
   "item.etcetera.wrench.select": "Property selected: \"%1$s\"",
   "item.etcetera.wrench.invalid": "Property: \"%1$s\" cannot be modified",
-  "item.etcetera.wrench.block.invalid": "%1$s cannot be modified",
+  "item.etcetera.wrench.block.invalid": "This block cannot be modified",
   "block.etcetera.raw_bismuth_block": "Block of Raw Bismuth",
   "block.etcetera.bismuth_block": "Block of Bismuth",
   "block.etcetera.bismuth_bars": "Bismuth Bars",

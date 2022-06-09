@@ -19,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldEvents;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
@@ -71,6 +72,7 @@ public class WrenchItem extends Item {
                 player.playSound(EtceteraSoundEvents.ITEM_WRENCH_MODIFY, 1, 1);
                 if (!player.getAbilities().creativeMode) stack.damage(1, player, p -> p.sendToolBreakStatus(player.getActiveHand()));
                 player.playSound(world.getBlockState(pos).getSoundGroup().getPlaceSound(), 1, 1);
+                world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
             } else {
                 property = cycle(collection, property, false);
                 String string3 = property.getName();
@@ -91,7 +93,7 @@ public class WrenchItem extends Item {
         } else {
             player.getItemCooldownManager().set(this, 15);
             player.playSound(EtceteraSoundEvents.ITEM_WRENCH_FAIL, 1, 1);
-            player.sendMessage(Text.translatable(this.getTranslationKey() + ".block.invalid", block.getName()), true);
+            player.sendMessage(Text.translatable(this.getTranslationKey() + ".block.invalid"), true);
         }
     }
 
