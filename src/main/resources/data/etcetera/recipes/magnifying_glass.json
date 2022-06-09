@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " ii",
+    " Ai",
+    "I  "
+  ],
+  "key": {
+    "i": {
+      "item": "etcetera:bismuth_ingot"
+    },
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "I": {
+      "item": "etcetera:bismuth_block"
+    }
+  },
+  "result": {
+    "item": "etcetera:magnifying_glass",
+    "count": 1
+  }
+}

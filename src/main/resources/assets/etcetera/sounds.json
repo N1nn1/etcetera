@@ -105,6 +105,12 @@
     ],
     "subtitle": "subtitles.item.etcetera.sextant.fail"
   },
+  "item.magnifying_glass.use": {
+    "sounds": [
+      "etcetera:item/magnifying_glass/use"
+    ],
+    "subtitle": "subtitles.item.etcetera.magnifying_glass.use"
+  },
   "block.squid_lamp.break": {
     "sounds": [
       "etcetera:block/squid_lamp/heavy1",

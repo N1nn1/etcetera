@@ -27,6 +27,9 @@ public interface EtceteraSoundEvents {
     SoundEvent ITEM_SEXTANT_FAIL     = sextant("fail");
     private static SoundEvent sextant(String type) { return createItemSound("sextant", type); }
 
+    SoundEvent ITEM_MAGNIFYING_GLASS_USE  = magnifying_glass("use");
+    private static SoundEvent magnifying_glass(String type) { return createItemSound("magnifying_glass", type); }
+
     SoundEvent BLOCK_SQUID_LAMP_BREAK = squid_lamp("break");
     SoundEvent BLOCK_SQUID_LAMP_STEP  = squid_lamp("step");
     SoundEvent BLOCK_SQUID_LAMP_PLACE = squid_lamp("place");

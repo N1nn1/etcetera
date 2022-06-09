@@ -1,0 +1,6 @@
+{
+  "parent": "etcetera:item/handheld_magnifying_glass",
+  "textures": {
+    "layer0": "etcetera:item/magnifying_glass"
+  }
+}

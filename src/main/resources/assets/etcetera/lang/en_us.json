@@ -4,6 +4,10 @@
   "item.etcetera.bismuth_ingot": "Bismuth Ingot",
   "item.etcetera.sextant": "Sextant",
   "item.etcetera.sextant.actionbar": "X: %s Z: %s",
+  "item.etcetera.magnifying_glass": "Magnifying Glass",
+  "item.etcetera.magnifying_glass.actionbar.entity": "%1$s has %2$s Hearts",
+  "item.etcetera.magnifying_glass.actionbar.entity_hurt": "%1$s has %2$s Hearts out of %3$s",
+  "item.etcetera.magnifying_glass.select": "%1$s with \"%2$s\": %3$s",
   "block.etcetera.raw_bismuth_block": "Block of Raw Bismuth",
   "block.etcetera.bismuth_block": "Block of Bismuth",
   "block.etcetera.bismuth_bars": "Bismuth Bars",
@@ -32,5 +36,6 @@
 
   "subtitles.item.etcetera.sextant.success": "Sextant measures",
   "subtitles.item.etcetera.sextant.fail": "Sextant doesn't see the horizon",
+  "subtitles.item.etcetera.magnifying_glass.use": "Player examines",
   "subtitles.block.etcetera.crumbling_stone.crumble": "Block crumbles"
 }
