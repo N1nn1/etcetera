@@ -1,4 +1,4 @@
-package com.ninni.etcetera.item;
+package com.ninni.etcetera;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
