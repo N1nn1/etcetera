@@ -23,6 +23,7 @@ public class EtceteraItems {
     public static final Item BISMUTH_INGOT = register("bismuth_ingot", new Item(new FabricItemSettings().group(ItemGroup.MISC)));
     public static final Item SEXTANT = register("sextant", new SextantItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
     public static final Item MAGNIFYING_GLASS = register("magnifying_glass", new MagnifyingGlassItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1)));
+    public static final Item WRENCH = register("wrench", new WrenchItem(new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).maxDamage(256)));
     public static final Item IRIDESCENT_GLASS = register("iridescent_glass", new BlockItem(EtceteraBlocks.IRIDESCENT_GLASS, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
     public static final Item IRIDESCENT_TERRACOTTA = register("iridescent_terracotta", new BlockItem(EtceteraBlocks.IRIDESCENT_TERRACOTTA, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
     public static final Item IRIDESCENT_CONCRETE = register("iridescent_concrete", new BlockItem(EtceteraBlocks.IRIDESCENT_CONCRETE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
