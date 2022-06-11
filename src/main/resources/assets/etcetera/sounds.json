@@ -131,19 +131,19 @@
   },
   "block.drum.low": {
     "sounds": [
-      "etcetera:block/drum/low"
+      "etcetera:block/drum/djembe/low"
     ],
     "subtitle": "subtitles.block.etcetera.drum"
   },
   "block.drum.medium": {
     "sounds": [
-      "etcetera:block/drum/medium"
+      "etcetera:block/drum/djembe/medium"
     ],
     "subtitle": "subtitles.block.etcetera.drum"
   },
   "block.drum.high": {
     "sounds": [
-      "etcetera:block/drum/high"
+      "etcetera:block/drum/djembe/high"
     ],
     "subtitle": "subtitles.block.etcetera.drum"
   },

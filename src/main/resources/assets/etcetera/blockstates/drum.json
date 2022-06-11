@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "powered=false": {
       "model": "etcetera:block/drum"
+    },
+    "powered=true": {
+      "model": "etcetera:block/drum_hit"
     }
   }
 }
