@@ -129,6 +129,96 @@
     ],
     "subtitle": "subtitles.item.etcetera.wrench.modify"
   },
+  "block.drum.low": {
+    "sounds": [
+      "etcetera:block/drum/low"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.medium": {
+    "sounds": [
+      "etcetera:block/drum/medium"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.high": {
+    "sounds": [
+      "etcetera:block/drum/high"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.gold_high": {
+    "sounds": [
+      "etcetera:block/drum/darbuka/high"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.gold_medium": {
+    "sounds": [
+      "etcetera:block/drum/darbuka/medium"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.gold_low": {
+    "sounds": [
+      "etcetera:block/drum/darbuka/low"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.pumpkin_high": {
+    "sounds": [
+      "etcetera:block/drum/beatbox/high"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.pumpkin_medium": {
+    "sounds": [
+      "etcetera:block/drum/beatbox/medium"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.pumpkin_low": {
+    "sounds": [
+      "etcetera:block/drum/beatbox/low"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.sand_high": {
+    "sounds": [
+      "etcetera:block/drum/tabla/high"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.sand_medium": {
+    "sounds": [
+      "etcetera:block/drum/tabla/medium"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.sand_low": {
+    "sounds": [
+      "etcetera:block/drum/tabla/low"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.iron_high": {
+    "sounds": [
+      "etcetera:block/drum/dholak/high"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.iron_medium": {
+    "sounds": [
+      "etcetera:block/drum/dholak/medium"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
+  "block.drum.iron_low": {
+    "sounds": [
+      "etcetera:block/drum/dholak/low"
+    ],
+    "subtitle": "subtitles.block.etcetera.drum"
+  },
   "block.squid_lamp.break": {
     "sounds": [
       "etcetera:block/squid_lamp/heavy1",

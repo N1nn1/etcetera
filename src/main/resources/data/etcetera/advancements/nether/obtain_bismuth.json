@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:nether/root",
+  "criteria": {
+    "bismuth": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "etcetera:raw_bismuth"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.etcetera.nether.obtain_bismuth.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "etcetera:raw_bismuth"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.etcetera.nether.obtain_bismuth.title"
+    }
+  },
+  "requirements": [
+    [
+      "bismuth"
+    ]
+  ]
+}

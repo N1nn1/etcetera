@@ -21,6 +21,8 @@
   "block.etcetera.iridescent_concrete": "Iridescent Concrete",
   "block.etcetera.iridescent_lantern": "Iridescent Lantern",
 
+  "block.etcetera.drum": "Drum",
+
   "block.etcetera.bouquet": "Bouquet",
   "block.etcetera.potted_bouquet": "Potted Bouquet",
   "block.etcetera.terracotta_vase": "Terracotta Vase",
@@ -38,12 +40,17 @@
   "block.etcetera.smooth_stone_brick_slab": "Smooth Stone Brick Slab",
   "block.etcetera.smooth_stone_brick_stairs": "Smooth Stone Brick Stairs",
 
+  "advancements.etcetera.nether.obtain_bismuth.title": "Down to Bismuth-ss",
+  "advancements.etcetera.nether.obtain_bismuth.description": "Obtain Raw Bismuth",
+  "advancements.etcetera.nether.use_magnifying_glass.title": "I Spy with My Little Eye",
+  "advancements.etcetera.nether.use_magnifying_glass.description": "Obtain a Magnifying Glass",
 
   "subtitles.item.etcetera.sextant.success": "Sextant measures",
   "subtitles.item.etcetera.sextant.fail": "Sextant doesn't see the horizon",
   "subtitles.item.etcetera.magnifying_glass.use": "Player examines",
-  "subtitles.block.etcetera.crumbling_stone.crumble": "Block crumbles",
   "subtitles.item.etcetera.wrench.select": "Wrench shifts",
   "subtitles.item.etcetera.wrench.fail": "Wrench fails",
-  "subtitles.item.etcetera.wrench.modify": "Wrench modifies"
+  "subtitles.item.etcetera.wrench.modify": "Wrench modifies",
+  "subtitles.block.etcetera.drum": "Drum plays",
+  "subtitles.block.etcetera.crumbling_stone.crumble": "Block crumbles"
 }

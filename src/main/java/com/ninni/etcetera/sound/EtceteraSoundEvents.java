@@ -35,6 +35,23 @@ public interface EtceteraSoundEvents {
     SoundEvent ITEM_WRENCH_FAIL    = wrench("fail");
     private static SoundEvent wrench(String type) { return createItemSound("wrench", type); }
 
+    SoundEvent BLOCK_SAND_DRUM_LOW    = drum("sand_low");
+    SoundEvent BLOCK_SAND_DRUM_MEDIUM = drum("sand_medium");
+    SoundEvent BLOCK_SAND_DRUM_HIGH   = drum("sand_high");
+    SoundEvent BLOCK_IRON_BLOCK_DRUM_LOW    = drum("iron_low");
+    SoundEvent BLOCK_IRON_BLOCK_DRUM_MEDIUM = drum("iron_medium");
+    SoundEvent BLOCK_IRON_BLOCK_DRUM_HIGH   = drum("iron_high");
+    SoundEvent BLOCK_PUMPKIN_DRUM_LOW    = drum("pumpkin_low");
+    SoundEvent BLOCK_PUMPKIN_DRUM_MEDIUM = drum("pumpkin_medium");
+    SoundEvent BLOCK_PUMPKIN_DRUM_HIGH   = drum("pumpkin_high");
+    SoundEvent BLOCK_GOLD_BLOCK_DRUM_LOW    = drum("gold_low");
+    SoundEvent BLOCK_GOLD_BLOCK_DRUM_MEDIUM = drum("gold_medium");
+    SoundEvent BLOCK_GOLD_BLOCK_DRUM_HIGH   = drum("gold_high");
+    SoundEvent BLOCK_DRUM_LOW    = drum("low");
+    SoundEvent BLOCK_DRUM_MEDIUM = drum("medium");
+    SoundEvent BLOCK_DRUM_HIGH   = drum("high");
+    private static SoundEvent drum(String type) { return createBlockSound("drum", type); }
+
     SoundEvent BLOCK_SQUID_LAMP_BREAK = squid_lamp("break");
     SoundEvent BLOCK_SQUID_LAMP_STEP  = squid_lamp("step");
     SoundEvent BLOCK_SQUID_LAMP_PLACE = squid_lamp("place");

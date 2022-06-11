@@ -1,0 +1,37 @@
+{
+  "parent": "etcetera:nether/obtain_bismuth",
+  "criteria": {
+    "magnifying_glass": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "etcetera:magnifying_glass"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.etcetera.nether.use_magnifying_glass.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "etcetera:magnifying_glass"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.etcetera.nether.use_magnifying_glass.title"
+    }
+  },
+  "requirements": [
+    [
+      "magnifying_glass"
+    ]
+  ]
+}
