@@ -6,6 +6,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.fluid.FluidState;
@@ -42,6 +43,18 @@ public class DrumBlock extends Block implements Waterloggable {
     protected DrumBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(POWERED, false));
+    }
+
+    @Override
+    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+        world.setBlockState(pos, state.with(POWERED, true), 3);
+        world.createAndScheduleBlockTick(pos, this, this.getPressTicks());
+        world.emitGameEvent(entity, GameEvent.BLOCK_CHANGE, pos);
+        int power = calculatePower(entity.getPos());
+        if (power >= 1 && 5 >= power) this.playDrumSound(world, pos, "high");
+        if (power > 5 && 11 >= power) this.playDrumSound(world, pos, "medium");
+        if (power > 11) this.playDrumSound(world, pos, "low");
+        super.onLandedUpon(world, state, pos, entity, fallDistance);
     }
 
     @Override
