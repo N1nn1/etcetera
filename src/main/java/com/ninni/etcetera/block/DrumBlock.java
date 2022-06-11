@@ -1,9 +1,9 @@
 package com.ninni.etcetera.block;
 
-import com.ninni.etcetera.sound.EtceteraSoundEvents;
+import com.ninni.etcetera.EtceteraProperties;
+import com.ninni.etcetera.block.enums.EtceteraInstrument;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.entity.Entity;
@@ -17,6 +17,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -36,13 +37,14 @@ import net.minecraft.world.event.GameEvent;
 
 @SuppressWarnings("deprecation")
 public class DrumBlock extends Block implements Waterloggable {
+    public static final EnumProperty<EtceteraInstrument> INSTRUMENT = EtceteraProperties.INSTRUMENT;
     public static final BooleanProperty POWERED = Properties.POWERED;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(Block.createCuboidShape(2, 0, 2, 14, 8, 14), Block.createCuboidShape(0, 8, 0, 16, 16, 16), BooleanBiFunction.OR);
 
     protected DrumBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(POWERED, false));
+        this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(POWERED, false).with(INSTRUMENT, EtceteraInstrument.DJEMBE));
     }
 
 
@@ -69,35 +71,17 @@ public class DrumBlock extends Block implements Waterloggable {
         world.setBlockState(pos, state.with(POWERED, true), 3);
         world.createAndScheduleBlockTick(pos, this, this.getPressTicks());
         int power = calculatePower(hit);
-        if (power >= 1 && 5 >= power) this.selectDrumSound(world, pos, "high");
-        if (power > 5 && 11 >= power) this.selectDrumSound(world, pos, "medium");
-        if (power > 11) this.selectDrumSound(world, pos, "low");
-    }
-
-    public void selectDrumSound(World world, BlockPos pos, String string) {
-        if (string.matches("high")) {
+        if (power >= 1 && 5 >= power) {
             world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 16 / 24.0, 0.0, 0.0);
-            if (world.getBlockState(pos.down()).isOf(Blocks.GOLD_BLOCK)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_GOLD_BLOCK_DRUM_HIGH, SoundCategory.RECORDS, 1, 1);
-            else if (world.getBlockState(pos.down()).isOf(Blocks.PUMPKIN)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_PUMPKIN_DRUM_HIGH, SoundCategory.RECORDS, 1, 1);
-            else if (world.getBlockState(pos.down()).isOf(Blocks.SAND)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_SAND_DRUM_HIGH, SoundCategory.RECORDS, 1, 1);
-            else if (world.getBlockState(pos.down()).isOf(Blocks.IRON_BLOCK)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_IRON_BLOCK_DRUM_HIGH, SoundCategory.RECORDS, 1, 1);
-            else world.playSound(null, pos, EtceteraSoundEvents.BLOCK_DRUM_HIGH, SoundCategory.RECORDS, 1, 1);
+            world.playSound(null, pos, (state.get(INSTRUMENT)).getHighSound(), SoundCategory.RECORDS, 2.0F, 1);
         }
-        if (string.matches("medium")) {
+        if (power > 5 && 11 >= power) {
             world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 8 / 24.0, 0.0, 0.0);
-            if (world.getBlockState(pos.down()).isOf(Blocks.GOLD_BLOCK)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_GOLD_BLOCK_DRUM_MEDIUM, SoundCategory.RECORDS, 1, 1);
-            else if (world.getBlockState(pos.down()).isOf(Blocks.PUMPKIN)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_PUMPKIN_DRUM_MEDIUM, SoundCategory.RECORDS, 1, 1);
-            else if (world.getBlockState(pos.down()).isOf(Blocks.SAND)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_SAND_DRUM_MEDIUM, SoundCategory.RECORDS, 1, 1);
-            else if (world.getBlockState(pos.down()).isOf(Blocks.IRON_BLOCK)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_IRON_BLOCK_DRUM_MEDIUM, SoundCategory.RECORDS, 1, 1);
-            else world.playSound(null, pos, EtceteraSoundEvents.BLOCK_DRUM_MEDIUM, SoundCategory.RECORDS, 1, 1);
+            world.playSound(null, pos, (state.get(INSTRUMENT)).getMediumSound(), SoundCategory.RECORDS, 2.0F, 1);
         }
-        if (string.matches("low")) {
+        if (power > 11) {
             world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 1 / 24.0, 0.0, 0.0);
-            if (world.getBlockState(pos.down()).isOf(Blocks.GOLD_BLOCK)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_GOLD_BLOCK_DRUM_LOW, SoundCategory.RECORDS, 1, 1);
-            else if (world.getBlockState(pos.down()).isOf(Blocks.PUMPKIN)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_PUMPKIN_DRUM_LOW, SoundCategory.RECORDS, 1, 1);
-            else if (world.getBlockState(pos.down()).isOf(Blocks.SAND)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_SAND_DRUM_LOW, SoundCategory.RECORDS, 1, 1);
-            else if (world.getBlockState(pos.down()).isOf(Blocks.IRON_BLOCK)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_IRON_BLOCK_DRUM_LOW, SoundCategory.RECORDS, 1, 1);
-            else world.playSound(null, pos, EtceteraSoundEvents.BLOCK_DRUM_LOW, SoundCategory.RECORDS, 1, 1);
+            world.playSound(null, pos, (state.get(INSTRUMENT)).getLowSound(), SoundCategory.RECORDS, 2.0F, 1);
         }
     }
 
@@ -114,9 +98,9 @@ public class DrumBlock extends Block implements Waterloggable {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (state.get(WATERLOGGED)) world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return direction == Direction.DOWN ? state.with(INSTRUMENT, EtceteraInstrument.fromBlockState(neighborState)) : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
-    @Override public BlockState getPlacementState(ItemPlacementContext ctx) { return this.getDefaultState().with(WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER); }
+    @Override public BlockState getPlacementState(ItemPlacementContext ctx) { return this.getDefaultState().with(WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER).with(INSTRUMENT, EtceteraInstrument.fromBlockState(ctx.getWorld().getBlockState(ctx.getBlockPos().down()))); }
     @Override public FluidState getFluidState(BlockState state) { return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state); }
-    @Override protected void appendProperties(StateManager.Builder<Block, BlockState> builder) { builder.add(WATERLOGGED, POWERED); }
+    @Override protected void appendProperties(StateManager.Builder<Block, BlockState> builder) { builder.add(WATERLOGGED, POWERED, INSTRUMENT); }
 }
