@@ -1,5 +1,6 @@
 {
 	"parent": "minecraft:block/cube",
+	"ambientocclusion": false,
 	"textures": {
 		"top": "etcetera:block/drum_top",
 		"bottom": "etcetera:block/drum_bottom",
@@ -9,12 +10,12 @@
 	"elements": [
 		{
 			"from": [0, 8, 0],
-			"to": [16, 15.8, 16],
+			"to": [16, 15.75, 16],
 			"faces": {
-				"north": {"uv": [0, 0, 16, 7.8], "texture": "#side"},
-				"east": {"uv": [0, 0, 16, 7.8], "texture": "#side"},
-				"south": {"uv": [0, 0, 16, 7.8], "texture": "#side"},
-				"west": {"uv": [0, 0, 16, 7.8], "texture": "#side"},
+				"north": {"uv": [0, 0.25, 16, 8], "texture": "#side"},
+				"east": {"uv": [0, 0.25, 16, 8.05], "texture": "#side"},
+				"south": {"uv": [0, 0.25, 16, 8.05], "texture": "#side"},
+				"west": {"uv": [0, 0.25, 16, 8.05], "texture": "#side"},
 				"up": {"uv": [0, 0, 16, 16], "texture": "#top"},
 				"down": {"uv": [0, 0, 16, 16], "texture": "#bottom"}
 			}

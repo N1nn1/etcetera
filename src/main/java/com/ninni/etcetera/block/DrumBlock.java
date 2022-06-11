@@ -45,50 +45,36 @@ public class DrumBlock extends Block implements Waterloggable {
         this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(POWERED, false));
     }
 
-    @Override
-    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-        world.setBlockState(pos, state.with(POWERED, true), 3);
-        world.createAndScheduleBlockTick(pos, this, this.getPressTicks());
-        world.emitGameEvent(entity, GameEvent.BLOCK_CHANGE, pos);
-        int power = calculatePower(entity.getPos());
-        if (power >= 1 && 5 >= power) this.playDrumSound(world, pos, "high");
-        if (power > 5 && 11 >= power) this.playDrumSound(world, pos, "medium");
-        if (power > 11) this.playDrumSound(world, pos, "low");
-        super.onLandedUpon(world, state, pos, entity, fallDistance);
-    }
+
+    @Override public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) { if (hit.getSide() == Direction.UP) playDrumSound(state, world, hit.getBlockPos(), projectile.getOwner(), hit.getPos()); }
 
     @Override
-    public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
-        if (hit.getSide() == Direction.UP) {
-            BlockPos pos = hit.getBlockPos();
-            world.setBlockState(pos, state.with(POWERED, true), 3);
-            world.createAndScheduleBlockTick(pos, this, this.getPressTicks());
-            world.emitGameEvent(projectile.getOwner(), GameEvent.BLOCK_CHANGE, pos);
-            int power = calculatePower(hit.getPos());
-            if (power >= 1 && 5 >= power) this.playDrumSound(world, pos, "high");
-            if (power > 5 && 11 >= power) this.playDrumSound(world, pos, "medium");
-            if (power > 11) this.playDrumSound(world, pos, "low");
-        }
+    public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+        playDrumSound(state, world, pos, entity, entity.getPos());
+        super.onLandedUpon(world, state, pos, entity, fallDistance);
     }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (hit.getSide() == Direction.UP && world.getBlockState(pos.up()).isAir()) {
-            world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-            world.setBlockState(pos, state.with(POWERED, true), 3);
-            world.createAndScheduleBlockTick(pos, this, this.getPressTicks());
-            int power = calculatePower(hit.getPos());
-            if (power >= 1 && 5 >= power) this.playDrumSound(world, pos, "high");
-            if (power > 5 && 11 >= power) this.playDrumSound(world, pos, "medium");
-            if (power > 11) this.playDrumSound(world, pos, "low");
+            playDrumSound(state, world, pos, player, hit.getPos());
             return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
     }
 
-    private static int calculatePower(Vec3d pos) { return Math.max(1, MathHelper.ceil(15.0 * MathHelper.clamp((0.5 - Math.max(Math.abs(MathHelper.fractionalPart(pos.x) - 0.5), Math.abs(MathHelper.fractionalPart(pos.z) - 0.5))) / 0.5, 0.0, 1.0))); }
 
-    public void playDrumSound(World world, BlockPos pos, String string) {
+    public void playDrumSound(BlockState state, World world, BlockPos pos, Entity player, Vec3d hit) {
+        world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+        world.setBlockState(pos, state.with(POWERED, true), 3);
+        world.createAndScheduleBlockTick(pos, this, this.getPressTicks());
+        int power = calculatePower(hit);
+        if (power >= 1 && 5 >= power) this.selectDrumSound(world, pos, "high");
+        if (power > 5 && 11 >= power) this.selectDrumSound(world, pos, "medium");
+        if (power > 11) this.selectDrumSound(world, pos, "low");
+    }
+
+    public void selectDrumSound(World world, BlockPos pos, String string) {
         if (string.matches("high")) {
             world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 16 / 24.0, 0.0, 0.0);
             if (world.getBlockState(pos.down()).isOf(Blocks.GOLD_BLOCK)) world.playSound(null, pos, EtceteraSoundEvents.BLOCK_GOLD_BLOCK_DRUM_HIGH, SoundCategory.RECORDS, 1, 1);
@@ -114,6 +100,8 @@ public class DrumBlock extends Block implements Waterloggable {
             else world.playSound(null, pos, EtceteraSoundEvents.BLOCK_DRUM_LOW, SoundCategory.RECORDS, 1, 1);
         }
     }
+
+    private static int calculatePower(Vec3d pos) { return Math.max(1, MathHelper.ceil(15.0 * MathHelper.clamp((0.5 - Math.max(Math.abs(MathHelper.fractionalPart(pos.x) - 0.5), Math.abs(MathHelper.fractionalPart(pos.z) - 0.5))) / 0.5, 0.0, 1.0))); }
 
     @Override public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) { return SHAPE; }
 
