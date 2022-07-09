@@ -1,0 +1,56 @@
+{
+
+  "item.etcetera.raw_bismuth": "Bismuto grezzo",
+  "item.etcetera.bismuth_ingot": "Lingotto di bismuto",
+  "item.etcetera.sextant": "Sestante",
+  "item.etcetera.sextant.actionbar": "X: %s Z: %s",
+  "item.etcetera.magnifying_glass": "Lente d'ingrandimento",
+  "item.etcetera.magnifying_glass.actionbar.entity": "%1$s ha %2$s cuori",
+  "item.etcetera.magnifying_glass.actionbar.entity_hurt": "%1$s ha %2$s cuori su %3$s",
+  "item.etcetera.magnifying_glass.select": "%1$s con la proprietà \"%2$s\": %3$s",
+  "item.etcetera.wrench": "Chiave inglese",
+  "item.etcetera.wrench.select": "Proprietà selezionata: \"%1$s\"",
+  "item.etcetera.wrench.invalid": "Proprietà: \"%1$s\" non può",
+  "item.etcetera.wrench.block.invalid": "Questo blocco non può essere modificato",
+  "block.etcetera.raw_bismuth_block": "Blocco di bismuto grezzo",
+  "block.etcetera.bismuth_block": "Blocco di bismuto",
+  "block.etcetera.bismuth_bars": "Sbarre di bismuto",
+  "block.etcetera.nether_bismuth_ore": "Minerale di bismuto del Nether",
+  "block.etcetera.iridescent_glass": "Vetro iridescente",
+  "block.etcetera.iridescent_terracotta": "Terracotta iridescente",
+  "block.etcetera.iridescent_concrete": "Calcestruzzo iridescente",
+  "block.etcetera.iridescent_lantern": "Lanterna iridescente",
+
+  "block.etcetera.drum": "Tamburo",
+
+  "block.etcetera.bouquet": "Bouquet",
+  "block.etcetera.potted_bouquet": "Vaso con bouquet",
+  "block.etcetera.terracotta_vase": "Anfora",
+
+  "block.etcetera.squid_lamp": "Lampada tentacolosa",
+
+  "block.etcetera.crumbling_stone": "Pietra friabile",
+  "block.etcetera.waxed_crumbling_stone": "Pietra friabile cerato",
+
+  "block.etcetera.leveled_stone": "Pietra livellata",
+  "block.etcetera.leveled_stone_slab": "Lastra di pietra livellata",
+  "block.etcetera.leveled_stone_stairs": "Scalini di pietra livellata",
+  "block.etcetera.smooth_stone_bricks": "Mattoni di pietra liscia",
+  "block.etcetera.smooth_stone_brick_wall": "Muretto di mattoni di pietra liscia",
+  "block.etcetera.smooth_stone_brick_slab": "Lastra di mattoni di pietra liscia",
+  "block.etcetera.smooth_stone_brick_stairs": "Scalini di mattoni di pietra liscia",
+
+  "advancements.etcetera.nether.obtain_bismuth.title": "Unti e bismuti",
+  "advancements.etcetera.nether.obtain_bismuth.description": "Ottieni del bismuto grezzo",
+  "advancements.etcetera.nether.use_magnifying_glass.title": "Vedo vedo con i miei occhietti...",
+  "advancements.etcetera.nether.use_magnifying_glass.description": "Ottieni una lente d'ingrandimento",
+
+  "subtitles.item.etcetera.sextant.success": "Sestante misura",
+  "subtitles.item.etcetera.sextant.fail": "Sestante non vede l'orizzonte",
+  "subtitles.item.etcetera.magnifying_glass.use": "Giocatore esamina",
+  "subtitles.item.etcetera.wrench.select": "Chiave inglese seleziona",
+  "subtitles.item.etcetera.wrench.fail": "Chiave inglese fallisce",
+  "subtitles.item.etcetera.wrench.modify": "Chiave inglese modifica",
+  "subtitles.block.etcetera.drum": "Tamburo viene suonato",
+  "subtitles.block.etcetera.crumbling_stone.crumble": "Blocco si sgretola"
+}
