@@ -41,7 +41,7 @@ public class FrameBlock extends Block implements Waterloggable {
     @Override public boolean canReplace(BlockState state, ItemPlacementContext context) {
         if (context.getPlayer().isHolding(EtceteraItems.FRAME) || context.getPlayer().shouldCancelInteraction()) return false;
         if (!context.getPlayer().isCreative()) {
-            if (context.getPlayer().getInventory().getEmptySlot() >= 1) {
+            if (context.getPlayer().getInventory().getEmptySlot() >= 0) {
                 context.getWorld().breakBlock(context.getBlockPos(), false, context.getPlayer());
                 context.getPlayer().giveItemStack(EtceteraItems.FRAME.getDefaultStack());
             }
