@@ -5,6 +5,7 @@ import com.ninni.etcetera.block.vanilla.PublicStairsBlock;
 import com.ninni.etcetera.sound.EtceteraBlockSoundGroups;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowerPotBlock;
 import net.minecraft.block.GlassBlock;
@@ -16,8 +17,10 @@ import net.minecraft.block.SlabBlock;
 import net.minecraft.block.WallBlock;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.BlockView;
 
 import static com.ninni.etcetera.Etcetera.*;
 
@@ -34,6 +37,8 @@ public class EtceteraBlocks {
     public static final Block IRIDESCENT_LANTERN = register("iridescent_lantern", new Block(FabricBlockSettings.copyOf(Blocks.SEA_LANTERN)));
 
     public static final Block DRUM = register("drum", new DrumBlock(FabricBlockSettings.copyOf(Blocks.NOTE_BLOCK)));
+
+    public static final Block FRAME = register("frame", new FrameBlock(FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).sounds(BlockSoundGroup.SCAFFOLDING).nonOpaque().suffocates(EtceteraBlocks::never).blockVision(EtceteraBlocks::never).nonOpaque()));
 
     public static final Block BOUQUET = register("bouquet", new BouquetBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly()));
     public static final Block POTTED_BOUQUET = register("potted_bouquet", new FlowerPotBlock(BOUQUET, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));
@@ -53,7 +58,6 @@ public class EtceteraBlocks {
     public static final Block SMOOTH_STONE_BRICK_STAIRS = register("smooth_stone_brick_stairs", new PublicStairsBlock(SMOOTH_STONE_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(SMOOTH_STONE_BRICKS)));
     public static final Block SMOOTH_STONE_BRICK_SLAB = register("smooth_stone_brick_slab", new SlabBlock(FabricBlockSettings.copyOf(SMOOTH_STONE_BRICKS)));
 
-    private static Block register(String id, Block block) {
-        return Registry.register(Registry.BLOCK, new Identifier(MOD_ID, id), block);
-    }
+    private static Block register(String id, Block block) { return Registry.register(Registry.BLOCK, new Identifier(MOD_ID, id), block); }
+    private static boolean never(BlockState state, BlockView world, BlockPos pos) { return false; }
 }
