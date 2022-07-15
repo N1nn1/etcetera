@@ -1,23 +1,18 @@
 package com.ninni.etcetera.block;
 
-import com.ninni.etcetera.item.EtceteraItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
@@ -31,26 +26,17 @@ public class FrameBlock extends Block implements Waterloggable {
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (!context.isAbove(VoxelShapes.fullCube(), pos, true)) return VoxelShapes.empty();
-        return VoxelShapes.fullCube();
-    }
-
-    @Override public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) { entity.slowMovement(state, new Vec3d(0.8f, 0.75, 0.8f)); }
-
-    @Override public VoxelShape getRaycastShape(BlockState state, BlockView world, BlockPos pos) { return VoxelShapes.fullCube(); }
-
-    @Override public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) { return VoxelShapes.fullCube(); }
-
-    @Override public boolean canReplace(BlockState state, ItemPlacementContext context) {
-        if (context.getPlayer().isHolding(EtceteraItems.FRAME) || context.getPlayer().shouldCancelInteraction()) return false;
-        if (!context.getPlayer().isCreative()) {
-            if (context.getPlayer().getInventory().getEmptySlot() >= 0) {
-                context.getWorld().breakBlock(context.getBlockPos(), false, context.getPlayer());
-                context.getPlayer().giveItemStack(EtceteraItems.FRAME.getDefaultStack());
+    public boolean canReplace(BlockState state, ItemPlacementContext context) {
+        PlayerEntity player = context.getPlayer();
+        World world = context.getWorld();
+        if (player.isHolding(this.asItem()) || player.shouldCancelInteraction()) return false;
+        if (!player.isCreative()) {
+            if (player.getInventory().getEmptySlot() >= 0) {
+                world.breakBlock(context.getBlockPos(), false, player);
+                player.giveItemStack(new ItemStack(this));
             }
-            else context.getWorld().breakBlock(context.getBlockPos(), true, context.getPlayer());
-        }
+            else world.breakBlock(context.getBlockPos(), true, player);
+        } else world.breakBlock(context.getBlockPos(), false, player);
 
         return true;
     }
