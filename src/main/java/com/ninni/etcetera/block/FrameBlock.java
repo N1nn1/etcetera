@@ -8,6 +8,7 @@ import net.minecraft.block.Waterloggable;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
@@ -39,8 +40,14 @@ public class FrameBlock extends Block implements Waterloggable {
 
     @Override public boolean canReplace(BlockState state, ItemPlacementContext context) {
         if (context.getPlayer().isHolding(EtceteraItems.FRAME) || context.getPlayer().shouldCancelInteraction()) return false;
-        if (!context.getPlayer().isCreative()) context.getPlayer().giveItemStack(EtceteraItems.FRAME.getDefaultStack());
-        context.getWorld().breakBlock(context.getBlockPos(), false, context.getPlayer());
+        if (!context.getPlayer().isCreative()) {
+            if (context.getPlayer().getInventory().getEmptySlot() == 1) {
+                context.getWorld().breakBlock(context.getBlockPos(), false, context.getPlayer());
+                context.getPlayer().giveItemStack(EtceteraItems.FRAME.getDefaultStack());
+            }
+            else context.getWorld().breakBlock(context.getBlockPos(), true, context.getPlayer());
+        }
+
         return true;
     }
 
