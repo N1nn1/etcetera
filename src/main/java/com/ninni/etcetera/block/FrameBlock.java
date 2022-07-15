@@ -38,7 +38,7 @@ public class FrameBlock extends Block implements Waterloggable {
     @Override public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) { return VoxelShapes.fullCube(); }
 
     @Override public boolean canReplace(BlockState state, ItemPlacementContext context) {
-        if (context.getPlayer().isHolding(EtceteraItems.FRAME)) return false;
+        if (context.getPlayer().isHolding(EtceteraItems.FRAME) || context.getPlayer().shouldCancelInteraction()) return false;
         if (!context.getPlayer().isCreative()) context.getPlayer().giveItemStack(EtceteraItems.FRAME.getDefaultStack());
         context.getWorld().breakBlock(context.getBlockPos(), false, context.getPlayer());
         return true;
