@@ -1,21 +1,40 @@
 {
   "variants": {
-    "axis=x": [
-      {
-        "model": "etcetera:block/compacted_dripstone",
-        "x": 90,
-        "y": 90
-      }
-    ],
-    "axis=y": [
+    "facing=down": [
       {
         "model": "etcetera:block/compacted_dripstone"
       }
     ],
-    "axis=z": [
+    "facing=up": [
+      {
+        "model": "etcetera:block/compacted_dripstone",
+        "x": 180
+      }
+    ],
+    "facing=north": [
+      {
+        "model": "etcetera:block/compacted_dripstone",
+        "x": -90
+      }
+    ],
+    "facing=south": [
       {
         "model": "etcetera:block/compacted_dripstone",
         "x": 90
+      }
+    ],
+    "facing=east": [
+      {
+        "model": "etcetera:block/compacted_dripstone",
+        "x": -90,
+        "y": 90
+      }
+    ],
+    "facing=west": [
+      {
+        "model": "etcetera:block/compacted_dripstone",
+        "x": 90,
+        "y": 90
       }
     ]
   }
