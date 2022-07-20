@@ -29,6 +29,8 @@ public class EtceteraItems {
     public static final Item IRIDESCENT_CONCRETE = register("iridescent_concrete", new BlockItem(EtceteraBlocks.IRIDESCENT_CONCRETE, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
     public static final Item IRIDESCENT_LANTERN = register("iridescent_lantern", new BlockItem(EtceteraBlocks.IRIDESCENT_LANTERN, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
 
+    public static final Item COMPACTED_DRIPSTONE = register("compacted_dripstone", new BlockItem(EtceteraBlocks.COMPACTED_DRIPSTONE, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+
     public static final Item DRUM = register("drum", new BlockItem(EtceteraBlocks.DRUM, new FabricItemSettings().group(ItemGroup.REDSTONE)));
 
     public static final Item FRAME = register("frame", new BlockItem(EtceteraBlocks.FRAME, new FabricItemSettings().group(ItemGroup.DECORATIONS)));

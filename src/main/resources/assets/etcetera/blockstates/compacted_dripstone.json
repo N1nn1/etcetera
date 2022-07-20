@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "axis=x": [
+      {
+        "model": "etcetera:block/compacted_dripstone",
+        "x": 90,
+        "y": 90
+      }
+    ],
+    "axis=y": [
+      {
+        "model": "etcetera:block/compacted_dripstone"
+      }
+    ],
+    "axis=z": [
+      {
+        "model": "etcetera:block/compacted_dripstone",
+        "x": 90
+      }
+    ]
+  }
+}
