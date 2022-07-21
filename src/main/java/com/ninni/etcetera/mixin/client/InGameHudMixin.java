@@ -40,21 +40,21 @@ public abstract class InGameHudMixin extends DrawableHelper {
             if (playerEntity.hasStatusEffect(StatusEffects.CONDUIT_POWER)) {
                 int duration = playerEntity.getStatusEffect(StatusEffects.CONDUIT_POWER).getDuration();
 
-                if (duration == 20 * 90) drawTidalEye(matrices, 88, 0);
+                if (duration == 20 * 90) drawTidalEye(matrices, 96, 0);
                 else if (duration < 20 * 90 && duration >= 20 * 75) drawTidalEye(matrices, 0, 0);
-                else if (duration < 20 * 75 && duration >= 20 * 60) drawTidalEye(matrices, 11, 0);
-                else if (duration < 20 * 60 && duration >= 20 * 45) drawTidalEye(matrices, 22, 0);
-                else if (duration < 20 * 45 && duration >= 20 * 30) drawTidalEye(matrices, 33, 0);
-                else if (duration < 20 * 30 && duration >= 20 * 15) drawTidalEye(matrices, 44, 0);
-                else if (duration < 20 * 15 && duration >= 20 * 10) drawTidalEye(matrices, 55, 0);
-                else if (duration < 20 * 10 && duration >= 20 * 5) drawTidalEye(matrices, 66, 0);
-                else if (duration < 20 * 5) drawTidalEye(matrices, 77, 0);
-            } else drawTidalEye(matrices,88, 0);
+                else if (duration < 20 * 75 && duration >= 20 * 60) drawTidalEye(matrices, 12, 0);
+                else if (duration < 20 * 60 && duration >= 20 * 45) drawTidalEye(matrices, 24, 0);
+                else if (duration < 20 * 45 && duration >= 20 * 30) drawTidalEye(matrices, 36, 0);
+                else if (duration < 20 * 30 && duration >= 20 * 15) drawTidalEye(matrices, 48, 0);
+                else if (duration < 20 * 15 && duration >= 20 * 10) drawTidalEye(matrices, 60, 0);
+                else if (duration < 20 * 10 && duration >= 20 * 5) drawTidalEye(matrices, 72, 0);
+                else if (duration < 20 * 5) drawTidalEye(matrices, 84, 0);
+            } else drawTidalEye(matrices,96, 0);
         }
         this.client.getProfiler().pop();
     }
 
-    private void drawTidalEye(MatrixStack matrices, int x, int y) { this.drawTexture(matrices, this.scaledWidth / 2 - 6, this.scaledHeight - 50, x, y, 11, 11); }
+    private void drawTidalEye(MatrixStack matrices, int x, int y) { this.drawTexture(matrices, (this.scaledWidth / 2 - 6), this.scaledHeight - 49, x, y, 12, 12); }
 
     @Inject(method = "renderStatusBars", at = @At("TAIL"))
     private void customRenderStatusBars(MatrixStack matrices, CallbackInfo ci) { this.renderTidalEye(matrices); }
