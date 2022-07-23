@@ -3,8 +3,13 @@
   "minVersion": "0.8",
   "package": "com.ninni.etcetera.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [ "AbstractBlockStateMixin" ],
-  "client": [],
+  "mixins": [
+    "AbstractBlockStateMixin",
+    "PlayerEntityMixin"
+  ],
+  "client": [
+    "client.InGameHudMixin"
+  ],
   "injectors": {
     "defaultRequire": 1 }
 }
