@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "tidal_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "etcetera:tidal_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.etcetera.story.tidal_helmet.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "etcetera:tidal_helmet",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.etcetera.story.tidal_helmet.title"
+    }
+  },
+  "requirements": [
+    [
+      "tidal_helmet"
+    ]
+  ]
+}

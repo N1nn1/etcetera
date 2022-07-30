@@ -1,4 +1,5 @@
 {
+  "itemGroup.etcetera.item_group": "Etcetera",
 
   "item.etcetera.raw_bismuth": "Bismuto grezzo",
   "item.etcetera.bismuth_ingot": "Lingotto di bismuto",
@@ -49,6 +50,8 @@
   "advancements.etcetera.nether.obtain_bismuth.description": "Ottieni del bismuto grezzo",
   "advancements.etcetera.nether.use_magnifying_glass.title": "Vedo vedo con i miei occhietti...",
   "advancements.etcetera.nether.use_magnifying_glass.description": "Ottieni una lente d'ingrandimento",
+  "advancements.etcetera.story.tidal_helmet.title": "In fondo al mar",
+  "advancements.etcetera.story.tidal_helmet.description": "Combina il potere di un cuore del mare e un carapace di tartaruga",
 
   "subtitles.item.etcetera.sextant.success": "Sestante misura",
   "subtitles.item.etcetera.sextant.fail": "Sestante non vede l'orizzonte",
