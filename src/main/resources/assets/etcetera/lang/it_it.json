@@ -21,6 +21,8 @@
   "block.etcetera.iridescent_concrete": "Calcestruzzo iridescente",
   "block.etcetera.iridescent_lantern": "Lanterna iridescente",
 
+  "block.etcetera.compacted_dripstone": "Speleotema compatto",
+
   "block.etcetera.drum": "Tamburo",
 
   "block.etcetera.frame": "Intelaiatura",
@@ -30,6 +32,7 @@
   "block.etcetera.terracotta_vase": "Anfora",
 
   "block.etcetera.squid_lamp": "Lampada tentacolosa",
+  "item.etcetera.tidal_helmet": "Elmo delle maree",
 
   "block.etcetera.crumbling_stone": "Pietra friabile",
   "block.etcetera.waxed_crumbling_stone": "Pietra friabile cerato",
@@ -54,5 +57,6 @@
   "subtitles.item.etcetera.wrench.fail": "Chiave inglese fallisce",
   "subtitles.item.etcetera.wrench.modify": "Chiave inglese modifica",
   "subtitles.block.etcetera.drum": "Tamburo viene suonato",
+  "subtitles.item.etcetera.tidal.armor.equip": "Elmo delle maree fa bwoop",
   "subtitles.block.etcetera.crumbling_stone.crumble": "Blocco si sgretola"
 }

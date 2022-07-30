@@ -1,5 +1,4 @@
 {
-
   "item.etcetera.raw_bismuth": "Raw Bismuth",
   "item.etcetera.bismuth_ingot": "Bismuth Ingot",
   "item.etcetera.sextant": "Sextant",
@@ -57,5 +56,6 @@
   "subtitles.item.etcetera.wrench.fail": "Wrench fails",
   "subtitles.item.etcetera.wrench.modify": "Wrench modifies",
   "subtitles.block.etcetera.drum": "Drum plays",
+  "subtitles.item.etcetera.tidal.armor.equip": "Tidal Helmet bwoops",
   "subtitles.block.etcetera.crumbling_stone.crumble": "Block crumbles"
 }

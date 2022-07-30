@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "etcetera:tidal_helmet"
+    ]
+  },
+  "criteria": {
+    "has_heart_of_the_sea": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:heart_of_the_sea"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "etcetera:tidal_helmet_from_heart_of_the_sea"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_heart_of_the_sea",
+      "has_the_recipe"
+    ]
+  ]
+}

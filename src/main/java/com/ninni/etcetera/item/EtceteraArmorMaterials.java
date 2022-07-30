@@ -1,11 +1,11 @@
 package com.ninni.etcetera.item;
 
+import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Lazy;
 
 import java.util.function.Supplier;
@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 @SuppressWarnings("deprecation")
 public enum EtceteraArmorMaterials implements ArmorMaterial {
 
-    TIDAL("tidal", 35, new int[]{3, 6, 8, 3}, 15, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.SCUTE));
+    TIDAL("tidal", 35, new int[]{3, 6, 8, 3}, 15, EtceteraSoundEvents.ITEM_ARMOR_EQUIP_TIDAL, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.NAUTILUS_SHELL));
 
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
     private final String name;
