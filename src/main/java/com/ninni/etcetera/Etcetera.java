@@ -8,8 +8,11 @@ import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
@@ -33,6 +36,7 @@ import static com.ninni.etcetera.block.EtceteraBlocks.*;
 
 public class Etcetera implements ModInitializer {
 	public static final String MOD_ID = "etcetera";
+	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "item_group"), () -> new ItemStack(EtceteraItems.BOUQUET));
 
 	@SuppressWarnings("UnstableApiUsage")
 	@Override
