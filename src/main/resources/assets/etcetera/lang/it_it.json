@@ -52,6 +52,8 @@
   "advancements.etcetera.nether.use_magnifying_glass.description": "Ottieni una lente d'ingrandimento",
   "advancements.etcetera.story.tidal_helmet.title": "In fondo al mar",
   "advancements.etcetera.story.tidal_helmet.description": "Combina il potere di un cuore del mare e un carapace di tartaruga",
+  "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Pol-position",
+  "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Ottieni una lampada tentacolosa",
 
   "subtitles.item.etcetera.sextant.success": "Sestante misura",
   "subtitles.item.etcetera.sextant.fail": "Sestante non vede l'orizzonte",

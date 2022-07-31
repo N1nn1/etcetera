@@ -52,6 +52,8 @@
   "advancements.etcetera.nether.use_magnifying_glass.description": "Obtain a Magnifying Glass",
   "advancements.etcetera.story.tidal_helmet.title": "All-Seaing Eye",
   "advancements.etcetera.story.tidal_helmet.description": "Combine the power of a Turtle Shell and an Heart of The Sea",
+  "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Cephalopod Activities",
+  "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Obtain a Squid Lamp",
 
   "subtitles.item.etcetera.sextant.success": "Sextant measures",
   "subtitles.item.etcetera.sextant.fail": "Sextant doesn't see the horizon",

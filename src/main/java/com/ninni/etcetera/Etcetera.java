@@ -36,7 +36,7 @@ import static com.ninni.etcetera.block.EtceteraBlocks.*;
 
 public class Etcetera implements ModInitializer {
 	public static final String MOD_ID = "etcetera";
-	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "item_group"), () -> new ItemStack(EtceteraItems.BOUQUET));
+	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "item_group"), () -> new ItemStack(EtceteraItems.ETCETERA));
 
 	@SuppressWarnings("UnstableApiUsage")
 	@Override

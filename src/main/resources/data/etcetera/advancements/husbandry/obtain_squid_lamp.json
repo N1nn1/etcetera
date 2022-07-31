@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:husbandry/make_a_sign_glow",
+  "criteria": {
+    "squid_lamp": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "etcetera:squid_lamp"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.etcetera.husbandry.obtain_squid_lamp.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "etcetera:squid_lamp"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.etcetera.husbandry.obtain_squid_lamp.title"
+    }
+  },
+  "requirements": [
+    [
+      "squid_lamp"
+    ]
+  ]
+}
