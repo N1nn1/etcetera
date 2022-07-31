@@ -1,4 +1,5 @@
 {
+  "itemGroup.etcetera.item_group": "Etcetera",
 
   "item.etcetera.raw_bismuth": "Bismuto grezzo",
   "item.etcetera.bismuth_ingot": "Lingotto di bismuto",
@@ -21,6 +22,8 @@
   "block.etcetera.iridescent_concrete": "Calcestruzzo iridescente",
   "block.etcetera.iridescent_lantern": "Lanterna iridescente",
 
+  "block.etcetera.compacted_dripstone": "Speleotema compatto",
+
   "block.etcetera.drum": "Tamburo",
 
   "block.etcetera.frame": "Intelaiatura",
@@ -30,6 +33,7 @@
   "block.etcetera.terracotta_vase": "Anfora",
 
   "block.etcetera.squid_lamp": "Lampada tentacolosa",
+  "item.etcetera.tidal_helmet": "Elmo delle maree",
 
   "block.etcetera.crumbling_stone": "Pietra friabile",
   "block.etcetera.waxed_crumbling_stone": "Pietra friabile cerato",
@@ -46,6 +50,10 @@
   "advancements.etcetera.nether.obtain_bismuth.description": "Ottieni del bismuto grezzo",
   "advancements.etcetera.nether.use_magnifying_glass.title": "Vedo vedo con i miei occhietti...",
   "advancements.etcetera.nether.use_magnifying_glass.description": "Ottieni una lente d'ingrandimento",
+  "advancements.etcetera.story.tidal_helmet.title": "In fondo al mar",
+  "advancements.etcetera.story.tidal_helmet.description": "Combina il potere di un cuore del mare e un carapace di tartaruga",
+  "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Pol-position",
+  "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Ottieni una lampada tentacolosa",
 
   "subtitles.item.etcetera.sextant.success": "Sestante misura",
   "subtitles.item.etcetera.sextant.fail": "Sestante non vede l'orizzonte",
@@ -54,5 +62,6 @@
   "subtitles.item.etcetera.wrench.fail": "Chiave inglese fallisce",
   "subtitles.item.etcetera.wrench.modify": "Chiave inglese modifica",
   "subtitles.block.etcetera.drum": "Tamburo viene suonato",
+  "subtitles.item.etcetera.tidal.armor.equip": "Elmo delle maree fa bwoop",
   "subtitles.block.etcetera.crumbling_stone.crumble": "Blocco si sgretola"
 }

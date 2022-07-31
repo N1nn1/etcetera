@@ -260,6 +260,16 @@
       "etcetera:block/squid_lamp/light3"
     ]
   },
+  "item.tidal.armor.equip": {
+    "sounds": [
+      "etcetera:item/armor/equip_tidal1",
+      "etcetera:item/armor/equip_tidal2",
+      "etcetera:item/armor/equip_tidal3",
+      "etcetera:item/armor/equip_tidal4",
+      "etcetera:item/armor/equip_tidal5"
+    ],
+    "subtitle": "subtitles.item.etcetera.tidal.armor.equip"
+  },
   "block.terracotta_vase.break": {
     "sounds": [
       "etcetera:block/terracotta_vase/heavy1",

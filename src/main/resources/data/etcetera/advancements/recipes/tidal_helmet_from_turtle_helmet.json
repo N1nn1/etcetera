@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "etcetera:tidal_helmet"
+    ]
+  },
+  "criteria": {
+    "has_turtle_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:turtle_helmet"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "etcetera:tidal_helmet_from_turtle_helmet"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_turtle_helmet",
+      "has_the_recipe"
+    ]
+  ]
+}

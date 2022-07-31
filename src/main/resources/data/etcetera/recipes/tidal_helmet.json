@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#H"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:turtle_helmet"
+    },
+    "H": {
+      "item": "minecraft:heart_of_the_sea"
+    }
+  },
+  "result": {
+    "item": "etcetera:tidal_helmet",
+    "count": 1
+  }
+}

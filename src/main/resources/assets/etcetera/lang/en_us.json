@@ -1,4 +1,5 @@
 {
+  "itemGroup.etcetera.item_group": "Etcetera",
 
   "item.etcetera.raw_bismuth": "Raw Bismuth",
   "item.etcetera.bismuth_ingot": "Bismuth Ingot",
@@ -49,6 +50,10 @@
   "advancements.etcetera.nether.obtain_bismuth.description": "Obtain Raw Bismuth",
   "advancements.etcetera.nether.use_magnifying_glass.title": "I Spy with My Little Eye",
   "advancements.etcetera.nether.use_magnifying_glass.description": "Obtain a Magnifying Glass",
+  "advancements.etcetera.story.tidal_helmet.title": "All-Seaing Eye",
+  "advancements.etcetera.story.tidal_helmet.description": "Combine the power of a Turtle Shell and an Heart of The Sea",
+  "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Cephalopod Activities",
+  "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Obtain a Squid Lamp",
 
   "subtitles.item.etcetera.sextant.success": "Sextant measures",
   "subtitles.item.etcetera.sextant.fail": "Sextant doesn't see the horizon",
@@ -57,5 +62,6 @@
   "subtitles.item.etcetera.wrench.fail": "Wrench fails",
   "subtitles.item.etcetera.wrench.modify": "Wrench modifies",
   "subtitles.block.etcetera.drum": "Drum plays",
+  "subtitles.item.etcetera.tidal.armor.equip": "Tidal Helmet bwoops",
   "subtitles.block.etcetera.crumbling_stone.crumble": "Block crumbles"
 }

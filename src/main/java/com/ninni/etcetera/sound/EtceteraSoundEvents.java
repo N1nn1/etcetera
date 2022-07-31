@@ -59,6 +59,9 @@ public interface EtceteraSoundEvents {
     SoundEvent BLOCK_SQUID_LAMP_FALL  = squid_lamp("fall");
     private static SoundEvent squid_lamp(String type) { return createBlockSound("squid_lamp", type); }
 
+    SoundEvent ITEM_ARMOR_EQUIP_TIDAL    = tidal("equip");
+    private static SoundEvent tidal(String type) { return createItemSound("tidal.armor", type); }
+
     SoundEvent BLOCK_TERRACOTTA_VASE_BREAK = terracotta_vase("break");
     private static SoundEvent terracotta_vase(String type) { return createBlockSound("terracotta_vase", type); }
 
