@@ -6,9 +6,20 @@
   "name": "Etcetera",
   "description": "Simple decoration mod that adds fun blocks and items",
   "authors": ["Ninni"],
-  "contact": { "sources": "https://github.com/N1nn1/etcetera" },
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/etcetera",
+    "sources": "https://github.com/N1nn1/etcetera",
+    "issues": "https://github.com/N1nn1/etcetera/issues"
+  },
+  "custom": {
+    "modmenu": { "links": { "mod.etcetera.contact.discord": "https://discord.moddingplayground.net" } }
+  },
 
-  "license": "CC0-1.0",
+  "license": [
+    "MIT (Code)",
+    "All Rights Reserved (Assets)"
+  ],
+
   "icon": "assets/etcetera/icon.png",
 
   "environment": "*",
@@ -19,10 +30,9 @@
   "mixins": ["etcetera.mixins.json"],
 
   "depends": {
-    "fabricloader": ">=0.14.6",
+    "fabricloader": ">=0.14",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": ">=1.19",
     "java": ">=17"
-  },
-  "suggests": { "another-mod": "*" }
+  }
 }
