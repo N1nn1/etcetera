@@ -29,6 +29,8 @@
 
   "block.etcetera.drum": "Tamburo",
 
+  "block.etcetera.dice": "Dado",
+
   "block.etcetera.frame": "Intelaiatura",
 
   "block.etcetera.bouquet": "Bouquet",
@@ -65,6 +67,7 @@
   "subtitles.item.etcetera.wrench.fail": "Chiave inglese fallisce",
   "subtitles.item.etcetera.wrench.modify": "Chiave inglese modifica",
   "subtitles.block.etcetera.drum": "Tamburo viene suonato",
+  "subtitles.block.etcetera.dice.roll": "Dado rotola",
   "subtitles.item.etcetera.tidal.armor.equip": "Elmo delle maree fa bwoop",
   "subtitles.block.etcetera.crumbling_stone.crumble": "Blocco si sgretola"
 }

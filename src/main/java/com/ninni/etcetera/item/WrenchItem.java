@@ -53,7 +53,8 @@ public class WrenchItem extends Item {
         } else if (collection.contains(Properties.AXIS)
             || collection.contains(Properties.HORIZONTAL_FACING)
             || collection.contains(Properties.HORIZONTAL_AXIS)
-            || collection.contains(Properties.STAIR_SHAPE))
+            || collection.contains(Properties.STAIR_SHAPE)
+            || collection.contains(Properties.FACING))
         {
             player.getItemCooldownManager().set(this, 5);
             player.incrementStat(Stats.USED.getOrCreateStat(this));
@@ -61,7 +62,6 @@ public class WrenchItem extends Item {
                 if (property == null
                     || property == Properties.WATERLOGGED
                     || property == Properties.LIT
-                    || property == Properties.FACING
                     || property == Properties.POWERED
                     || property == Properties.ATTACHMENT
                     || property == Properties.HAS_BOOK
@@ -81,7 +81,6 @@ public class WrenchItem extends Item {
                 player.playSound(EtceteraSoundEvents.ITEM_WRENCH_SELECT, 1, 1);
                 if (property == Properties.WATERLOGGED
                     || property == Properties.LIT
-                    || property == Properties.FACING
                     || property == Properties.POWERED
                     || property == Properties.ATTACHMENT
                     || property == Properties.HAS_BOOK

@@ -23,6 +23,9 @@ public interface EtceteraSoundEvents {
     SoundEvent BLOCK_BISMUTH_BLOCK_FALL  = bismuth_block("fall");
     private static SoundEvent bismuth_block(String type) { return createBlockSound("bismuth_block", type); }
 
+    SoundEvent BLOCK_DICE_ROLL  = dice("roll");
+    private static SoundEvent dice(String type) { return createBlockSound("dice", type); }
+
     SoundEvent ITEM_SEXTANT_SUCCESS  = sextant("success");
     SoundEvent ITEM_SEXTANT_FAIL     = sextant("fail");
     private static SoundEvent sextant(String type) { return createItemSound("sextant", type); }

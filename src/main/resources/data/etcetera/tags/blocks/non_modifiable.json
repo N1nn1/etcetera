@@ -26,6 +26,10 @@
     "minecraft:ender_chest",
     "minecraft:tripwire_hook",
     "minecraft:cocoa",
-    "minecraft:end_portal_frame"
+    "minecraft:end_portal_frame",
+    "minecraft:amethyst_cluster",
+    "minecraft:large_amethyst_bud",
+    "minecraft:medium_amethyst_bud",
+    "minecraft:small_amethyst_bud"
   ]
 }
