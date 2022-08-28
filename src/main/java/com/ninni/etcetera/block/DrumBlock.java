@@ -48,7 +48,9 @@ public class DrumBlock extends Block implements Waterloggable {
     }
 
 
-    @Override public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) { if (hit.getSide() == Direction.UP) playDrumSound(state, world, hit.getBlockPos(), projectile.getOwner(), hit.getPos()); }
+    @Override public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
+        if (hit.getSide() == Direction.UP) playDrumSound(state, world, hit.getBlockPos(), projectile.getOwner(), hit.getPos());
+    }
 
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {

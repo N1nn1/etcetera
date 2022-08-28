@@ -40,6 +40,8 @@ public class EtceteraBlocks {
 
     public static final Block DRUM = register("drum", new DrumBlock(FabricBlockSettings.copyOf(Blocks.NOTE_BLOCK)));
 
+    public static final Block DICE = register("dice", new DiceBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_BLOCK)));
+
     public static final Block FRAME = register("frame", new FrameBlock(FabricBlockSettings.of(Material.DECORATION, MapColor.PALE_YELLOW).sounds(BlockSoundGroup.SCAFFOLDING).nonOpaque().suffocates(EtceteraBlocks::never).blockVision(EtceteraBlocks::never).nonOpaque()));
 
     public static final Block BOUQUET = register("bouquet", new BouquetBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PALE_GREEN).sounds(BlockSoundGroup.GRASS).noCollision().breakInstantly()));
