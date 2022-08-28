@@ -1,10 +1,13 @@
 package com.ninni.etcetera.block;
 
+import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FacingBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -16,10 +19,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-
-import java.util.Arrays;
-import java.util.List;
 
 
 @SuppressWarnings("deprecation")
@@ -41,16 +42,25 @@ public class DiceBlock extends FacingBlock {
 
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
-        boolean bl = world.isReceivingRedstonePower(pos);
-        if (bl != state.get(POWERED)) {
-            world.setBlockState(pos, state.with(POWERED, bl), Block.NOTIFY_ALL);
+        boolean powered = world.isReceivingRedstonePower(pos);
+        boolean bl2 = state.get(POWERED);
+        if (powered && !bl2) {
+            world.createAndScheduleBlockTick(pos, this, 4);
+            world.setBlockState(pos, state.with(POWERED, true), Block.NO_REDRAW);
+        } else if (!powered && bl2) {
+            world.setBlockState(pos, state.with(POWERED, false), Block.NO_REDRAW);
         }
     }
 
-    public void trigger(BlockState state,World world, BlockPos pos) {
-        List<Direction> directions = Arrays.stream(Direction.values()).toList();
+    @Override
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        trigger(state, world, pos);
+    }
 
-        world.setBlockState(pos, state.with(FACING, directions.get(world.getRandom().nextInt(6))));
+    public void trigger(BlockState state, World world, BlockPos pos) {
+        Direction[] directions = Direction.values();
+        if (!world.isClient) world.setBlockState(pos, state.with(FACING, directions[world.getRandom().nextInt(directions.length)]));
+        world.playSound(null, pos, EtceteraSoundEvents.BLOCK_DICE_ROLL, SoundCategory.BLOCKS, 1, 1);
     }
 
     public static int calculateComparatorOutput(BlockState state) {

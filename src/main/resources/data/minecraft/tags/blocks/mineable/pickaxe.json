@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "etcetera:dice",
     "etcetera:raw_bismuth_block",
     "etcetera:bismuth_block",
     "etcetera:bismuth_bars",

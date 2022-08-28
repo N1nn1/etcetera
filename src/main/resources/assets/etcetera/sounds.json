@@ -93,6 +93,15 @@
       "etcetera:block/bismuth_block/light5"
     ]
   },
+  "block.dice.roll": {
+    "sounds": [
+      "etcetera:block/dice/roll1",
+      "etcetera:block/dice/roll2",
+      "etcetera:block/dice/roll3",
+      "etcetera:block/dice/roll4"
+    ],
+    "subtitle": "subtitles.block.etcetera.dice.roll"
+  },
   "item.sextant.success": {
     "sounds": [
       "etcetera:item/sextant/success"
