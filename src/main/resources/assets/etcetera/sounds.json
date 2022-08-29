@@ -93,6 +93,50 @@
       "etcetera:block/bismuth_block/light5"
     ]
   },
+  "block.gravel_bricks.break": {
+    "sounds": [
+      "etcetera:block/gravel_bricks/heavy1",
+      "etcetera:block/gravel_bricks/heavy2",
+      "etcetera:block/gravel_bricks/heavy3",
+      "etcetera:block/gravel_bricks/heavy4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.gravel_bricks.step": {
+    "sounds": [
+      "etcetera:block/gravel_bricks/light1",
+      "etcetera:block/gravel_bricks/light2",
+      "etcetera:block/gravel_bricks/light3",
+      "etcetera:block/gravel_bricks/light4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.gravel_bricks.hit": {
+    "sounds": [
+      "etcetera:block/gravel_bricks/light1",
+      "etcetera:block/gravel_bricks/light2",
+      "etcetera:block/gravel_bricks/light3",
+      "etcetera:block/gravel_bricks/light4"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.gravel_bricks.place": {
+    "sounds": [
+      "etcetera:block/gravel_bricks/heavy1",
+      "etcetera:block/gravel_bricks/heavy2",
+      "etcetera:block/gravel_bricks/heavy3",
+      "etcetera:block/gravel_bricks/heavy4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.gravel_bricks.fall": {
+    "sounds": [
+      "etcetera:block/gravel_bricks/light1",
+      "etcetera:block/gravel_bricks/light2",
+      "etcetera:block/gravel_bricks/light3",
+      "etcetera:block/gravel_bricks/light4"
+    ]
+  },
   "block.dice.roll": {
     "sounds": [
       "etcetera:block/dice/roll1",

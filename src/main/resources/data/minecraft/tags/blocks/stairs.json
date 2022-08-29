@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "etcetera:gravel_brick_stairs",
     "etcetera:leveled_stone_stairs",
     "etcetera:smooth_stone_brick_stairs"
   ]

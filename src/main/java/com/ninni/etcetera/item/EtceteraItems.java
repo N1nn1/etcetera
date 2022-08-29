@@ -33,6 +33,11 @@ public class EtceteraItems {
     public static final Item IRIDESCENT_CONCRETE = register("iridescent_concrete", new BlockItem(EtceteraBlocks.IRIDESCENT_CONCRETE, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item IRIDESCENT_LANTERN = register("iridescent_lantern", new BlockItem(EtceteraBlocks.IRIDESCENT_LANTERN, new FabricItemSettings().group(ITEM_GROUP)));
 
+    public static final Item GRAVEL_BRICKS = register("gravel_bricks", new BlockItem(EtceteraBlocks.GRAVEL_BRICKS, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item GRAVEL_BRICK_STAIRS = register("gravel_brick_stairs", new BlockItem(EtceteraBlocks.GRAVEL_BRICK_STAIRS, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item GRAVEL_BRICK_SLAB = register("gravel_brick_slab", new BlockItem(EtceteraBlocks.GRAVEL_BRICK_SLAB, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item GRAVEL_BRICK_WALL = register("gravel_brick_wall", new BlockItem(EtceteraBlocks.GRAVEL_BRICK_WALL, new FabricItemSettings().group(ITEM_GROUP)));
+
     public static final Item COMPACTED_DRIPSTONE = register("compacted_dripstone", new BlockItem(EtceteraBlocks.COMPACTED_DRIPSTONE, new FabricItemSettings().group(ITEM_GROUP)));
 
     public static final Item DRUM = register("drum", new BlockItem(EtceteraBlocks.DRUM, new FabricItemSettings().group(ITEM_GROUP)));
@@ -54,9 +59,9 @@ public class EtceteraItems {
     public static final Item LEVELED_STONE_STAIRS = register("leveled_stone_stairs", new BlockItem(EtceteraBlocks.LEVELED_STONE_STAIRS, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item LEVELED_STONE_SLAB = register("leveled_stone_slab", new BlockItem(EtceteraBlocks.LEVELED_STONE_SLAB, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item SMOOTH_STONE_BRICKS = register("smooth_stone_bricks", new BlockItem(EtceteraBlocks.SMOOTH_STONE_BRICKS, new FabricItemSettings().group(ITEM_GROUP)));
-    public static final Item SMOOTH_STONE_BRICK_WALL = register("smooth_stone_brick_wall", new BlockItem(EtceteraBlocks.SMOOTH_STONE_BRICK_WALL, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item SMOOTH_STONE_BRICK_STAIRS = register("smooth_stone_brick_stairs", new BlockItem(EtceteraBlocks.SMOOTH_STONE_BRICK_STAIRS, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item SMOOTH_STONE_BRICK_SLAB = register("smooth_stone_brick_slab", new BlockItem(EtceteraBlocks.SMOOTH_STONE_BRICK_SLAB, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item SMOOTH_STONE_BRICK_WALL = register("smooth_stone_brick_wall", new BlockItem(EtceteraBlocks.SMOOTH_STONE_BRICK_WALL, new FabricItemSettings().group(ITEM_GROUP)));
 
 
     private static Item register(String id, Item item) {

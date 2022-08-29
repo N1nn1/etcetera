@@ -25,6 +25,17 @@ public class EtceteraBlockSoundGroups {
         EtceteraSoundEvents.BLOCK_BISMUTH_BLOCK_FALL
     );
 
+    public static final BlockSoundGroup GRAVEL_BRICKS = new BlockSoundGroup(
+        1.0F, 1.0F,
+
+        EtceteraSoundEvents.BLOCK_GRAVEL_BRICKS_BREAK,
+        EtceteraSoundEvents.BLOCK_GRAVEL_BRICKS_STEP,
+        EtceteraSoundEvents.BLOCK_GRAVEL_BRICKS_PLACE,
+        EtceteraSoundEvents.BLOCK_GRAVEL_BRICKS_HIT,
+        EtceteraSoundEvents.BLOCK_GRAVEL_BRICKS_FALL
+    );
+
+
     public static final BlockSoundGroup SQUID_LAMP = new BlockSoundGroup(
         1.0F, 1.0F,
 

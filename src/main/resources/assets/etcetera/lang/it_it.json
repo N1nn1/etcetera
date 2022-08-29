@@ -25,6 +25,11 @@
   "block.etcetera.iridescent_concrete": "Calcestruzzo iridescente",
   "block.etcetera.iridescent_lantern": "Lanterna iridescente",
 
+  "block.etcetera.gravel_bricks": "Mattoni di ghiaia",
+  "block.etcetera.gravel_brick_wall": "Muretto di mattoni di ghiaia",
+  "block.etcetera.gravel_brick_slab": "Lastra di mattoni di ghiaia",
+  "block.etcetera.gravel_brick_stairs": "Scalini di mattoni di ghiaia",
+
   "block.etcetera.compacted_dripstone": "Speleotema compatto",
 
   "block.etcetera.drum": "Tamburo",

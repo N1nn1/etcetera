@@ -6,7 +6,6 @@ import net.minecraft.util.registry.Registry;
 
 import static com.ninni.etcetera.Etcetera.*;
 
-@SuppressWarnings("unused")
 public interface EtceteraSoundEvents {
 
     SoundEvent BLOCK_NETHER_BISMUTH_ORE_BREAK = nether_bismuth_ore("break");
@@ -22,6 +21,13 @@ public interface EtceteraSoundEvents {
     SoundEvent BLOCK_BISMUTH_BLOCK_HIT   = bismuth_block("hit");
     SoundEvent BLOCK_BISMUTH_BLOCK_FALL  = bismuth_block("fall");
     private static SoundEvent bismuth_block(String type) { return createBlockSound("bismuth_block", type); }
+
+    SoundEvent BLOCK_GRAVEL_BRICKS_BREAK = gravel_bricks("break");
+    SoundEvent BLOCK_GRAVEL_BRICKS_STEP  = gravel_bricks("step");
+    SoundEvent BLOCK_GRAVEL_BRICKS_PLACE = gravel_bricks("place");
+    SoundEvent BLOCK_GRAVEL_BRICKS_HIT   = gravel_bricks("hit");
+    SoundEvent BLOCK_GRAVEL_BRICKS_FALL  = gravel_bricks("fall");
+    private static SoundEvent gravel_bricks(String type) { return createBlockSound("gravel_bricks", type); }
 
     SoundEvent BLOCK_DICE_ROLL  = dice("roll");
     private static SoundEvent dice(String type) { return createBlockSound("dice", type); }
