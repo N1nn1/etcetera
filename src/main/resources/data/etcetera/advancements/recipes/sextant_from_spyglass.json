@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_amethyst_shard": {
+    "has_spyglass": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:amethyst_shard"
+              "minecraft:spyglass"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "etcetera:sextant_from_amethyst_shard"
+        "recipe": "etcetera:sextant_from_spyglass"
       }
     }
   },
   "requirements": [
     [
-      "has_amethyst_shard",
+      "has_spyglass",
       "has_the_recipe"
     ]
   ]
