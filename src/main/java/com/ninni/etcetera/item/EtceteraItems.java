@@ -33,10 +33,10 @@ public class EtceteraItems {
     public static final Item IRIDESCENT_LANTERN = register("iridescent_lantern", new BlockItem(EtceteraBlocks.IRIDESCENT_LANTERN, new FabricItemSettings().group(ITEM_GROUP)));
 
     public static final Item SEXTANT = register("sextant", new SextantItem(new FabricItemSettings().group(ITEM_GROUP).maxCount(1)));
-    public static final Item CHISEL = register("chisel", new TransformingItem(CHISELLING_MANAGER::getMap, new FabricItemSettings().group(ITEM_GROUP).maxCount(1).maxDamage(145), EtceteraSoundEvents.ITEM_CHISEL_USE, EtceteraTags.CHISELLABLE));
+    public static final Item CHISEL = register("chisel", new TransformingItem(EtceteraToolMaterials.BISMUTH, CHISELLING_MANAGER::getMap, new FabricItemSettings().group(ITEM_GROUP).maxCount(1).maxDamage(145), EtceteraSoundEvents.ITEM_CHISEL_USE, EtceteraTags.CHISELLABLE));
     public static final Item MAGNIFYING_GLASS = register("magnifying_glass", new MagnifyingGlassItem(new FabricItemSettings().group(ITEM_GROUP).maxCount(1)));
-    public static final Item WRENCH = register("wrench", new WrenchItem(new FabricItemSettings().group(ITEM_GROUP).maxCount(1).maxDamage(145)));
-    public static final Item HAMMER = register("hammer", new TransformingItem(HAMMERING_MANAGER::getMap, new FabricItemSettings().group(ITEM_GROUP).maxCount(1).maxDamage(80), EtceteraSoundEvents.ITEM_HAMMER_USE, EtceteraTags.HAMMERABLE));
+    public static final Item WRENCH = register("wrench", new WrenchItem(EtceteraToolMaterials.BISMUTH, new FabricItemSettings().group(ITEM_GROUP).maxCount(1).maxDamage(145)));
+    public static final Item HAMMER = register("hammer", new TransformingItem(EtceteraToolMaterials.FLINT, HAMMERING_MANAGER::getMap, new FabricItemSettings().group(ITEM_GROUP).maxCount(1).maxDamage(80), EtceteraSoundEvents.ITEM_HAMMER_USE, EtceteraTags.HAMMERABLE));
 
     public static final Item GRAVEL_BRICKS = register("gravel_bricks", new BlockItem(EtceteraBlocks.GRAVEL_BRICKS, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item GRAVEL_BRICK_STAIRS = register("gravel_brick_stairs", new BlockItem(EtceteraBlocks.GRAVEL_BRICK_STAIRS, new FabricItemSettings().group(ITEM_GROUP)));

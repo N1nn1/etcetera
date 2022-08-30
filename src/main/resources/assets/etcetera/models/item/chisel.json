@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "etcetera:item/handheld_small",
   "textures": {
     "layer0": "etcetera:item/chisel"
   }

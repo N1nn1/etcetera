@@ -3,9 +3,10 @@ package com.ninni.etcetera.item;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.ToolItem;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.property.BooleanProperty;
@@ -22,13 +23,13 @@ import net.minecraft.world.WorldEvents;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class TransformingItem extends Item {
+public class TransformingItem extends ToolItem {
     private final TagKey<Block> blockTagKey;
     private final SoundEvent sound;
     private final Supplier<Map<Block, Block>> transformations;
 
-    public TransformingItem(Supplier<Map<Block, Block>> transformations, Settings settings, SoundEvent sound, TagKey<Block> blockTagKey) {
-        super(settings);
+    public TransformingItem(ToolMaterial material, Supplier<Map<Block, Block>> transformations, Settings settings, SoundEvent sound, TagKey<Block> blockTagKey) {
+        super(material, settings);
         this.transformations = transformations;
         this.sound = sound;
         this.blockTagKey = blockTagKey;

@@ -8,6 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
@@ -28,7 +29,7 @@ import java.util.Collection;
 
 public class WrenchItem extends Item {
 
-    public WrenchItem(Settings settings) { super(settings); }
+    public WrenchItem(ToolMaterial toolMaterial, Settings settings) { super(settings); }
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
