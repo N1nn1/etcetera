@@ -7,7 +7,13 @@
     "AbstractBlockStateMixin",
     "PlayerEntityMixin"
   ],
-  "client": [ "client.InGameHudMixin" ],
+  "client": [
+    "client.InGameHudMixin",
+    "client.ItemEntityRendererMixin",
+    "client.ItemModelsMixin",
+    "client.ItemRendererMixin",
+    "client.ModelLoaderMixin"
+  ],
   "injectors": {
     "defaultRequire": 1 }
 }
