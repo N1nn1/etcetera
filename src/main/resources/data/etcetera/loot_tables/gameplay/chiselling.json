@@ -1,0 +1,36 @@
+{
+  "entries": [
+    {
+      "block": "minecraft:polished_blackstone",
+      "chiseled_block": "minecraft:chiseled_polished_blackstone"
+    },
+    {
+      "block": "minecraft:sandstone",
+      "chiseled_block": "minecraft:chiseled_sandstone"
+    },
+    {
+      "block": "minecraft:red_sandstone",
+      "chiseled_block": "minecraft:chiseled_red_sandstone"
+    },
+    {
+      "block": "minecraft:infested_stone_bricks",
+      "chiseled_block": "minecraft:infested_chiseled_stone_bricks"
+    },
+    {
+      "block": "minecraft:stone_bricks",
+      "chiseled_block": "minecraft:chiseled_stone_bricks"
+    },
+    {
+      "block": "minecraft:deepslate",
+      "chiseled_block": "minecraft:chiseled_deepslate"
+    },
+    {
+      "block": "minecraft:nether_bricks",
+      "chiseled_block": "minecraft:chiseled_nether_bricks"
+    },
+    {
+      "block": "minecraft:quartz_block",
+      "chiseled_block": "minecraft:chiseled_quartz_block"
+    }
+  ]
+}
