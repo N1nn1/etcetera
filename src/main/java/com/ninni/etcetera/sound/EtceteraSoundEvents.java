@@ -44,6 +44,12 @@ public interface EtceteraSoundEvents {
     SoundEvent ITEM_WRENCH_FAIL    = wrench("fail");
     private static SoundEvent wrench(String type) { return createItemSound("wrench", type); }
 
+    SoundEvent ITEM_HAMMER_USE  = hammer("use");
+    private static SoundEvent hammer(String type) { return createItemSound("hammer", type); }
+
+    SoundEvent ITEM_CHISEL_USE  = chisel("use");
+    private static SoundEvent chisel(String type) { return createItemSound("chisel", type); }
+
     SoundEvent BLOCK_SAND_DRUM_LOW    = drum("sand_low");
     SoundEvent BLOCK_SAND_DRUM_MEDIUM = drum("sand_medium");
     SoundEvent BLOCK_SAND_DRUM_HIGH   = drum("sand_high");

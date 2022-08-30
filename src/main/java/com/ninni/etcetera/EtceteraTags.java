@@ -15,4 +15,6 @@ public interface EtceteraTags {
     TagKey<Item> ALL_TERRACOTTA = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "all_terracotta"));
 
     TagKey<Block> NON_MODIFIABLE = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "non_modifiable"));
+    TagKey<Block> CHISELLABLE = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "chisellable"));
+    TagKey<Block> HAMMERABLE = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "hammerable"));
 }

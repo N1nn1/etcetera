@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    " / ",
+    " / "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:flint"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "etcetera:hammer",
+    "count": 1
+  }
+}

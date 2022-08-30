@@ -74,6 +74,8 @@
   "subtitles.item.etcetera.wrench.select": "Wrench shifts",
   "subtitles.item.etcetera.wrench.fail": "Wrench fails",
   "subtitles.item.etcetera.wrench.modify": "Wrench modifies",
+  "subtitles.item.etcetera.hammer.use": "Hammering",
+  "subtitles.item.etcetera.chisel.use": "Chiselling",
   "subtitles.block.etcetera.drum": "Drum plays",
   "subtitles.block.etcetera.dice.roll": "Dice rolls",
   "subtitles.item.etcetera.tidal.armor.equip": "Tidal Helmet bwoops",

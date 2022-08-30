@@ -5,7 +5,9 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AbstractBlockStateMixin",
-    "PlayerEntityMixin"
+    "AnvilBlockMixin",
+    "PlayerEntityMixin",
+    "SmithingTableBlockMixin"
   ],
   "client": [
     "client.InGameHudMixin",

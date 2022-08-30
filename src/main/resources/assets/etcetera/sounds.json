@@ -182,6 +182,24 @@
     ],
     "subtitle": "subtitles.item.etcetera.wrench.modify"
   },
+  "item.hammer.use": {
+    "sounds": [
+      "etcetera:item/hammer/use1",
+      "etcetera:item/hammer/use2",
+      "etcetera:item/hammer/use3",
+      "etcetera:item/hammer/use4"
+    ],
+    "subtitle": "subtitles.item.etcetera.hammer.use"
+  },
+  "item.chisel.use": {
+    "sounds": [
+      "etcetera:item/chisel/use1",
+      "etcetera:item/chisel/use2",
+      "etcetera:item/chisel/use3",
+      "etcetera:item/chisel/use4"
+    ],
+    "subtitle": "subtitles.item.etcetera.chisel.use"
+  },
   "block.drum.low": {
     "sounds": [
       "etcetera:block/drum/djembe/low"
