@@ -2,11 +2,9 @@ package com.ninni.etcetera;
 
 import com.google.common.collect.Maps;
 import com.google.common.reflect.Reflection;
-import com.mojang.bridge.game.PackType;
 import com.ninni.etcetera.block.EtceteraBlocks;
-import com.ninni.etcetera.crafting.ChisellingManager;
-import com.ninni.etcetera.crafting.HammeringManager;
 import com.ninni.etcetera.item.EtceteraItems;
+import com.ninni.etcetera.resource.EtceteraProcessResourceManager;
 import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -46,6 +44,9 @@ public class Etcetera implements ModInitializer {
 	public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "item_group"), () -> new ItemStack(EtceteraItems.ETCETERA));
 	public static final Logger LOGGER = LogManager.getLogger();
 
+	public static final EtceteraProcessResourceManager CHISELLING_MANAGER = new EtceteraProcessResourceManager("chiselling");
+	public static final EtceteraProcessResourceManager HAMMERING_MANAGER = new EtceteraProcessResourceManager("hammering");
+
 	@SuppressWarnings("UnstableApiUsage")
 	@Override
 	public void onInitialize() {
@@ -55,8 +56,9 @@ public class Etcetera implements ModInitializer {
 			EtceteraBlocks.class
 		);
 
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new ChisellingManager());
-		ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new HammeringManager());
+		ResourceManagerHelper resourceManager = ResourceManagerHelper.get(ResourceType.SERVER_DATA);
+		resourceManager.registerReloadListener(CHISELLING_MANAGER);
+		resourceManager.registerReloadListener(HAMMERING_MANAGER);
 
 		LinkedHashMap<Block, Block> crumblingStone = Maps.newLinkedHashMap();
 		crumblingStone.put(CRUMBLING_STONE, WAXED_CRUMBLING_STONE);
