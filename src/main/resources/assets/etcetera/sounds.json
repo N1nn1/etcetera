@@ -200,6 +200,14 @@
     ],
     "subtitle": "subtitles.item.etcetera.chisel.use"
   },
+  "item.handbell.ring": {
+    "sounds": [
+      "etcetera:item/handbell/ring1",
+      "etcetera:item/handbell/ring2",
+      "etcetera:item/handbell/ring3"
+    ],
+    "subtitle": "subtitles.item.etcetera.handbell.ring"
+  },
   "block.drum.low": {
     "sounds": [
       "etcetera:block/drum/djembe/low"

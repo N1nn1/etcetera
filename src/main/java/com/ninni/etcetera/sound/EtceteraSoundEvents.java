@@ -50,6 +50,9 @@ public interface EtceteraSoundEvents {
     SoundEvent ITEM_CHISEL_USE  = chisel("use");
     private static SoundEvent chisel(String type) { return createItemSound("chisel", type); }
 
+    SoundEvent ITEM_HANDBELL_RING  = handbell("ring");
+    private static SoundEvent handbell(String type) { return createItemSound("handbell", type); }
+
     SoundEvent BLOCK_SAND_DRUM_LOW    = drum("sand_low");
     SoundEvent BLOCK_SAND_DRUM_MEDIUM = drum("sand_medium");
     SoundEvent BLOCK_SAND_DRUM_HIGH   = drum("sand_high");

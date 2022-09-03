@@ -1,7 +1,6 @@
 {
 	"textures": {
-		"0": "etcetera:item/sextant_model",
-		"particle": "etcetera:item/sextant_model"
+		"0": "etcetera:item/sextant_model"
 	},
 	"elements": [
 		{

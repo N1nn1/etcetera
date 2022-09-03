@@ -27,6 +27,7 @@
   "item.etcetera.wrench.block.invalid": "Questo blocco non può essere modificato",
   "item.etcetera.chisel": "Scalpello",
   "item.etcetera.hammer": "Martello",
+  "item.etcetera.handbell": "Campanella",
 
   "block.etcetera.gravel_bricks": "Mattoni di ghiaia",
   "block.etcetera.gravel_brick_wall": "Muretto di mattoni di ghiaia",
@@ -76,6 +77,7 @@
   "subtitles.item.etcetera.wrench.modify": "Chiave inglese modifica",
   "subtitles.item.etcetera.hammer.use": "Blocco viene martellato",
   "subtitles.item.etcetera.chisel.use": "Blocco viene intagliato",
+  "subtitles.item.etcetera.handbell.ring": "Campanella rintocca",
   "subtitles.block.etcetera.drum": "Tamburo viene suonato",
   "subtitles.block.etcetera.dice.roll": "Dado rotola",
   "subtitles.item.etcetera.tidal.armor.equip": "Elmo delle maree fa bwoop",
