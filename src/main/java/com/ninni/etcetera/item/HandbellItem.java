@@ -66,8 +66,7 @@ public class HandbellItem extends Item {
         entity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 120));
     }
     private static boolean isFriendEntity(BlockPos pos, LivingEntity entity, PlayerEntity player) {
-        if (entity instanceof TameableEntity tamedEntity && tamedEntity.isTamed() && tamedEntity.getOwnerUuid() == player.getUuid()) {
-
+        if (entity instanceof TameableEntity tamedEntity && tamedEntity.isTamed() && tamedEntity.getOwnerUuid().equals(player.getUuid())) {
             if (player.isOnGround() && !tamedEntity.isSitting()) {
                 tamedEntity.teleport(player.getX(), player.getY(), player.getZ());
                 tamedEntity.getNavigation().stop();
