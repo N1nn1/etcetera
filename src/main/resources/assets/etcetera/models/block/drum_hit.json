@@ -1,22 +1,21 @@
 {
 	"parent": "minecraft:block/cube",
-	"ambientocclusion": false,
 	"textures": {
-		"top": "etcetera:block/drum_top",
+		"top": "etcetera:block/drum_top_hit",
 		"bottom": "etcetera:block/drum_bottom",
 		"side": "etcetera:block/drum_side",
 		"particle": "#side"
 	},
 	"elements": [
 		{
-			"from": [0, 8, 0],
-			"to": [16, 15.75, 16],
+			"from": [-0.25, 8, -0.25],
+			"to": [16.25, 15.75, 16.25],
 			"faces": {
-				"north": {"uv": [0, 0.25, 16, 8], "texture": "#side"},
-				"east": {"uv": [0, 0.25, 16, 8.05], "texture": "#side"},
-				"south": {"uv": [0, 0.25, 16, 8.05], "texture": "#side"},
-				"west": {"uv": [0, 0.25, 16, 8.05], "texture": "#side"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#top"},
+				"north": {"uv": [0, 0, 16, 8], "texture": "#side"},
+				"east": {"uv": [0, 0, 16, 8], "texture": "#side"},
+				"south": {"uv": [0, 0, 16, 8], "texture": "#side"},
+				"west": {"uv": [0, 0, 16, 8], "texture": "#side"},
+				"up": {"uv": [0.375, 0.375, 8.625, 8.625], "texture": "#top"},
 				"down": {"uv": [0, 0, 16, 16], "texture": "#bottom"}
 			}
 		},

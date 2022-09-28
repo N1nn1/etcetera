@@ -41,6 +41,7 @@ public class DrumBlock extends Block implements Waterloggable {
     public static final BooleanProperty POWERED = Properties.POWERED;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(Block.createCuboidShape(2, 0, 2, 14, 8, 14), Block.createCuboidShape(0, 8, 0, 16, 16, 16), BooleanBiFunction.OR);
+    protected static final VoxelShape HIT_SHAPE = VoxelShapes.combineAndSimplify(Block.createCuboidShape(-0.25, 8, -0.25, 16.25, 15.75, 16.25), Block.createCuboidShape(2, 0, 2, 14, 8, 14), BooleanBiFunction.OR);
 
     protected DrumBlock(Settings settings) {
         super(settings);
@@ -87,22 +88,44 @@ public class DrumBlock extends Block implements Waterloggable {
         }
     }
 
-    private static int calculatePower(Vec3d pos) { return Math.max(1, MathHelper.ceil(15.0 * MathHelper.clamp((0.5 - Math.max(Math.abs(MathHelper.fractionalPart(pos.x) - 0.5), Math.abs(MathHelper.fractionalPart(pos.z) - 0.5))) / 0.5, 0.0, 1.0))); }
+    private static int calculatePower(Vec3d pos) {
+        return Math.max(1, MathHelper.ceil(15.0 * MathHelper.clamp((0.5 - Math.max(Math.abs(MathHelper.fractionalPart(pos.x) - 0.5), Math.abs(MathHelper.fractionalPart(pos.z) - 0.5))) / 0.5, 0.0, 1.0)));
+    }
 
-    @Override public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) { return SHAPE; }
+    @Override public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return state.get(POWERED) ? HIT_SHAPE : SHAPE;
+    }
 
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
+    }
 
-    private int getPressTicks() { return 3; }
-    @Override public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) { if (state.get(POWERED)) world.setBlockState(pos, state.with(POWERED, false), 3); }
-    @Override public boolean emitsRedstonePower(BlockState state) { return true; }
-    @Override public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) { return state.get(POWERED) ? 3 : 0; }
+    private int getPressTicks() {
+        return 3;
+    }
+    @Override public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if (state.get(POWERED)) world.setBlockState(pos, state.with(POWERED, false), 3);
+    }
+    @Override public boolean emitsRedstonePower(BlockState state) {
+        return true;
+    }
+    @Override public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+        return state.get(POWERED) ? 3 : 0;
+    }
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (state.get(WATERLOGGED)) world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         return direction == Direction.DOWN ? state.with(INSTRUMENT, EtceteraInstrument.fromBlockState(neighborState)) : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
-    @Override public BlockState getPlacementState(ItemPlacementContext ctx) { return this.getDefaultState().with(WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER).with(INSTRUMENT, EtceteraInstrument.fromBlockState(ctx.getWorld().getBlockState(ctx.getBlockPos().down()))); }
-    @Override public FluidState getFluidState(BlockState state) { return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state); }
-    @Override protected void appendProperties(StateManager.Builder<Block, BlockState> builder) { builder.add(WATERLOGGED, POWERED, INSTRUMENT); }
+    @Override public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return this.getDefaultState().with(WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER).with(INSTRUMENT, EtceteraInstrument.fromBlockState(ctx.getWorld().getBlockState(ctx.getBlockPos().down())));
+    }
+    @Override public FluidState getFluidState(BlockState state) {
+        return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+    }
+    @Override protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(WATERLOGGED, POWERED, INSTRUMENT);
+    }
 }
