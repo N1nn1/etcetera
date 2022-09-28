@@ -25,22 +25,24 @@ public enum EtceteraInstrument implements StringIdentifiable {
         this.mediumSound = mediumSound;
     }
 
-    @Override public String asString() { return this.name; }
-    public SoundEvent getHighSound() { return this.highSound; }
-    public SoundEvent getMediumSound() { return this.mediumSound; }
-    public SoundEvent getLowSound() { return this.lowSound; }
+    @Override public String asString() {
+        return this.name;
+    }
+    public SoundEvent getHighSound() {
+        return this.highSound;
+    }
+    public SoundEvent getMediumSound() {
+        return this.mediumSound;
+    }
+    public SoundEvent getLowSound() {
+        return this.lowSound;
+    }
 
     public static EtceteraInstrument fromBlockState(BlockState state) {
-        if (state.isOf(Blocks.PUMPKIN)) {
-            return BEATBOX;
-        }else if (state.isOf(Blocks.GOLD_BLOCK)) {
-            return DARBUKA;
-        }else if (state.isOf(Blocks.IRON_BLOCK)) {
-            return DHOLAK;
-        }else if (state.isOf(Blocks.SAND)) {
-            return TABLA;
-        }else {
-            return DJEMBE;
-        }
+        if (state.isOf(Blocks.PUMPKIN)) return BEATBOX;
+        else if (state.isOf(Blocks.GOLD_BLOCK)) return DARBUKA;
+        else if (state.isOf(Blocks.IRON_BLOCK)) return DHOLAK;
+        else if (state.isOf(Blocks.SAND)) return TABLA;
+        else return DJEMBE;
     }
 }

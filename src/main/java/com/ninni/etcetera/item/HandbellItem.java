@@ -2,8 +2,10 @@ package com.ninni.etcetera.item;
 
 import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.passive.AllayEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -65,14 +67,23 @@ public class HandbellItem extends Item {
     private static void applyGlowToEntity(LivingEntity entity) {
         entity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 120));
     }
+
     private static boolean isFriendEntity(BlockPos pos, LivingEntity entity, PlayerEntity player) {
-        if (entity instanceof TameableEntity tamedEntity && tamedEntity.isTamed() && tamedEntity.getOwnerUuid().equals(player.getUuid())) {
-            if (player.isOnGround() && !tamedEntity.isSitting()) {
-                tamedEntity.teleport(player.getX(), player.getY(), player.getZ());
-                tamedEntity.getNavigation().stop();
-            }
-            return tamedEntity.isAlive() && !tamedEntity.isRemoved() && pos.isWithinDistance(tamedEntity.getPos(), 48.0);
+        if ((entity instanceof TameableEntity tamedEntity && tamedEntity.isTamed() && tamedEntity.getOwnerUuid().equals(player.getUuid()))
+        || (entity instanceof AllayEntity allay && allay.getBrain().getOptionalMemory(MemoryModuleType.LIKED_PLAYER).isPresent() && player.getUuid().equals(allay.getBrain().getOptionalMemory(MemoryModuleType.LIKED_PLAYER).get()))) {
+            teleportEntity(pos, entity, player);
+            return true;
         }
         return false;
+    }
+
+    private static void teleportEntity(BlockPos pos, LivingEntity entity, PlayerEntity player) {
+        if (entity instanceof TameableEntity tamedEntity && player.isOnGround() && !tamedEntity.isSitting()) {
+            tamedEntity.teleport(player.getX(), player.getY(), player.getZ());
+            tamedEntity.getNavigation().stop();
+        }
+        if (entity.isAlive() && !entity.isRemoved()) {
+            pos.isWithinDistance(entity.getPos(), 48.0);
+        }
     }
 }
