@@ -29,8 +29,8 @@ import java.util.Objects;
 
 
 public class MagnifyingGlassItem extends Item {
-    int cooldown = 30;
-    int fasterCooldown = 10;
+    int cooldown = 10;
+    int fasterCooldown = 5;
     private static final DecimalFormat df = new DecimalFormat("0.0");
 
     public MagnifyingGlassItem(Settings settings) { super(settings); }
