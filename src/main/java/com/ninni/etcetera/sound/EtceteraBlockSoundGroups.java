@@ -15,6 +15,16 @@ public class EtceteraBlockSoundGroups {
         EtceteraSoundEvents.BLOCK_NETHER_BISMUTH_ORE_FALL
     );
 
+    public static final BlockSoundGroup PACKED_SILT = new BlockSoundGroup(
+        1.0F, 1.0F,
+
+        SoundEvents.BLOCK_STONE_BREAK,
+        SoundEvents.BLOCK_STONE_STEP,
+        SoundEvents.BLOCK_STONE_PLACE,
+        SoundEvents.BLOCK_STONE_HIT,
+        SoundEvents.BLOCK_STONE_FALL
+    );
+
     public static final BlockSoundGroup BISMUTH_BLOCK = new BlockSoundGroup(
         1.0F, 1.0F,
 

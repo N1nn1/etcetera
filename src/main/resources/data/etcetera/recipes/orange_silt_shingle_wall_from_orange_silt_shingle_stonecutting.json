@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "etcetera:orange_silt_shingles"
+  },
+  "result": "etcetera:orange_silt_shingle_wall",
+  "count": 1
+}

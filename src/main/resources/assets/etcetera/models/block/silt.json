@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "etcetera:block/silt_top",
+    "side": "etcetera:block/silt"
+  }
+}

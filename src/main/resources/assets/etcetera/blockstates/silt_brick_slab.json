@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "etcetera:block/silt_brick_slab"
+    },
+    "type=double": {
+      "model": "etcetera:block/silt_bricks"
+    },
+    "type=top": {
+      "model": "etcetera:block/silt_brick_slab_top"
+    }
+  }
+}

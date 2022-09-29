@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "etcetera:block/light_blue_silt_shingle_slab"
+    },
+    "type=double": {
+      "model": "etcetera:block/light_blue_silt_shingles"
+    },
+    "type=top": {
+      "model": "etcetera:block/light_blue_silt_shingle_slab_top"
+    }
+  }
+}

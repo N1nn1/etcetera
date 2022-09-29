@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "etcetera:white_silt_shingle_slab"
+    ]
+  },
+  "criteria": {
+    "has_white_silt_shingles": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "etcetera:white_silt_shingles"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "etcetera:white_silt_shingle_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_white_silt_shingles",
+      "has_the_recipe"
+    ]
+  ]
+}

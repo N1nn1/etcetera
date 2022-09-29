@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "etcetera:cyan_silt_shingles"
+    }
+  },
+  "result": {
+    "item": "etcetera:cyan_silt_shingle_stairs",
+    "count": 4
+  }
+}

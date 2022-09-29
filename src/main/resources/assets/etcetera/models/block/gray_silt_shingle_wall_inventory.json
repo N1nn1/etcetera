@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "etcetera:block/gray_silt_shingles"
+  }
+}

@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "etcetera:gravel_brick_wall",
+    "etcetera:silt_brick_wall",
     "etcetera:smooth_stone_brick_wall"
   ]
 }

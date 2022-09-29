@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "etcetera:block/pink_silt_shingle_slab"
+    },
+    "type=double": {
+      "model": "etcetera:block/pink_silt_shingles"
+    },
+    "type=top": {
+      "model": "etcetera:block/pink_silt_shingle_slab_top"
+    }
+  }
+}

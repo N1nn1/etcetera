@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "etcetera:magenta_silt_shingle_stairs_from_magenta_silt_shingle_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_magenta_silt_shingles": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "etcetera:magenta_silt_shingles"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "etcetera:magenta_silt_shingle_stairs_from_magenta_silt_shingle_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_magenta_silt_shingles",
+      "has_the_recipe"
+    ]
+  ]
+}
