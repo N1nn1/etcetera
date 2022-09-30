@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "etcetera:silt_pot"
+    },
+    {
+      "item": "minecraft:blue_dye"
+    }
+  ],
+  "result": {
+    "item": "etcetera:blue_silt_pot"
+  }
+}

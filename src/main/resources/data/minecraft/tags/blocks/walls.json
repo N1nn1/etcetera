@@ -3,6 +3,23 @@
   "values": [
     "etcetera:gravel_brick_wall",
     "etcetera:silt_brick_wall",
-    "etcetera:smooth_stone_brick_wall"
+    "etcetera:smooth_stone_brick_wall",
+    "etcetera:silt_shingle_wall",
+    "etcetera:white_silt_shingle_wall",
+    "etcetera:orange_silt_shingle_wall",
+    "etcetera:magenta_silt_shingle_wall",
+    "etcetera:light_blue_silt_shingle_wall",
+    "etcetera:yellow_silt_shingle_wall",
+    "etcetera:lime_silt_shingle_wall",
+    "etcetera:pink_silt_shingle_wall",
+    "etcetera:gray_silt_shingle_wall",
+    "etcetera:light_gray_silt_shingle_wall",
+    "etcetera:cyan_silt_shingle_wall",
+    "etcetera:purple_silt_shingle_wall",
+    "etcetera:blue_silt_shingle_wall",
+    "etcetera:brown_silt_shingle_wall",
+    "etcetera:green_silt_shingle_wall",
+    "etcetera:red_silt_shingle_wall",
+    "etcetera:black_silt_shingle_wall"
   ]
 }

@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "etcetera:silt_bricks"
+            "items": [
+              "etcetera:silt_bricks"
+            ]
           }
         ]
       }

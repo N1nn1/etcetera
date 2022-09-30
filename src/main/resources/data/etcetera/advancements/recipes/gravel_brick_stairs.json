@@ -6,12 +6,14 @@
     ]
   },
   "criteria": {
-    "has_gravel_bricks": {
+    "has_item": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "etcetera:gravel_bricks"
+            "items": [
+              "etcetera:gravel_bricks"
+            ]
           }
         ]
       }
@@ -25,7 +27,7 @@
   },
   "requirements": [
     [
-      "has_gravel_bricks",
+      "has_item",
       "has_the_recipe"
     ]
   ]

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "etcetera:silt_pot"
+    },
+    {
+      "item": "minecraft:pink_dye"
+    }
+  ],
+  "result": {
+    "item": "etcetera:pink_silt_pot"
+  }
+}
