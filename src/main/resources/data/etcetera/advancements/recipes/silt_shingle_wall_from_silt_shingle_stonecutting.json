@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "etcetera:silt_brick_stairs_from_silt_stonecutting"
+      "etcetera:silt_shingle_wall_from_silt_shingle_stonecutting"
     ]
   },
   "criteria": {
-    "has_smooth_stone": {
+    "has_item": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:smooth_stone"
+              "etcetera:silt_shingles"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "etcetera:silt_brick_stairs_from_silt_stonecutting"
+        "recipe": "etcetera:silt_shingle_wall_from_silt_shingle_stonecutting"
       }
     }
   },
   "requirements": [
     [
-      "has_smooth_stone",
+      "has_item",
       "has_the_recipe"
     ]
   ]
