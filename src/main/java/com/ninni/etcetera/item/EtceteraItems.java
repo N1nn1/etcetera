@@ -30,6 +30,7 @@ public class EtceteraItems {
     public static final Item IRIDESCENT_GLASS = register("iridescent_glass", new BlockItem(EtceteraBlocks.IRIDESCENT_GLASS, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item IRIDESCENT_TERRACOTTA = register("iridescent_terracotta", new BlockItem(EtceteraBlocks.IRIDESCENT_TERRACOTTA, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item IRIDESCENT_CONCRETE = register("iridescent_concrete", new BlockItem(EtceteraBlocks.IRIDESCENT_CONCRETE, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item IRIDESCENT_PACKED_SILT = register("iridescent_packed_silt", new BlockItem(EtceteraBlocks.IRIDESCENT_PACKED_SILT, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item IRIDESCENT_LANTERN = register("iridescent_lantern", new BlockItem(EtceteraBlocks.IRIDESCENT_LANTERN, new FabricItemSettings().group(ITEM_GROUP)));
 
     public static final Item SEXTANT = register("sextant", new SextantItem(new FabricItemSettings().group(ITEM_GROUP).maxCount(1)));
