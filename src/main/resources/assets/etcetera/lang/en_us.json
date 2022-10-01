@@ -49,10 +49,13 @@
   "block.etcetera.silt": "Silt",
   "item.etcetera.silt_ball": "Silt Ball",
   "item.etcetera.silt_brick": "Silt Brick",
+
   "block.etcetera.silt_bricks": "Silt Bricks",
   "block.etcetera.silt_brick_wall": "Silt Brick Wall",
   "block.etcetera.silt_brick_slab": "Silt Brick Slab",
   "block.etcetera.silt_brick_stairs": "Silt Brick Stairs",
+
+  "container.etcetera.silt_pot": "Silt Pot",
   "block.etcetera.silt_pot": "Silt Pot",
   "block.etcetera.white_silt_pot": "White Silt Pot",
   "block.etcetera.orange_silt_pot": "Orange Silt Pot",
@@ -70,6 +73,7 @@
   "block.etcetera.green_silt_pot": "Green Silt Pot",
   "block.etcetera.red_silt_pot": "Red Silt Pot",
   "block.etcetera.black_silt_pot": "Black Silt Pot",
+
   "block.etcetera.packed_silt": "Packed Silt",
   "block.etcetera.white_packed_silt": "White Packed Silt",
   "block.etcetera.orange_packed_silt": "Orange Packed Silt",
@@ -87,6 +91,7 @@
   "block.etcetera.green_packed_silt": "Green Packed Silt",
   "block.etcetera.red_packed_silt": "Red Packed Silt",
   "block.etcetera.black_packed_silt": "Black Packed Silt",
+
   "block.etcetera.silt_shingles": "Silt Shingles",
   "block.etcetera.white_silt_shingles": "White Silt Shingles",
   "block.etcetera.orange_silt_shingles": "Orange Silt Shingles",

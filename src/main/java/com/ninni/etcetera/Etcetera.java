@@ -3,9 +3,11 @@ package com.ninni.etcetera;
 import com.google.common.collect.Maps;
 import com.google.common.reflect.Reflection;
 import com.ninni.etcetera.block.EtceteraBlocks;
+import com.ninni.etcetera.block.entity.EtceteraBlockEntityType;
 import com.ninni.etcetera.item.EtceteraItems;
 import com.ninni.etcetera.resource.EtceteraProcessResourceManager;
 import com.ninni.etcetera.sound.EtceteraSoundEvents;
+import com.ninni.etcetera.stat.EtceteraStats;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -56,6 +58,8 @@ public class Etcetera implements ModInitializer {
 	public void onInitialize() {
 		Reflection.initialize(
 			EtceteraSoundEvents.class,
+			EtceteraStats.class,
+			EtceteraBlockEntityType.class,
 			EtceteraItems.class,
 			EtceteraBlocks.class
 		);

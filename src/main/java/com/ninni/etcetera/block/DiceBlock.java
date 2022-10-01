@@ -1,6 +1,7 @@
 package com.ninni.etcetera.block;
 
 import com.ninni.etcetera.sound.EtceteraSoundEvents;
+import com.ninni.etcetera.stat.EtceteraStats;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FacingBlock;
@@ -8,6 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -36,6 +38,7 @@ public class DiceBlock extends FacingBlock {
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         trigger(state, world, pos);
+        player.incrementStat(EtceteraStats.ROTATE_DICE);
         return ActionResult.SUCCESS;
     }
 

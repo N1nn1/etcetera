@@ -49,10 +49,13 @@
   "block.etcetera.silt": "Limo",
   "item.etcetera.silt_ball": "Zolla di limo",
   "item.etcetera.silt_brick": "Mattone di limo",
+
   "block.etcetera.silt_bricks": "Mattoni di limo",
   "block.etcetera.silt_brick_wall": "Muretto di mattoni di limo",
   "block.etcetera.silt_brick_slab": "Lastra di mattoni di limo",
   "block.etcetera.silt_brick_stairs": "Scalini di mattoni di limo",
+
+  "container.etcetera.silt_pot": "Vaso di limo",
   "block.etcetera.silt_pot": "Vaso di limo",
   "block.etcetera.white_silt_pot": "Vaso di limo bianco",
   "block.etcetera.orange_silt_pot": "Vaso di limo arancione",
@@ -70,6 +73,7 @@
   "block.etcetera.green_silt_pot": "Vaso di limo verde",
   "block.etcetera.red_silt_pot": "Vaso di limo rosso",
   "block.etcetera.black_silt_pot": "Vaso di limo nero",
+
   "block.etcetera.packed_silt": "Limo compatto",
   "block.etcetera.white_packed_silt": "Limo compatto bianco",
   "block.etcetera.orange_packed_silt": "Limo compatto arancione",
@@ -87,6 +91,7 @@
   "block.etcetera.green_packed_silt": "Limo compatto verde",
   "block.etcetera.red_packed_silt": "Limo compatto rosso",
   "block.etcetera.black_packed_silt": "Limo compatto nero",
+
   "block.etcetera.silt_shingles": "Tegole di limo",
   "block.etcetera.white_silt_shingles": "Tegole di limo bianche",
   "block.etcetera.orange_silt_shingles": "Tegole di limo arancioni",
