@@ -1,5 +1,6 @@
 package com.ninni.etcetera.block;
 
+import com.ninni.etcetera.EtceteraTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PlantBlock;
@@ -16,5 +17,5 @@ public class BouquetBlock extends PlantBlock {
 
     @Override public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) { return SHAPE; }
 
-    @Override protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) { return floor.isOf(EtceteraBlocks.TERRACOTTA_VASE); }
+    @Override protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) { return floor.isIn(EtceteraTags.OFFSET_REMOVER); }
 }
