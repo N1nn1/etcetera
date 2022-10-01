@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "filled=false": {
       "model": "etcetera:block/silt_pot"
+    },
+    "filled=true": {
+      "model": "etcetera:block/silt_pot_filled"
     }
   }
 }

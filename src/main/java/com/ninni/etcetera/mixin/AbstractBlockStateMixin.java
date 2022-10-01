@@ -1,6 +1,6 @@
 package com.ninni.etcetera.mixin;
 
-import com.ninni.etcetera.block.EtceteraBlocks;
+import com.ninni.etcetera.EtceteraTags;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.PlantBlock;
 import net.minecraft.block.TallPlantBlock;
@@ -18,8 +18,8 @@ public class AbstractBlockStateMixin {
     private void removeModelOffset(net.minecraft.world.BlockView world, BlockPos pos, CallbackInfoReturnable<Vec3d> cir) {
         AbstractBlock.AbstractBlockState that = AbstractBlock.AbstractBlockState.class.cast(this);
         if (that.getBlock() instanceof PlantBlock) {
-            if (world.getBlockState(pos.down(1)).isOf(EtceteraBlocks.TERRACOTTA_VASE)
-                || (that.getBlock() instanceof TallPlantBlock && world.getBlockState(pos.down(2)).isOf(EtceteraBlocks.TERRACOTTA_VASE))
+            if (world.getBlockState(pos.down(1)).isIn(EtceteraTags.OFFSET_REMOVER)
+                || (that.getBlock() instanceof TallPlantBlock && world.getBlockState(pos.down(2)).isIn(EtceteraTags.OFFSET_REMOVER))
             ) cir.setReturnValue(Vec3d.ZERO);
         }
     }

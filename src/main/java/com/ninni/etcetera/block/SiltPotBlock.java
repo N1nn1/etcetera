@@ -1,11 +1,15 @@
 package com.ninni.etcetera.block;
 
+import com.ninni.etcetera.EtceteraProperties;
 import com.ninni.etcetera.block.entity.EtceteraBlockEntityType;
 import com.ninni.etcetera.block.entity.SiltPotBlockEntity;
+import com.ninni.etcetera.mixin.FlowerBlockMixin;
 import com.ninni.etcetera.stat.EtceteraStats;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.FlowerBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.block.entity.BlockEntity;
@@ -17,9 +21,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ShovelItem;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
@@ -42,26 +50,40 @@ import java.util.stream.Stream;
 @SuppressWarnings("deprecation")
 public class SiltPotBlock extends FallingBlockWithEntity implements Waterloggable {
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+    public static final BooleanProperty FILLED = EtceteraProperties.FILLED;
     protected static final VoxelShape SHAPE =
         Stream.of(
-        Block.createCuboidShape(2, 1, 2, 14, 10, 14),
-        Block.createCuboidShape(4, 0, 4, 12, 11, 12),
-        Block.createCuboidShape(3, 11, 3, 13, 13, 13)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
-
+            Block.createCuboidShape(2, 1, 2, 14, 13, 14),
+            Block.createCuboidShape(3, 14, 3, 13, 16, 13),
+            Block.createCuboidShape(4, 0, 4, 12, 14, 12)
+        ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
 
     public SiltPotBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false));
+        this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(FILLED, false));
     }
 
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient) return ActionResult.SUCCESS;
         BlockEntity blockEntity = world.getBlockEntity(pos);
 
-        if (blockEntity instanceof SiltPotBlockEntity) {
+        if (state.get(FILLED) && player.getStackInHand(hand).getItem() instanceof ShovelItem) {
+            world.setBlockState(pos, state.with(FILLED, false), Block.NO_REDRAW);
+            if (!player.getAbilities().creativeMode) player.getStackInHand(hand).damage(1, player, p -> p.sendToolBreakStatus(player.getActiveHand()));
+            if (world.isClient) {
+                world.playSound(player, pos, SoundEvents.BLOCK_ROOTED_DIRT_BREAK, SoundCategory.BLOCKS, 1, 1);
+                return ActionResult.SUCCESS;
+            }
+        } else if (!state.get(FILLED) && player.getStackInHand(hand).isOf(Blocks.ROOTED_DIRT.asItem())) {
+            world.setBlockState(pos, state.with(FILLED, true), Block.NO_REDRAW);
+            if (world.isClient) {
+                world.playSound(player, pos, SoundEvents.BLOCK_ROOTED_DIRT_PLACE, SoundCategory.BLOCKS, 1, 1);
+                return ActionResult.SUCCESS;
+            }
+            if (!player.getAbilities().creativeMode) player.getStackInHand(hand).decrement(1);
+        } else if (blockEntity instanceof SiltPotBlockEntity && !state.get(FILLED)) {
+            if (world.isClient) return ActionResult.SUCCESS;
             player.openHandledScreen((SiltPotBlockEntity)blockEntity);
             player.incrementStat(EtceteraStats.OPEN_SILT_POT);
             PiglinBrain.onGuardedBlockInteracted(player, true);
@@ -147,6 +169,6 @@ public class SiltPotBlock extends FallingBlockWithEntity implements Waterloggabl
     }
 
     @Override protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED);
+        builder.add(WATERLOGGED, FILLED);
     }
 }
