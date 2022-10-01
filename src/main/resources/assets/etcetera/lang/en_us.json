@@ -185,6 +185,9 @@
   "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Cephalopod Activities",
   "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Obtain a Squid Lamp",
 
+  "stat.minecraft.open_silt_pot": "Silt Pots opened",
+  "stat.minecraft.rotate_dice": "Dices Rolled",
+
   "subtitles.item.etcetera.sextant.success": "Sextant measures",
   "subtitles.item.etcetera.sextant.fail": "Sextant doesn't see the horizon",
   "subtitles.item.etcetera.magnifying_glass.use": "Player examines",

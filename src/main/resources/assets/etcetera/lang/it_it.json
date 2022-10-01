@@ -185,6 +185,9 @@
   "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Pol-position",
   "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Ottieni una lampada tentacolosa",
 
+  "stat.minecraft.open_silt_pot": "Vasi di limo aperti",
+  "stat.minecraft.rotate_dice": "Dadi tirati",
+
   "subtitles.item.etcetera.sextant.success": "Sestante misura",
   "subtitles.item.etcetera.sextant.fail": "Sestante non vede l'orizzonte",
   "subtitles.item.etcetera.magnifying_glass.use": "Giocatore esamina",
