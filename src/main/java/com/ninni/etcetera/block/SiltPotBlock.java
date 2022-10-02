@@ -31,6 +31,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.tag.ItemTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -67,7 +68,11 @@ public class SiltPotBlock extends FallingBlockWithEntity implements Waterloggabl
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-
+        ItemStack stack = player.getStackInHand(hand);
+        if (hit.getSide() == Direction.UP && stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof FlowerBlock && state.get(FILLED)) {
+            blockItem.place(new ItemPlacementContext(player, hand, stack, hit));
+            return ActionResult.success(world.isClient);
+        }
         if (state.get(FILLED) && player.getStackInHand(hand).getItem() instanceof ShovelItem) {
             world.setBlockState(pos, state.with(FILLED, false), Block.NO_REDRAW);
             if (!player.getAbilities().creativeMode) player.getStackInHand(hand).damage(1, player, p -> p.sendToolBreakStatus(player.getActiveHand()));
