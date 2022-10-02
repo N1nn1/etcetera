@@ -3,7 +3,6 @@ package com.ninni.etcetera.block;
 import com.ninni.etcetera.EtceteraProperties;
 import com.ninni.etcetera.block.entity.EtceteraBlockEntityType;
 import com.ninni.etcetera.block.entity.SiltPotBlockEntity;
-import com.ninni.etcetera.mixin.FlowerBlockMixin;
 import com.ninni.etcetera.stat.EtceteraStats;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -67,7 +66,11 @@ public class SiltPotBlock extends FallingBlockWithEntity implements Waterloggabl
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-
+        ItemStack stack = player.getStackInHand(hand);
+        if (hit.getSide() == Direction.UP && stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof FlowerBlock && state.get(FILLED)) {
+            blockItem.place(new ItemPlacementContext(player, hand, stack, hit));
+            return ActionResult.success(world.isClient);
+        }
         if (state.get(FILLED) && player.getStackInHand(hand).getItem() instanceof ShovelItem) {
             world.setBlockState(pos, state.with(FILLED, false), Block.NO_REDRAW);
             if (!player.getAbilities().creativeMode) player.getStackInHand(hand).damage(1, player, p -> p.sendToolBreakStatus(player.getActiveHand()));
