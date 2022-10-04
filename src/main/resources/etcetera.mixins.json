@@ -12,7 +12,6 @@
     "SmithingTableBlockMixin"
   ],
   "client": [
-    "client.InGameHudMixin",
     "client.ItemEntityRendererMixin",
     "client.ItemModelsMixin",
     "client.ItemRendererMixin",
