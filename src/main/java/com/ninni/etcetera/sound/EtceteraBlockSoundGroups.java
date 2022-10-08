@@ -18,11 +18,41 @@ public class EtceteraBlockSoundGroups {
     public static final BlockSoundGroup PACKED_SILT = new BlockSoundGroup(
         1.0F, 1.0F,
 
-        SoundEvents.BLOCK_STONE_BREAK,
-        SoundEvents.BLOCK_STONE_STEP,
-        SoundEvents.BLOCK_STONE_PLACE,
-        SoundEvents.BLOCK_STONE_HIT,
-        SoundEvents.BLOCK_STONE_FALL
+        EtceteraSoundEvents.BLOCK_PACKED_SILT_BREAK,
+        EtceteraSoundEvents.BLOCK_PACKED_SILT_STEP,
+        EtceteraSoundEvents.BLOCK_PACKED_SILT_PLACE,
+        EtceteraSoundEvents.BLOCK_PACKED_SILT_HIT,
+        EtceteraSoundEvents.BLOCK_PACKED_SILT_FALL
+    );
+
+    public static final BlockSoundGroup SILT = new BlockSoundGroup(
+        1.0F, 1.0F,
+
+        EtceteraSoundEvents.BLOCK_SILT_BREAK,
+        EtceteraSoundEvents.BLOCK_SILT_STEP,
+        EtceteraSoundEvents.BLOCK_SILT_PLACE,
+        EtceteraSoundEvents.BLOCK_SILT_HIT,
+        EtceteraSoundEvents.BLOCK_SILT_FALL
+    );
+
+    public static final BlockSoundGroup SILT_POT = new BlockSoundGroup(
+        1.0F, 1.0F,
+
+        EtceteraSoundEvents.BLOCK_SILT_POT_BREAK,
+        EtceteraSoundEvents.BLOCK_PACKED_SILT_STEP,
+        EtceteraSoundEvents.BLOCK_PACKED_SILT_PLACE,
+        EtceteraSoundEvents.BLOCK_PACKED_SILT_HIT,
+        EtceteraSoundEvents.BLOCK_PACKED_SILT_FALL
+    );
+
+    public static final BlockSoundGroup SILT_SHINGLES = new BlockSoundGroup(
+        1.0F, 1.0F,
+
+        EtceteraSoundEvents.BLOCK_SILT_SHINGLES_BREAK,
+        EtceteraSoundEvents.BLOCK_SILT_SHINGLES_STEP,
+        EtceteraSoundEvents.BLOCK_SILT_SHINGLES_PLACE,
+        EtceteraSoundEvents.BLOCK_SILT_SHINGLES_HIT,
+        EtceteraSoundEvents.BLOCK_SILT_SHINGLES_FALL
     );
 
     public static final BlockSoundGroup BISMUTH_BLOCK = new BlockSoundGroup(

@@ -54,13 +54,13 @@ public class EtceteraBlocks {
     public static final Block POTTED_BOUQUET = register("potted_bouquet", new FlowerPotBlock(BOUQUET, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));
     public static final Block TERRACOTTA_VASE = register("terracotta_vase", new TerracottaVaseBlock(FabricBlockSettings.copyOf(Blocks.TERRACOTTA).sounds(EtceteraBlockSoundGroups.TERRACOTTA_VASE)));
 
-    public static final Block SILT = register("silt", new PillarBlock(FabricBlockSettings.copyOf(Blocks.CLAY).mapColor(MapColor.BROWN)));
+    public static final Block SILT = register("silt", new PillarBlock(FabricBlockSettings.copyOf(Blocks.CLAY).mapColor(MapColor.BROWN).sounds(EtceteraBlockSoundGroups.SILT)));
     public static final Block SILT_BRICKS = register("silt_bricks", new Block(FabricBlockSettings.copyOf(Blocks.BRICKS).mapColor(MapColor.PALE_YELLOW)));
     public static final Block SILT_BRICK_STAIRS = register("silt_brick_stairs", new PublicStairsBlock(SILT_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(SILT_BRICKS)));
     public static final Block SILT_BRICK_SLAB = register("silt_brick_slab", new SlabBlock(FabricBlockSettings.copyOf(SILT_BRICKS)));
     public static final Block SILT_BRICK_WALL = register("silt_brick_wall", new WallBlock(FabricBlockSettings.copyOf(SILT_BRICKS)));
 
-    public static final Block SILT_POT = register("silt_pot", new SiltPotBlock(FabricBlockSettings.copyOf(Blocks.TERRACOTTA).sounds(EtceteraBlockSoundGroups.PACKED_SILT).strength(0.5f, 2f)));
+    public static final Block SILT_POT = register("silt_pot", new SiltPotBlock(FabricBlockSettings.copyOf(Blocks.TERRACOTTA).sounds(EtceteraBlockSoundGroups.SILT_POT).strength(0.5f, 2f)));
     public static final Block WHITE_SILT_POT = register("white_silt_pot", new SiltPotBlock(FabricBlockSettings.copyOf(SILT_POT).mapColor(MapColor.WHITE)));
     public static final Block ORANGE_SILT_POT = register("orange_silt_pot", new SiltPotBlock(FabricBlockSettings.copyOf(SILT_POT).mapColor(MapColor.ORANGE)));
     public static final Block MAGENTA_SILT_POT = register("magenta_silt_pot", new SiltPotBlock(FabricBlockSettings.copyOf(SILT_POT).mapColor(MapColor.MAGENTA)));
@@ -96,7 +96,7 @@ public class EtceteraBlocks {
     public static final Block RED_PACKED_SILT = register("red_packed_silt", new Block(FabricBlockSettings.copyOf(PACKED_SILT).mapColor(MapColor.RED)));
     public static final Block BLACK_PACKED_SILT = register("black_packed_silt", new Block(FabricBlockSettings.copyOf(PACKED_SILT).mapColor(MapColor.BLACK)));
 
-    public static final Block SILT_SHINGLES = register("silt_shingles", new Block(FabricBlockSettings.copyOf(Blocks.TERRACOTTA).sounds(EtceteraBlockSoundGroups.PACKED_SILT)));
+    public static final Block SILT_SHINGLES = register("silt_shingles", new Block(FabricBlockSettings.copyOf(Blocks.TERRACOTTA).sounds(EtceteraBlockSoundGroups.SILT_SHINGLES)));
     public static final Block WHITE_SILT_SHINGLES = register("white_silt_shingles", new Block(FabricBlockSettings.copyOf(SILT_SHINGLES).mapColor(MapColor.WHITE)));
     public static final Block ORANGE_SILT_SHINGLES = register("orange_silt_shingles", new Block(FabricBlockSettings.copyOf(SILT_SHINGLES).mapColor(MapColor.ORANGE)));
     public static final Block MAGENTA_SILT_SHINGLES = register("magenta_silt_shingles", new Block(FabricBlockSettings.copyOf(SILT_SHINGLES).mapColor(MapColor.MAGENTA)));
