@@ -1,6 +1,7 @@
 package com.ninni.etcetera;
 
 import com.ninni.etcetera.block.EtceteraBlocks;
+import com.ninni.etcetera.client.TidalHelmetHud;
 import com.ninni.etcetera.client.model.entity.TidalArmorRenderer;
 import com.ninni.etcetera.item.EtceteraItems;
 import net.fabricmc.api.ClientModInitializer;
@@ -12,8 +13,7 @@ public class EtceteraClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-	ArmorRenderer.register(new TidalArmorRenderer(), EtceteraItems.TIDAL_HELMET);
-
+		ArmorRenderer.register(new TidalArmorRenderer(), EtceteraItems.TIDAL_HELMET);
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
 			EtceteraBlocks.IRIDESCENT_GLASS
 		);
@@ -24,5 +24,6 @@ public class EtceteraClient implements ClientModInitializer {
 			EtceteraBlocks.POTTED_BOUQUET,
 			EtceteraBlocks.FRAME
 		);
+		TidalHelmetHud.init();
 	}
 }
