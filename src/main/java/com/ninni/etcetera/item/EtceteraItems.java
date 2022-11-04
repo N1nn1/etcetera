@@ -33,9 +33,11 @@ public class EtceteraItems {
     public static final Item IRIDESCENT_PACKED_SILT = register("iridescent_packed_silt", new BlockItem(EtceteraBlocks.IRIDESCENT_PACKED_SILT, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item IRIDESCENT_LANTERN = register("iridescent_lantern", new BlockItem(EtceteraBlocks.IRIDESCENT_LANTERN, new FabricItemSettings().group(ITEM_GROUP)));
 
-    public static final Item SEXTANT = register("sextant", new SextantItem(new FabricItemSettings().group(ITEM_GROUP).maxCount(1)));
+    //TODO remove or make good, for now I have removed the item group so it wont be see in game
+    public static final Item MAGNIFYING_GLASS = register("magnifying_glass", new MagnifyingGlassItem(new FabricItemSettings().maxCount(1)));
+    public static final Item SEXTANT = register("sextant", new SextantItem(new FabricItemSettings().maxCount(1)));
+
     public static final Item CHISEL = register("chisel", new TransformingItem(EtceteraToolMaterials.BISMUTH, CHISELLING_MANAGER::getMap, new FabricItemSettings().group(ITEM_GROUP).maxCount(1).maxDamage(145), EtceteraSoundEvents.ITEM_CHISEL_USE, EtceteraTags.CHISELLABLE));
-    public static final Item MAGNIFYING_GLASS = register("magnifying_glass", new MagnifyingGlassItem(new FabricItemSettings().group(ITEM_GROUP).maxCount(1)));
     public static final Item WRENCH = register("wrench", new WrenchItem(EtceteraToolMaterials.BISMUTH, new FabricItemSettings().group(ITEM_GROUP).maxCount(1).maxDamage(145)));
     public static final Item HAMMER = register("hammer", new HammerItem(EtceteraToolMaterials.BISMUTH, (int)7.5, -3.6F, HAMMERING_MANAGER::getMap, new FabricItemSettings().group(ITEM_GROUP).maxCount(1).maxDamage(80), EtceteraSoundEvents.ITEM_HAMMER_USE, EtceteraTags.HAMMERABLE));
     public static final Item HANDBELL = register("handbell", new HandbellItem(new FabricItemSettings().group(ITEM_GROUP).maxCount(1)));
