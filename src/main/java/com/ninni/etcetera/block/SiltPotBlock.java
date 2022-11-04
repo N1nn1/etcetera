@@ -3,6 +3,7 @@ package com.ninni.etcetera.block;
 import com.ninni.etcetera.EtceteraProperties;
 import com.ninni.etcetera.block.entity.EtceteraBlockEntityType;
 import com.ninni.etcetera.block.entity.SiltPotBlockEntity;
+import com.ninni.etcetera.sound.EtceteraBlockSoundGroups;
 import com.ninni.etcetera.stat.EtceteraStats;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -25,6 +26,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -141,6 +143,11 @@ public class SiltPotBlock extends FallingBlockWithEntity implements Waterloggabl
         if (itemStack.hasCustomName() && (blockEntity = world.getBlockEntity(pos)) instanceof SiltPotBlockEntity) {
             ((SiltPotBlockEntity)blockEntity).setCustomName(itemStack.getName());
         }
+    }
+
+    @Override
+    public BlockSoundGroup getSoundGroup(BlockState state) {
+        return state.get(FILLED) ? EtceteraBlockSoundGroups.SILT_POT_FILLED : EtceteraBlockSoundGroups.SILT_POT;
     }
 
     @Override
