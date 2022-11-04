@@ -1,7 +1,6 @@
 package com.ninni.etcetera.item;
 
 import net.fabricmc.yarn.constants.MiningLevels;
-import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Lazy;
@@ -10,7 +9,6 @@ import java.util.function.Supplier;
 
 public enum EtceteraToolMaterials implements ToolMaterial
 {
-    FLINT(MiningLevels.STONE, 80, 5.0f, 1.5f, 14, () -> Ingredient.ofItems(Items.FLINT)),
     BISMUTH(MiningLevels.IRON, 145, 7.0f, 2f, 30, () -> Ingredient.ofItems(EtceteraItems.BISMUTH_INGOT));
 
     private final int miningLevel;

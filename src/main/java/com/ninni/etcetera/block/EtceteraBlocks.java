@@ -34,7 +34,7 @@ public class EtceteraBlocks {
     public static final Block IRIDESCENT_GLASS = register("iridescent_glass", new GlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS).slipperiness(1.0F)));
     public static final Block IRIDESCENT_TERRACOTTA = register("iridescent_terracotta", new Block(FabricBlockSettings.copyOf(Blocks.TERRACOTTA)));
     public static final Block IRIDESCENT_CONCRETE = register("iridescent_concrete", new Block(FabricBlockSettings.copyOf(Blocks.LIGHT_GRAY_CONCRETE)));
-    public static final Block IRIDESCENT_PACKED_SILT = register("iridescent_packed_silt", new Block(FabricBlockSettings.copyOf(Blocks.TERRACOTTA).mapColor(MapColor.LIGHT_GRAY)));
+    public static final Block IRIDESCENT_PACKED_SILT = register("iridescent_packed_silt", new Block(FabricBlockSettings.copyOf(Blocks.TERRACOTTA).mapColor(MapColor.LIGHT_GRAY).sounds(EtceteraBlockSoundGroups.PACKED_SILT)));
     public static final Block IRIDESCENT_LANTERN = register("iridescent_lantern", new Block(FabricBlockSettings.copyOf(Blocks.SEA_LANTERN)));
 
     public static final Block GRAVEL_BRICKS = register("gravel_bricks", new Block(FabricBlockSettings.of(Material.AGGREGATE, MapColor.STONE_GRAY).strength(0.8f).sounds(EtceteraBlockSoundGroups.GRAVEL_BRICKS)));
