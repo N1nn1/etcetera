@@ -1,5 +1,6 @@
 package com.ninni.etcetera;
 
+import com.ninni.etcetera.block.enums.EtceteraColumnShape;
 import com.ninni.etcetera.block.enums.EtceteraInstrument;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -8,4 +9,5 @@ import net.minecraft.state.property.EnumProperty;
 public interface EtceteraProperties {
     EnumProperty<EtceteraInstrument> INSTRUMENT = EnumProperty.of("instrument", EtceteraInstrument.class);
     BooleanProperty FILLED = BooleanProperty.of("filled");
+    EnumProperty<EtceteraColumnShape> SHAPE = EnumProperty.of("shape", EtceteraColumnShape.class);
 }

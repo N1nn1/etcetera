@@ -22,7 +22,7 @@ import java.util.Map;
 import static com.ninni.etcetera.Etcetera.*;
 
 public class EtceteraProcessResourceManager extends JsonDataLoader implements IdentifiableResourceReloadListener {
-    public static final String FOLDER_KEY = "etcetera_processes";
+    public static final String FOLDER_KEY = "processes";
     private static final Gson GSON = new GsonBuilder().create();
 
     private final String id;

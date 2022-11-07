@@ -32,6 +32,10 @@ public class EtceteraBlocks {
     public static final Block GRAVEL_BRICK_SLAB = register("gravel_brick_slab", new SlabBlock(FabricBlockSettings.copyOf(GRAVEL_BRICKS)));
     public static final Block GRAVEL_BRICK_WALL = register("gravel_brick_wall", new WallBlock(FabricBlockSettings.copyOf(GRAVEL_BRICKS)));
 
+    public static final Block QUARTZ_COLUMN = register("quartz_column", new ColumnBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_BRICKS)));
+    public static final Block STONE_COLUMN = register("stone_column", new ColumnBlock(FabricBlockSettings.copyOf(Blocks.STONE_BRICKS)));
+    public static final Block DEEPSLATE_COLUMN = register("deepslate_column", new ColumnBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
+
     public static final Block COMPACTED_DRIPSTONE = register("compacted_dripstone", new CompactedDripstoneBlock(FabricBlockSettings.copyOf(Blocks.DRIPSTONE_BLOCK)));
 
     public static final Block DRUM = register("drum", new DrumBlock(FabricBlockSettings.copyOf(Blocks.NOTE_BLOCK)));

@@ -47,6 +47,10 @@ public class EtceteraItems {
     public static final Item GRAVEL_BRICK_SLAB = register("gravel_brick_slab", new BlockItem(EtceteraBlocks.GRAVEL_BRICK_SLAB, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item GRAVEL_BRICK_WALL = register("gravel_brick_wall", new BlockItem(EtceteraBlocks.GRAVEL_BRICK_WALL, new FabricItemSettings().group(ITEM_GROUP)));
 
+    public static final Item QUARTZ_COLUMN = register("quartz_column", new BlockItem(EtceteraBlocks.QUARTZ_COLUMN, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item STONE_COLUMN = register("stone_column", new BlockItem(EtceteraBlocks.STONE_COLUMN, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item DEEPSLATE_COLUMN = register("deepslate_column", new BlockItem(EtceteraBlocks.DEEPSLATE_COLUMN, new FabricItemSettings().group(ITEM_GROUP)));
+
     public static final Item COMPACTED_DRIPSTONE = register("compacted_dripstone", new BlockItem(EtceteraBlocks.COMPACTED_DRIPSTONE, new FabricItemSettings().group(ITEM_GROUP)));
 
     public static final Item DRUM = register("drum", new BlockItem(EtceteraBlocks.DRUM, new FabricItemSettings().group(ITEM_GROUP)));

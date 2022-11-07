@@ -9,6 +9,10 @@
   "block.etcetera.gravel_brick_slab": "Gravel Brick Slab",
   "block.etcetera.gravel_brick_stairs": "Gravel Brick Stairs",
 
+  "block.etcetera.quartz_column": "Quartz Column",
+  "block.etcetera.stone_column": "Stone Column",
+  "block.etcetera.deepslate_column": "Deepslate Column",
+
   "block.etcetera.compacted_dripstone": "Compacted Dripstone",
 
   "block.etcetera.drum": "Drum",

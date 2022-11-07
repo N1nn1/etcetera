@@ -29,6 +29,9 @@
     "etcetera:smooth_stone_bricks",
     "etcetera:smooth_stone_brick_stairs",
     "etcetera:smooth_stone_brick_slab",
-    "etcetera:smooth_stone_brick_wall"
+    "etcetera:smooth_stone_brick_wall",
+    "etcetera:quartz_column",
+    "etcetera:stone_column",
+    "etcetera:deepslate_column"
   ]
 }

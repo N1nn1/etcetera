@@ -9,6 +9,10 @@
   "block.etcetera.gravel_brick_slab": "Lastra di mattoni di ghiaia",
   "block.etcetera.gravel_brick_stairs": "Scalini di mattoni di ghiaia",
 
+  "block.etcetera.quartz_column": "Colonna di quarzo",
+  "block.etcetera.stone_column": "Colonna di pietra",
+  "block.etcetera.deepslate_column": "Colonna di ardesia profonda",
+
   "block.etcetera.compacted_dripstone": "Speleotema compatto",
 
   "block.etcetera.drum": "Tamburo",
