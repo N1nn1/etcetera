@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "shape=base": {
+      "model": "etcetera:block/blackstone_column"
+    },
+    "shape=tip": {
+      "model": "etcetera:block/blackstone_column_tip"
+    }
+  }
+}

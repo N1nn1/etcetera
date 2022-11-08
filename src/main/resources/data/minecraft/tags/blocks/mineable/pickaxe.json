@@ -32,6 +32,7 @@
     "etcetera:smooth_stone_brick_wall",
     "etcetera:quartz_column",
     "etcetera:stone_column",
-    "etcetera:deepslate_column"
+    "etcetera:deepslate_column",
+    "etcetera:blackstone_column"
   ]
 }

@@ -35,6 +35,7 @@ public class EtceteraBlocks {
     public static final Block QUARTZ_COLUMN = register("quartz_column", new ColumnBlock(FabricBlockSettings.copyOf(Blocks.QUARTZ_BRICKS)));
     public static final Block STONE_COLUMN = register("stone_column", new ColumnBlock(FabricBlockSettings.copyOf(Blocks.STONE_BRICKS)));
     public static final Block DEEPSLATE_COLUMN = register("deepslate_column", new ColumnBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_BRICKS)));
+    public static final Block BLACKSTONE_COLUMN = register("blackstone_column", new ColumnBlock(FabricBlockSettings.copyOf(Blocks.POLISHED_BLACKSTONE_BRICKS)));
 
     public static final Block COMPACTED_DRIPSTONE = register("compacted_dripstone", new CompactedDripstoneBlock(FabricBlockSettings.copyOf(Blocks.DRIPSTONE_BLOCK)));
 
