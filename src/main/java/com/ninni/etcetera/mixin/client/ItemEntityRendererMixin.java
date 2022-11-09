@@ -1,7 +1,6 @@
 package com.ninni.etcetera.mixin.client;
 
 import com.ninni.etcetera.client.gui.HandbellItemRenderer;
-import com.ninni.etcetera.client.gui.SextantItemRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.ItemEntityRenderer;
@@ -28,6 +27,5 @@ public abstract class ItemEntityRendererMixin {
     )
     private void onRender(Args args) {
         Optional.ofNullable(HandbellItemRenderer.modifyRenderItem(args.get(0), args.get(1))).ifPresent(model -> args.set(7, model));
-        Optional.ofNullable(SextantItemRenderer.modifyRenderItem(args.get(0), args.get(1))).ifPresent(model -> args.set(7, model));
     }
 }

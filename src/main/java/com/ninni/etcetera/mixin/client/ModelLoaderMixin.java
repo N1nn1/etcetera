@@ -1,7 +1,6 @@
 package com.ninni.etcetera.mixin.client;
 
 import com.ninni.etcetera.client.gui.HandbellItemRenderer;
-import com.ninni.etcetera.client.gui.SextantItemRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.color.block.BlockColors;
@@ -34,7 +33,6 @@ public abstract class ModelLoaderMixin {
         )
     )
     private void onInit(ResourceManager resourceManager, BlockColors blockColors, Profiler profiler, int mipmapLevel, CallbackInfo ci) {
-        this.addModel(SextantItemRenderer.INVENTORY_IN_HAND_MODEL_ID);
         this.addModel(HandbellItemRenderer.INVENTORY_IN_HAND_MODEL_ID);
     }
 }

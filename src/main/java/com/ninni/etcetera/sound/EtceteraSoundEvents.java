@@ -56,13 +56,6 @@ public interface EtceteraSoundEvents {
     SoundEvent BLOCK_DICE_ROLL  = dice("roll");
     private static SoundEvent dice(String type) { return createBlockSound("dice", type); }
 
-    SoundEvent ITEM_SEXTANT_SUCCESS  = sextant("success");
-    SoundEvent ITEM_SEXTANT_FAIL     = sextant("fail");
-    private static SoundEvent sextant(String type) { return createItemSound("sextant", type); }
-
-    SoundEvent ITEM_MAGNIFYING_GLASS_USE  = magnifyingGlass("use");
-    private static SoundEvent magnifyingGlass(String type) { return createItemSound("magnifying_glass", type); }
-
     SoundEvent ITEM_WRENCH_SELECT  = wrench("select");
     SoundEvent ITEM_WRENCH_MODIFY  = wrench("modify");
     SoundEvent ITEM_WRENCH_FAIL    = wrench("fail");

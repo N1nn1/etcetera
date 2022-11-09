@@ -154,12 +154,6 @@
   "block.etcetera.iridescent_packed_silt": "Lime compatto iridescente",
   "block.etcetera.iridescent_lantern": "Lanterna iridescente",
 
-  "item.etcetera.sextant": "Sestante",
-  "item.etcetera.sextant.actionbar": "X: %s Z: %s",
-  "item.etcetera.magnifying_glass": "Lente d'ingrandimento",
-  "item.etcetera.magnifying_glass.actionbar.entity": "%1$s ha %2$s cuori",
-  "item.etcetera.magnifying_glass.actionbar.entity_hurt": "%1$s ha %2$s cuori su %3$s",
-  "item.etcetera.magnifying_glass.select": "%1$s con la proprietà \"%2$s\": %3$s",
   "item.etcetera.wrench": "Chiave inglese",
   "item.etcetera.wrench.select": "Proprietà selezionata: \"%1$s\"",
   "item.etcetera.wrench.invalid": "Proprietà: \"%1$s\" non può",
@@ -184,8 +178,6 @@
 
   "advancements.etcetera.nether.obtain_bismuth.title": "Unti e bismuti",
   "advancements.etcetera.nether.obtain_bismuth.description": "Ottieni del bismuto grezzo",
-  "advancements.etcetera.nether.use_magnifying_glass.title": "Vedo vedo con i miei occhietti...",
-  "advancements.etcetera.nether.use_magnifying_glass.description": "Ottieni una lente d'ingrandimento",
   "advancements.etcetera.story.tidal_helmet.title": "In fondo al mar",
   "advancements.etcetera.story.tidal_helmet.description": "Combina il potere di un cuore del mare e un carapace di tartaruga",
   "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Pol-position",
@@ -194,9 +186,6 @@
   "stat.minecraft.open_silt_pot": "Vasi di limo aperti",
   "stat.minecraft.rotate_dice": "Dadi tirati",
 
-  "subtitles.item.etcetera.sextant.success": "Sestante misura",
-  "subtitles.item.etcetera.sextant.fail": "Sestante non vede l'orizzonte",
-  "subtitles.item.etcetera.magnifying_glass.use": "Giocatore esamina",
   "subtitles.item.etcetera.wrench.select": "Chiave inglese seleziona",
   "subtitles.item.etcetera.wrench.fail": "Chiave inglese fallisce",
   "subtitles.item.etcetera.wrench.modify": "Chiave inglese modifica",

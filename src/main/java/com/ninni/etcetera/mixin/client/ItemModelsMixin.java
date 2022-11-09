@@ -1,9 +1,7 @@
 package com.ninni.etcetera.mixin.client;
 
 import com.ninni.etcetera.client.gui.HandbellItemRenderer;
-import com.ninni.etcetera.client.gui.SextantItemRenderer;
 import com.ninni.etcetera.item.HandbellItem;
-import com.ninni.etcetera.item.SextantItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.item.ItemModels;
@@ -35,7 +33,6 @@ public abstract class ItemModelsMixin {
     private void onGetModel(ItemStack stack, CallbackInfoReturnable<BakedModel> cir) {
         BakedModelManager models = this.getModelManager();
         if (stack.getItem() instanceof HandbellItem) cir.setReturnValue(models.getModel(HandbellItemRenderer.INVENTORY_IN_HAND_MODEL_ID));
-        if (stack.getItem() instanceof SextantItem) cir.setReturnValue(models.getModel(SextantItemRenderer.INVENTORY_IN_HAND_MODEL_ID));
 
     }
 }

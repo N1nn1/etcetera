@@ -286,24 +286,6 @@
     ],
     "subtitle": "subtitles.block.etcetera.dice.roll"
   },
-  "item.sextant.success": {
-    "sounds": [
-      "etcetera:item/sextant/success"
-    ],
-    "subtitle": "subtitles.item.etcetera.sextant.success"
-  },
-  "item.sextant.fail": {
-    "sounds": [
-      "etcetera:item/sextant/fail"
-    ],
-    "subtitle": "subtitles.item.etcetera.sextant.fail"
-  },
-  "item.magnifying_glass.use": {
-    "sounds": [
-      "etcetera:item/magnifying_glass/use"
-    ],
-    "subtitle": "subtitles.item.etcetera.magnifying_glass.use"
-  },
   "item.wrench.select": {
     "sounds": [
       "etcetera:item/wrench/select"

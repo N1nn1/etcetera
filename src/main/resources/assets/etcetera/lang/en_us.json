@@ -153,12 +153,6 @@
   "block.etcetera.iridescent_packed_silt": "Iridescent Packed Silt",
   "block.etcetera.iridescent_lantern": "Iridescent Lantern",
 
-  "item.etcetera.sextant": "Sextant",
-  "item.etcetera.sextant.actionbar": "X: %s Z: %s",
-  "item.etcetera.magnifying_glass": "Magnifying Glass",
-  "item.etcetera.magnifying_glass.actionbar.entity": "%1$s has %2$s hearts",
-  "item.etcetera.magnifying_glass.actionbar.entity_hurt": "%1$s has %2$s hearts out of %3$s",
-  "item.etcetera.magnifying_glass.select": "%1$s with \"%2$s\": %3$s",
   "item.etcetera.wrench": "Wrench",
   "item.etcetera.wrench.select": "Property selected: \"%1$s\"",
   "item.etcetera.wrench.invalid": "Property: \"%1$s\" cannot be modified",
@@ -183,8 +177,6 @@
 
   "advancements.etcetera.nether.obtain_bismuth.title": "Down to Bismuth-ss",
   "advancements.etcetera.nether.obtain_bismuth.description": "Obtain Raw Bismuth",
-  "advancements.etcetera.nether.use_magnifying_glass.title": "I Spy with My Little Eye",
-  "advancements.etcetera.nether.use_magnifying_glass.description": "Obtain a Magnifying Glass",
   "advancements.etcetera.story.tidal_helmet.title": "All-Seaing Eye",
   "advancements.etcetera.story.tidal_helmet.description": "Combine the power of a Turtle Shell and an Heart of The Sea",
   "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Cephalopod Activities",
@@ -193,9 +185,6 @@
   "stat.minecraft.open_silt_pot": "Silt Pots opened",
   "stat.minecraft.rotate_dice": "Dices Rolled",
 
-  "subtitles.item.etcetera.sextant.success": "Sextant measures",
-  "subtitles.item.etcetera.sextant.fail": "Sextant doesn't see the horizon",
-  "subtitles.item.etcetera.magnifying_glass.use": "Player examines",
   "subtitles.item.etcetera.wrench.select": "Wrench shifts",
   "subtitles.item.etcetera.wrench.fail": "Wrench fails",
   "subtitles.item.etcetera.wrench.modify": "Wrench modifies",
