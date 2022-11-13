@@ -1,7 +1,7 @@
 package com.ninni.etcetera.block;
 
 import com.ninni.etcetera.EtceteraProperties;
-import com.ninni.etcetera.block.enums.EtceteraInstrument;
+import com.ninni.etcetera.block.enums.DrumType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -37,19 +37,52 @@ import net.minecraft.world.event.GameEvent;
 
 @SuppressWarnings("deprecation")
 public class DrumBlock extends Block implements Waterloggable {
-    public static final EnumProperty<EtceteraInstrument> INSTRUMENT = EtceteraProperties.INSTRUMENT;
+
+    public static final EnumProperty<DrumType> TYPE = EtceteraProperties.DRUM_TYPE;
     public static final BooleanProperty POWERED = Properties.POWERED;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(Block.createCuboidShape(2, 0, 2, 14, 8, 14), Block.createCuboidShape(0, 8, 0, 16, 16, 16), BooleanBiFunction.OR);
     protected static final VoxelShape HIT_SHAPE = VoxelShapes.combineAndSimplify(Block.createCuboidShape(-0.25, 8, -0.25, 16.25, 15.75, 16.25), Block.createCuboidShape(2, 0, 2, 14, 8, 14), BooleanBiFunction.OR);
 
     protected DrumBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(POWERED, false).with(INSTRUMENT, EtceteraInstrument.DJEMBE));
+        setDefaultState(stateManager.getDefaultState().with(WATERLOGGED, false).with(POWERED, false).with(TYPE, DrumType.DJEMBE));
     }
 
+    public void playDrumSound(BlockState state, World world, BlockPos pos, Entity player, Vec3d hit) {
+        world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+        world.setBlockState(pos, state.with(POWERED, true), 3);
+        world.createAndScheduleBlockTick(pos, this, getPressTicks());
+        int power = calculatePower(hit);
+        if (power >= 1 && 5 >= power) {
+            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 16 / 24.0, 0.0, 0.0);
+            world.playSound(null, pos, getType(state).getHighSound(), SoundCategory.RECORDS, 2, 1);
+        }
+        if (power > 5 && 11 >= power) {
+            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 8 / 24.0, 0.0, 0.0);
+            world.playSound(null, pos, getType(state).getMediumSound(), SoundCategory.RECORDS, 2, 1);
+        }
+        if (power > 11) {
+            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 1 / 24.0, 0.0, 0.0);
+            world.playSound(null, pos, getType(state).getLowSound(), SoundCategory.RECORDS, 2, 1);
+        }
+    }
 
-    @Override public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
+    private int getPressTicks() {
+        return 3;
+    }
+
+    private DrumType getType(BlockState state) {
+        return state.get(TYPE);
+    }
+
+    private int calculatePower(Vec3d pos) {
+        return Math.max(1, MathHelper.ceil(15.0 * MathHelper.clamp((0.5 - Math.max(Math.abs(MathHelper.fractionalPart(pos.x) - 0.5), Math.abs(MathHelper.fractionalPart(pos.z) - 0.5))) / 0.5, 0.0, 1.0)));
+    }
+
+    @Override
+    public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
         if (hit.getSide() == Direction.UP) playDrumSound(state, world, hit.getBlockPos(), projectile.getOwner(), hit.getPos());
     }
 
@@ -68,30 +101,6 @@ public class DrumBlock extends Block implements Waterloggable {
         return ActionResult.PASS;
     }
 
-
-    public void playDrumSound(BlockState state, World world, BlockPos pos, Entity player, Vec3d hit) {
-        world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-        world.setBlockState(pos, state.with(POWERED, true), 3);
-        world.createAndScheduleBlockTick(pos, this, this.getPressTicks());
-        int power = calculatePower(hit);
-        if (power >= 1 && 5 >= power) {
-            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 16 / 24.0, 0.0, 0.0);
-            world.playSound(null, pos, (state.get(INSTRUMENT)).getHighSound(), SoundCategory.RECORDS, 2.0F, 1);
-        }
-        if (power > 5 && 11 >= power) {
-            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 8 / 24.0, 0.0, 0.0);
-            world.playSound(null, pos, (state.get(INSTRUMENT)).getMediumSound(), SoundCategory.RECORDS, 2.0F, 1);
-        }
-        if (power > 11) {
-            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 1 / 24.0, 0.0, 0.0);
-            world.playSound(null, pos, (state.get(INSTRUMENT)).getLowSound(), SoundCategory.RECORDS, 2.0F, 1);
-        }
-    }
-
-    private static int calculatePower(Vec3d pos) {
-        return Math.max(1, MathHelper.ceil(15.0 * MathHelper.clamp((0.5 - Math.max(Math.abs(MathHelper.fractionalPart(pos.x) - 0.5), Math.abs(MathHelper.fractionalPart(pos.z) - 0.5))) / 0.5, 0.0, 1.0)));
-    }
-
     @Override public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return state.get(POWERED) ? HIT_SHAPE : SHAPE;
     }
@@ -101,31 +110,39 @@ public class DrumBlock extends Block implements Waterloggable {
         return SHAPE;
     }
 
-    private int getPressTicks() {
-        return 3;
-    }
-    @Override public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+    @Override
+    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (state.get(POWERED)) world.setBlockState(pos, state.with(POWERED, false), 3);
     }
-    @Override public boolean emitsRedstonePower(BlockState state) {
+
+    @Override
+    public boolean emitsRedstonePower(BlockState state) {
         return true;
     }
-    @Override public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
+
+    @Override
+    public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
         return state.get(POWERED) ? 3 : 0;
     }
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (state.get(WATERLOGGED)) world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-        return direction == Direction.DOWN ? state.with(INSTRUMENT, EtceteraInstrument.fromBlockState(neighborState)) : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return direction == Direction.DOWN ? state.with(TYPE, DrumType.fromBlockState(neighborState)) : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
-    @Override public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER).with(INSTRUMENT, EtceteraInstrument.fromBlockState(ctx.getWorld().getBlockState(ctx.getBlockPos().down())));
+    
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return getDefaultState().with(WATERLOGGED, ctx.getWorld().getFluidState(ctx.getBlockPos()).getFluid() == Fluids.WATER).with(TYPE, DrumType.fromBlockState(ctx.getWorld().getBlockState(ctx.getBlockPos().down())));
     }
-    @Override public FluidState getFluidState(BlockState state) {
+
+    @Override
+    public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
     }
-    @Override protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(WATERLOGGED, POWERED, INSTRUMENT);
+
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(WATERLOGGED, POWERED, TYPE);
     }
 }

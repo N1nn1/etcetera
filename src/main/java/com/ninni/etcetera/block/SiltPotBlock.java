@@ -1,10 +1,15 @@
 package com.ninni.etcetera.block;
 
+import java.util.stream.Stream;
+
+import org.jetbrains.annotations.Nullable;
+
 import com.ninni.etcetera.EtceteraProperties;
 import com.ninni.etcetera.block.entity.EtceteraBlockEntityType;
 import com.ninni.etcetera.block.entity.SiltPotBlockEntity;
-import com.ninni.etcetera.sound.EtceteraBlockSoundGroups;
+import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import com.ninni.etcetera.stat.EtceteraStats;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -44,9 +49,6 @@ import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.stream.Stream;
 
 @SuppressWarnings("deprecation")
 public class SiltPotBlock extends FallingBlockWithEntity implements Waterloggable {
@@ -147,7 +149,7 @@ public class SiltPotBlock extends FallingBlockWithEntity implements Waterloggabl
 
     @Override
     public BlockSoundGroup getSoundGroup(BlockState state) {
-        return state.get(FILLED) ? EtceteraBlockSoundGroups.SILT_POT_FILLED : EtceteraBlockSoundGroups.SILT_POT;
+        return state.get(FILLED) ? EtceteraSoundEvents.SILT_POT_FILLED : EtceteraSoundEvents.SILT_POT;
     }
 
     @Override

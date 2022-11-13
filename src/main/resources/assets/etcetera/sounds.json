@@ -1,493 +1,692 @@
 {
-  "block.nether_bismuth_ore.break": {
-    "sounds": [
-      "etcetera:block/nether_bismuth_ore/heavy1",
-      "etcetera:block/nether_bismuth_ore/heavy2",
-      "etcetera:block/nether_bismuth_ore/heavy3",
-      "etcetera:block/nether_bismuth_ore/heavy4"
-    ],
-    "subtitle": "subtitles.block.generic.break"
-  },
-  "block.nether_bismuth_ore.step": {
-    "sounds": [
-      "etcetera:block/nether_bismuth_ore/light1",
-      "etcetera:block/nether_bismuth_ore/light2",
-      "etcetera:block/nether_bismuth_ore/light3",
-      "etcetera:block/nether_bismuth_ore/light4",
-      "etcetera:block/nether_bismuth_ore/light5"
-    ],
-    "subtitle": "subtitles.block.generic.footsteps"
-  },
-  "block.nether_bismuth_ore.hit": {
-    "sounds": [
-      {
-        "name": "etcetera:block.nether_bismuth_ore.step",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.hit"
-  },
-  "block.nether_bismuth_ore.place": {
-    "sounds": [
-      {
-        "name": "etcetera:block.nether_bismuth_ore.break",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.place"
-  },
-  "block.nether_bismuth_ore.fall": {
-    "sounds": [
-      {
-        "name": "etcetera:block.nether_bismuth_ore.break",
-        "type": "event"
-      }
-    ]
-  },
-  "block.bismuth_block.break": {
-    "sounds": [
-      "etcetera:block/bismuth_block/heavy1",
-      "etcetera:block/bismuth_block/heavy2",
-      "etcetera:block/bismuth_block/heavy3",
-      "etcetera:block/bismuth_block/heavy4"
-    ],
-    "subtitle": "subtitles.block.generic.break"
-  },
-  "block.bismuth_block.step": {
-    "sounds": [
-      "etcetera:block/bismuth_block/light1",
-      "etcetera:block/bismuth_block/light2",
-      "etcetera:block/bismuth_block/light3",
-      "etcetera:block/bismuth_block/light4",
-      "etcetera:block/bismuth_block/light5"
-    ],
-    "subtitle": "subtitles.block.generic.footsteps"
-  },
-  "block.bismuth_block.hit": {
-    "sounds": [
-      {
-        "name": "etcetera:block.bismuth_block.step",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.hit"
-  },
-  "block.bismuth_block.place": {
-    "sounds": [
-      {
-        "name": "etcetera:block.bismuth_block.break",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.place"
-  },
-  "block.bismuth_block.fall": {
-    "sounds": [
-      {
-        "name": "etcetera:block.bismuth_block.break",
-        "type": "event"
-      }
-    ]
-  },
-  "block.gravel_bricks.break": {
-    "sounds": [
-      "etcetera:block/gravel_bricks/heavy1",
-      "etcetera:block/gravel_bricks/heavy2",
-      "etcetera:block/gravel_bricks/heavy3",
-      "etcetera:block/gravel_bricks/heavy4"
-    ],
-    "subtitle": "subtitles.block.generic.break"
-  },
-  "block.gravel_bricks.step": {
-    "sounds": [
-      "etcetera:block/gravel_bricks/light1",
-      "etcetera:block/gravel_bricks/light2",
-      "etcetera:block/gravel_bricks/light3",
-      "etcetera:block/gravel_bricks/light4"
-    ],
-    "subtitle": "subtitles.block.generic.footsteps"
-  },
-  "block.gravel_bricks.hit": {
-    "sounds": [
-      {
-        "name": "etcetera:block.gravel_bricks.step",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.hit"
-  },
-  "block.gravel_bricks.place": {
-    "sounds": [
-      {
-        "name": "etcetera:block.gravel_bricks.break",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.place"
-  },
-  "block.gravel_bricks.fall": {
-    "sounds": [
-      {
-        "name": "etcetera:block.gravel_bricks.break",
-        "type": "event"
-      }
-    ]
-  },
-  "block.packed_silt.break": {
-    "sounds": [
-      "etcetera:block/packed_silt/heavy1",
-      "etcetera:block/packed_silt/heavy2",
-      "etcetera:block/packed_silt/heavy3",
-      "etcetera:block/packed_silt/heavy4"
-    ],
-    "subtitle": "subtitles.block.generic.break"
-  },
-  "block.packed_silt.step": {
-    "sounds": [
-      "etcetera:block/packed_silt/light1",
-      "etcetera:block/packed_silt/light2",
-      "etcetera:block/packed_silt/light3",
-      "etcetera:block/packed_silt/light4",
-      "etcetera:block/packed_silt/light5"
-    ],
-    "subtitle": "subtitles.block.generic.footsteps"
-  },
-  "block.packed_silt.hit": {
-    "sounds": [
-      {
-        "name": "etcetera:block.packed_silt.step",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.hit"
-  },
-  "block.packed_silt.place": {
-    "sounds": [
-      {
-        "name": "etcetera:block.packed_silt.break",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.place"
-  },
-  "block.packed_silt.fall": {
-    "sounds": [
-      {
-        "name": "etcetera:block.packed_silt.break",
-        "type": "event"
-      }
-    ]
-  },
-  "block.silt_pot.break": {
-    "sounds": [
-      "etcetera:block/silt_pot/heavy1",
-      "etcetera:block/silt_pot/heavy2",
-      "etcetera:block/silt_pot/heavy3",
-      "etcetera:block/silt_pot/heavy4"
-    ],
-    "subtitle": "subtitles.block.generic.break"
-  },
-  "block.silt_shingles.break": {
-    "sounds": [
-      "etcetera:block/silt_shingles/heavy1",
-      "etcetera:block/silt_shingles/heavy2",
-      "etcetera:block/silt_shingles/heavy3",
-      "etcetera:block/silt_shingles/heavy4",
-      "etcetera:block/silt_shingles/heavy5"
-    ],
-    "subtitle": "subtitles.block.generic.break"
-  },
-  "block.silt_shingles.step": {
-    "sounds": [
-      "etcetera:block/silt_shingles/light1",
-      "etcetera:block/silt_shingles/light2",
-      "etcetera:block/silt_shingles/light3",
-      "etcetera:block/silt_shingles/light4",
-      "etcetera:block/silt_shingles/light5"
-    ],
-    "subtitle": "subtitles.block.generic.footsteps"
-  },
-  "block.silt_shingles.hit": {
-    "sounds": [
-      {
-        "name": "etcetera:block.silt_shingles.step",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.hit"
-  },
-  "block.silt_shingles.place": {
-    "sounds": [
-      {
-        "name": "etcetera:block.silt_shingles.break",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.place"
-  },
-  "block.silt_shingles.fall": {
-    "sounds": [
-      {
-        "name": "etcetera:block.silt_shingles.break",
-        "type": "event"
-      }
-    ]
-  },
-  "block.silt.break": {
-    "sounds": [
-      "etcetera:block/silt/heavy1",
-      "etcetera:block/silt/heavy2",
-      "etcetera:block/silt/heavy3",
-      "etcetera:block/silt/heavy4"
-    ],
-    "subtitle": "subtitles.block.generic.break"
-  },
-  "block.silt.step": {
-    "sounds": [
-      "etcetera:block/silt/light1",
-      "etcetera:block/silt/light2",
-      "etcetera:block/silt/light3",
-      "etcetera:block/silt/light4"
-    ],
-    "subtitle": "subtitles.block.generic.footsteps"
-  },
-  "block.silt.hit": {
-    "sounds": [
-      {
-        "name": "etcetera:block.silt.step",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.hit"
-  },
-  "block.silt.place": {
-    "sounds": [
-      {
-        "name": "etcetera:block.silt.break",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.place"
-  },
-  "block.silt.fall": {
-    "sounds": [
-      {
-        "name": "etcetera:block.silt.break",
-        "type": "event"
-      }
-    ]
-  },
-  "block.dice.roll": {
-    "sounds": [
-      "etcetera:block/dice/roll1",
-      "etcetera:block/dice/roll2",
-      "etcetera:block/dice/roll3",
-      "etcetera:block/dice/roll4"
-    ],
-    "subtitle": "subtitles.block.etcetera.dice.roll"
-  },
-  "item.wrench.select": {
-    "sounds": [
-      "etcetera:item/wrench/select"
-    ],
-    "subtitle": "subtitles.item.etcetera.wrench.select"
-  },
-  "item.wrench.fail": {
-    "sounds": [
-      "etcetera:item/wrench/fail"
-    ],
-    "subtitle": "subtitles.item.etcetera.wrench.fail"
-  },
-  "item.wrench.modify": {
-    "sounds": [
-      "etcetera:item/wrench/modify"
-    ],
-    "subtitle": "subtitles.item.etcetera.wrench.modify"
-  },
-  "item.hammer.use": {
-    "sounds": [
-      "etcetera:item/hammer/use1",
-      "etcetera:item/hammer/use2",
-      "etcetera:item/hammer/use3",
-      "etcetera:item/hammer/use4"
-    ],
-    "subtitle": "subtitles.item.etcetera.hammer.use"
-  },
-  "item.chisel.use": {
-    "sounds": [
-      "etcetera:item/chisel/use1",
-      "etcetera:item/chisel/use2",
-      "etcetera:item/chisel/use3",
-      "etcetera:item/chisel/use4"
-    ],
-    "subtitle": "subtitles.item.etcetera.chisel.use"
-  },
-  "item.handbell.ring": {
-    "sounds": [
-      "etcetera:item/handbell/ring1",
-      "etcetera:item/handbell/ring2",
-      "etcetera:item/handbell/ring3"
-    ],
-    "subtitle": "subtitles.item.etcetera.handbell.ring"
-  },
-  "block.drum.low": {
-    "sounds": [
-      "etcetera:block/drum/djembe/low"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.medium": {
-    "sounds": [
-      "etcetera:block/drum/djembe/medium"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.high": {
-    "sounds": [
-      "etcetera:block/drum/djembe/high"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.gold_high": {
-    "sounds": [
-      "etcetera:block/drum/darbuka/high"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.gold_medium": {
-    "sounds": [
-      "etcetera:block/drum/darbuka/medium"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.gold_low": {
-    "sounds": [
-      "etcetera:block/drum/darbuka/low"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.pumpkin_high": {
-    "sounds": [
-      "etcetera:block/drum/beatbox/high"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.pumpkin_medium": {
-    "sounds": [
-      "etcetera:block/drum/beatbox/medium"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.pumpkin_low": {
-    "sounds": [
-      "etcetera:block/drum/beatbox/low"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.sand_high": {
-    "sounds": [
-      "etcetera:block/drum/tabla/high"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.sand_medium": {
-    "sounds": [
-      "etcetera:block/drum/tabla/medium"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.sand_low": {
-    "sounds": [
-      "etcetera:block/drum/tabla/low"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.iron_high": {
-    "sounds": [
-      "etcetera:block/drum/dholak/high"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.iron_medium": {
-    "sounds": [
-      "etcetera:block/drum/dholak/medium"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.drum.iron_low": {
-    "sounds": [
-      "etcetera:block/drum/dholak/low"
-    ],
-    "subtitle": "subtitles.block.etcetera.drum"
-  },
-  "block.squid_lamp.break": {
-    "sounds": [
-      "etcetera:block/squid_lamp/heavy1",
-      "etcetera:block/squid_lamp/heavy2",
-      "etcetera:block/squid_lamp/heavy3",
-      "etcetera:block/squid_lamp/heavy4"
-    ],
-    "subtitle": "subtitles.block.generic.break"
-  },
-  "block.squid_lamp.step": {
-    "sounds": [
-      "etcetera:block/squid_lamp/light1",
-      "etcetera:block/squid_lamp/light2",
-      "etcetera:block/squid_lamp/light3"
-    ],
-    "subtitle": "subtitles.block.generic.footsteps"
-  },
-  "block.squid_lamp.hit": {
-    "sounds": [
-      {
-        "name": "etcetera:block.squid_lamp.step",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.hit"
-  },
-  "block.squid_lamp.place": {
-    "sounds": [
-      {
-        "name": "etcetera:block.squid_lamp.break",
-        "type": "event"
-      }
-    ],
-    "subtitle": "subtitles.block.generic.place"
-  },
-  "block.squid_lamp.fall": {
-    "sounds": [
-      {
-        "name": "etcetera:block.squid_lamp.break",
-        "type": "event"
-      }
-    ]
-  },
-  "item.tidal.armor.equip": {
-    "sounds": [
-      "etcetera:item/armor/equip_tidal1",
-      "etcetera:item/armor/equip_tidal2",
-      "etcetera:item/armor/equip_tidal3",
-      "etcetera:item/armor/equip_tidal4",
-      "etcetera:item/armor/equip_tidal5"
-    ],
-    "subtitle": "subtitles.item.etcetera.tidal.armor.equip"
-  },
-  "block.terracotta_vase.break": {
-    "sounds": [
-      "etcetera:block/terracotta_vase/heavy1",
-      "etcetera:block/terracotta_vase/heavy2",
-      "etcetera:block/terracotta_vase/heavy3",
-      "etcetera:block/terracotta_vase/heavy4"
-    ],
-    "subtitle": "subtitles.block.generic.break"
-  },
-  "block.crumbling_stone.crumble": {
-    "sounds": [
-      "etcetera:block/crumbling_stone/crumble1",
-      "etcetera:block/crumbling_stone/crumble2",
-      "etcetera:block/crumbling_stone/crumble3"
-    ],
-    "subtitle": "subtitles.block.etcetera.crumbling_stone.crumble"
-  }
+	"block.bismuth_block.break": {
+		"sounds": [
+			"etcetera:block/bismuth_block/heavy1",
+			"etcetera:block/bismuth_block/heavy2",
+			"etcetera:block/bismuth_block/heavy3",
+			"etcetera:block/bismuth_block/heavy4"
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.bismuth_block.fall": {
+		"sounds": [
+			{
+				"name": "etcetera:block.bismuth_block.break",
+				"type": "event"
+			}
+		]
+	},
+	"block.bismuth_block.hit": {
+		"sounds": [
+			{
+				"name": "etcetera:block.bismuth_block.step",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.bismuth_block.place": {
+		"sounds": [
+			{
+				"name": "etcetera:block.bismuth_block.break",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.place"
+	},
+	"block.bismuth_block.step": {
+		"sounds": [
+			"etcetera:block/bismuth_block/light1",
+			"etcetera:block/bismuth_block/light2",
+			"etcetera:block/bismuth_block/light3",
+			"etcetera:block/bismuth_block/light4",
+			"etcetera:block/bismuth_block/light5"
+		],
+		"subtitle": "subtitles.block.generic.footsteps"
+	},
+	"block.crumbling_stone.break": {
+		"sounds": [
+			"etcetera:block/crumbling_stone/break1",
+			"etcetera:block/crumbling_stone/break2",
+			"etcetera:block/crumbling_stone/break3"
+		]
+	},
+	"block.crumbling_stone.crumble": {
+		"sounds": [
+			"etcetera:block/crumbling_stone/crumble1",
+			"etcetera:block/crumbling_stone/crumble2",
+			"etcetera:block/crumbling_stone/crumble3"
+		],
+		"subtitle": "subtitles.block.etcetera.crumbling_stone.crumble"
+	},
+	"block.crumbling_stone.fall": {
+		"sounds": [
+			{
+				"name": "minecraft:block.stone.fall",
+				"type": "event"
+			}
+		]
+	},
+	"block.crumbling_stone.hit": {
+		"sounds": [
+			{
+				"name": "minecraft:block.stone.hit",
+				"type": "event"
+			}
+		]
+	},
+	"block.crumbling_stone.place": {
+		"sounds": [
+			{
+				"name": "minecraft:block.stone.place",
+				"type": "event"
+			}
+		]
+	},
+	"block.crumbling_stone.step": {
+		"sounds": [
+			{
+				"name": "minecraft:block.stone.step",
+				"type": "event"
+			}
+		]
+	},
+	"block.dice.roll": {
+		"sounds": [
+			"etcetera:block/dice/roll1",
+			"etcetera:block/dice/roll2",
+			"etcetera:block/dice/roll3",
+			"etcetera:block/dice/roll4"
+		],
+		"subtitle": "subtitles.block.etcetera.dice.roll"
+	},
+	"block.drum.beatbox.high": {
+		"sounds": [
+			"etcetera:block/drum/beatbox/high"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.beatbox.low": {
+		"sounds": [
+			"etcetera:block/drum/beatbox/low"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.beatbox.medium": {
+		"sounds": [
+			"etcetera:block/drum/beatbox/medium"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.darbuka.high": {
+		"sounds": [
+			"etcetera:block/drum/darbuka/high1",
+			"etcetera:block/drum/darbuka/high2",
+			"etcetera:block/drum/darbuka/high3"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.darbuka.low": {
+		"sounds": [
+			"etcetera:block/drum/darbuka/low1",
+			"etcetera:block/drum/darbuka/low2",
+			"etcetera:block/drum/darbuka/low3"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.darbuka.medium": {
+		"sounds": [
+			"etcetera:block/drum/darbuka/medium1",
+			"etcetera:block/drum/darbuka/medium2",
+			"etcetera:block/drum/darbuka/medium3"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.dholak.high": {
+		"sounds": [
+			"etcetera:block/drum/dholak/high"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.dholak.low": {
+		"sounds": [
+			"etcetera:block/drum/dholak/low"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.dholak.medium": {
+		"sounds": [
+			"etcetera:block/drum/dholak/medium"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.djembe.high": {
+		"sounds": [
+			{
+				"name": "etcetera:block/drum/djembe/high1",
+				"pitch": 1.1
+			},
+			{
+				"name": "etcetera:block/drum/djembe/high2",
+				"pitch": 1.1
+			},
+			{
+				"name": "etcetera:block/drum/djembe/high3",
+				"pitch": 1.1
+			}
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.djembe.low": {
+		"sounds": [
+			"etcetera:block/drum/djembe/low1",
+			"etcetera:block/drum/djembe/low2",
+			"etcetera:block/drum/djembe/low3"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.djembe.medium": {
+		"sounds": [
+			"etcetera:block/drum/djembe/medium1",
+			"etcetera:block/drum/djembe/medium2",
+			"etcetera:block/drum/djembe/medium3"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.tabla.high": {
+		"sounds": [
+			"etcetera:block/drum/tabla/high1",
+			"etcetera:block/drum/tabla/high2"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.tabla.low": {
+		"sounds": [
+			"etcetera:block/drum/tabla/low1",
+			"etcetera:block/drum/tabla/low2"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.tabla.medium": {
+		"sounds": [
+			"etcetera:block/drum/tabla/medium1",
+			"etcetera:block/drum/tabla/medium2"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.gravel_bricks.break": {
+		"sounds": [
+			"etcetera:block/gravel_bricks/heavy1",
+			"etcetera:block/gravel_bricks/heavy2",
+			"etcetera:block/gravel_bricks/heavy3",
+			"etcetera:block/gravel_bricks/heavy4"
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.gravel_bricks.fall": {
+		"sounds": [
+			{
+				"name": "etcetera:block.gravel_bricks.break",
+				"type": "event"
+			}
+		]
+	},
+	"block.gravel_bricks.hit": {
+		"sounds": [
+			{
+				"name": "etcetera:block.gravel_bricks.step",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.gravel_bricks.place": {
+		"sounds": [
+			{
+				"name": "etcetera:block.gravel_bricks.break",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.place"
+	},
+	"block.gravel_bricks.step": {
+		"sounds": [
+			"etcetera:block/gravel_bricks/light1",
+			"etcetera:block/gravel_bricks/light2",
+			"etcetera:block/gravel_bricks/light3",
+			"etcetera:block/gravel_bricks/light4"
+		],
+		"subtitle": "subtitles.block.generic.footsteps"
+	},
+	"block.nether_bismuth_ore.break": {
+		"sounds": [
+			"etcetera:block/nether_bismuth_ore/heavy1",
+			"etcetera:block/nether_bismuth_ore/heavy2",
+			"etcetera:block/nether_bismuth_ore/heavy3",
+			"etcetera:block/nether_bismuth_ore/heavy4"
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.nether_bismuth_ore.fall": {
+		"sounds": [
+			{
+				"name": "etcetera:block.nether_bismuth_ore.break",
+				"type": "event"
+			}
+		]
+	},
+	"block.nether_bismuth_ore.hit": {
+		"sounds": [
+			{
+				"name": "etcetera:block.nether_bismuth_ore.step",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.nether_bismuth_ore.place": {
+		"sounds": [
+			{
+				"name": "etcetera:block.nether_bismuth_ore.break",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.place"
+	},
+	"block.nether_bismuth_ore.step": {
+		"sounds": [
+			"etcetera:block/nether_bismuth_ore/light1",
+			"etcetera:block/nether_bismuth_ore/light2",
+			"etcetera:block/nether_bismuth_ore/light3",
+			"etcetera:block/nether_bismuth_ore/light4",
+			"etcetera:block/nether_bismuth_ore/light5"
+		],
+		"subtitle": "subtitles.block.generic.footsteps"
+	},
+	"block.packed_silt.break": {
+		"sounds": [
+			"etcetera:block/packed_silt/heavy1",
+			"etcetera:block/packed_silt/heavy2",
+			"etcetera:block/packed_silt/heavy3",
+			"etcetera:block/packed_silt/heavy4"
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.packed_silt.fall": {
+		"sounds": [
+			{
+				"name": "etcetera:block.packed_silt.break",
+				"type": "event"
+			}
+		]
+	},
+	"block.packed_silt.hit": {
+		"sounds": [
+			{
+				"name": "etcetera:block.packed_silt.step",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.packed_silt.place": {
+		"sounds": [
+			{
+				"name": "etcetera:block.packed_silt.break",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.place"
+	},
+	"block.packed_silt.step": {
+		"sounds": [
+			"etcetera:block/packed_silt/light1",
+			"etcetera:block/packed_silt/light2",
+			"etcetera:block/packed_silt/light3",
+			"etcetera:block/packed_silt/light4",
+			"etcetera:block/packed_silt/light5"
+		],
+		"subtitle": "subtitles.block.generic.footsteps"
+	},
+	"block.silt.break": {
+		"sounds": [
+			"etcetera:block/silt/heavy1",
+			"etcetera:block/silt/heavy2",
+			"etcetera:block/silt/heavy3",
+			"etcetera:block/silt/heavy4"
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.silt.fall": {
+		"sounds": [
+			{
+				"name": "etcetera:block.silt.break",
+				"type": "event"
+			}
+		]
+	},
+	"block.silt.hit": {
+		"sounds": [
+			{
+				"name": "etcetera:block.silt.step",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.silt.place": {
+		"sounds": [
+			{
+				"name": "etcetera:block.silt.break",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.place"
+	},
+	"block.silt.step": {
+		"sounds": [
+			"etcetera:block/silt/light1",
+			"etcetera:block/silt/light2",
+			"etcetera:block/silt/light3",
+			"etcetera:block/silt/light4"
+		],
+		"subtitle": "subtitles.block.generic.footsteps"
+	},
+	"block.silt_pot.break": {
+		"sounds": [
+			{
+				"name": "etcetera:block/silt_pot/heavy1",
+				"pitch": 1.2,
+				"volume": 0.6
+			},
+			{
+				"name": "etcetera:block/silt_pot/heavy2",
+				"pitch": 1.2,
+				"volume": 0.6
+			},
+			{
+				"name": "etcetera:block/silt_pot/heavy3",
+				"pitch": 1.2,
+				"volume": 0.6
+			},
+			{
+				"name": "etcetera:block/silt_pot/heavy4",
+				"pitch": 1.2,
+				"volume": 0.6
+			}
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.silt_pot.fall": {
+		"sounds": [
+			{
+				"name": "etcetera:block.packed_silt.fall",
+				"type": "event"
+			}
+		]
+	},
+	"block.silt_pot.hit": {
+		"sounds": [
+			{
+				"name": "etcetera:block.packed_silt.hit",
+				"type": "event"
+			}
+		]
+	},
+	"block.silt_pot.place": {
+		"sounds": [
+			{
+				"name": "etcetera:block.packed_silt.place",
+				"type": "event"
+			}
+		]
+	},
+	"block.silt_pot.step": {
+		"sounds": [
+			{
+				"name": "etcetera:block.packed_silt.step",
+				"type": "event"
+			}
+		]
+	},
+	"block.silt_pot_filled.break": {
+		"sounds": [
+			{
+				"name": "etcetera:block.silt_pot.break",
+				"type": "event"
+			}
+		]
+	},
+	"block.silt_pot_filled.fall": {
+		"sounds": [
+			{
+				"name": "etcetera:block.silt_pot.fall",
+				"type": "event"
+			}
+		]
+	},
+	"block.silt_pot_filled.hit": {
+		"sounds": [
+			{
+				"name": "etcetera:block.silt_pot.hit",
+				"type": "event"
+			}
+		]
+	},
+	"block.silt_pot_filled.place": {
+		"sounds": [
+			{
+				"name": "etcetera:block.silt_pot.place",
+				"type": "event"
+			}
+		]
+	},
+	"block.silt_pot_filled.step": {
+		"sounds": [
+			{
+				"name": "minecraft:block.rooted_dirt.step",
+				"type": "event"
+			}
+		]
+	},
+	"block.silt_shingles.break": {
+		"sounds": [
+			"etcetera:block/silt_shingles/heavy1",
+			"etcetera:block/silt_shingles/heavy2",
+			"etcetera:block/silt_shingles/heavy3",
+			"etcetera:block/silt_shingles/heavy4",
+			"etcetera:block/silt_shingles/heavy5"
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.silt_shingles.fall": {
+		"sounds": [
+			{
+				"name": "etcetera:block.silt_shingles.break",
+				"type": "event"
+			}
+		]
+	},
+	"block.silt_shingles.hit": {
+		"sounds": [
+			{
+				"name": "etcetera:block.silt_shingles.step",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.silt_shingles.place": {
+		"sounds": [
+			{
+				"name": "etcetera:block.silt_shingles.break",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.place"
+	},
+	"block.silt_shingles.step": {
+		"sounds": [
+			"etcetera:block/silt_shingles/light1",
+			"etcetera:block/silt_shingles/light2",
+			"etcetera:block/silt_shingles/light3",
+			"etcetera:block/silt_shingles/light4",
+			"etcetera:block/silt_shingles/light5"
+		],
+		"subtitle": "subtitles.block.generic.footsteps"
+	},
+	"block.squid_lamp.break": {
+		"sounds": [
+			"etcetera:block/squid_lamp/heavy1",
+			"etcetera:block/squid_lamp/heavy2",
+			"etcetera:block/squid_lamp/heavy3",
+			"etcetera:block/squid_lamp/heavy4"
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.squid_lamp.fall": {
+		"sounds": [
+			{
+				"name": "etcetera:block.squid_lamp.break",
+				"type": "event"
+			}
+		]
+	},
+	"block.squid_lamp.hit": {
+		"sounds": [
+			{
+				"name": "etcetera:block.squid_lamp.step",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.squid_lamp.place": {
+		"sounds": [
+			{
+				"name": "etcetera:block.squid_lamp.break",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.place"
+	},
+	"block.squid_lamp.step": {
+		"sounds": [
+			"etcetera:block/squid_lamp/light1",
+			"etcetera:block/squid_lamp/light2",
+			"etcetera:block/squid_lamp/light3"
+		],
+		"subtitle": "subtitles.block.generic.footsteps"
+	},
+	"block.terracotta_vase.break": {
+		"sounds": [
+			{
+				"name": "etcetera:block/terracotta_vase/heavy1",
+				"pitch": 1.2,
+				"volume": 0.6
+			},
+			{
+				"name": "etcetera:block/terracotta_vase/heavy2",
+				"pitch": 1.2,
+				"volume": 0.6
+			},
+			{
+				"name": "etcetera:block/terracotta_vase/heavy3",
+				"pitch": 1.2,
+				"volume": 0.6
+			},
+			{
+				"name": "etcetera:block/terracotta_vase/heavy4",
+				"pitch": 1.2,
+				"volume": 0.6
+			}
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.terracotta_vase.fall": {
+		"sounds": [
+			{
+				"name": "minecraft:block.rooted_dirt.fall",
+				"type": "event"
+			}
+		]
+	},
+	"block.terracotta_vase.hit": {
+		"sounds": [
+			{
+				"name": "minecraft:block.stone.hit",
+				"type": "event"
+			}
+		]
+	},
+	"block.terracotta_vase.place": {
+		"sounds": [
+			{
+				"name": "minecraft:block.stone.place",
+				"type": "event"
+			}
+		]
+	},
+	"block.terracotta_vase.step": {
+		"sounds": [
+			{
+				"name": "minecraft:block.rooted_dirt.step",
+				"type": "event"
+			}
+		]
+	},
+	"item.chisel.use": {
+		"sounds": [
+			"etcetera:item/chisel/use1",
+			"etcetera:item/chisel/use2",
+			"etcetera:item/chisel/use3",
+			"etcetera:item/chisel/use4"
+		],
+		"subtitle": "subtitles.item.etcetera.chisel.use"
+	},
+	"item.hammer.use": {
+		"sounds": [
+			"etcetera:item/hammer/use1",
+			"etcetera:item/hammer/use2",
+			"etcetera:item/hammer/use3",
+			"etcetera:item/hammer/use4"
+		],
+		"subtitle": "subtitles.item.etcetera.hammer.use"
+	},
+	"item.handbell.ring": {
+		"sounds": [
+			"etcetera:item/handbell/ring1",
+			"etcetera:item/handbell/ring2",
+			"etcetera:item/handbell/ring3"
+		],
+		"subtitle": "subtitles.item.etcetera.handbell.ring"
+	},
+	"item.tidal.armor.equip": {
+		"sounds": [
+			"etcetera:item/armor/equip_tidal1",
+			"etcetera:item/armor/equip_tidal2",
+			"etcetera:item/armor/equip_tidal3",
+			"etcetera:item/armor/equip_tidal4",
+			"etcetera:item/armor/equip_tidal5"
+		],
+		"subtitle": "subtitles.item.etcetera.tidal.armor.equip"
+	},
+	"item.wrench.fail": {
+		"sounds": [
+			"etcetera:item/wrench/fail"
+		],
+		"subtitle": "subtitles.item.etcetera.wrench.fail"
+	},
+	"item.wrench.modify": {
+		"sounds": [
+			"etcetera:item/wrench/modify"
+		],
+		"subtitle": "subtitles.item.etcetera.wrench.modify"
+	},
+	"item.wrench.select": {
+		"sounds": [
+			"etcetera:item/wrench/select"
+		],
+		"subtitle": "subtitles.item.etcetera.wrench.select"
+	}
 }
