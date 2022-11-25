@@ -11,6 +11,8 @@ import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -48,10 +50,12 @@ public class ItemStandBlock extends BlockWithEntity implements Waterloggable {
         if (blockEntity instanceof ItemStandBlockEntity itemStandBlockEntity) {
             if (!world.isClient && itemStandBlockEntity.addItem(player, player.getAbilities().creativeMode ? itemStack.copy() : itemStack) && !itemStack.isEmpty()) {
                 player.incrementStat(EtceteraStats.INTERACT_WITH_ITEM_STAND);
+                world.playSound(null, pos, SoundEvents.ENTITY_GLOW_ITEM_FRAME_ADD_ITEM, SoundCategory.BLOCKS, 1, 1);
                 return ActionResult.SUCCESS;
             }
             if (itemStack.isOf(Blocks.GLASS.asItem()) && !itemStandBlockEntity.addItem(player, player.getAbilities().creativeMode ? itemStack.copy() : itemStack) && !state.get(GLASS)) {
                 world.setBlockState(pos, state.with(GLASS, true));
+                world.playSound(null, pos, Blocks.GLASS.getSoundGroup(Blocks.GLASS.getDefaultState()).getPlaceSound(), SoundCategory.BLOCKS, 1, 1);
                 if (!player.getAbilities().creativeMode) itemStack.decrement(1);
                 return ActionResult.SUCCESS;
             }
