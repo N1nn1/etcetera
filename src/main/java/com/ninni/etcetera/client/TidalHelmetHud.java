@@ -47,7 +47,7 @@ public class TidalHelmetHud extends DrawableHelper {
                 if (player.hasStatusEffect(StatusEffects.CONDUIT_POWER)) {
                     int full = 20 * 90;
                     int duration = full - player.getStatusEffect(StatusEffects.CONDUIT_POWER).getDuration();
-                    int sprites[] = {0, 12, 24, 36, 48, 60, 72, 84, 96};
+                    int[] sprites = {0, 12, 24, 36, 48, 60, 72, 84, 96};
                     drawTidalEye(matrix, duration == 0 ? 96 : sprites[duration / (full / 8)], 0);
                 }
             }

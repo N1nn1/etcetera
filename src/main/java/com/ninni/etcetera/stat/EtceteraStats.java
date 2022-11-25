@@ -12,6 +12,7 @@ public class EtceteraStats {
 
     public static final Identifier ROTATE_DICE = register("rotate_dice", StatFormatter.DEFAULT);
     public static final Identifier OPEN_SILT_POT = register("open_silt_pot", StatFormatter.DEFAULT);
+    public static final Identifier INTERACT_WITH_ITEM_STAND = register("interact_with_item_stand", StatFormatter.DEFAULT);
 
 
     private static Identifier register(String id, StatFormatter formatter) {

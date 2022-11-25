@@ -59,6 +59,8 @@ public class EtceteraBlocks {
     public static final Block POTTED_BOUQUET = register("potted_bouquet", new FlowerPotBlock(BOUQUET, FabricBlockSettings.of(Material.DECORATION).breakInstantly().nonOpaque()));
     public static final Block TERRACOTTA_VASE = register("terracotta_vase", new TerracottaVaseBlock(FabricBlockSettings.copyOf(Blocks.TERRACOTTA).sounds(EtceteraSoundEvents.TERRACOTTA_VASE)));
 
+    public static final Block ITEM_STAND = register("item_stand", new ItemStandBlock(FabricBlockSettings.of(Material.STONE, MapColor.STONE_GRAY).breakInstantly().nonOpaque()));
+
     public static final Block SILT = register("silt", new PillarBlock(FabricBlockSettings.copyOf(Blocks.CLAY).mapColor(MapColor.BROWN).sounds(EtceteraSoundEvents.SILT)));
     public static final Block SILT_BRICKS = register("silt_bricks", new Block(FabricBlockSettings.copyOf(Blocks.BRICKS).mapColor(MapColor.PALE_YELLOW)));
     public static final Block SILT_BRICK_STAIRS = register("silt_brick_stairs", new PublicStairsBlock(SILT_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(SILT_BRICKS)));

@@ -1,4 +1,4 @@
-package com.ninni.etcetera.client.model.entity;
+package com.ninni.etcetera.client.renderer.entity;
 
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.MinecraftClient;

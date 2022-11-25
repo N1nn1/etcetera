@@ -1,0 +1,10 @@
+{
+  "variants": {
+	"glass=false": {
+      "model": "etcetera:block/item_stand"
+    },
+    "glass=true": {
+      "model": "etcetera:block/item_stand_glass"
+    }
+  }
+}

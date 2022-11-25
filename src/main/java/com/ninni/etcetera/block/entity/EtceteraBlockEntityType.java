@@ -31,4 +31,10 @@ public class EtceteraBlockEntityType {
         ).build(null)
     );
 
+    public static final BlockEntityType<ItemStandBlockEntity> ITEM_STAND = Registry.register(
+            Registry.BLOCK_ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, "item_stand"),
+            FabricBlockEntityTypeBuilder.create(ItemStandBlockEntity::new,
+                    EtceteraBlocks.ITEM_STAND
+            ).build(null)
+    );
 }

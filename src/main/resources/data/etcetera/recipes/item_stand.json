@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "/",
+    "_"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:item_frame"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "_": {
+      "item": "minecraft:smooth_stone_slab"
+    }
+  },
+  "result": {
+    "item": "etcetera:item_stand",
+    "count": 1
+  }
+}

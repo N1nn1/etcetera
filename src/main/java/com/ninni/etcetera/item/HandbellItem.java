@@ -37,7 +37,7 @@ public class HandbellItem extends Item {
         if (!world.isClient) applyGlowToFriends(player.getBlockPos(), hearingEntities, player);
         else applyParticlesTooFriends(world, player.getBlockPos(), hearingEntities, player);
 
-        world.playSound(player, player.getBlockPos(), EtceteraSoundEvents.ITEM_HANDBELL_RING, SoundCategory.PLAYERS, 1.0f, 1.0f);
+        world.playSound(player, player.getBlockPos(), EtceteraSoundEvents.ITEM_HANDBELL_RING, SoundCategory.PLAYERS, 0.3f, 1.0f);
         player.incrementStat(Stats.USED.getOrCreateStat(this));
 
         return TypedActionResult.success(player.getStackInHand(hand));

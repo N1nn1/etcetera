@@ -59,6 +59,8 @@ public class EtceteraItems {
     public static final Item BOUQUET = register("bouquet", new BlockItem(EtceteraBlocks.BOUQUET, new FabricItemSettings().group(ITEM_GROUP).maxCount(16)));
     public static final Item TERRACOTTA_VASE = register("terracotta_vase", new BlockItem(EtceteraBlocks.TERRACOTTA_VASE, new FabricItemSettings().group(ITEM_GROUP)));
 
+    public static final Item ITEM_STAND = register("item_stand", new BlockItem(EtceteraBlocks.ITEM_STAND, new FabricItemSettings().group(ITEM_GROUP)));
+
     public static final Item SILT = register("silt", new BlockItem(EtceteraBlocks.SILT, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item SILT_BALL = register("silt_ball", new Item(new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item SILT_BRICK = register("silt_brick", new Item(new FabricItemSettings().group(ITEM_GROUP)));

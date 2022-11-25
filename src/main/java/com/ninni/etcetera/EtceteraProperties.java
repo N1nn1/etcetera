@@ -8,5 +8,6 @@ import net.minecraft.state.property.EnumProperty;
 public interface EtceteraProperties {
     EnumProperty<DrumType> DRUM_TYPE = EnumProperty.of("type", DrumType.class);
     BooleanProperty FILLED = BooleanProperty.of("filled");
+    BooleanProperty GLASS = BooleanProperty.of("glass");
     EnumProperty<EtceteraColumnShape> SHAPE = EnumProperty.of("shape", EtceteraColumnShape.class);
 }
