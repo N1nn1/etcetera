@@ -2,12 +2,17 @@ package com.ninni.etcetera.entity;
 
 import com.ninni.etcetera.item.EtceteraItems;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
 
 public class TurtleRaftEntity extends BoatEntity {
+    private static final TrackedData<Integer> COLOR = DataTracker.registerData(TurtleRaftEntity.class, TrackedDataHandlerRegistry.INTEGER);
+
     public TurtleRaftEntity(EntityType<? extends BoatEntity> entityType, World world) {
         super(entityType, world);
     }
@@ -21,10 +26,27 @@ public class TurtleRaftEntity extends BoatEntity {
     }
 
     @Override
-    protected void writeCustomDataToNbt(NbtCompound nbt) { }
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(COLOR, 0);
+    }
 
     @Override
-    protected void readCustomDataFromNbt(NbtCompound nbt) { }
+    protected void writeCustomDataToNbt(NbtCompound nbt) {
+    }
+
+    @Override
+    protected void readCustomDataFromNbt(NbtCompound nbt) {
+    }
+
+
+    public int getColor() {
+        return this.dataTracker.get(COLOR);
+    }
+
+    public void setColor(int color) {
+        this.dataTracker.set(COLOR, color);
+    }
 
     @Override
     protected float getPassengerHorizontalOffset() {
