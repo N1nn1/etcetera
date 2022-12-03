@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:scute"
+    }
+  },
+  "result": {
+    "item": "etcetera:turtle_raft",
+    "count": 1
+  }
+}
