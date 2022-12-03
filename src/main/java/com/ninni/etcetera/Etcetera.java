@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.google.common.reflect.Reflection;
 import com.ninni.etcetera.block.EtceteraBlocks;
 import com.ninni.etcetera.block.entity.EtceteraBlockEntityType;
+import com.ninni.etcetera.entity.EtceteraEntityType;
 import com.ninni.etcetera.item.EtceteraItems;
 import com.ninni.etcetera.resource.EtceteraProcessResourceManager;
 import com.ninni.etcetera.sound.EtceteraSoundEvents;
@@ -60,6 +61,7 @@ public class Etcetera implements ModInitializer {
 			EtceteraSoundEvents.class,
 			EtceteraStats.class,
 			EtceteraBlockEntityType.class,
+			EtceteraEntityType.class,
 			EtceteraItems.class,
 			EtceteraBlocks.class
 		);

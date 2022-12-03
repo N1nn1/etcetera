@@ -179,6 +179,7 @@ public class EtceteraItems {
 
     public static final Item SQUID_LAMP = register("squid_lamp", new WallStandingBlockItem(EtceteraBlocks.SQUID_LAMP, EtceteraBlocks.WALL_SQUID_LAMP, new Item.Settings().group(ITEM_GROUP)));
     public static final Item TIDAL_HELMET = register("tidal_helmet", new ArmorItem(EtceteraArmorMaterials.TIDAL, EquipmentSlot.HEAD, new Item.Settings().rarity(Rarity.UNCOMMON).group(ITEM_GROUP)));
+    public static final Item TURTLE_RAFT = register("turtle_raft", new TurtleRaftItem(new Item.Settings().group(ITEM_GROUP).maxCount(1)));
 
     public static final Item CRUMBLING_STONE = register("crumbling_stone", new BlockItem(EtceteraBlocks.CRUMBLING_STONE, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item WAXED_CRUMBLING_STONE = register("waxed_crumbling_stone", new BlockItem(EtceteraBlocks.WAXED_CRUMBLING_STONE, new FabricItemSettings().group(ITEM_GROUP)));
