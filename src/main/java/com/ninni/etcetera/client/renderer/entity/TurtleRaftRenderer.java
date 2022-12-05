@@ -12,6 +12,8 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Quaternion;
 import net.minecraft.util.math.Vec3f;
 
 import static com.ninni.etcetera.Etcetera.MOD_ID;
@@ -50,6 +52,15 @@ public class TurtleRaftRenderer extends EntityRenderer<TurtleRaftEntity> {
         matrixStack.push();
         matrixStack.translate(0.0, 0.375, 0.0);
         matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0f - f));
+        float h = (float)raft.getDamageWobbleTicks() - g;
+        float j = raft.getDamageWobbleStrength() - g;
+        if (j < 0.0f) j = 0.0f;
+        if (h > 0.0f) {
+            matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(MathHelper.sin(h) * h * j / 10.0f * (float)raft.getDamageWobbleSide()));
+        }
+        if (!MathHelper.approximatelyEquals(raft.interpolateBubbleWobble(g), 0.0f)) {
+            matrixStack.multiply(new Quaternion(new Vec3f(1.0f, 0.0f, 1.0f), raft.interpolateBubbleWobble(g), true));
+        }
         matrixStack.scale(-1.0f, -1.0f, 1.0f);
         matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90.0f));
         model.setAngles(raft, g, 0.0f, -0.1f, 0.0f, 0.0f);
