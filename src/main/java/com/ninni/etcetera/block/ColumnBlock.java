@@ -2,12 +2,10 @@ package com.ninni.etcetera.block;
 
 import com.ninni.etcetera.EtceteraProperties;
 import com.ninni.etcetera.block.enums.EtceteraColumnShape;
-import com.ninni.etcetera.item.EtceteraItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -15,10 +13,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.function.BooleanBiFunction;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
@@ -46,15 +41,6 @@ public class ColumnBlock extends Block {
         }
 
         return state.with(SHAPE, getColumnShape(world, pos));
-    }
-
-    @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (player.getStackInHand(hand).isOf(EtceteraItems.HAMMER)) {
-            world.breakBlock(pos, false, null);
-            world.setBlockState(pos, state.with(SHAPE, EtceteraColumnShape.TIP));
-        }
-        return super.onUse(state, world, pos, player, hand, hit);
     }
 
     @Override public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
