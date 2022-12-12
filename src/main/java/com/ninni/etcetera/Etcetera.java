@@ -82,15 +82,8 @@ public class Etcetera implements ModInitializer {
 		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(MOD_ID, "nether_bismuth_ore"), NETHER_BISMUTH_ORE_CONFIGURED_FEATURE);
 		Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(MOD_ID, "nether_bismuth_ore"), NETHER_BISMUTH_ORE_PLACED_FEATURE);
 		BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(MOD_ID, "nether_bismuth_ore")));
-
-		Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(MOD_ID, "nether_silt_patch"), NETHER_SILT_PATCH_CONFIGURED_FEATURE);
-		Registry.register(BuiltinRegistries.PLACED_FEATURE, new Identifier(MOD_ID, "nether_silt_patch"), NETHER_SILT_PATCH_PLACED_FEATURE);
-		BiomeModifications.addFeature(BiomeSelectors.foundInTheNether(), GenerationStep.Feature.UNDERGROUND_ORES, RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(MOD_ID, "nether_silt_patch")));
 	}
 
 	private static final ConfiguredFeature<?, ?> NETHER_BISMUTH_ORE_CONFIGURED_FEATURE = new ConfiguredFeature<> (Feature.ORE, new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, NETHER_BISMUTH_ORE.getDefaultState(),9));
 	public static PlacedFeature NETHER_BISMUTH_ORE_PLACED_FEATURE = new PlacedFeature( RegistryEntry.of(NETHER_BISMUTH_ORE_CONFIGURED_FEATURE), Arrays.asList( CountPlacementModifier.of(10), SquarePlacementModifier.of(), HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(64))));
-
-	private static final ConfiguredFeature<?, ?> NETHER_SILT_PATCH_CONFIGURED_FEATURE = new ConfiguredFeature<> (Feature.ORE, new OreFeatureConfig(OreConfiguredFeatures.NETHERRACK, SILT.getDefaultState(),33));
-	public static PlacedFeature NETHER_SILT_PATCH_PLACED_FEATURE = new PlacedFeature( RegistryEntry.of(NETHER_SILT_PATCH_CONFIGURED_FEATURE), Arrays.asList( CountPlacementModifier.of(1), SquarePlacementModifier.of(), HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(64))));
 }

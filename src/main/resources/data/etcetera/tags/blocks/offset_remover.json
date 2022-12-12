@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "etcetera:terracotta_vase",
-    "#etcetera:silt_pots"
+    "etcetera:terracotta_vase"
   ]
 }

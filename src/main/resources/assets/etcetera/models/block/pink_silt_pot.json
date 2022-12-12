@@ -1,8 +1,0 @@
-{
-	"parent": "etcetera:block/template_silt_pot",
-	"textures": {
-		"side": "etcetera:block/pink_silt_pot",
-		"bottom": "etcetera:block/pink_silt_pot_bottom",
-		"top": "etcetera:block/pink_silt_pot_top"
-	}
-}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "minecraft:blackstone"
-  },
-  "result": "etcetera:blackstone_column",
-  "count": 1
-}

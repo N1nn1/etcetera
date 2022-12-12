@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "etcetera:block/white_silt_shingles",
-    "top": "etcetera:block/white_silt_shingles",
-    "side": "etcetera:block/white_silt_shingles"
-  }
-}

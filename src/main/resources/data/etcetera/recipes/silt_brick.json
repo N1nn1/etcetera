@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "cookingtime": 200,
-  "experience": 0.3,
-  "ingredient": {
-    "item": "etcetera:silt_ball"
-  },
-  "result": "etcetera:silt_brick"
-}

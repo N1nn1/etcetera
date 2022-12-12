@@ -1,7 +1,0 @@
-{
-	"parent": "etcetera:block/template_column",
-	"textures": {
-		"side": "etcetera:block/stone_column",
-		"bottom": "etcetera:block/stone_column_bottom"
-	}
-}

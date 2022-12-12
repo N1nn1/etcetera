@@ -20,13 +20,7 @@ public interface EtceteraSoundEvents {
     SoundEvent BLOCK_CRUMBLING_STONE_CRUMBLE = register("block.crumbling_stone.crumble");
 
     BlockSoundGroup NETHER_BISMUTH_ORE = register("nether_bismuth_ore", 1, 1);
-    BlockSoundGroup SILT = register("silt", 1, 1);
-    BlockSoundGroup PACKED_SILT = register("packed_silt", 1, 1);
-    BlockSoundGroup SILT_POT = register("silt_pot", 1, 1);
-    BlockSoundGroup SILT_POT_FILLED = register("silt_pot_filled", 1, 1);
-    BlockSoundGroup SILT_SHINGLES = register("silt_shingles", 1, 1);
     BlockSoundGroup BISMUTH_BLOCK = register("bismuth_block", 1, 1);
-    BlockSoundGroup GRAVEL_BRICKS = register("gravel_bricks", 1, 1);
     BlockSoundGroup SQUID_LAMP = register("squid_lamp", 1, 1);
     BlockSoundGroup TERRACOTTA_VASE = register("terracotta_vase", 1, 1);
     BlockSoundGroup CRUMBLING_STONE = register("crumbling_stone", 1, 1);

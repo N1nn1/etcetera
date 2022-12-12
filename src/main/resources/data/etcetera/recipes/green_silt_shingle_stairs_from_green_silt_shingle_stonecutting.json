@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "etcetera:green_silt_shingles"
-  },
-  "result": "etcetera:green_silt_shingle_stairs",
-  "count": 1
-}

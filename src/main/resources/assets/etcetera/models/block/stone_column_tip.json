@@ -1,8 +1,0 @@
-{
-	"parent": "etcetera:block/template_column_tip",
-	"textures": {
-		"side": "etcetera:block/stone_column_tip",
-		"bottom": "etcetera:block/stone_column_bottom",
-		"top": "etcetera:block/stone_column_top"
-	}
-}

@@ -9,7 +9,6 @@
     "minecraft:nether_bricks": "minecraft:chiseled_nether_bricks",
     "minecraft:quartz_block": "minecraft:chiseled_quartz_block",
     "etcetera:iridescent_lantern": "minecraft:sea_lantern",
-    "etcetera:iridescent_packed_silt": "etcetera:light_gray_packed_silt",
     "etcetera:iridescent_terracotta": "minecraft:light_gray_terracotta",
     "etcetera:iridescent_concrete": "minecraft:light_gray_concrete",
     "etcetera:iridescent_glass": "minecraft:glass"

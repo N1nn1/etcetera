@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "etcetera:block/gravel_bricks",
-    "top": "etcetera:block/gravel_bricks",
-    "side": "etcetera:block/gravel_bricks"
-  }
-}

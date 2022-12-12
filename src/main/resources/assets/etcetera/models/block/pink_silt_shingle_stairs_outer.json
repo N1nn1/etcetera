@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "etcetera:block/pink_silt_shingles",
-    "top": "etcetera:block/pink_silt_shingles",
-    "side": "etcetera:block/pink_silt_shingles"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "etcetera:yellow_packed_silt"
-  },
-  "result": "etcetera:yellow_silt_shingles",
-  "count": 1
-}
