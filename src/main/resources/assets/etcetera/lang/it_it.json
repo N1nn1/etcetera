@@ -7,6 +7,7 @@
   "block.etcetera.drum": "Tamburo",
 
   "block.etcetera.dice": "Dado",
+  "stat.minecraft.rotate_dice": "Dadi tirati",
 
   "block.etcetera.frame": "Intelaiatura",
 
@@ -15,6 +16,7 @@
   "block.etcetera.terracotta_vase": "Anfora",
 
   "block.etcetera.item_stand": "Supporto per oggetti",
+  "stat.minecraft.interact_with_item_stand": "Interazioni con i supporti per oggetti",
 
   "item.etcetera.raw_bismuth": "Bismuto grezzo",
   "item.etcetera.bismuth_ingot": "Lingotto di bismuto",
@@ -54,7 +56,8 @@
   "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Pol-position",
   "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Ottieni una lampada tentacolosa",
 
-  "stat.minecraft.rotate_dice": "Dadi tirati",
+  "entity.etcetera.snail": "Chiocciola",
+  "item.etcetera.snail_spawn_egg": "Uovo generatore di chiocciola",
 
   "subtitles.item.etcetera.wrench.select": "Chiave inglese seleziona",
   "subtitles.item.etcetera.wrench.fail": "Chiave inglese fallisce",

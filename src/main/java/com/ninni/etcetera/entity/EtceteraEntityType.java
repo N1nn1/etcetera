@@ -2,12 +2,10 @@ package com.ninni.etcetera.entity;
 
 import com.ninni.etcetera.Etcetera;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.Heightmap;
 
 public class EtceteraEntityType {
 
@@ -17,6 +15,17 @@ public class EtceteraEntityType {
                     .<TurtleRaftEntity>entityFactory(TurtleRaftEntity::new)
                     .spawnGroup(SpawnGroup.MISC)
                     .dimensions(EntityDimensions.fixed(0.8f, 0.5625f))
+                    .trackRangeChunks(10)
+    );
+
+    public static final EntityType<SnailEntity> SNAIL = register(
+            "snail",
+            FabricEntityTypeBuilder.createMob()
+                    .entityFactory(SnailEntity::new)
+                    .defaultAttributes(SnailEntity::createAttributes)
+                    .spawnGroup(SpawnGroup.CREATURE)
+                    .spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.WORLD_SURFACE_WG, SnailEntity::canSpawn)
+                    .dimensions(EntityDimensions.changing(0.8F, 0.8F))
                     .trackRangeChunks(10)
     );
 

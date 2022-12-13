@@ -2,14 +2,12 @@ package com.ninni.etcetera.item;
 
 import com.ninni.etcetera.EtceteraTags;
 import com.ninni.etcetera.block.EtceteraBlocks;
+import com.ninni.etcetera.entity.EtceteraEntityType;
 import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.WallStandingBlockItem;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
@@ -58,6 +56,8 @@ public class EtceteraItems {
     public static final Item LEVELED_STONE = register("leveled_stone", new BlockItem(EtceteraBlocks.LEVELED_STONE, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item LEVELED_STONE_STAIRS = register("leveled_stone_stairs", new BlockItem(EtceteraBlocks.LEVELED_STONE_STAIRS, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item LEVELED_STONE_SLAB = register("leveled_stone_slab", new BlockItem(EtceteraBlocks.LEVELED_STONE_SLAB, new FabricItemSettings().group(ITEM_GROUP)));
+
+    public static final Item SNAIL_SPAWN_EGG = register("snail_spawn_egg", new SpawnEggItem(EtceteraEntityType.SNAIL, 0x5D3F30, 0xF6DEA2, new Item.Settings().maxCount(64).group(ITEM_GROUP)));
 
 
     private static Item register(String id, Item item) {

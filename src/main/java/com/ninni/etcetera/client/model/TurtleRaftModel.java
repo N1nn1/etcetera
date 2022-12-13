@@ -35,20 +35,28 @@ public class TurtleRaftModel extends CompositeEntityModel<TurtleRaftEntity> {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
 
-        modelPartData.addChild(BOTTOM, ModelPartBuilder.create()
-                .uv(0, 0).cuboid(-7.0F, -4.0F, -7.0F, 14.0F, 8.0F, 14.0F, new Dilation(0.0F)),
+        modelPartData.addChild(
+                BOTTOM,
+                ModelPartBuilder.create()
+                        .uv(0, 0)
+                        .cuboid(-7.0F, -4.0F, -7.0F, 14.0F, 8.0F, 14.0F, new Dilation(0.0F)),
                 ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0f, -(float)Math.PI/2, 0.0f)
         );
 
-        modelPartData.addChild(LEFT_PADDLE, ModelPartBuilder.create()
-                .uv(62, 0).cuboid(-1.0f, 0.0f, -5.0f, 2.0f, 2.0f, 18.0f)
-                .cuboid(-1.001f, -3.0f, 8.0f, 1.0f, 6.0f, 7.0f),
+        modelPartData.addChild(
+                LEFT_PADDLE,
+                ModelPartBuilder.create()
+                        .uv(62, 0)
+                        .cuboid(-1.0f, 0.0f, -5.0f, 2.0f, 2.0f, 18.0f)
+                        .cuboid(-1.001f, -3.0f, 8.0f, 1.0f, 6.0f, 7.0f),
                 ModelTransform.of(3.0f, -3.0f, 9.0f, 0.0f, 0.0f, 0.19634955f)
         );
 
-        modelPartData.addChild(RIGHT_PADDLE, ModelPartBuilder.create()
-                .uv(62, 20).cuboid(-1.0f, 0.0f, -5.0f, 2.0f, 2.0f, 18.0f)
-                .cuboid(0.001f, -3.0f, 8.0f, 1.0f, 6.0f, 7.0f),
+        modelPartData.addChild(
+                RIGHT_PADDLE,
+                ModelPartBuilder.create()
+                        .uv(62, 20).cuboid(-1.0f, 0.0f, -5.0f, 2.0f, 2.0f, 18.0f)
+                        .cuboid(0.001f, -3.0f, 8.0f, 1.0f, 6.0f, 7.0f),
                 ModelTransform.of(3.0f, -3.0f, -9.0f, 0.0f, (float)Math.PI, 0.19634955f)
         );
 

@@ -7,6 +7,7 @@
   "block.etcetera.drum": "Drum",
 
   "block.etcetera.dice": "Dice",
+  "stat.minecraft.rotate_dice": "Dices Rolled",
 
   "block.etcetera.frame": "Frame",
 
@@ -15,6 +16,7 @@
   "block.etcetera.terracotta_vase": "Terracotta Vase",
 
   "block.etcetera.item_stand": "Item Stand",
+  "stat.minecraft.interact_with_item_stand": "Interactions with Item Stand",
 
   "item.etcetera.raw_bismuth": "Raw Bismuth",
   "item.etcetera.bismuth_ingot": "Bismuth Ingot",
@@ -54,7 +56,8 @@
   "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Cephalopod Activities",
   "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Obtain a Squid Lamp",
 
-  "stat.minecraft.rotate_dice": "Dices Rolled",
+  "entity.etcetera.snail": "Snail",
+  "item.etcetera.snail_spawn_egg": "Snail Spawn Egg",
 
   "subtitles.item.etcetera.wrench.select": "Wrench shifts",
   "subtitles.item.etcetera.wrench.fail": "Wrench fails",

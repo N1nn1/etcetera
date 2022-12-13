@@ -6,6 +6,7 @@ import com.ninni.etcetera.block.entity.EtceteraBlockEntityType;
 import com.ninni.etcetera.client.TidalHelmetHud;
 import com.ninni.etcetera.client.model.EtceteraEntityModelLayers;
 import com.ninni.etcetera.client.renderer.block.entity.ItemStandBlockEntityRenderer;
+import com.ninni.etcetera.client.renderer.entity.SnailRenderer;
 import com.ninni.etcetera.client.renderer.entity.TidalArmorRenderer;
 import com.ninni.etcetera.client.renderer.entity.TurtleRaftRenderer;
 import com.ninni.etcetera.entity.EtceteraEntityType;
@@ -33,6 +34,7 @@ public class EtceteraClient implements ClientModInitializer {
 
 		Reflection.initialize(EtceteraEntityModelLayers.class);
 		EntityRendererRegistry.register(EtceteraEntityType.TURTLE_RAFT, TurtleRaftRenderer::new);
+		EntityRendererRegistry.register(EtceteraEntityType.SNAIL, SnailRenderer::new);
 
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
 			EtceteraBlocks.BISMUTH_BARS,
