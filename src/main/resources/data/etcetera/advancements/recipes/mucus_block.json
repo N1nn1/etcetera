@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "etcetera:mucus_block"
+    ]
+  },
+  "criteria": {
+    "has_raw_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "etcetera:mucus"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "etcetera:mucus_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_item",
+      "has_the_recipe"
+    ]
+  ]
+}
