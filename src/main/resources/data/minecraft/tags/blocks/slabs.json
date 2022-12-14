@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "etcetera:leveled_stone_slab"
+    "etcetera:leveled_stone_slab",
+    "etcetera:snail_shell_tile_slab"
   ]
 }

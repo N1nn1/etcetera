@@ -5,7 +5,7 @@
 		"1": "etcetera:block/item_stand",
 		"2": "etcetera:block/item_stand_bottom",
 		"3": "block/glass",
-		"particle": "etcetera:block/item_stand_top"
+		"particle": "block/glass"
 	},
 	"elements": [
 		{

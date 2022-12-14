@@ -59,6 +59,10 @@ public class EtceteraItems {
 
     public static final Item SNAIL_SPAWN_EGG = register("snail_spawn_egg", new SpawnEggItem(EtceteraEntityType.SNAIL, 0x5D3F30, 0xF6DEA2, new Item.Settings().maxCount(64).group(ITEM_GROUP)));
     public static final Item SNAIL_SHELL = register("snail_shell", new Item(new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item BIG_SNAIL_SHELL = register("big_snail_shell", new BlockItem(EtceteraBlocks.BIG_SNAIL_SHELL, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item SNAIL_SHELL_TILES = register("snail_shell_tiles", new BlockItem(EtceteraBlocks.SNAIL_SHELL_TILES, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item SNAIL_SHELL_TILE_STAIRS = register("snail_shell_tile_stairs", new BlockItem(EtceteraBlocks.SNAIL_SHELL_TILE_STAIRS, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item SNAIL_SHELL_TILE_SLAB = register("snail_shell_tile_slab", new BlockItem(EtceteraBlocks.SNAIL_SHELL_TILE_SLAB, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item ESCARGOT = register("escargot", new EscargotItem(new FabricItemSettings().recipeRemainder(SNAIL_SHELL).group(ITEM_GROUP).maxCount(1).food(new FoodComponent.Builder().hunger(4).saturationModifier(0.8f).build())));
     public static final Item MUCUS = register("mucus", new Item(new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item MUCUS_BLOCK = register("mucus_block", new BlockItem(EtceteraBlocks.MUCUS_BLOCK, new FabricItemSettings().group(ITEM_GROUP)));

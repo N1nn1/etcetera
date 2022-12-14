@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "etcetera:snail_shell_tiles"
+    }
+  },
+  "result": {
+    "item": "etcetera:snail_shell_tile_stairs",
+    "count": 4
+  }
+}

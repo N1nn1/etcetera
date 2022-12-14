@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "etcetera:block/snail_shell_tile_slab"
+    },
+    "type=double": {
+      "model": "etcetera:block/snail_shell_tile"
+    },
+    "type=top": {
+      "model": "etcetera:block/snail_shell_tile_slab_top"
+    }
+  }
+}

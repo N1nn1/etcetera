@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "etcetera:big_snail_shell"
+    }
+  ],
+  "result": {
+    "item": "etcetera:snail_shell",
+    "count": 9
+  }
+}
