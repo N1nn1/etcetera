@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "copper_ingot",
   "ingredients": [
     {
       "item": "etcetera:raw_bismuth_block"

@@ -1,9 +1,9 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "etcetera:raw_bismuth"
+    "item": "etcetera:mucus"
   },
-  "result": "etcetera:bismuth_ingot",
+  "result": "minecraft:slime",
   "experience": 0.7,
   "cookingtime": 150
 }

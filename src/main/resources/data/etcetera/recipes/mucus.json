@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "etcetera:bismuth_block"
+      "item": "etcetera:mucus_block"
     }
   ],
   "result": {
-    "item": "etcetera:bismuth_ingot",
+    "item": "etcetera:mucus",
     "count": 9
   }
 }

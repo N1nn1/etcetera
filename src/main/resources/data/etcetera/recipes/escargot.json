@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "DMD",
+    " B "
+  ],
+  "key": {
+    "#": {
+      "item": "etcetera:mucus"
+    },
+    "D": {
+      "item": "minecraft:dried_kelp"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    },
+    "B": {
+      "item": "etcetera:snail_shell"
+    }
+  },
+  "result": {
+    "item": "etcetera:escargot",
+    "count": 1
+  }
+}
