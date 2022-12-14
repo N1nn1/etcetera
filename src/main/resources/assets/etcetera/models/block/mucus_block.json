@@ -1,0 +1,39 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"3": "etcetera:block/mucus_block_bottom_solid",
+		"4": "etcetera:block/mucus_block_solid",
+		"5": "etcetera:block/mucus_block_top_solid",
+		"down": "etcetera:block/mucus_block_bottom",
+		"up": "etcetera:block/mucus_block_top",
+		"particle": "etcetera:block/mucus_block",
+		"side": "etcetera:block/mucus_block"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#up", "cullface": "up"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#down", "cullface": "down"}
+			}
+		},
+		{
+			"from": [1, 1, 1],
+			"to": [15, 15, 15],
+			"faces": {
+				"north": {"uv": [1, 1, 15, 15], "texture": "#4"},
+				"east": {"uv": [1, 1, 15, 15], "texture": "#4"},
+				"south": {"uv": [1, 1, 15, 15], "texture": "#4"},
+				"west": {"uv": [1, 1, 15, 15], "texture": "#4"},
+				"up": {"uv": [1, 1, 15, 15], "texture": "#5"},
+				"down": {"uv": [1, 1, 15, 15], "texture": "#3"}
+			}
+		}
+	]
+}

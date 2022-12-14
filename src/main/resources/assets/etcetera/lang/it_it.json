@@ -58,6 +58,10 @@
 
   "entity.etcetera.snail": "Chiocciola",
   "item.etcetera.snail_spawn_egg": "Uovo generatore di chiocciola",
+  "item.etcetera.snail_shell": "Guscio di chiocciola",
+  "item.etcetera.escargot": "Escargot",
+  "item.etcetera.mucus": "Bava",
+  "block.etcetera.mucus_block": "Blocco di bava",
 
   "subtitles.item.etcetera.wrench.select": "Chiave inglese seleziona",
   "subtitles.item.etcetera.wrench.fail": "Chiave inglese fallisce",

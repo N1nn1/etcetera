@@ -28,22 +28,23 @@ public class EtceteraClient implements ClientModInitializer {
 		BlockEntityRendererRegistry.register(EtceteraBlockEntityType.ITEM_STAND, ItemStandBlockEntityRenderer::new);
 
 		ArmorRenderer.register(new TidalArmorRenderer(), EtceteraItems.TIDAL_HELMET);
+		TidalHelmetHud.init();
+
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
+			EtceteraBlocks.MUCUS_BLOCK,
 			EtceteraBlocks.IRIDESCENT_GLASS
+		);
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
+				EtceteraBlocks.BISMUTH_BARS,
+				EtceteraBlocks.BOUQUET,
+				EtceteraBlocks.POTTED_BOUQUET,
+				EtceteraBlocks.ITEM_STAND,
+				EtceteraBlocks.FRAME
 		);
 
 		Reflection.initialize(EtceteraEntityModelLayers.class);
 		EntityRendererRegistry.register(EtceteraEntityType.TURTLE_RAFT, TurtleRaftRenderer::new);
 		EntityRendererRegistry.register(EtceteraEntityType.SNAIL, SnailRenderer::new);
-
-		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
-			EtceteraBlocks.BISMUTH_BARS,
-			EtceteraBlocks.BOUQUET,
-			EtceteraBlocks.POTTED_BOUQUET,
-			EtceteraBlocks.ITEM_STAND,
-			EtceteraBlocks.FRAME
-		);
-		TidalHelmetHud.init();
 
 
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem)stack.getItem()).getColor(stack), EtceteraItems.TURTLE_RAFT);

@@ -58,6 +58,10 @@
 
   "entity.etcetera.snail": "Snail",
   "item.etcetera.snail_spawn_egg": "Snail Spawn Egg",
+  "item.etcetera.snail_shell": "Snail Shell",
+  "item.etcetera.escargot": "Escargot",
+  "item.etcetera.mucus": "Mucus",
+  "block.etcetera.mucus_block": "Mucus Block",
 
   "subtitles.item.etcetera.wrench.select": "Wrench shifts",
   "subtitles.item.etcetera.wrench.fail": "Wrench fails",

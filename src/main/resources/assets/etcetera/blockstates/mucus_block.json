@@ -1,0 +1,10 @@
+{
+  "variants": {
+	"solid=false": {
+      "model": "etcetera:block/mucus_block"
+    },
+    "solid=true": {
+      "model": "etcetera:block/mucus_block_solid"
+    }
+  }
+}

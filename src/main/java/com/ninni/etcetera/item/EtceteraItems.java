@@ -58,6 +58,10 @@ public class EtceteraItems {
     public static final Item LEVELED_STONE_SLAB = register("leveled_stone_slab", new BlockItem(EtceteraBlocks.LEVELED_STONE_SLAB, new FabricItemSettings().group(ITEM_GROUP)));
 
     public static final Item SNAIL_SPAWN_EGG = register("snail_spawn_egg", new SpawnEggItem(EtceteraEntityType.SNAIL, 0x5D3F30, 0xF6DEA2, new Item.Settings().maxCount(64).group(ITEM_GROUP)));
+    public static final Item SNAIL_SHELL = register("snail_shell", new Item(new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item ESCARGOT = register("escargot", new EscargotItem(new FabricItemSettings().recipeRemainder(SNAIL_SHELL).group(ITEM_GROUP).maxCount(1).food(new FoodComponent.Builder().hunger(4).saturationModifier(0.8f).build())));
+    public static final Item MUCUS = register("mucus", new Item(new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item MUCUS_BLOCK = register("mucus_block", new BlockItem(EtceteraBlocks.MUCUS_BLOCK, new FabricItemSettings().group(ITEM_GROUP)));
 
 
     private static Item register(String id, Item item) {

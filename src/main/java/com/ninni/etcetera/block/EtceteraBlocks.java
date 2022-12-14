@@ -57,6 +57,8 @@ public class EtceteraBlocks {
     public static final Block LEVELED_STONE_STAIRS = register("leveled_stone_stairs", new PublicStairsBlock(LEVELED_STONE.getDefaultState(), FabricBlockSettings.copyOf(LEVELED_STONE)));
     public static final Block LEVELED_STONE_SLAB = register("leveled_stone_slab", new SlabBlock(FabricBlockSettings.copyOf(LEVELED_STONE)));
 
+    public static final Block MUCUS_BLOCK = register("mucus_block", new MucusBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, MapColor.PALE_YELLOW).sounds(BlockSoundGroup.SLIME).nonOpaque()));
+
     private static Block register(String id, Block block) { return Registry.register(Registry.BLOCK, new Identifier(MOD_ID, id), block); }
     private static boolean never(BlockState state, BlockView world, BlockPos pos) { return false; }
 }
