@@ -31,6 +31,8 @@ public class SnailModel extends EntityModel<SnailEntity> {
         this.leftEye = foot.getChild(LEFT_EYE);
         this.rightEye = foot.getChild(RIGHT_EYE);
     }
+
+    @SuppressWarnings("unused")
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
@@ -117,8 +119,18 @@ public class SnailModel extends EntityModel<SnailEntity> {
         //random whiskers rotation
         whiskers.pitch = MathHelper.sin(ageInTicks * speed * 0.05F + pi/2) * degree * 0.5F + pi/4;
 
-        //shell moving along when the snail slithers
-        shell.roll = MathHelper.sin(limbSwing * speed * 0.6F) * degree * -0.5F * limbSwingAmount;
+        //retreating in its shell
+        if (entity.isScared()) {
+            this.foot.visible = false;
+            this.shell.pivotY = 21.0F;
+            this.shell.pivotZ = -4.0F;
+            this.shell.roll = 0.0F;
+        } else {
+            shell.roll = MathHelper.sin(limbSwing * speed * 0.6F) * degree * -0.5F * limbSwingAmount;
+            this.foot.visible = true;
+            this.shell.pivotY = 19.0F;
+            this.shell.pivotZ = -1.0F;
+        }
     }
 
     @Override

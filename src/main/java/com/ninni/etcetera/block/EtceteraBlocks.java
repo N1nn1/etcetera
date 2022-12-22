@@ -48,8 +48,8 @@ public class EtceteraBlocks {
     public static final Block LEVELED_STONE_STAIRS = register("leveled_stone_stairs", new PublicStairsBlock(LEVELED_STONE.getDefaultState(), FabricBlockSettings.copyOf(LEVELED_STONE)));
     public static final Block LEVELED_STONE_SLAB = register("leveled_stone_slab", new SlabBlock(FabricBlockSettings.copyOf(LEVELED_STONE)));
 
-    public static final Block BIG_SNAIL_SHELL = register("big_snail_shell", new BigSnailShellBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC, MapColor.BROWN).sounds(BlockSoundGroup.BONE)));
-    public static final Block SNAIL_SHELL_TILES = register("snail_shell_tiles", new Block(FabricBlockSettings.copyOf(BIG_SNAIL_SHELL)));
+    public static final Block BIG_SNAIL_SHELL = register("big_snail_shell", new BigSnailShellBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC, MapColor.BROWN).strength(1.5f, 1200.0f).sounds(BlockSoundGroup.BONE)));
+    public static final Block SNAIL_SHELL_TILES = register("snail_shell_tiles", new Block(FabricBlockSettings.copyOf(BIG_SNAIL_SHELL).strength(1f, 1200.0f)));
     public static final Block SNAIL_SHELL_TILE_STAIRS = register("snail_shell_tile_stairs", new PublicStairsBlock(SNAIL_SHELL_TILES.getDefaultState(), FabricBlockSettings.copyOf(SNAIL_SHELL_TILES)));
     public static final Block SNAIL_SHELL_TILE_SLAB = register("snail_shell_tile_slab", new SlabBlock(FabricBlockSettings.copyOf(SNAIL_SHELL_TILES)));
     public static final Block MUCUS_BLOCK = register("mucus_block", new MucusBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, MapColor.PALE_YELLOW).sounds(BlockSoundGroup.SLIME).nonOpaque()));
