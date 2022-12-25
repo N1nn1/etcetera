@@ -3,8 +3,6 @@ package com.ninni.etcetera.entity;
 import com.ninni.etcetera.EtceteraTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.AnimationState;
-import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
@@ -22,7 +20,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
@@ -120,6 +117,8 @@ public class SnailEntity extends AnimalEntity {
     @Override
     public void tickMovement() {
         super.tickMovement();
+        //code snatched with permission from orcinus (ily)
+
         List<PlayerEntity> closestPlayers = this.world.getEntitiesByClass(PlayerEntity.class, this.getBoundingBox().expand(2D), (entity -> !entity.isSpectator() && !entity.getAbilities().creativeMode && !entity.isSneaking()));
         for (PlayerEntity nearbyPlayers : closestPlayers) {
 
@@ -145,15 +144,18 @@ public class SnailEntity extends AnimalEntity {
 
     @Override
     public boolean damage(DamageSource source, float amount) {
-        //TODO this doesn't work
+        //code snatched with permission from lunarbunten (ily)
 
-        if (this.isScared()) {
-            return source.isFire() || source.isOutOfWorld();
+        if (source.getAttacker() instanceof LivingEntity && amount < 12 && !world.isClient()) {
+            if (this.isScared()) {
+                playSound(SoundEvents.ENTITY_SHULKER_HURT_CLOSED, 1, 1);
+                return false;
+            }
         }
-
         this.setScaredTicks(100);
         return super.damage(source, amount);
     }
+
 
     @Override
     public boolean isCollidable() {
