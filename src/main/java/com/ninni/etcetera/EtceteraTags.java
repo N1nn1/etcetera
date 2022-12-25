@@ -8,7 +8,6 @@ import net.minecraft.util.registry.Registry;
 
 import static com.ninni.etcetera.Etcetera.*;
 
-@SuppressWarnings("unused")
 public interface EtceteraTags {
     TagKey<Item> CONCRETE = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "concrete"));
     TagKey<Item> ALL_CONCRETE = TagKey.of(Registry.ITEM_KEY, new Identifier(MOD_ID, "all_concrete"));

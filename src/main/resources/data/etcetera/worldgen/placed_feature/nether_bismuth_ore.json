@@ -1,0 +1,41 @@
+{
+	"feature": {
+		"type": "minecraft:ore",
+		"config": {
+			"targets": [
+				{
+					"target": {
+						"block": "minecraft:netherrack",
+						"predicate_type": "minecraft:block_match"
+					},
+					"state": {
+						"Name": "etcetera:nether_bismuth_ore"
+					}
+				}
+			],
+			"size": 9,
+			"discard_chance_on_air_exposure": 0.0
+		}
+	},
+	"placement": [
+		{
+			"count": 10,
+			"type": "minecraft:count"
+		},
+		{
+			"type": "minecraft:in_square"
+		},
+		{
+			"type": "minecraft:height_range",
+			"height": {
+				"min_inclusive": {
+					"above_bottom": 0
+				},
+				"max_inclusive": {
+					"absolute": 64
+				},
+				"type": "minecraft:uniform"
+			}
+		}
+	]
+}

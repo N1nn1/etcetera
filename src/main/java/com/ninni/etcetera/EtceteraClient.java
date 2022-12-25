@@ -46,7 +46,6 @@ public class EtceteraClient implements ClientModInitializer {
 		EntityRendererRegistry.register(EtceteraEntityType.TURTLE_RAFT, TurtleRaftRenderer::new);
 		EntityRendererRegistry.register(EtceteraEntityType.SNAIL, SnailRenderer::new);
 
-
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem)stack.getItem()).getColor(stack), EtceteraItems.TURTLE_RAFT);
 	}
 }
