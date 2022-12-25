@@ -3,6 +3,8 @@ package com.ninni.etcetera.entity;
 import com.ninni.etcetera.EtceteraTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.AnimationState;
+import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
@@ -20,6 +22,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
@@ -95,6 +98,7 @@ public class SnailEntity extends AnimalEntity {
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
         this.setHasEaten(nbt.getBoolean("HasEaten"));
+        this.setScaredTicks(nbt.getInt("ScaredTicks"));
     }
 
     public boolean hasEaten() {
@@ -158,7 +162,10 @@ public class SnailEntity extends AnimalEntity {
 
     @Override
     public void travel(Vec3d movementInput) {
-        if (this.isScared()) return;
+        if (this.isScared()) {
+            this.setVelocity(this.getVelocity().multiply(0, 1, 0));
+            movementInput = movementInput.multiply(0, 1, 0);
+        }
         super.travel(movementInput);
     }
 
