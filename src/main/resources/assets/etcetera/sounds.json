@@ -144,19 +144,25 @@
 	},
 	"block.drum.dholak.high": {
 		"sounds": [
-			"etcetera:block/drum/dholak/high"
+			"etcetera:block/drum/dholak/high1",
+			"etcetera:block/drum/dholak/high2",
+			"etcetera:block/drum/dholak/high3"
 		],
 		"subtitle": "subtitles.block.etcetera.drum"
 	},
 	"block.drum.dholak.low": {
 		"sounds": [
-			"etcetera:block/drum/dholak/low"
+			"etcetera:block/drum/dholak/low1",
+			"etcetera:block/drum/dholak/low2",
+			"etcetera:block/drum/dholak/low3"
 		],
 		"subtitle": "subtitles.block.etcetera.drum"
 	},
 	"block.drum.dholak.medium": {
 		"sounds": [
-			"etcetera:block/drum/dholak/medium"
+			"etcetera:block/drum/dholak/medium1",
+			"etcetera:block/drum/dholak/medium2",
+			"etcetera:block/drum/dholak/medium3"
 		],
 		"subtitle": "subtitles.block.etcetera.drum"
 	},
