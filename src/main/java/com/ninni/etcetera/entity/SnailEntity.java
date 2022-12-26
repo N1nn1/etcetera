@@ -34,6 +34,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
@@ -44,6 +45,7 @@ public class SnailEntity extends AnimalEntity {
     private static final TrackedData<Integer> SCARED_TICKS = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> SHELL_GROWTH = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Boolean> HAS_EATEN = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private final UniformIntProvider regrowthTicks = UniformIntProvider.create(24000, 48000);
 
     protected SnailEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -176,7 +178,7 @@ public class SnailEntity extends AnimalEntity {
         if (!this.world.isClient && source instanceof ProjectileDamageSource && this.getShellGrowthTicks() == 0) {
             this.dropStack(new ItemStack(EtceteraItems.SNAIL_SHELL), 0.1F);
             this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0F, 1.0F);
-            this.setShellGrowthTicks(24000);
+            this.setShellGrowthTicks(this.regrowthTicks.get(this.random));
             return false;
         }
 
