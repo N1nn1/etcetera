@@ -155,7 +155,7 @@ public class SnailEntity extends AnimalEntity {
     }
 
     private boolean isValidEntity(PlayerEntity entity) {
-        return !entity.isSpectator() && entity.isAlive() && !entity.getAbilities().creativeMode && !entity.isSneaking();
+        return this.getShellGrowthTicks() == 0 && !entity.isSpectator() && entity.isAlive() && !entity.getAbilities().creativeMode && !entity.isSneaking();
     }
 
     @Override
@@ -166,22 +166,24 @@ public class SnailEntity extends AnimalEntity {
     @Override
     public boolean damage(DamageSource source, float amount) {
         //code snatched with permission from lunarbunten (ily)
-
-        if (source.getAttacker() instanceof LivingEntity && amount < 12 && !world.isClient()) {
-            if (this.isScared()) {
-                playSound(SoundEvents.ENTITY_SHULKER_HURT_CLOSED, 1, 1);
-                return false;
-            }
-        }
-
         if (!this.world.isClient && this.getShellGrowthTicks() == 0) {
             if (source instanceof ProjectileDamageSource) {
+                if (this.isScared()) {
+                    this.setScaredTicks(0);
+                }
                 this.dropStack(new ItemStack(EtceteraItems.SNAIL_SHELL), 0.1F);
                 this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0F, 1.0F);
                 this.setShellGrowthTicks(this.regrowthTicks.get(this.random));
                 return false;
             } else {
                 this.setScaredTicks(100);
+            }
+        }
+
+        if (source.getAttacker() instanceof LivingEntity && amount < 12 && !world.isClient()) {
+            if (this.isScared()) {
+                playSound(SoundEvents.ENTITY_SHULKER_HURT_CLOSED, 1, 1);
+                return false;
             }
         }
         return super.damage(source, amount);
