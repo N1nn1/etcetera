@@ -174,15 +174,15 @@ public class SnailEntity extends AnimalEntity {
             }
         }
 
-        if (!this.world.isClient && source instanceof ProjectileDamageSource && this.getShellGrowthTicks() == 0) {
-            this.dropStack(new ItemStack(EtceteraItems.SNAIL_SHELL), 0.1F);
-            this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0F, 1.0F);
-            this.setShellGrowthTicks(this.regrowthTicks.get(this.random));
-            return false;
-        }
-
         if (!this.world.isClient && this.getShellGrowthTicks() == 0) {
-            this.setScaredTicks(100);
+            if (source instanceof ProjectileDamageSource) {
+                this.dropStack(new ItemStack(EtceteraItems.SNAIL_SHELL), 0.1F);
+                this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0F, 1.0F);
+                this.setShellGrowthTicks(this.regrowthTicks.get(this.random));
+                return false;
+            } else {
+                this.setScaredTicks(100);
+            }
         }
         return super.damage(source, amount);
     }
