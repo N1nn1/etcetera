@@ -1,15 +1,21 @@
 package com.ninni.etcetera.entity;
 
 import com.ninni.etcetera.EtceteraTags;
+import com.ninni.etcetera.item.EtceteraItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.ProjectileDamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -27,17 +33,18 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
 public class SnailEntity extends AnimalEntity {
     private static final TrackedData<Integer> SCARED_TICKS = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<Integer> SHELL_GROWTH = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Boolean> HAS_EATEN = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private final UniformIntProvider regrowthTicks = UniformIntProvider.create(24000, 48000);
 
     protected SnailEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -81,6 +88,7 @@ public class SnailEntity extends AnimalEntity {
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(SCARED_TICKS, 0);
+        this.dataTracker.startTracking(SHELL_GROWTH, 0);
         this.dataTracker.startTracking(HAS_EATEN, false);
     }
 
@@ -88,6 +96,7 @@ public class SnailEntity extends AnimalEntity {
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
         nbt.putInt("ScaredTicks", this.getScaredTicks());
+        nbt.putInt("Shelled", this.getShellGrowthTicks());
         nbt.putBoolean("HasEaten", this.hasEaten());
     }
 
@@ -96,6 +105,7 @@ public class SnailEntity extends AnimalEntity {
         super.readCustomDataFromNbt(nbt);
         this.setHasEaten(nbt.getBoolean("HasEaten"));
         this.setScaredTicks(nbt.getInt("ScaredTicks"));
+        this.setShellGrowthTicks(nbt.getInt("Shelled"));
     }
 
     public boolean hasEaten() {
@@ -114,27 +124,38 @@ public class SnailEntity extends AnimalEntity {
         return this.getScaredTicks() > 0;
     }
 
+    public int getShellGrowthTicks() {
+        return this.dataTracker.get(SHELL_GROWTH);
+    }
+
+    public void setShellGrowthTicks(int shellTicks) {
+        this.dataTracker.set(SHELL_GROWTH, shellTicks);
+    }
+
     @Override
     public void tickMovement() {
         super.tickMovement();
         //code snatched with permission from orcinus (ily)
-
-        List<PlayerEntity> closestPlayers = this.world.getEntitiesByClass(PlayerEntity.class, this.getBoundingBox().expand(2D), (entity -> !entity.isSpectator() && !entity.getAbilities().creativeMode && !entity.isSneaking()));
-        for (PlayerEntity nearbyPlayers : closestPlayers) {
-
-            if (nearbyPlayers.isAlive() && this.getScaredTicks() > 0) {
-                this.jumping = false;
-                this.setTarget(null);
-            }
-            this.setScaredTicks(100);
-        }
+        this.world.getEntitiesByClass(PlayerEntity.class, this.getBoundingBox().expand(2D), this::isValidEntity).forEach(player -> this.setScaredTicks(100));
 
         if (this.getScaredTicks() > 0) {
-            this.jumping = false;
-            this.navigation.stop();
-            this.setTarget(null);
+            this.getNavigation().stop();
             this.setScaredTicks(this.getScaredTicks() - 1);
         }
+
+        if (!this.world.isClient()) {
+            int shellGrowthTicks = this.getShellGrowthTicks();
+            if (shellGrowthTicks > 0) {
+                if (shellGrowthTicks == 1) {
+                    this.playSound(SoundEvents.ENTITY_ITEM_FRAME_ADD_ITEM, 1.0F, 1.0F);
+                }
+                this.setShellGrowthTicks(shellGrowthTicks - 1);
+            }
+        }
+    }
+
+    private boolean isValidEntity(PlayerEntity entity) {
+        return this.getShellGrowthTicks() == 0 && !entity.isSpectator() && entity.isAlive() && !entity.getAbilities().creativeMode && !entity.isSneaking();
     }
 
     @Override
@@ -145,6 +166,19 @@ public class SnailEntity extends AnimalEntity {
     @Override
     public boolean damage(DamageSource source, float amount) {
         //code snatched with permission from lunarbunten (ily)
+        if (!this.world.isClient && this.getShellGrowthTicks() == 0) {
+            if (source instanceof ProjectileDamageSource) {
+                if (this.isScared()) {
+                    this.setScaredTicks(0);
+                }
+                this.dropStack(new ItemStack(EtceteraItems.SNAIL_SHELL), 0.1F);
+                this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0F, 1.0F);
+                this.setShellGrowthTicks(this.regrowthTicks.get(this.random));
+                return false;
+            } else {
+                this.setScaredTicks(100);
+            }
+        }
 
         if (source.getAttacker() instanceof LivingEntity && amount < 12 && !world.isClient()) {
             if (this.isScared()) {
@@ -152,7 +186,6 @@ public class SnailEntity extends AnimalEntity {
                 return false;
             }
         }
-        this.setScaredTicks(100);
         return super.damage(source, amount);
     }
 

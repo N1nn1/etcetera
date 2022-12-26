@@ -96,6 +96,8 @@ public class SnailModel extends EntityModel<SnailEntity> {
         float speed = 1;
         float degree = 1;
 
+        shell.visible = entity.getShellGrowthTicks() == 0;
+
         //eye looking direction
         leftEye.pitch = headPitch * pi/180;
         leftEye.yaw = headYaw * pi/180;
