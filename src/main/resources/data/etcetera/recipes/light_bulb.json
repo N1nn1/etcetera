@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#G#",
+    " i "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:glass"
+    },
+    "G": {
+      "item": "minecraft:glowstone"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "etcetera:light_bulb",
+    "count": 4
+  }
+}

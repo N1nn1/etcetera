@@ -49,6 +49,9 @@
   "block.etcetera.leveled_stone_slab": "Leveled Stone Slab",
   "block.etcetera.leveled_stone_stairs": "Leveled Stone Stairs",
 
+  "block.etcetera.light_bulb": "Light Bulb",
+  "block.etcetera.tinted_light_bulb": "Tinted Light Bulb",
+
   "advancements.etcetera.nether.obtain_bismuth.title": "Down to Bismuth-ss",
   "advancements.etcetera.nether.obtain_bismuth.description": "Obtain Raw Bismuth",
   "advancements.etcetera.story.tidal_helmet.title": "All-Seaing Eye",

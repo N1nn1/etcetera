@@ -62,6 +62,7 @@ public class TurtleRaftEntity extends BoatEntity {
     @Override
     public void onBubbleColumnSurfaceCollision(boolean drag) { }
 
+    //TODO this always drops the non tinted one
     @Override
     public Item asItem() {
         return EtceteraItems.TURTLE_RAFT;

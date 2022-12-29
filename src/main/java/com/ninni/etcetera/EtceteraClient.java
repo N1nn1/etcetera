@@ -32,7 +32,9 @@ public class EtceteraClient implements ClientModInitializer {
 
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
 			EtceteraBlocks.MUCUS_BLOCK,
-			EtceteraBlocks.IRIDESCENT_GLASS
+			EtceteraBlocks.IRIDESCENT_GLASS,
+			EtceteraBlocks.LIGHT_BULB,
+			EtceteraBlocks.TINTED_LIGHT_BULB
 		);
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
 				EtceteraBlocks.BISMUTH_BARS,

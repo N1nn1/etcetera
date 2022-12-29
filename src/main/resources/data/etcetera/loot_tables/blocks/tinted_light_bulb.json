@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "etcetera:stone_column"
+          "name": "etcetera:tinted_light_bulb"
         }
       ],
       "conditions": [

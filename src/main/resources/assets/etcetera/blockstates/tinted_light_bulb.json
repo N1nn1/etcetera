@@ -1,0 +1,32 @@
+{
+  "variants": {
+    "brightness=off,hanging=false": {
+      "model": "etcetera:block/tinted_light_bulb"
+    },
+    "brightness=dark,hanging=false": {
+      "model": "etcetera:block/tinted_light_bulb_dark"
+    },
+    "brightness=dim,hanging=false": {
+      "model": "etcetera:block/tinted_light_bulb_dim"
+    },
+    "brightness=bright,hanging=false": {
+      "model": "etcetera:block/tinted_light_bulb_bright"
+    },
+    "brightness=off,hanging=true": {
+      "model": "etcetera:block/tinted_light_bulb",
+      "x": 180
+    },
+    "brightness=dark,hanging=true": {
+      "model": "etcetera:block/tinted_light_bulb_dark",
+      "x": 180
+    },
+    "brightness=dim,hanging=true": {
+      "model": "etcetera:block/tinted_light_bulb_dim",
+      "x": 180
+    },
+    "brightness=bright,hanging=true": {
+      "model": "etcetera:block/tinted_light_bulb_bright",
+      "x": 180
+    }
+  }
+}

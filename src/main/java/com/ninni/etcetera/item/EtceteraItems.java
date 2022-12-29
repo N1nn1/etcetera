@@ -57,6 +57,9 @@ public class EtceteraItems {
     public static final Item LEVELED_STONE_STAIRS = register("leveled_stone_stairs", new BlockItem(EtceteraBlocks.LEVELED_STONE_STAIRS, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item LEVELED_STONE_SLAB = register("leveled_stone_slab", new BlockItem(EtceteraBlocks.LEVELED_STONE_SLAB, new FabricItemSettings().group(ITEM_GROUP)));
 
+    public static final Item LIGHT_BULB = register("light_bulb", new BlockItem(EtceteraBlocks.LIGHT_BULB, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item TINTED_LIGHT_BULB = register("tinted_light_bulb", new BlockItem(EtceteraBlocks.TINTED_LIGHT_BULB, new FabricItemSettings().group(ITEM_GROUP)));
+
     public static final Item SNAIL_SPAWN_EGG = register("snail_spawn_egg", new SpawnEggItem(EtceteraEntityType.SNAIL, 0x5D3F30, 0xF6DEA2, new Item.Settings().maxCount(64).group(ITEM_GROUP)));
     public static final Item SNAIL_SHELL = register("snail_shell", new Item(new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item BIG_SNAIL_SHELL = register("big_snail_shell", new BlockItem(EtceteraBlocks.BIG_SNAIL_SHELL, new FabricItemSettings().group(ITEM_GROUP)));

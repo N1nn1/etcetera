@@ -1,0 +1,6 @@
+{
+	"parent": "etcetera:block/template_light_bulb",
+	"textures": {
+		"all": "etcetera:block/light_bulb_dark"
+	}
+}

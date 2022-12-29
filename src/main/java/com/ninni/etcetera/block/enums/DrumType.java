@@ -18,7 +18,7 @@ public enum DrumType implements StringIdentifiable {
     private final SoundEvent mediumSound;
     private final SoundEvent lowSound;
 
-    private DrumType(String name) {
+    DrumType(String name) {
         this.name = name;
 
         String prefix = "block.drum." + name + ".";

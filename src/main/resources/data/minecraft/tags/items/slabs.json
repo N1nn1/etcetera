@@ -1,26 +1,7 @@
 {
   "replace": false,
   "values": [
-    "etcetera:gravel_brick_slab",
-    "etcetera:silt_brick_slab",
     "etcetera:leveled_stone_slab",
-    "etcetera:smooth_stone_brick_slab",
-    "etcetera:silt_shingle_slab",
-    "etcetera:white_silt_shingle_slab",
-    "etcetera:orange_silt_shingle_slab",
-    "etcetera:magenta_silt_shingle_slab",
-    "etcetera:light_blue_silt_shingle_slab",
-    "etcetera:yellow_silt_shingle_slab",
-    "etcetera:lime_silt_shingle_slab",
-    "etcetera:pink_silt_shingle_slab",
-    "etcetera:gray_silt_shingle_slab",
-    "etcetera:light_gray_silt_shingle_slab",
-    "etcetera:cyan_silt_shingle_slab",
-    "etcetera:purple_silt_shingle_slab",
-    "etcetera:blue_silt_shingle_slab",
-    "etcetera:brown_silt_shingle_slab",
-    "etcetera:green_silt_shingle_slab",
-    "etcetera:red_silt_shingle_slab",
-    "etcetera:black_silt_shingle_slab"
+    "etcetera:snail_shell_tile_slab"
   ]
 }

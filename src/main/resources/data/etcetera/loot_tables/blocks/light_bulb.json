@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "etcetera:iridescent_packed_silt"
+          "name": "etcetera:light_bulb"
         }
       ],
       "conditions": [

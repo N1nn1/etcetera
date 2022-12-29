@@ -49,6 +49,9 @@
   "block.etcetera.leveled_stone_slab": "Lastra di pietra livellata",
   "block.etcetera.leveled_stone_stairs": "Scalini di pietra livellata",
 
+  "block.etcetera.light_bulb": "Lampadina",
+  "block.etcetera.tinted_light_bulb": "Lampadina oscurata",
+
   "advancements.etcetera.nether.obtain_bismuth.title": "Unti e bismuti",
   "advancements.etcetera.nether.obtain_bismuth.description": "Ottieni del bismuto grezzo",
   "advancements.etcetera.story.tidal_helmet.title": "In fondo al mar",
