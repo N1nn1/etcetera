@@ -31,6 +31,7 @@ public class EtceteraClient implements ClientModInitializer {
 		TidalHelmetHud.init();
 
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
+			EtceteraBlocks.MUCUS,
 			EtceteraBlocks.MUCUS_BLOCK,
 			EtceteraBlocks.IRIDESCENT_GLASS,
 			EtceteraBlocks.LIGHT_BULB,

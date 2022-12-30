@@ -55,7 +55,8 @@ public class EtceteraBlocks {
     public static final Block SNAIL_SHELL_TILES = register("snail_shell_tiles", new Block(FabricBlockSettings.copyOf(BIG_SNAIL_SHELL).strength(1f, 1200.0f)));
     public static final Block SNAIL_SHELL_TILE_STAIRS = register("snail_shell_tile_stairs", new PublicStairsBlock(SNAIL_SHELL_TILES.getDefaultState(), FabricBlockSettings.copyOf(SNAIL_SHELL_TILES)));
     public static final Block SNAIL_SHELL_TILE_SLAB = register("snail_shell_tile_slab", new SlabBlock(FabricBlockSettings.copyOf(SNAIL_SHELL_TILES)));
-    public static final Block MUCUS_BLOCK = register("mucus_block", new MucusBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, MapColor.PALE_YELLOW).sounds(BlockSoundGroup.SLIME).nonOpaque()));
+    public static final Block MUCUS = register("mucus", new MucusBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, MapColor.PALE_YELLOW).sounds(BlockSoundGroup.SLIME).nonOpaque()));
+    public static final Block MUCUS_BLOCK = register("mucus_block", new MucusBlockBlock(FabricBlockSettings.copyOf(MUCUS)));
 
     private static Block register(String id, Block block) { return Registry.register(Registry.BLOCK, new Identifier(MOD_ID, id), block); }
     private static boolean never(BlockState state, BlockView world, BlockPos pos) { return false; }

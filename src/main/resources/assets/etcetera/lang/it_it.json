@@ -67,7 +67,7 @@
   "block.etcetera.snail_shell_tile_stairs": "Scalini di gusci di chiocciola",
   "block.etcetera.snail_shell_tile_slab": "Lastra di gusci di chiocciola",
   "item.etcetera.escargot": "Escargot",
-  "item.etcetera.mucus": "Bava",
+  "block.etcetera.mucus": "Bava",
   "block.etcetera.mucus_block": "Blocco di bava",
 
   "subtitles.item.etcetera.wrench.select": "Chiave inglese seleziona",

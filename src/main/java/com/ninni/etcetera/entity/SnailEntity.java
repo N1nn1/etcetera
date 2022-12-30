@@ -1,9 +1,9 @@
 package com.ninni.etcetera.entity;
 
 import com.ninni.etcetera.EtceteraTags;
+import com.ninni.etcetera.block.EtceteraBlocks;
 import com.ninni.etcetera.item.EtceteraItems;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
@@ -225,8 +225,7 @@ public class SnailEntity extends AnimalEntity {
         public void tick() {
             super.tick();
             if (!mob.world.isClient && mob.hasEaten()) {
-                //TODO make this mucus
-                BlockState blockState = Blocks.SNOW.getDefaultState();
+                BlockState blockState = EtceteraBlocks.MUCUS.getDefaultState();
 
                 for (int l = 0; l < 4; ++l) {
                     int i = MathHelper.floor(mob.getX() + (double)((float)(l % 2 * 2 - 1) * 0.25f));
