@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "bonemeal",
+  "ingredients": [
+    {
+      "item": "etcetera:snail_shell"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "minecraft:bone_meal"
+  }
+}

@@ -26,9 +26,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -201,6 +203,29 @@ public class SnailEntity extends AnimalEntity {
             movementInput = movementInput.multiply(0, 1, 0);
         }
         super.travel(movementInput);
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return "Gary".equals(Formatting.strip(this.getName().getString())) ? SoundEvents.ENTITY_CAT_AMBIENT : super.getAmbientSound();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return super.getHurtSound(source);
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return super.getDeathSound();
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, BlockState state) {
+        super.playStepSound(pos, state);
     }
 
     public static class SnailWanderGoal extends WanderAroundFarGoal {
