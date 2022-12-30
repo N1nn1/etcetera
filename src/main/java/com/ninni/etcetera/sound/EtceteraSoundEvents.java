@@ -18,6 +18,8 @@ public interface EtceteraSoundEvents {
     SoundEvent ITEM_HANDBELL_RING = register("item.handbell.ring");
     SoundEvent ITEM_TIDEL_ARMOR_EQUIP = register("item.tidal.armor.equip");
     SoundEvent BLOCK_CRUMBLING_STONE_CRUMBLE = register("block.crumbling_stone.crumble");
+    SoundEvent BLOCK_LIGHT_BULB_ON = register("block.light_bulb.on");
+    SoundEvent BLOCK_LIGHT_BULB_OFF = register("block.light_bulb.off");
 
     BlockSoundGroup NETHER_BISMUTH_ORE = register("nether_bismuth_ore", 1, 1);
     BlockSoundGroup BISMUTH_BLOCK = register("bismuth_block", 1, 1);

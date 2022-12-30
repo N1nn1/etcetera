@@ -76,7 +76,8 @@
   "subtitles.item.etcetera.hammer.use": "Blocco viene martellato",
   "subtitles.item.etcetera.chisel.use": "Blocco viene intagliato",
   "subtitles.item.etcetera.handbell.ring": "Campanella rintocca",
-  "subtitles.block.etcetera.drum": "Tamburo viene suonato",
+  "subtitles.block.etcetera.light_bulb.on": "Lampadina si illumina",
+  "subtitles.block.etcetera.light_bulb.off": "Lampadina si spegne",
   "subtitles.block.etcetera.dice.roll": "Dado rotola",
   "subtitles.item.etcetera.tidal.armor.equip": "Elmo delle maree fa bwoop",
   "subtitles.block.etcetera.crumbling_stone.crumble": "Blocco si sgretola"

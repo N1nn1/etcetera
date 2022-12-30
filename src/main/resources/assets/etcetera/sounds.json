@@ -365,6 +365,20 @@
 			}
 		]
 	},
+	"block.light_bulb.on": {
+		"sounds": [
+			"etcetera:block/light_bulb/on1",
+			"etcetera:block/light_bulb/on2"
+		],
+		"subtitle": "subtitles.block.etcetera.light_bulb.on"
+	},
+	"block.light_bulb.off": {
+	"sounds": [
+		"etcetera:block/light_bulb/off1",
+		"etcetera:block/light_bulb/off2"
+	],
+	"subtitle": "subtitles.block.etcetera.light_bulb.off"
+},
 	"item.chisel.use": {
 		"sounds": [
 			"etcetera:item/chisel/use1",

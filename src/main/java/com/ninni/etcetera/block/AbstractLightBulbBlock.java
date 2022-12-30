@@ -2,6 +2,7 @@ package com.ninni.etcetera.block;
 
 import com.ninni.etcetera.EtceteraProperties;
 import com.ninni.etcetera.block.enums.LightBulbBrightness;
+import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.ai.pathing.NavigationType;
@@ -9,6 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -54,11 +56,22 @@ public class AbstractLightBulbBlock extends Block implements Waterloggable {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         LightBulbBrightness brightness = state.get(BRIGHTNESS);
 
-        //TODO sounds
-        if (brightness == LightBulbBrightness.OFF) world.setBlockState(pos, state.with(BRIGHTNESS, LightBulbBrightness.DARK));
-        else if (brightness == LightBulbBrightness.DARK) world.setBlockState(pos, state.with(BRIGHTNESS, LightBulbBrightness.DIM));
-        else if (brightness == LightBulbBrightness.DIM) world.setBlockState(pos, state.with(BRIGHTNESS, LightBulbBrightness.BRIGHT));
-        else if (brightness == LightBulbBrightness.BRIGHT) world.setBlockState(pos, state.with(BRIGHTNESS, LightBulbBrightness.OFF));
+        if (brightness == LightBulbBrightness.OFF) {
+            world.setBlockState(pos, state.with(BRIGHTNESS, LightBulbBrightness.DARK));
+            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON, SoundCategory.BLOCKS, 1, 1);
+        }
+        else if (brightness == LightBulbBrightness.DARK) {
+            world.setBlockState(pos, state.with(BRIGHTNESS, LightBulbBrightness.DIM));
+            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON, SoundCategory.BLOCKS, 1, 1);
+        }
+        else if (brightness == LightBulbBrightness.DIM) {
+            world.setBlockState(pos, state.with(BRIGHTNESS, LightBulbBrightness.BRIGHT));
+            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON, SoundCategory.BLOCKS, 1, 1);
+        }
+        else if (brightness == LightBulbBrightness.BRIGHT) {
+            world.setBlockState(pos, state.with(BRIGHTNESS, LightBulbBrightness.OFF));
+            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_OFF, SoundCategory.BLOCKS, 1, 1);
+        }
 
         return ActionResult.SUCCESS;
     }

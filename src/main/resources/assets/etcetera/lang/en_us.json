@@ -76,7 +76,8 @@
   "subtitles.item.etcetera.hammer.use": "Hammering",
   "subtitles.item.etcetera.chisel.use": "Chiselling",
   "subtitles.item.etcetera.handbell.ring": "Handbell rings",
-  "subtitles.block.etcetera.drum": "Drum plays",
+  "subtitles.block.etcetera.light_bulb.on": "Light Bulb brightens",
+  "subtitles.block.etcetera.light_bulb.off": "Light Bulb darkens",
   "subtitles.block.etcetera.dice.roll": "Dice rolls",
   "subtitles.item.etcetera.tidal.armor.equip": "Tidal Helmet bwoops",
   "subtitles.block.etcetera.crumbling_stone.crumble": "Block crumbles"
