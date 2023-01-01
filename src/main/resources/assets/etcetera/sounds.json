@@ -51,6 +51,91 @@
 		],
 		"subtitle": "subtitles.entity.snail.slide"
 	},
+	"block.snail_shell.break": {
+		"sounds": [
+			"etcetera:block/snail_shell/break1",
+			"etcetera:block/snail_shell/break2",
+			"etcetera:block/snail_shell/break3",
+			"etcetera:block/snail_shell/break4"
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.snail_shell.fall": {
+		"sounds": [
+			{
+				"name": "etcetera:block.snail_shell.break",
+				"type": "event"
+			}
+		]
+	},
+	"block.snail_shell.hit": {
+		"sounds": [
+			{
+				"name": "etcetera:block.snail_shell.step",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.snail_shell.place": {
+		"sounds": [
+			"etcetera:block/snail_shell/place1",
+			"etcetera:block/snail_shell/place2",
+			"etcetera:block/snail_shell/place3",
+			"etcetera:block/snail_shell/place4"
+		],
+		"subtitle": "subtitles.block.generic.place"
+	},
+	"block.snail_shell.step": {
+		"sounds": [
+			"etcetera:block/snail_shell/light1",
+			"etcetera:block/snail_shell/light2",
+			"etcetera:block/snail_shell/light3",
+			"etcetera:block/snail_shell/light4"
+		],
+		"subtitle": "subtitles.block.generic.footsteps"
+	},
+	"block.mucus.break": {
+		"sounds": [
+			"etcetera:block/mucus/heavy1",
+			"etcetera:block/mucus/heavy2",
+			"etcetera:block/mucus/heavy3"
+		],
+		"subtitle": "subtitles.block.generic.break"
+	},
+	"block.mucus.fall": {
+		"sounds": [
+			{
+				"name": "etcetera:block.mucus.break",
+				"type": "event"
+			}
+		]
+	},
+	"block.mucus.hit": {
+		"sounds": [
+			{
+				"name": "etcetera:block.mucus.step",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.hit"
+	},
+	"block.mucus.place": {
+		"sounds": [
+			{
+				"name": "etcetera:block.mucus.break",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.block.generic.place"
+	},
+	"block.mucus.step": {
+		"sounds": [
+			"etcetera:block/mucus/light1",
+			"etcetera:block/mucus/light2"
+		],
+		"subtitle": "subtitles.block.generic.footsteps"
+	},
 	"block.bismuth_block.break": {
 		"sounds": [
 			"etcetera:block/bismuth_block/heavy1",
