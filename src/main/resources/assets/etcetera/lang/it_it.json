@@ -70,6 +70,13 @@
   "block.etcetera.mucus": "Bava",
   "block.etcetera.mucus_block": "Blocco di bava",
 
+  "subtitles.entity.snail.death": "Chiocciola muore",
+  "subtitles.entity.snail.eat": "Chiocciola mordicchia",
+  "subtitles.entity.snail.hurt": "Chiocciola ferita",
+  "subtitles.entity.snail.hurt_hidden": "Chiocciola deflette",
+  "subtitles.entity.snail.shell_grow": "Guscio di chiocciola cresce",
+  "subtitles.entity.snail.slide": "Chiocciola striscia",
+
   "subtitles.item.etcetera.wrench.select": "Chiave inglese seleziona",
   "subtitles.item.etcetera.wrench.fail": "Chiave inglese fallisce",
   "subtitles.item.etcetera.wrench.modify": "Chiave inglese modifica",

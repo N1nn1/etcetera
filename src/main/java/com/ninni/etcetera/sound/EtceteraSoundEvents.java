@@ -21,11 +21,21 @@ public interface EtceteraSoundEvents {
     SoundEvent BLOCK_LIGHT_BULB_ON = register("block.light_bulb.on");
     SoundEvent BLOCK_LIGHT_BULB_OFF = register("block.light_bulb.off");
 
+    SoundEvent ENTITY_SNAIL_SLIDE = register("entity.snail.slide");
+    SoundEvent ENTITY_SNAIL_HURT_HIDDEN = register("entity.snail.hurt_hidden");
+    SoundEvent ENTITY_SNAIL_HURT = register("entity.snail.hurt");
+    SoundEvent ENTITY_SNAIL_DEATH = register("entity.snail.death");
+    SoundEvent ENTITY_SNAIL_DEATH_HIDDEN = register("entity.snail.death_hidden");
+    SoundEvent ENTITY_SNAIL_EAT = register("entity.snail.eat");
+    SoundEvent ENTITY_SNAIL_SHELL_GROW = register("entity.snail.shell_grow");
+
     BlockSoundGroup NETHER_BISMUTH_ORE = register("nether_bismuth_ore", 1, 1);
     BlockSoundGroup BISMUTH_BLOCK = register("bismuth_block", 1, 1);
     BlockSoundGroup SQUID_LAMP = register("squid_lamp", 1, 1);
     BlockSoundGroup TERRACOTTA_VASE = register("terracotta_vase", 1, 1);
     BlockSoundGroup CRUMBLING_STONE = register("crumbling_stone", 1, 1);
+    BlockSoundGroup MUCUS = register("mucus", 1, 1);
+    BlockSoundGroup SNAIL_SHELL = register("snail_shell", 1, 1);
 
 	private static BlockSoundGroup register(String name, float volume, float pitch) {
         return new BlockSoundGroup(volume, pitch, register("block." + name + ".break"), register("block." + name + ".step"), register("block." + name + ".place"), register("block." + name + ".hit"), register("block." + name + ".fall"));

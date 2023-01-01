@@ -3,6 +3,7 @@ package com.ninni.etcetera.entity;
 import com.ninni.etcetera.EtceteraTags;
 import com.ninni.etcetera.block.EtceteraBlocks;
 import com.ninni.etcetera.item.EtceteraItems;
+import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -77,7 +78,7 @@ public class SnailEntity extends AnimalEntity {
             if (!this.world.isClient && !this.hasEaten()) {
                 this.setHasEaten(true);
                 if (!player.getAbilities().creativeMode) player.getStackInHand(player.getActiveHand()).decrement(1);
-                this.playSound(SoundEvents.ENTITY_FOX_EAT, 1.0f, 1.0f);
+                this.playSound(EtceteraSoundEvents.ENTITY_SNAIL_EAT, 1.0f, 1.0f);
                 return ActionResult.SUCCESS;
             }
             return ActionResult.CONSUME;
@@ -149,7 +150,7 @@ public class SnailEntity extends AnimalEntity {
             int shellGrowthTicks = this.getShellGrowthTicks();
             if (shellGrowthTicks > 0) {
                 if (shellGrowthTicks == 1) {
-                    this.playSound(SoundEvents.ENTITY_ITEM_FRAME_ADD_ITEM, 1.0F, 1.0F);
+                    this.playSound(EtceteraSoundEvents.ENTITY_SNAIL_SHELL_GROW, 1.0F, 1.0F);
                 }
                 this.setShellGrowthTicks(shellGrowthTicks - 1);
             }
@@ -172,7 +173,7 @@ public class SnailEntity extends AnimalEntity {
             if (source instanceof ProjectileDamageSource) {
                 if (!this.isScared()) {
                     this.dropStack(new ItemStack(EtceteraItems.SNAIL_SHELL), 0.1F);
-                    this.playSound(SoundEvents.ITEM_SHIELD_BLOCK, 1.0F, 1.0F);
+                    this.playSound(EtceteraSoundEvents.ENTITY_SNAIL_HURT_HIDDEN, 1.0F, 1.0F);
                     this.setShellGrowthTicks(this.regrowthTicks.get(this.random));
                 }
                 return false;
@@ -183,7 +184,7 @@ public class SnailEntity extends AnimalEntity {
 
         if (source.getAttacker() instanceof LivingEntity && amount < 12 && !world.isClient()) {
             if (this.isScared()) {
-                playSound(SoundEvents.ENTITY_SHULKER_HURT_CLOSED, 1, 1);
+                playSound(EtceteraSoundEvents.ENTITY_SNAIL_HURT_HIDDEN, 1, 1);
                 return false;
             }
         }
@@ -214,26 +215,33 @@ public class SnailEntity extends AnimalEntity {
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return super.getHurtSound(source);
+        return EtceteraSoundEvents.ENTITY_SNAIL_HURT;
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return super.getDeathSound();
+        return this.isScared() ? EtceteraSoundEvents.ENTITY_SNAIL_DEATH_HIDDEN : EtceteraSoundEvents.ENTITY_SNAIL_DEATH;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        super.playStepSound(pos, state);
+        this.playSound(EtceteraSoundEvents.ENTITY_SNAIL_SLIDE, 0.15f, 1.0f);
     }
 
     public static class SnailWanderGoal extends WanderAroundFarGoal {
         private final SnailEntity mob;
+        private int cooldown;
 
         public SnailWanderGoal(SnailEntity mob, double d) {
             super(mob, d);
             this.mob = mob;
+        }
+
+        @Override
+        public void start() {
+            super.start();
+            cooldown = 2;
         }
 
         @Override
@@ -251,14 +259,18 @@ public class SnailEntity extends AnimalEntity {
             super.tick();
             if (!mob.world.isClient && mob.hasEaten()) {
                 BlockState blockState = EtceteraBlocks.MUCUS.getDefaultState();
-
                 for (int l = 0; l < 4; ++l) {
-                    int i = MathHelper.floor(mob.getX() + (double)((float)(l % 2 * 2 - 1) * 0.25f));
-                    BlockPos blockPos2 = new BlockPos(i, MathHelper.floor(mob.getY()), MathHelper.floor(mob.getZ() + (double)((float)(l / 2 % 2 * 2 - 1) * 0.25f)));
-                    if (!mob.world.getBlockState(blockPos2).isAir() || !blockState.canPlaceAt(mob.world, blockPos2)) continue;
-                    mob.world.setBlockState(blockPos2, blockState);
-                    mob.world.emitGameEvent(GameEvent.BLOCK_PLACE, blockPos2, GameEvent.Emitter.of(mob, blockState));
+                    if (cooldown < 0) {
+                        int i = MathHelper.floor(mob.getX() + (double)((float)(l % 2 * 2 - 1) * 0.25f));
+                        BlockPos blockPos2 = new BlockPos(i, MathHelper.floor(mob.getY()), MathHelper.floor(mob.getZ() + (double)((float)(l / 2 % 2 * 2 - 1) * 0.25f)));
+                        if (!mob.world.getBlockState(blockPos2).isAir() || !blockState.canPlaceAt(mob.world, blockPos2)) continue;
+                        mob.world.setBlockState(blockPos2, blockState);
+                        cooldown = 5;
+                        mob.playStepSound(blockPos2, blockState);
+                        mob.world.emitGameEvent(GameEvent.BLOCK_PLACE, blockPos2, GameEvent.Emitter.of(mob, blockState));
+                    }
                 }
+                cooldown--;
             }
         }
 

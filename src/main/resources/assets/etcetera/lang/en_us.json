@@ -70,6 +70,13 @@
   "block.etcetera.mucus": "Mucus",
   "block.etcetera.mucus_block": "Mucus Block",
 
+  "subtitles.entity.snail.death": "Snail dies",
+  "subtitles.entity.snail.eat": "Snail munches",
+  "subtitles.entity.snail.hurt": "Snail hurts",
+  "subtitles.entity.snail.hurt_hidden": "Snail deflects",
+  "subtitles.entity.snail.shell_grow": "Snail Shell grows",
+  "subtitles.entity.snail.slide": "Snail slides",
+
   "subtitles.item.etcetera.wrench.select": "Wrench shifts",
   "subtitles.item.etcetera.wrench.fail": "Wrench fails",
   "subtitles.item.etcetera.wrench.modify": "Wrench modifies",

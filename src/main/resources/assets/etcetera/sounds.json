@@ -1,4 +1,56 @@
 {
+	"entity.snail.death": {
+		"sounds": [
+			"etcetera:entity/snail/death"
+		],
+		"subtitle": "subtitles.entity.snail.death"
+	},
+	"entity.snail.death_hidden": {
+		"sounds": [
+			"etcetera:entity/snail/death_hidden"
+		],
+		"subtitle": "subtitles.entity.snail.death"
+	},
+	"entity.snail.eat": {
+		"sounds": [
+			"etcetera:entity/snail/eat1",
+			"etcetera:entity/snail/eat2"
+		],
+		"subtitle": "subtitles.entity.snail.eat"
+	},
+	"entity.snail.hurt": {
+		"sounds": [
+			"etcetera:entity/snail/hurt1",
+			"etcetera:entity/snail/hurt2"
+		],
+		"subtitle": "subtitles.entity.snail.hurt"
+	},
+	"entity.snail.hurt_hidden": {
+		"sounds": [
+			"etcetera:entity/snail/hurt_hidden1",
+			"etcetera:entity/snail/hurt_hidden2",
+			"etcetera:entity/snail/hurt_hidden3",
+			"etcetera:entity/snail/hurt_hidden4"
+		],
+		"subtitle": "subtitles.entity.snail.hurt_hidden"
+	},
+	"entity.snail.shell_grow": {
+		"sounds": [
+			"etcetera:entity/snail/shell_grow"
+		],
+		"subtitle": "subtitles.entity.snail.shell_grow"
+	},
+	"entity.snail.slide": {
+		"sounds": [
+			"etcetera:entity/snail/slide1",
+			"etcetera:entity/snail/slide2",
+			"etcetera:entity/snail/slide3",
+			"etcetera:entity/snail/slide4",
+			"etcetera:entity/snail/slide5",
+			"etcetera:entity/snail/slide6"
+		],
+		"subtitle": "subtitles.entity.snail.slide"
+	},
 	"block.bismuth_block.break": {
 		"sounds": [
 			"etcetera:block/bismuth_block/heavy1",
@@ -373,12 +425,12 @@
 		"subtitle": "subtitles.block.etcetera.light_bulb.on"
 	},
 	"block.light_bulb.off": {
-	"sounds": [
-		"etcetera:block/light_bulb/off1",
-		"etcetera:block/light_bulb/off2"
-	],
-	"subtitle": "subtitles.block.etcetera.light_bulb.off"
-},
+		"sounds": [
+			"etcetera:block/light_bulb/off1",
+			"etcetera:block/light_bulb/off2"
+		],
+		"subtitle": "subtitles.block.etcetera.light_bulb.off"
+	},
 	"item.chisel.use": {
 		"sounds": [
 			"etcetera:item/chisel/use1",
