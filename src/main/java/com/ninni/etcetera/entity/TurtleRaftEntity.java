@@ -2,11 +2,14 @@ package com.ninni.etcetera.entity;
 
 import com.ninni.etcetera.item.EtceteraItems;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.vehicle.BoatEntity;
+import net.minecraft.item.DyeableItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
 
@@ -34,10 +37,12 @@ public class TurtleRaftEntity extends BoatEntity {
 
     @Override
     protected void writeCustomDataToNbt(NbtCompound nbt) {
+        nbt.putInt("Color", this.getColor());
     }
 
     @Override
     protected void readCustomDataFromNbt(NbtCompound nbt) {
+        this.setColor(nbt.getInt("Color"));
     }
 
 
@@ -66,6 +71,13 @@ public class TurtleRaftEntity extends BoatEntity {
     @Override
     public Item asItem() {
         return EtceteraItems.TURTLE_RAFT;
+    }
+
+    @Override
+    protected void dropItems(DamageSource source) {
+        ItemStack stack = new ItemStack(EtceteraItems.TURTLE_RAFT);
+        stack.getOrCreateSubNbt(DyeableItem.DISPLAY_KEY).putInt(DyeableItem.COLOR_KEY, this.getColor());
+        this.dropStack(stack);
     }
 
     @Override
