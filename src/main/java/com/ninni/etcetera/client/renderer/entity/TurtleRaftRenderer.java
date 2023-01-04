@@ -2,6 +2,7 @@ package com.ninni.etcetera.client.renderer.entity;
 
 import com.ninni.etcetera.client.model.EtceteraEntityModelLayers;
 import com.ninni.etcetera.client.model.TurtleRaftModel;
+import com.ninni.etcetera.client.renderer.entity.layer.TurtleRaftBannerLayer;
 import com.ninni.etcetera.client.renderer.entity.layer.TurtleRaftColorRenderLayer;
 import com.ninni.etcetera.entity.TurtleRaftEntity;
 import net.minecraft.client.render.OverlayTexture;
@@ -22,11 +23,13 @@ public class TurtleRaftRenderer extends EntityRenderer<TurtleRaftEntity> {
     public static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/boat/turtle_raft_overlay.png");
     private final TurtleRaftModel model;
     private final TurtleRaftColorRenderLayer layer;
+    private final TurtleRaftBannerLayer bannerLayer;
 
     public TurtleRaftRenderer(EntityRendererFactory.Context ctx) {
         super(ctx);
         this.model = this.createModel(ctx);
         this.layer = this.createLayer(ctx);
+        this.bannerLayer = this.createBannerLayer();
     }
 
     private TurtleRaftModel createModel(EntityRendererFactory.Context ctx) {
@@ -45,6 +48,20 @@ public class TurtleRaftRenderer extends EntityRenderer<TurtleRaftEntity> {
                 return TEXTURE;
             }
         }, ctx.getModelLoader());
+    }
+
+    private TurtleRaftBannerLayer createBannerLayer() {
+        return new TurtleRaftBannerLayer(new FeatureRendererContext<>() {
+            @Override
+            public TurtleRaftModel getModel() {
+                return TurtleRaftRenderer.this.model;
+            }
+
+            @Override
+            public Identifier getTexture(TurtleRaftEntity entity) {
+                return TEXTURE;
+            }
+        });
     }
 
     @Override
@@ -67,6 +84,7 @@ public class TurtleRaftRenderer extends EntityRenderer<TurtleRaftEntity> {
         VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(model.getLayer(TEXTURE));
         model.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
         layer.render(matrixStack, vertexConsumerProvider, i, raft, 1.0f, 1.0f, g, 1.0f ,1 ,1);
+        bannerLayer.render(matrixStack, vertexConsumerProvider, i, raft, 1.0F, 1.0F, g, 1.0F, 1, 1);
         matrixStack.pop();
 
         super.render(raft, f, g, matrixStack, vertexConsumerProvider, i);
