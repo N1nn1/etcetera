@@ -95,6 +95,7 @@ public class SnailModel extends EntityModel<SnailEntity> {
 
         float speed = 1;
         float degree = 1;
+        float tilt = Math.min(limbSwingAmount * 2, 0.5f);
 
         shell.visible = entity.getShellGrowthTicks() == 0;
 
@@ -103,7 +104,6 @@ public class SnailModel extends EntityModel<SnailEntity> {
         leftEye.yaw = headYaw * pi/180;
         rightEye.pitch = headPitch * pi/180;
         rightEye.yaw = headYaw * pi/180;
-        float tilt = Math.min(limbSwingAmount * 2, 0.5f);
 
         //random eye rotation
         leftEye.roll = MathHelper.sin(ageInTicks * speed * 0.05F) * degree * 0.1F;

@@ -27,8 +27,8 @@ public class TurtleRaftBannerLayer extends FeatureRenderer<TurtleRaftEntity, Tur
         if (!itemstack.isEmpty()) {
             poseStack.push();
             poseStack.scale(1.0F, 1.0F, 1.0F);
-            poseStack.translate(-0.25D, 0.0D, 0.0D);
-            poseStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(90.0F));
+            poseStack.translate(-0.65D, 0.4D, 0.0D);
+            poseStack.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(90.0F));
             poseStack.scale(0.625F, -0.625F, -0.625F);
             MinecraftClient.getInstance().getItemRenderer().renderItem(null, itemstack, ModelTransformation.Mode.HEAD, false, poseStack, source, entity.world, packedLight, OverlayTexture.DEFAULT_UV, entity.getId() + ModelTransformation.Mode.HEAD.ordinal());
             poseStack.pop();

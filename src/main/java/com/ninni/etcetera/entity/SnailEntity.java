@@ -265,7 +265,7 @@ public class SnailEntity extends AnimalEntity {
                         BlockPos blockPos2 = new BlockPos(i, MathHelper.floor(mob.getY()), MathHelper.floor(mob.getZ() + (double)((float)(l / 2 % 2 * 2 - 1) * 0.25f)));
                         if (!mob.world.getBlockState(blockPos2).isAir() || !blockState.canPlaceAt(mob.world, blockPos2)) continue;
                         mob.world.setBlockState(blockPos2, blockState);
-                        cooldown = 5;
+                        cooldown = 10;
                         mob.playStepSound(blockPos2, blockState);
                         mob.world.emitGameEvent(GameEvent.BLOCK_PLACE, blockPos2, GameEvent.Emitter.of(mob, blockState));
                     }
