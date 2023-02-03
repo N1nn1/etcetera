@@ -2,7 +2,6 @@ package com.ninni.etcetera.entity;
 
 import com.ninni.etcetera.item.EtceteraItems;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
@@ -21,7 +20,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
 public class TurtleRaftEntity extends BoatEntity {
-    //TODO sounds
     private static final TrackedData<Integer> COLOR = DataTracker.registerData(TurtleRaftEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<ItemStack> BANNER_STACK = DataTracker.registerData(TurtleRaftEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
 
@@ -112,7 +110,6 @@ public class TurtleRaftEntity extends BoatEntity {
     @Override
     public void onBubbleColumnSurfaceCollision(boolean drag) { }
 
-    //TODO this always drops the non tinted one
     @Override
     public Item asItem() {
         return EtceteraItems.TURTLE_RAFT;

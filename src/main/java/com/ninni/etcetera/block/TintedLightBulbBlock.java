@@ -2,8 +2,9 @@ package com.ninni.etcetera.block;
 
 import com.ninni.etcetera.block.enums.LightBulbBrightness;
 import net.minecraft.block.BlockState;
-public class TintedLightBulbBlock extends AbstractLightBulbBlock {
 
+public class TintedLightBulbBlock extends AbstractLightBulbBlock {
+    //TODO make these flicker
     public TintedLightBulbBlock(Settings settings) {
         super(settings.luminance(TintedLightBulbBlock::getLuminance));
     }
