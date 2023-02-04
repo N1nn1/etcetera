@@ -85,10 +85,16 @@ public class EtceteraItems {
 
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
 
-            if (id.equals(LootTables.BASTION_TREASURE_CHEST) || id.equals(LootTables.BASTION_OTHER_CHEST)) {
+            if (id.equals(LootTables.BASTION_OTHER_CHEST)) {
                 tableBuilder.pool(LootPool.builder()
                         .with(ItemEntry.builder(GOLDEN_EGGPLE)
                                 .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1))))
+                        .build());
+            }
+            if (id.equals(LootTables.BASTION_TREASURE_CHEST)) {
+                tableBuilder.pool(LootPool.builder()
+                        .with(ItemEntry.builder(GOLDEN_EGGPLE)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 1))))
                         .build());
             }
             if (id.equals(LootTables.PILLAGER_OUTPOST_CHEST)) {
