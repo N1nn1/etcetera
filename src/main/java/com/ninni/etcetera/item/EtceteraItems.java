@@ -70,6 +70,9 @@ public class EtceteraItems {
     public static final Item MUCUS = register("mucus", new BlockItem(EtceteraBlocks.MUCUS, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item MUCUS_BLOCK = register("mucus_block", new BlockItem(EtceteraBlocks.MUCUS_BLOCK, new FabricItemSettings().group(ITEM_GROUP)));
 
+    public static final Item CHAPPLE_SPAWN_EGG = register("chapple_spawn_egg", new SpawnEggItem(EtceteraEntityType.CHAPPLE, 0xE41826, 0x548630, new Item.Settings().maxCount(64).group(ITEM_GROUP)));
+    public static final Item EGGPLE = register("eggple", new EggpleItem(false, new Item.Settings().maxCount(16).group(ITEM_GROUP)));
+    public static final Item GOLDEN_EGGPLE = register("golden_eggple", new EggpleItem(true, new Item.Settings().rarity(Rarity.RARE).maxCount(16).group(ITEM_GROUP)));
 
     private static Item register(String id, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(MOD_ID, id), item);

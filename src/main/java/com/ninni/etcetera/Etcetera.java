@@ -5,6 +5,13 @@ import static com.ninni.etcetera.block.EtceteraBlocks.WAXED_CRUMBLING_STONE;
 
 import java.util.LinkedHashMap;
 
+import com.ninni.etcetera.entity.EggpleEntity;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
+import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.util.Util;
+import net.minecraft.util.math.Position;
+import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -56,6 +63,19 @@ public class Etcetera implements ModInitializer {
 			EtceteraItems.class,
 			EtceteraBlocks.class
 		);
+
+		DispenserBlock.registerBehavior(EtceteraItems.EGGPLE, new ProjectileDispenserBehavior(){
+			@Override
+			protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
+				return Util.make(new EggpleEntity(world, position.getX(), position.getY(), position.getZ()), entity -> entity.setItem(stack));
+			}
+		});
+		DispenserBlock.registerBehavior(EtceteraItems.GOLDEN_EGGPLE, new ProjectileDispenserBehavior(){
+			@Override
+			protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
+				return Util.make(new EggpleEntity(world, position.getX(), position.getY(), position.getZ()), entity -> entity.setItem(stack));
+			}
+		});
 
 		ResourceManagerHelper resourceManager = ResourceManagerHelper.get(ResourceType.SERVER_DATA);
 		resourceManager.registerReloadListener(CHISELLING_MANAGER);

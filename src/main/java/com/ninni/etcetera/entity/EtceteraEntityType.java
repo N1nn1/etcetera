@@ -3,6 +3,8 @@ package com.ninni.etcetera.entity;
 import com.ninni.etcetera.Etcetera;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.*;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
@@ -27,6 +29,26 @@ public class EtceteraEntityType {
                     .spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.WORLD_SURFACE_WG, SnailEntity::canSpawn)
                     .dimensions(EntityDimensions.changing(0.8F, 0.8F))
                     .trackRangeChunks(10)
+    );
+
+    public static final EntityType<ChappleEntity> CHAPPLE = register(
+            "chapple",
+            FabricEntityTypeBuilder.createMob()
+                    .entityFactory(ChappleEntity::new)
+                    .defaultAttributes(ChickenEntity::createChickenAttributes)
+                    .spawnGroup(SpawnGroup.CREATURE)
+                    .spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.WORLD_SURFACE_WG, AnimalEntity::canMobSpawn)
+                    .dimensions(EntityDimensions.changing(0.4f, 0.7f))
+                    .trackRangeChunks(10)
+    );
+
+    public static final EntityType<EggpleEntity> EGGPLE = register(
+            "eggple",
+            FabricEntityTypeBuilder.create()
+                    .<EggpleEntity>entityFactory(EggpleEntity::new)
+                    .spawnGroup(SpawnGroup.MISC)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                    .trackRangeChunks(4)
     );
 
     private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> entityType) {

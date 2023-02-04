@@ -87,5 +87,10 @@
   "subtitles.block.etcetera.light_bulb.off": "Light Bulb darkens",
   "subtitles.block.etcetera.dice.roll": "Dice rolls",
   "subtitles.item.etcetera.tidal.armor.equip": "Tidal Helmet bwoops",
-  "subtitles.block.etcetera.crumbling_stone.crumble": "Block crumbles"
+  "subtitles.block.etcetera.crumbling_stone.crumble": "Block crumbles",
+
+  "entity.etcetera.chapple": "Chapple",
+  "item.etcetera.chapple_spawn_egg": "Chapple Spawn Egg",
+  "item.etcetera.eggple": "Eggple",
+  "item.etcetera.golden_eggple": "Golden Eggple"
 }
