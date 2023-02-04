@@ -47,7 +47,7 @@ public class ChappleEntity extends ChickenEntity implements Shearable {
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
-        this.dataTracker.startTracking(TYPE, Type.APPLE.name);
+        this.dataTracker.startTracking(TYPE, Type.NORMAL.name);
         this.dataTracker.startTracking(APPLE_LAY_TIME, this.random.nextInt(6000) + 6000);
     }
 
@@ -104,7 +104,7 @@ public class ChappleEntity extends ChickenEntity implements Shearable {
             }
             return ActionResult.success(this.world.isClient);
         }
-        return super.interactMob(player2, hand);
+        return ActionResult.PASS;
     }
 
     @Override
@@ -151,12 +151,12 @@ public class ChappleEntity extends ChickenEntity implements Shearable {
     private Type chooseBabyType(ChappleEntity chapple) {
         Type type2;
         Type type = this.getChappleType();
-        return type == (type2 = chapple.getChappleType()) && this.random.nextInt(1024) == 0 ? (type == Type.GOLDEN_APPLE ? Type.APPLE : Type.GOLDEN_APPLE) : (this.random.nextBoolean() ? type : type2);
+        return type == (type2 = chapple.getChappleType()) && this.random.nextInt(1024) == 0 ? (type == Type.GOLDEN ? Type.NORMAL : Type.GOLDEN) : (this.random.nextBoolean() ? type : type2);
     }
 
     public enum Type {
-        APPLE("apple", Items.APPLE),
-        GOLDEN_APPLE("golden_apple", Items.GOLDEN_APPLE);
+        NORMAL("normal", Items.APPLE),
+        GOLDEN("golden", Items.GOLDEN_APPLE);
 
         final String name;
         final Item apple;
@@ -171,7 +171,7 @@ public class ChappleEntity extends ChickenEntity implements Shearable {
                 if (!type.name.equals(name)) continue;
                 return type;
             }
-            return APPLE;
+            return NORMAL;
         }
     }
 }

@@ -5,9 +5,15 @@ import com.ninni.etcetera.block.EtceteraBlocks;
 import com.ninni.etcetera.entity.EtceteraEntityType;
 import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
@@ -74,9 +80,28 @@ public class EtceteraItems {
     public static final Item EGGPLE = register("eggple", new EggpleItem(false, new Item.Settings().maxCount(16).group(ITEM_GROUP)));
     public static final Item GOLDEN_EGGPLE = register("golden_eggple", new EggpleItem(true, new Item.Settings().rarity(Rarity.RARE).maxCount(16).group(ITEM_GROUP)));
 
+    static {
+        CompostingChanceRegistry.INSTANCE.add(BOUQUET, 0.85f);
+
+        LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
+
+            if (id.equals(LootTables.BASTION_TREASURE_CHEST) || id.equals(LootTables.BASTION_OTHER_CHEST)) {
+                tableBuilder.pool(LootPool.builder()
+                        .with(ItemEntry.builder(GOLDEN_EGGPLE)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1))))
+                        .build());
+            }
+            if (id.equals(LootTables.PILLAGER_OUTPOST_CHEST)) {
+                tableBuilder.pool(LootPool.builder()
+                        .with(ItemEntry.builder(EGGPLE)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1))))
+                        .build());
+            }
+
+        });
+    }
+
     private static Item register(String id, Item item) {
         return Registry.register(Registry.ITEM, new Identifier(MOD_ID, id), item);
     }
-
-    static { CompostingChanceRegistry.INSTANCE.add(BOUQUET, 0.85f); }
 }

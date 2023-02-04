@@ -54,7 +54,7 @@ public class EggpleEntity extends ThrownItemEntity {
             for (int j = 0; j < i; ++j) {
                 ChappleEntity chapple = EtceteraEntityType.CHAPPLE.create(this.world);
                 chapple.setBreedingAge(-24000);
-                if (this.getStack().getItem() instanceof EggpleItem eggpleItem && eggpleItem.isGolden) chapple.setType(ChappleEntity.Type.GOLDEN_APPLE);
+                if (this.getStack().getItem() instanceof EggpleItem eggpleItem && eggpleItem.isGolden) chapple.setType(ChappleEntity.Type.GOLDEN);
                 chapple.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), 0.0f);
                 this.world.spawnEntity(chapple);
             }

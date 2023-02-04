@@ -19,8 +19,8 @@ import static com.ninni.etcetera.Etcetera.MOD_ID;
 @Environment(value= EnvType.CLIENT)
 public class ChappleRenderer extends MobEntityRenderer<ChappleEntity, ChappleModel<ChappleEntity>> {
     private static final Map<ChappleEntity.Type, Identifier> TEXTURES = Util.make(Maps.newHashMap(), map -> {
-        map.put(ChappleEntity.Type.APPLE, new Identifier(MOD_ID, "textures/entity/chapple/chapple.png"));
-        map.put(ChappleEntity.Type.GOLDEN_APPLE, new Identifier(MOD_ID, "textures/entity/chapple/golden_chapple.png"));
+        map.put(ChappleEntity.Type.NORMAL, new Identifier(MOD_ID, "textures/entity/chapple/chapple.png"));
+        map.put(ChappleEntity.Type.GOLDEN, new Identifier(MOD_ID, "textures/entity/chapple/golden_chapple.png"));
     });
 
     public ChappleRenderer(EntityRendererFactory.Context context) {
