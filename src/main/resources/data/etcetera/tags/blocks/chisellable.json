@@ -8,6 +8,10 @@
     "minecraft:stone_bricks",
     "minecraft:deepslate",
     "minecraft:nether_bricks",
-    "minecraft:quartz_block"
+    "minecraft:quartz_block",
+    "etcetera:iridescent_lantern",
+    "etcetera:iridescent_terracotta",
+    "etcetera:iridescent_concrete",
+    "etcetera:iridescent_glass"
   ]
 }

@@ -55,8 +55,7 @@
 		"sounds": [
 			"etcetera:block/snail_shell/break1",
 			"etcetera:block/snail_shell/break2",
-			"etcetera:block/snail_shell/break3",
-			"etcetera:block/snail_shell/break4"
+			"etcetera:block/snail_shell/break3"
 		],
 		"subtitle": "subtitles.block.generic.break"
 	},
@@ -79,19 +78,19 @@
 	},
 	"block.snail_shell.place": {
 		"sounds": [
-			"etcetera:block/snail_shell/place1",
-			"etcetera:block/snail_shell/place2",
-			"etcetera:block/snail_shell/place3",
-			"etcetera:block/snail_shell/place4"
+			"dig/stone1",
+			"dig/stone2",
+			"dig/stone3",
+			"dig/stone4"
 		],
 		"subtitle": "subtitles.block.generic.place"
 	},
 	"block.snail_shell.step": {
 		"sounds": [
-			"etcetera:block/snail_shell/light1",
-			"etcetera:block/snail_shell/light2",
-			"etcetera:block/snail_shell/light3",
-			"etcetera:block/snail_shell/light4"
+			"step/stone1",
+			"step/stone2",
+			"step/stone3",
+			"step/stone4"
 		],
 		"subtitle": "subtitles.block.generic.footsteps"
 	},
