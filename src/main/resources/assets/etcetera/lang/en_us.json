@@ -9,6 +9,7 @@
 
   "block.etcetera.dice": "Dice",
   "stat.minecraft.rotate_dice": "Dices Rolled",
+  "subtitles.block.etcetera.dice.roll": "Dice rolls",
 
   "block.etcetera.frame": "Frame",
 
@@ -29,22 +30,36 @@
   "block.etcetera.iridescent_terracotta": "Iridescent Terracotta",
   "block.etcetera.iridescent_concrete": "Iridescent Concrete",
   "block.etcetera.iridescent_lantern": "Iridescent Lantern",
+  "advancements.etcetera.nether.obtain_bismuth.title": "Down to Bismuth-ss",
+  "advancements.etcetera.nether.obtain_bismuth.description": "Obtain Raw Bismuth",
 
   "item.etcetera.wrench": "Wrench",
   "item.etcetera.wrench.select": "Property selected: \"%1$s\"",
   "item.etcetera.wrench.invalid": "Property: \"%1$s\" cannot be modified",
   "item.etcetera.wrench.block.invalid": "This block cannot be modified",
+  "subtitles.item.etcetera.wrench.select": "Wrench shifts",
+  "subtitles.item.etcetera.wrench.fail": "Wrench fails",
+  "subtitles.item.etcetera.wrench.modify": "Wrench modifies",
   "item.etcetera.chisel": "Chisel",
+  "subtitles.item.etcetera.chisel.use": "Chiselling",
   "item.etcetera.hammer": "Hammer",
+  "subtitles.item.etcetera.hammer.use": "Hammering",
   "item.etcetera.handbell": "Handbell",
+  "subtitles.item.etcetera.handbell.ring": "Handbell rings",
 
   "block.etcetera.squid_lamp": "Squid Lamp",
   "item.etcetera.tidal_helmet": "Tidal Helmet",
+  "subtitles.item.etcetera.tidal.armor.equip": "Tidal Helmet bwoops",
   "entity.etcetera.turtle_raft": "Turtle Raft",
   "item.etcetera.turtle_raft": "Turtle Raft",
+  "advancements.etcetera.story.tidal_helmet.title": "All-Seaing Eye",
+  "advancements.etcetera.story.tidal_helmet.description": "Combine the power of a Turtle Shell and an Heart of The Sea",
+  "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Cephalopod Activities",
+  "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Obtain a Squid Lamp",
 
   "block.etcetera.crumbling_stone": "Crumbling Stone",
   "block.etcetera.waxed_crumbling_stone": "Waxed Crumbling Stone",
+  "subtitles.block.etcetera.crumbling_stone.crumble": "Block crumbles",
 
   "block.etcetera.leveled_stone": "Leveled Stone",
   "block.etcetera.leveled_stone_slab": "Leveled Stone Slab",
@@ -52,13 +67,8 @@
 
   "block.etcetera.light_bulb": "Light Bulb",
   "block.etcetera.tinted_light_bulb": "Tinted Light Bulb",
-
-  "advancements.etcetera.nether.obtain_bismuth.title": "Down to Bismuth-ss",
-  "advancements.etcetera.nether.obtain_bismuth.description": "Obtain Raw Bismuth",
-  "advancements.etcetera.story.tidal_helmet.title": "All-Seaing Eye",
-  "advancements.etcetera.story.tidal_helmet.description": "Combine the power of a Turtle Shell and an Heart of The Sea",
-  "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Cephalopod Activities",
-  "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Obtain a Squid Lamp",
+  "subtitles.block.etcetera.light_bulb.on": "Light Bulb brightens",
+  "subtitles.block.etcetera.light_bulb.off": "Light Bulb darkens",
 
   "entity.etcetera.snail": "Snail",
   "item.etcetera.snail_spawn_egg": "Snail Spawn Egg",
@@ -70,25 +80,12 @@
   "item.etcetera.escargot": "Escargot",
   "block.etcetera.mucus": "Mucus",
   "block.etcetera.mucus_block": "Mucus Block",
-
   "subtitles.entity.snail.death": "Snail dies",
   "subtitles.entity.snail.eat": "Snail munches",
   "subtitles.entity.snail.hurt": "Snail hurts",
   "subtitles.entity.snail.hurt_hidden": "Snail deflects",
   "subtitles.entity.snail.shell_grow": "Snail Shell grows",
   "subtitles.entity.snail.slide": "Snail slides",
-
-  "subtitles.item.etcetera.wrench.select": "Wrench shifts",
-  "subtitles.item.etcetera.wrench.fail": "Wrench fails",
-  "subtitles.item.etcetera.wrench.modify": "Wrench modifies",
-  "subtitles.item.etcetera.hammer.use": "Hammering",
-  "subtitles.item.etcetera.chisel.use": "Chiselling",
-  "subtitles.item.etcetera.handbell.ring": "Handbell rings",
-  "subtitles.block.etcetera.light_bulb.on": "Light Bulb brightens",
-  "subtitles.block.etcetera.light_bulb.off": "Light Bulb darkens",
-  "subtitles.block.etcetera.dice.roll": "Dice rolls",
-  "subtitles.item.etcetera.tidal.armor.equip": "Tidal Helmet bwoops",
-  "subtitles.block.etcetera.crumbling_stone.crumble": "Block crumbles",
 
   "entity.etcetera.chapple": "Chapple",
   "item.etcetera.chapple_spawn_egg": "Chapple Spawn Egg",

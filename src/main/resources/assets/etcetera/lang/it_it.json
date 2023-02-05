@@ -9,6 +9,7 @@
 
   "block.etcetera.dice": "Dado",
   "stat.minecraft.rotate_dice": "Dadi tirati",
+  "subtitles.block.etcetera.dice.roll": "Dado rotola",
 
   "block.etcetera.frame": "Intelaiatura",
 
@@ -29,22 +30,36 @@
   "block.etcetera.iridescent_terracotta": "Terracotta iridescente",
   "block.etcetera.iridescent_concrete": "Calcestruzzo iridescente",
   "block.etcetera.iridescent_lantern": "Lanterna iridescente",
+  "advancements.etcetera.nether.obtain_bismuth.title": "Unti e bismuti",
+  "advancements.etcetera.nether.obtain_bismuth.description": "Ottieni del bismuto grezzo",
 
   "item.etcetera.wrench": "Chiave inglese",
   "item.etcetera.wrench.select": "Proprietà selezionata: \"%1$s\"",
   "item.etcetera.wrench.invalid": "Proprietà: \"%1$s\" non può",
   "item.etcetera.wrench.block.invalid": "Questo blocco non può essere modificato",
+  "subtitles.item.etcetera.wrench.select": "Chiave inglese seleziona",
+  "subtitles.item.etcetera.wrench.fail": "Chiave inglese fallisce",
+  "subtitles.item.etcetera.wrench.modify": "Chiave inglese modifica",
   "item.etcetera.chisel": "Scalpello",
+  "subtitles.item.etcetera.chisel.use": "Blocco viene intagliato",
   "item.etcetera.hammer": "Martello",
+  "subtitles.item.etcetera.hammer.use": "Blocco viene martellato",
   "item.etcetera.handbell": "Campanella",
+  "subtitles.item.etcetera.handbell.ring": "Campanella rintocca",
 
   "block.etcetera.squid_lamp": "Lampada tentacolosa",
   "item.etcetera.tidal_helmet": "Elmo delle maree",
+  "subtitles.item.etcetera.tidal.armor.equip": "Elmo delle maree fa bwoop",
   "entity.etcetera.turtle_raft": "Zattera di tartaruga",
   "item.etcetera.turtle_raft": "Zattera di tartaruga",
+  "advancements.etcetera.story.tidal_helmet.title": "In fondo al mar",
+  "advancements.etcetera.story.tidal_helmet.description": "Combina il potere di un cuore del mare e un carapace di tartaruga",
+  "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Pol-position",
+  "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Ottieni una lampada tentacolosa",
 
   "block.etcetera.crumbling_stone": "Pietra friabile",
   "block.etcetera.waxed_crumbling_stone": "Pietra friabile cerato",
+  "subtitles.block.etcetera.crumbling_stone.crumble": "Blocco si sgretola",
 
   "block.etcetera.leveled_stone": "Pietra livellata",
   "block.etcetera.leveled_stone_slab": "Lastra di pietra livellata",
@@ -52,13 +67,8 @@
 
   "block.etcetera.light_bulb": "Lampadina",
   "block.etcetera.tinted_light_bulb": "Lampadina oscurata",
-
-  "advancements.etcetera.nether.obtain_bismuth.title": "Unti e bismuti",
-  "advancements.etcetera.nether.obtain_bismuth.description": "Ottieni del bismuto grezzo",
-  "advancements.etcetera.story.tidal_helmet.title": "In fondo al mar",
-  "advancements.etcetera.story.tidal_helmet.description": "Combina il potere di un cuore del mare e un carapace di tartaruga",
-  "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Pol-position",
-  "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Ottieni una lampada tentacolosa",
+  "subtitles.block.etcetera.light_bulb.on": "Lampadina si illumina",
+  "subtitles.block.etcetera.light_bulb.off": "Lampadina si spegne",
 
   "entity.etcetera.snail": "Chiocciola",
   "item.etcetera.snail_spawn_egg": "Uovo generatore di chiocciola",
@@ -70,25 +80,12 @@
   "item.etcetera.escargot": "Escargot",
   "block.etcetera.mucus": "Bava",
   "block.etcetera.mucus_block": "Blocco di bava",
-
   "subtitles.entity.snail.death": "Chiocciola muore",
   "subtitles.entity.snail.eat": "Chiocciola mordicchia",
   "subtitles.entity.snail.hurt": "Chiocciola ferita",
   "subtitles.entity.snail.hurt_hidden": "Chiocciola deflette",
   "subtitles.entity.snail.shell_grow": "Guscio di chiocciola cresce",
   "subtitles.entity.snail.slide": "Chiocciola striscia",
-
-  "subtitles.item.etcetera.wrench.select": "Chiave inglese seleziona",
-  "subtitles.item.etcetera.wrench.fail": "Chiave inglese fallisce",
-  "subtitles.item.etcetera.wrench.modify": "Chiave inglese modifica",
-  "subtitles.item.etcetera.hammer.use": "Blocco viene martellato",
-  "subtitles.item.etcetera.chisel.use": "Blocco viene intagliato",
-  "subtitles.item.etcetera.handbell.ring": "Campanella rintocca",
-  "subtitles.block.etcetera.light_bulb.on": "Lampadina si illumina",
-  "subtitles.block.etcetera.light_bulb.off": "Lampadina si spegne",
-  "subtitles.block.etcetera.dice.roll": "Dado rotola",
-  "subtitles.item.etcetera.tidal.armor.equip": "Elmo delle maree fa bwoop",
-  "subtitles.block.etcetera.crumbling_stone.crumble": "Blocco si sgretola",
 
   "entity.etcetera.chapple": "Chapple",
   "item.etcetera.chapple_spawn_egg": "Uovo generatore di chapple",
