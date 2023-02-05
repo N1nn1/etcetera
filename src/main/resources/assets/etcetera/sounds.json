@@ -135,6 +135,13 @@
 		],
 		"subtitle": "subtitles.block.generic.footsteps"
 	},
+	"entity.chapple.convert": {
+		"sounds": [
+			"etcetera:entity/chapple/convert1",
+			"etcetera:entity/chapple/convert2"
+		],
+		"subtitle": "subtitles.entity.chapple.convert"
+	},
 	"block.bismuth_block.break": {
 		"sounds": [
 			"etcetera:block/bismuth_block/heavy1",

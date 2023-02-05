@@ -90,5 +90,6 @@
   "entity.etcetera.chapple": "Chapple",
   "item.etcetera.chapple_spawn_egg": "Uovo generatore di chapple",
   "item.etcetera.eggple": "Meluovo",
-  "item.etcetera.golden_eggple": "Meluovo d'oro"
+  "item.etcetera.golden_eggple": "Meluovo d'oro",
+  "subtitles.entity.chapple.convert": "Chapple si trasforma"
 }

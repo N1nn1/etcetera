@@ -90,5 +90,6 @@
   "entity.etcetera.chapple": "Chapple",
   "item.etcetera.chapple_spawn_egg": "Chapple Spawn Egg",
   "item.etcetera.eggple": "Eggple",
-  "item.etcetera.golden_eggple": "Golden Eggple"
+  "item.etcetera.golden_eggple": "Golden Eggple",
+  "subtitles.entity.chapple.convert": "Chapple transforms"
 }

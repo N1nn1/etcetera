@@ -1,7 +1,9 @@
 package com.ninni.etcetera.entity;
 
+import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.Shearable;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.data.DataTracker;
@@ -23,11 +25,16 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.UUID;
 
 public class ChappleEntity extends ChickenEntity implements Shearable {
     private static final TrackedData<String> TYPE = DataTracker.registerData(ChappleEntity.class, TrackedDataHandlerRegistry.STRING);
     private static final TrackedData<Integer> APPLE_LAY_TIME = DataTracker.registerData(ChappleEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final Ingredient BREEDING_INGREDIENT = Ingredient.ofItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+    @Nullable
+    private UUID lightningId;
 
     public ChappleEntity(EntityType<? extends ChickenEntity> entityType, World world) {
         super(entityType, world);
@@ -83,10 +90,12 @@ public class ChappleEntity extends ChickenEntity implements Shearable {
     public void tickMovement() {
         super.tickMovement();
         this.eggLayTime = 1000;
+
         if (this.isAlive() && !this.isBaby() && !this.hasJockey()) this.setAppleLayTime(this.getAppleLayTime()-1);
         if (this.isAlive() && !this.isBaby() && !this.hasJockey() && this.getAppleLayTime() <= 0 && !this.world.isClient && this.getAppleLayTime() <= 0) {
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, (this.random.nextFloat() - this.random.nextFloat()) * 0.2f + 1.0f);
-            this.dropItem(this.getChappleType().apple);
+            if (this.getChappleType() == Type.GOLDEN && this.random.nextInt(3) == 0) this.dropItem(Items.GOLDEN_APPLE);
+            else this.dropItem(Items.APPLE);
             this.emitGameEvent(GameEvent.ENTITY_PLACE);
             this.setAppleLayTime(this.random.nextInt(6000) + 6000);
         }
@@ -140,6 +149,15 @@ public class ChappleEntity extends ChickenEntity implements Shearable {
         return this.isAlive() && !this.isBaby();
     }
 
+    @Override
+    public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
+        UUID uUID = lightning.getUuid();
+        if (!uUID.equals(this.lightningId)) {
+            this.setType(this.getChappleType() == Type.NORMAL ? Type.GOLDEN : Type.NORMAL);
+            this.lightningId = uUID;
+            this.playSound(EtceteraSoundEvents.ENTITY_CHAPPLE_CONVERT, 3.0f, 1.0f);
+        }
+    }
 
     @Override
     public ChappleEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {

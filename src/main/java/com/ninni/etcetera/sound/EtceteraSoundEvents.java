@@ -20,6 +20,7 @@ public interface EtceteraSoundEvents {
     SoundEvent BLOCK_CRUMBLING_STONE_CRUMBLE = register("block.crumbling_stone.crumble");
     SoundEvent BLOCK_LIGHT_BULB_ON = register("block.light_bulb.on");
     SoundEvent BLOCK_LIGHT_BULB_OFF = register("block.light_bulb.off");
+    SoundEvent ENTITY_CHAPPLE_CONVERT = register("entity.chapple.convert");
 
     SoundEvent ENTITY_SNAIL_SLIDE = register("entity.snail.slide");
     SoundEvent ENTITY_SNAIL_HURT_HIDDEN = register("entity.snail.hurt_hidden");
