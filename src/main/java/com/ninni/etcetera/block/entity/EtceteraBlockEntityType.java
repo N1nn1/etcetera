@@ -14,4 +14,10 @@ public class EtceteraBlockEntityType {
                     EtceteraBlocks.ITEM_STAND
             ).build(null)
     );
+    public static final BlockEntityType<TintedLightBulbBlockEntity> TINTED_LIGHT_BULB = Registry.register(
+            Registry.BLOCK_ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, "tinted_light_bulb"),
+            FabricBlockEntityTypeBuilder.create(TintedLightBulbBlockEntity::new,
+                    EtceteraBlocks.TINTED_LIGHT_BULB
+            ).build(null)
+    );
 }

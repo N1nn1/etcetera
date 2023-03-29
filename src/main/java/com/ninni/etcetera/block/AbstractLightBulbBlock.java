@@ -11,6 +11,7 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -54,26 +55,14 @@ public class AbstractLightBulbBlock extends Block implements Waterloggable {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        LightBulbBrightness brightness = state.get(BRIGHTNESS);
-
-        if (brightness == LightBulbBrightness.OFF) {
-            world.setBlockState(pos, state.with(BRIGHTNESS, LightBulbBrightness.DARK));
-            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON, SoundCategory.BLOCKS, 1, 0.6F);
-        }
-        else if (brightness == LightBulbBrightness.DARK) {
-            world.setBlockState(pos, state.with(BRIGHTNESS, LightBulbBrightness.DIM));
-            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON, SoundCategory.BLOCKS, 1, 0.8F);
-        }
-        else if (brightness == LightBulbBrightness.DIM) {
-            world.setBlockState(pos, state.with(BRIGHTNESS, LightBulbBrightness.BRIGHT));
-            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON, SoundCategory.BLOCKS, 1, 1);
-        }
-        else if (brightness == LightBulbBrightness.BRIGHT) {
-            world.setBlockState(pos, state.with(BRIGHTNESS, LightBulbBrightness.OFF));
-            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_OFF, SoundCategory.BLOCKS, 1, 1);
-        }
-
+        this.turnBrightness(state, world, pos, state.get(BRIGHTNESS));
         return ActionResult.SUCCESS;
+    }
+
+    public void turnBrightness(BlockState state, World world, BlockPos pos, LightBulbBrightness brightness) {
+        SoundEvent soundEvent = brightness == LightBulbBrightness.BRIGHT ? EtceteraSoundEvents.BLOCK_LIGHT_BULB_OFF : EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON;
+        world.setBlockState(pos, state.cycle(BRIGHTNESS));
+        world.playSound(null, pos, soundEvent, SoundCategory.BLOCKS, 1, 1);
     }
 
     @Override
