@@ -44,7 +44,8 @@ public class EtceteraClient implements ClientModInitializer {
 				EtceteraBlocks.BOUQUET,
 				EtceteraBlocks.POTTED_BOUQUET,
 				EtceteraBlocks.ITEM_STAND,
-				EtceteraBlocks.FRAME
+				EtceteraBlocks.FRAME,
+				EtceteraBlocks.POTTED_SWEET_BERRY_BUSH
 		);
 
 		Reflection.initialize(EtceteraEntityModelLayers.class);

@@ -73,6 +73,7 @@ public class EtceteraItems {
     public static final Item SNAIL_SHELL_TILE_STAIRS = register("snail_shell_tile_stairs", new BlockItem(EtceteraBlocks.SNAIL_SHELL_TILE_STAIRS, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item SNAIL_SHELL_TILE_SLAB = register("snail_shell_tile_slab", new BlockItem(EtceteraBlocks.SNAIL_SHELL_TILE_SLAB, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item ESCARGOT = register("escargot", new EscargotItem(new FabricItemSettings().recipeRemainder(SNAIL_SHELL).group(ITEM_GROUP).maxCount(1).food(new FoodComponent.Builder().hunger(4).saturationModifier(0.8f).build())));
+    public static final Item POTTED_SWEET_BERRIES = register("potted_sweet_berries", new BlockItem(EtceteraBlocks.POTTED_SWEET_BERRY_BUSH, new FabricItemSettings().recipeRemainder(SNAIL_SHELL).group(ITEM_GROUP).maxCount(16)));
     public static final Item MUCUS = register("mucus", new BlockItem(EtceteraBlocks.MUCUS, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item MUCUS_BLOCK = register("mucus_block", new BlockItem(EtceteraBlocks.MUCUS_BLOCK, new FabricItemSettings().group(ITEM_GROUP)));
 
