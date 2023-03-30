@@ -18,4 +18,5 @@ public interface EtceteraTags {
     TagKey<Block> CHISELLABLE = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "chisellable"));
     TagKey<Block> HAMMERABLE = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "hammerable"));
     TagKey<Block> OFFSET_REMOVER = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "offset_remover"));
+    TagKey<Block> MUCUS_SOLIDIFIER = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "mucus_solidifier"));
 }

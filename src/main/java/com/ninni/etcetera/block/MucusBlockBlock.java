@@ -1,16 +1,17 @@
 package com.ninni.etcetera.block;
 
 import com.ninni.etcetera.EtceteraProperties;
+import com.ninni.etcetera.EtceteraTags;
 import com.ninni.etcetera.entity.EtceteraEntityType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
@@ -44,8 +45,8 @@ public class MucusBlockBlock extends Block {
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         int i;
-        if ((i = getDistanceFromLog(neighborState) + 1) != 1 || state.get(DISTANCE) != i) {
-            world.createAndScheduleBlockTick(pos, this, 1);
+        if ((i = getDistanceFromWater(neighborState) + 1) != 1 || state.get(DISTANCE) != i) {
+            world.createAndScheduleBlockTick(pos, this, 2);
         }
         return state;
     }
@@ -60,14 +61,15 @@ public class MucusBlockBlock extends Block {
         BlockPos.Mutable mutable = new BlockPos.Mutable();
         for (Direction direction : Direction.values()) {
             mutable.set(pos, direction);
-            i = Math.min(i, getDistanceFromLog(world.getBlockState(mutable)) + 1);
+            i = Math.min(i, getDistanceFromWater(world.getBlockState(mutable)) + 1);
             if (i == 1) break;
         }
+        world.playSound(null, pos, world.getBlockState(pos).getBlock().getSoundGroup(state).getBreakSound(), SoundCategory.BLOCKS, 0.15F, 1.5F);
         return state.with(DISTANCE, i).with(SOLID, i < 7);
     }
 
-    private static int getDistanceFromLog(BlockState state) {
-        if (state.isOf(Blocks.WATER)) {
+    private static int getDistanceFromWater(BlockState state) {
+        if (state.isIn(EtceteraTags.MUCUS_SOLIDIFIER)) {
             return 0;
         }
         if (state.isOf(EtceteraBlocks.MUCUS_BLOCK)) {

@@ -38,6 +38,11 @@ public class PottedSweetBerryBushBlock extends PlantBlock implements Fertilizabl
     }
 
     @Override
+    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+        return true;
+    }
+
+    @Override
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
         return new ItemStack(EtceteraItems.POTTED_SWEET_BERRIES);
     }
