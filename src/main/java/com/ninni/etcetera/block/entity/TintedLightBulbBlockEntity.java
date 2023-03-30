@@ -9,6 +9,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class TintedLightBulbBlockEntity extends BlockEntity {
@@ -47,7 +48,7 @@ public class TintedLightBulbBlockEntity extends BlockEntity {
         }
         if (this.offTicks == 1 && state.get(AbstractLightBulbBlock.BRIGHTNESS) == LightBulbBrightness.OFF && this.name != null) {
             world.setBlockState(pos, state.with(AbstractLightBulbBlock.BRIGHTNESS, LightBulbBrightness.valueOf(this.name)));
-            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON, SoundCategory.BLOCKS, 1.0F, 0.25F);
             tintedLightBulbBlockEntity.setTicksBeforeFlicker(((TintedLightBulbBlock)state.getBlock()).getTicksBeforeFlicker(world));
             this.offTicks = 0;
         }
@@ -60,8 +61,8 @@ public class TintedLightBulbBlockEntity extends BlockEntity {
             this.name = state.get(AbstractLightBulbBlock.BRIGHTNESS).name();
             world.createAndScheduleBlockTick(pos, state.getBlock(), 2);
             world.setBlockState(pos, state.with(AbstractLightBulbBlock.BRIGHTNESS, LightBulbBrightness.OFF));
-            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_OFF, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            this.offTicks = 5;
+            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_OFF, SoundCategory.BLOCKS, 1.0F, 0.25F);
+            this.offTicks = MathHelper.nextInt(world.random, 1, 30);
         }
     }
 }
