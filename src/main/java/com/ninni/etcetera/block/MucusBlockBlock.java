@@ -4,17 +4,17 @@ import com.ninni.etcetera.EtceteraProperties;
 import com.ninni.etcetera.entity.EtceteraEntityType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
@@ -27,49 +27,53 @@ import net.minecraft.world.WorldAccess;
 
 @SuppressWarnings("deprecation")
 public class MucusBlockBlock extends Block {
+    private static final IntProperty DISTANCE = Properties.DISTANCE_1_7;
     public static final BooleanProperty SOLID = EtceteraProperties.SOLID;
     protected static final VoxelShape SHAPE = Block.createCuboidShape(1, 1, 1, 15, 10, 15);
 
     public MucusBlockBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(SOLID, false));
+        this.setDefaultState(this.stateManager.getDefaultState().with(SOLID, false).with(DISTANCE, 7));
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        BlockPos blockPos = ctx.getBlockPos();
-        World world = ctx.getWorld();
-        if (solidifiesOnAnySide(world, blockPos)) {
-            return this.getDefaultState().with(SOLID, true);
-        } else {
-            world.createAndScheduleBlockTick(ctx.getBlockPos(), this, 16);
-        }
-        return super.getPlacementState(ctx);
+        return updateDistanceFromWater(this.getDefaultState(), ctx.getWorld(), ctx.getBlockPos());
     }
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (solidifiesOnAnySide(world, pos) && !state.get(SOLID)) {
-            return this.getDefaultState().with(SOLID, true);
+        int i;
+        if ((i = getDistanceFromLog(neighborState) + 1) != 1 || state.get(DISTANCE) != i) {
+            world.createAndScheduleBlockTick(pos, this, 1);
         }
-        world.createAndScheduleBlockTick(pos, this, 16);
         return state;
     }
 
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (!solidifiesOnAnySide(world, pos) && state.get(SOLID)) {
-            world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_BREAK, SoundCategory.BLOCKS, 1, 1);
-            world.setBlockState(pos, state.with(SOLID, false));
+        world.setBlockState(pos, updateDistanceFromWater(state, world, pos), Block.NOTIFY_ALL);
+    }
+
+    private static BlockState updateDistanceFromWater(BlockState state, WorldAccess world, BlockPos pos) {
+        int i = 7;
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
+        for (Direction direction : Direction.values()) {
+            mutable.set(pos, direction);
+            i = Math.min(i, getDistanceFromLog(world.getBlockState(mutable)) + 1);
+            if (i == 1) break;
         }
+        return state.with(DISTANCE, i).with(SOLID, i < 7);
     }
 
-    private static boolean solidifiesOnAnySide(BlockView world, BlockPos pos) {
-        return solidifiesIn(world.getBlockState(pos.down())) || solidifiesIn(world.getBlockState(pos.up())) || solidifiesIn(world.getBlockState(pos.south())) || solidifiesIn(world.getBlockState(pos.north())) || solidifiesIn(world.getBlockState(pos.west())) || solidifiesIn(world.getBlockState(pos.east()));
-    }
-
-    private static boolean solidifiesIn(BlockState state) {
-        return state.getFluidState().isIn(FluidTags.WATER);
+    private static int getDistanceFromLog(BlockState state) {
+        if (state.isOf(Blocks.WATER)) {
+            return 0;
+        }
+        if (state.isOf(EtceteraBlocks.MUCUS_BLOCK)) {
+            return state.get(DISTANCE);
+        }
+        return 7;
     }
 
     @Override
@@ -91,6 +95,6 @@ public class MucusBlockBlock extends Block {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(SOLID);
+        builder.add(SOLID, DISTANCE);
     }
 }
