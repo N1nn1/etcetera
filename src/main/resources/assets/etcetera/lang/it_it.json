@@ -13,6 +13,9 @@
 
   "block.etcetera.frame": "Intelaiatura",
 
+  "block.etcetera.prickly_can": "Bidone spinoso",
+  "etcetera.container.prickly_can": "Bidone spinoso",
+
   "block.etcetera.bouquet": "Bouquet",
   "block.etcetera.potted_bouquet": "Vaso con bouquet",
   "block.etcetera.terracotta_vase": "Anfora",

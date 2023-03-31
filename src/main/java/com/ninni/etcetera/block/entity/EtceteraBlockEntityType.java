@@ -20,4 +20,10 @@ public class EtceteraBlockEntityType {
                     EtceteraBlocks.TINTED_LIGHT_BULB
             ).build(null)
     );
+    public static final BlockEntityType<PricklyCanBlockEntity> PRICKLY_CAN = Registry.register(
+            Registry.BLOCK_ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, "prickly_can"),
+            FabricBlockEntityTypeBuilder.create(PricklyCanBlockEntity::new,
+                    EtceteraBlocks.PRICKLY_CAN
+            ).build(null)
+    );
 }

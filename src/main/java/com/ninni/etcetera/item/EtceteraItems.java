@@ -47,6 +47,8 @@ public class EtceteraItems {
 
     public static final Item FRAME = register("frame", new BlockItem(EtceteraBlocks.FRAME, new FabricItemSettings().group(ITEM_GROUP)));
 
+    public static final Item PRICKLY_CAN = register("prickly_can", new BlockItem(EtceteraBlocks.PRICKLY_CAN, new FabricItemSettings().group(ITEM_GROUP)));
+
     public static final Item BOUQUET = register("bouquet", new BlockItem(EtceteraBlocks.BOUQUET, new FabricItemSettings().group(ITEM_GROUP).maxCount(16)));
     public static final Item TERRACOTTA_VASE = register("terracotta_vase", new BlockItem(EtceteraBlocks.TERRACOTTA_VASE, new FabricItemSettings().group(ITEM_GROUP)));
 

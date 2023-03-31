@@ -13,6 +13,9 @@
 
   "block.etcetera.frame": "Frame",
 
+  "block.etcetera.prickly_can": "Prickly Can",
+  "etcetera.container.prickly_can": "Prickly Can",
+
   "block.etcetera.bouquet": "Bouquet",
   "block.etcetera.potted_bouquet": "Potted Bouquet",
   "block.etcetera.terracotta_vase": "Terracotta Vase",
