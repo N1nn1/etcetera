@@ -4,6 +4,8 @@ import com.google.common.reflect.Reflection;
 import com.ninni.etcetera.block.EtceteraBlocks;
 import com.ninni.etcetera.block.entity.EtceteraBlockEntityType;
 import com.ninni.etcetera.client.TidalHelmetHud;
+import com.ninni.etcetera.client.gui.screen.EtceteraScreenHandlerType;
+import com.ninni.etcetera.client.gui.screen.PricklyCanScreen;
 import com.ninni.etcetera.client.model.EtceteraEntityModelLayers;
 import com.ninni.etcetera.client.renderer.block.entity.ItemStandBlockEntityRenderer;
 import com.ninni.etcetera.client.renderer.entity.ChappleRenderer;
@@ -18,6 +20,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.item.DyeableItem;
@@ -48,6 +51,8 @@ public class EtceteraClient implements ClientModInitializer {
 				EtceteraBlocks.POTTED_SWEET_BERRY_BUSH,
 				EtceteraBlocks.PRICKLY_CAN
 		);
+
+		HandledScreens.register(EtceteraScreenHandlerType.PRICKLY_CAN, PricklyCanScreen::new);
 
 		Reflection.initialize(EtceteraEntityModelLayers.class);
 		EntityRendererRegistry.register(EtceteraEntityType.TURTLE_RAFT, TurtleRaftRenderer::new);

@@ -1,6 +1,7 @@
 package com.ninni.etcetera.block.entity;
 
 import com.ninni.etcetera.block.PricklyCanBlock;
+import com.ninni.etcetera.client.gui.screen.PricklyCanScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.block.entity.ViewerCountManager;
@@ -10,8 +11,6 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.screen.Generic3x3ContainerScreenHandler;
-import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -27,7 +26,7 @@ public class PricklyCanBlockEntity extends LootableContainerBlockEntity {
 
     public PricklyCanBlockEntity(BlockPos pos, BlockState state) {
         super(EtceteraBlockEntityType.PRICKLY_CAN, pos, state);
-        this.inventory = DefaultedList.ofSize(9, ItemStack.EMPTY);
+        this.inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
         this.stateManager = new ViewerCountManager() {
             @Override
             protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
@@ -47,12 +46,10 @@ public class PricklyCanBlockEntity extends LootableContainerBlockEntity {
 
             @Override
             protected boolean isPlayerViewing(PlayerEntity player) {
-                if (player.currentScreenHandler instanceof GenericContainerScreenHandler) {
-                    Inventory inventory = ((GenericContainerScreenHandler)player.currentScreenHandler).getInventory();
+                if (player.currentScreenHandler instanceof PricklyCanScreenHandler) {
+                    Inventory inventory = ((PricklyCanScreenHandler)player.currentScreenHandler).getInventory();
                     return inventory == PricklyCanBlockEntity.this;
-                } else {
-                    return false;
-                }
+                } else return false;
             }
         };
     }
@@ -78,7 +75,7 @@ public class PricklyCanBlockEntity extends LootableContainerBlockEntity {
 
     @Override
     public int size() {
-        return 9;
+        return 27;
     }
 
     @Override
@@ -98,7 +95,7 @@ public class PricklyCanBlockEntity extends LootableContainerBlockEntity {
 
     @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-        return new Generic3x3ContainerScreenHandler(syncId, playerInventory, this);
+        return PricklyCanScreenHandler.createGeneric9x3(syncId, playerInventory, this);
     }
 
     @Override

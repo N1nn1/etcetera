@@ -1,7 +1,9 @@
 package com.ninni.etcetera.block;
 
 import com.ninni.etcetera.block.entity.PricklyCanBlockEntity;
+import com.ninni.etcetera.stat.EtceteraStats;
 import net.minecraft.block.*;
+import net.minecraft.block.entity.BarrelBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,7 +12,6 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -49,7 +50,7 @@ public class PricklyCanBlock extends BlockWithEntity {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof PricklyCanBlockEntity) {
                 player.openHandledScreen((PricklyCanBlockEntity)blockEntity);
-                player.incrementStat(Stats.OPEN_BARREL);
+                player.incrementStat(EtceteraStats.OPEN_PRICKLY_CAN);
             }
 
             return ActionResult.CONSUME;
@@ -93,8 +94,8 @@ public class PricklyCanBlock extends BlockWithEntity {
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         if (itemStack.hasCustomName()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof PricklyCanBlockEntity) {
-                ((PricklyCanBlockEntity)blockEntity).setCustomName(itemStack.getName());
+            if (blockEntity instanceof BarrelBlockEntity) {
+                ((BarrelBlockEntity)blockEntity).setCustomName(itemStack.getName());
             }
         }
 
@@ -117,6 +118,6 @@ public class PricklyCanBlock extends BlockWithEntity {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerLookDirection().getOpposite());
+        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
     }
 }

@@ -10,6 +10,7 @@ public class EtceteraStats {
 
     public static final Identifier ROTATE_DICE = register("rotate_dice", StatFormatter.DEFAULT);
     public static final Identifier INTERACT_WITH_ITEM_STAND = register("interact_with_item_stand", StatFormatter.DEFAULT);
+    public static final Identifier OPEN_PRICKLY_CAN = register("open_prickly_can", StatFormatter.DEFAULT);
 
 
     private static Identifier register(String id, StatFormatter formatter) {

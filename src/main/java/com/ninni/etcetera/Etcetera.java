@@ -5,6 +5,7 @@ import static com.ninni.etcetera.block.EtceteraBlocks.WAXED_CRUMBLING_STONE;
 
 import java.util.LinkedHashMap;
 
+import com.ninni.etcetera.client.gui.screen.EtceteraScreenHandlerType;
 import com.ninni.etcetera.entity.EggpleEntity;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
@@ -59,6 +60,7 @@ public class Etcetera implements ModInitializer {
 			EtceteraSoundEvents.class,
 			EtceteraStats.class,
 			EtceteraBlockEntityType.class,
+			EtceteraScreenHandlerType.class,
 			EtceteraEntityType.class,
 			EtceteraItems.class,
 			EtceteraBlocks.class
