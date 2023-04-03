@@ -94,8 +94,8 @@ public class PricklyCanBlock extends BlockWithEntity {
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
         if (itemStack.hasCustomName()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof BarrelBlockEntity) {
-                ((BarrelBlockEntity)blockEntity).setCustomName(itemStack.getName());
+            if (blockEntity instanceof PricklyCanBlockEntity pricklyCanBlockEntity) {
+                pricklyCanBlockEntity.setCustomName(itemStack.getName());
             }
         }
 
