@@ -1,10 +1,14 @@
 package com.ninni.etcetera.client.gui.screen;
 
+import com.ninni.etcetera.network.EtceteraNetwork;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.screen.slot.Slot;
@@ -50,12 +54,13 @@ public class PricklyCanScreenHandler extends ScreenHandler {
         for(j = 0; j < 9; ++j) {
             this.addSlot(new Slot(playerInventory, j, 8 + j * 18, 161 + i));
         }
-
     }
 
-
-    public void removeItems() {
-        this.inventory.clear();
+    @Override
+    public boolean onButtonClick(PlayerEntity player, int id) {
+        PacketByteBuf buf = PacketByteBufs.create();
+        ClientPlayNetworking.send(EtceteraNetwork.UPDATE_PRICKLY_CAN, buf);
+        return true;
     }
 
     @Override

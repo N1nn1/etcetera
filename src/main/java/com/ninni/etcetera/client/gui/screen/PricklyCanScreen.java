@@ -107,7 +107,7 @@ public class PricklyCanScreen extends HandledScreen<PricklyCanScreenHandler> {
         public void onPress() {
             if (!this.isDisabled()) {
                 this.playDownSound(MinecraftClient.getInstance().getSoundManager());
-                PricklyCanScreen.this.getScreenHandler().removeItems();
+                PricklyCanScreen.this.getScreenHandler().onButtonClick(PricklyCanScreen.this.client.player, 1);
             }
         }
 

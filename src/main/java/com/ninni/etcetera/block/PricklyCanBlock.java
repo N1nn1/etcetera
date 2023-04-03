@@ -34,7 +34,7 @@ public class PricklyCanBlock extends BlockWithEntity {
 
     public PricklyCanBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(((this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(OPEN, false));
+        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(OPEN, false));
     }
 
     @Override
@@ -48,8 +48,8 @@ public class PricklyCanBlock extends BlockWithEntity {
             return ActionResult.SUCCESS;
         } else {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (blockEntity instanceof PricklyCanBlockEntity) {
-                player.openHandledScreen((PricklyCanBlockEntity)blockEntity);
+            if (blockEntity instanceof PricklyCanBlockEntity pricklyCanBlockEntity) {
+                player.openHandledScreen(pricklyCanBlockEntity);
                 player.incrementStat(EtceteraStats.OPEN_PRICKLY_CAN);
             }
 
@@ -73,8 +73,8 @@ public class PricklyCanBlock extends BlockWithEntity {
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof PricklyCanBlockEntity) {
-            ((PricklyCanBlockEntity)blockEntity).tick();
+        if (blockEntity instanceof PricklyCanBlockEntity pricklyCanBlockEntity) {
+            pricklyCanBlockEntity.tick();
         }
 
     }

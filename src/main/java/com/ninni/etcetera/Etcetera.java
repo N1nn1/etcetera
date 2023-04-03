@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 
 import com.ninni.etcetera.client.gui.screen.EtceteraScreenHandlerType;
 import com.ninni.etcetera.entity.EggpleEntity;
+import com.ninni.etcetera.network.EtceteraNetwork;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -65,6 +66,8 @@ public class Etcetera implements ModInitializer {
 			EtceteraItems.class,
 			EtceteraBlocks.class
 		);
+
+		EtceteraNetwork.initCommon();
 
 		DispenserBlock.registerBehavior(EtceteraItems.EGGPLE, new ProjectileDispenserBehavior(){
 			@Override

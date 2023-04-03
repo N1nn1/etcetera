@@ -70,7 +70,6 @@ public class PricklyCanBlockEntity extends LootableContainerBlockEntity {
         if (!this.deserializeLootTable(nbt)) {
             Inventories.readNbt(nbt, this.inventory);
         }
-
     }
 
     @Override
@@ -103,7 +102,6 @@ public class PricklyCanBlockEntity extends LootableContainerBlockEntity {
         if (!this.removed && !player.isSpectator()) {
             this.stateManager.openContainer(player, this.getWorld(), this.getPos(), this.getCachedState());
         }
-
     }
 
     @Override
