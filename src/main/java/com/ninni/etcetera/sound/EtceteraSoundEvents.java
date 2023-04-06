@@ -27,7 +27,6 @@ public interface EtceteraSoundEvents {
     SoundEvent ENTITY_SNAIL_HURT = register("entity.snail.hurt");
     SoundEvent ENTITY_SNAIL_DEATH = register("entity.snail.death");
     SoundEvent ENTITY_SNAIL_DEATH_HIDDEN = register("entity.snail.death_hidden");
-    SoundEvent ENTITY_SNAIL_EAT = register("entity.snail.eat");
     SoundEvent ENTITY_SNAIL_SHELL_GROW = register("entity.snail.shell_grow");
 
     BlockSoundGroup NETHER_BISMUTH_ORE = register("nether_bismuth_ore", 1, 1);

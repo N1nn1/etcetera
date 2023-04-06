@@ -8,11 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.goal.FollowParentGoal;
-import net.minecraft.entity.ai.goal.LookAroundGoal;
-import net.minecraft.entity.ai.goal.LookAtEntityGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -25,7 +21,9 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -45,9 +43,10 @@ import org.jetbrains.annotations.Nullable;
 
 public class SnailEntity extends AnimalEntity {
     private static final TrackedData<Integer> SCARED_TICKS = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<Integer> WET_TICKS = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> SHELL_GROWTH = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private static final TrackedData<Boolean> HAS_EATEN = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private final UniformIntProvider regrowthTicks = UniformIntProvider.create(24000, 48000);
+    private int cooldown = 2;
 
     protected SnailEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -69,54 +68,30 @@ public class SnailEntity extends AnimalEntity {
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1);
     }
 
-
-    @Override
-    public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        ItemStack itemStack = player.getStackInHand(hand);
-
-        if (itemStack.isIn(EtceteraTags.SNAIL_EATS) && !this.isScared()) {
-            if (!this.world.isClient && !this.hasEaten()) {
-                this.setHasEaten(true);
-                if (!player.getAbilities().creativeMode) player.getStackInHand(player.getActiveHand()).decrement(1);
-                this.playSound(EtceteraSoundEvents.ENTITY_SNAIL_EAT, 1.0f, 1.0f);
-                return ActionResult.SUCCESS;
-            }
-            return ActionResult.CONSUME;
-        }
-
-        return super.interactMob(player, hand);
-    }
-
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(SCARED_TICKS, 0);
+        this.dataTracker.startTracking(WET_TICKS, 0);
         this.dataTracker.startTracking(SHELL_GROWTH, 0);
-        this.dataTracker.startTracking(HAS_EATEN, false);
     }
 
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
         nbt.putInt("ScaredTicks", this.getScaredTicks());
+        nbt.putInt("WetTicks", this.getScaredTicks());
         nbt.putInt("Shelled", this.getShellGrowthTicks());
-        nbt.putBoolean("HasEaten", this.hasEaten());
     }
 
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        this.setHasEaten(nbt.getBoolean("HasEaten"));
         this.setScaredTicks(nbt.getInt("ScaredTicks"));
+        this.setScaredTicks(nbt.getInt("WetTicks"));
         this.setShellGrowthTicks(nbt.getInt("Shelled"));
     }
 
-    public boolean hasEaten() {
-        return this.dataTracker.get(HAS_EATEN);
-    }
-    public void setHasEaten(boolean hasEaten) {
-        this.dataTracker.set(HAS_EATEN, hasEaten);
-    }
     public int getScaredTicks() {
         return this.dataTracker.get(SCARED_TICKS);
     }
@@ -127,17 +102,65 @@ public class SnailEntity extends AnimalEntity {
         return this.getScaredTicks() > 0;
     }
 
+    public int getWetTicks() {
+        return this.dataTracker.get(WET_TICKS);
+    }
+    public void addWetTicks(int wetTicks) {
+        this.dataTracker.set(WET_TICKS, this.getWetTicks() + wetTicks);
+    }
+
     public int getShellGrowthTicks() {
         return this.dataTracker.get(SHELL_GROWTH);
     }
-
     public void setShellGrowthTicks(int shellTicks) {
         this.dataTracker.set(SHELL_GROWTH, shellTicks);
     }
 
     @Override
+    public ActionResult interactMob(PlayerEntity player, Hand hand) {
+
+        ItemStack itemStack = player.getStackInHand(hand);
+
+        if (itemStack.isOf(Items.WATER_BUCKET) && !this.isScared() && this.getWetTicks() == 0) {
+            if (!this.world.isClient) {
+                if (!player.getAbilities().creativeMode) player.setStackInHand(player.getActiveHand(), Items.BUCKET.getDefaultStack());
+                this.addWetTicks(300);
+                this.playSound(SoundEvents.ITEM_BUCKET_EMPTY, 1, 1);
+                return ActionResult.SUCCESS;
+            }
+            return ActionResult.CONSUME;
+        }
+
+        return super.interactMob(player, hand);
+    }
+
+    @Override
     public void tickMovement() {
         super.tickMovement();
+        if (getWetTicks() > 0) {
+            this.addWetTicks(-1);
+            if (random.nextInt(10) == 0) {
+                world.addParticle(ParticleTypes.FALLING_WATER, this.getParticleX(0.6), this.getY() + random.nextDouble(), this.getParticleZ(0.6), 0.0, 0.0, 0.0);
+            }
+        }
+        if (this.getSteppingBlockState().isIn(EtceteraTags.MUCUS_SOLIDIFIER) || this.isTouchingWaterOrRain()) this.addWetTicks(1);
+
+        if (!this.world.isClient && this.isOnGround() && this.getWetTicks() > 0) {
+            BlockState blockState = EtceteraBlocks.MUCUS.getDefaultState();
+            for (int l = 0; l < 4; ++l) {
+                if (cooldown < 0) {
+                    int i = MathHelper.floor(this.getX() + (double)((float)(l % 2 * 2 - 1) * 0.25f));
+                    BlockPos blockPos2 = new BlockPos(i, MathHelper.floor(this.getY()), MathHelper.floor(this.getZ() + (double)((float)(l / 2 % 2 * 2 - 1) * 0.25f)));
+                    if (!this.world.getBlockState(blockPos2).isAir() || !blockState.canPlaceAt(this.world, blockPos2)) continue;
+                    this.world.setBlockState(blockPos2, blockState);
+                    cooldown = 10;
+                    this.playStepSound(blockPos2, blockState);
+                    this.world.emitGameEvent(GameEvent.BLOCK_PLACE, blockPos2, GameEvent.Emitter.of(this, blockState));
+                }
+            }
+            cooldown--;
+        }
+
         //code snatched with permission from orcinus (ily)
         this.world.getEntitiesByClass(PlayerEntity.class, this.getBoundingBox().expand(2D), this::isValidEntity).forEach(player -> this.setScaredTicks(100));
 
@@ -231,7 +254,6 @@ public class SnailEntity extends AnimalEntity {
 
     public static class SnailWanderGoal extends WanderAroundFarGoal {
         private final SnailEntity mob;
-        private int cooldown;
 
         public SnailWanderGoal(SnailEntity mob, double d) {
             super(mob, d);
@@ -241,7 +263,6 @@ public class SnailEntity extends AnimalEntity {
         @Override
         public void start() {
             super.start();
-            cooldown = 2;
         }
 
         @Override
@@ -254,31 +275,6 @@ public class SnailEntity extends AnimalEntity {
             return super.shouldContinue() && !this.mob.isScared();
         }
 
-        @Override
-        public void tick() {
-            super.tick();
-            if (!mob.world.isClient && mob.hasEaten()) {
-                BlockState blockState = EtceteraBlocks.MUCUS.getDefaultState();
-                for (int l = 0; l < 4; ++l) {
-                    if (cooldown < 0) {
-                        int i = MathHelper.floor(mob.getX() + (double)((float)(l % 2 * 2 - 1) * 0.25f));
-                        BlockPos blockPos2 = new BlockPos(i, MathHelper.floor(mob.getY()), MathHelper.floor(mob.getZ() + (double)((float)(l / 2 % 2 * 2 - 1) * 0.25f)));
-                        if (!mob.world.getBlockState(blockPos2).isAir() || !blockState.canPlaceAt(mob.world, blockPos2)) continue;
-                        mob.world.setBlockState(blockPos2, blockState);
-                        cooldown = 10;
-                        mob.playStepSound(blockPos2, blockState);
-                        mob.world.emitGameEvent(GameEvent.BLOCK_PLACE, blockPos2, GameEvent.Emitter.of(mob, blockState));
-                    }
-                }
-                cooldown--;
-            }
-        }
-
-        @Override
-        public void stop() {
-            super.stop();
-            if (mob.hasEaten()) mob.setHasEaten(false);
-        }
     }
 
     public static class SnailLookAroundGoal extends LookAroundGoal {

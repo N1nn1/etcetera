@@ -11,13 +11,6 @@
 		],
 		"subtitle": "subtitles.entity.snail.death"
 	},
-	"entity.snail.eat": {
-		"sounds": [
-			"etcetera:entity/snail/eat1",
-			"etcetera:entity/snail/eat2"
-		],
-		"subtitle": "subtitles.entity.snail.eat"
-	},
 	"entity.snail.hurt": {
 		"sounds": [
 			"etcetera:entity/snail/hurt1",
