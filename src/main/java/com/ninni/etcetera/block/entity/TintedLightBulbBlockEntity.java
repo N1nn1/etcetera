@@ -48,7 +48,7 @@ public class TintedLightBulbBlockEntity extends BlockEntity {
         }
         if (this.offTicks == 1 && state.get(AbstractLightBulbBlock.BRIGHTNESS) == LightBulbBrightness.OFF && this.name != null) {
             world.setBlockState(pos, state.with(AbstractLightBulbBlock.BRIGHTNESS, LightBulbBrightness.valueOf(this.name)));
-            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON, SoundCategory.BLOCKS, 1.0F, 0.25F);
+            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON, SoundCategory.BLOCKS, 0.1F, 0.25F);
             tintedLightBulbBlockEntity.setTicksBeforeFlicker(((TintedLightBulbBlock)state.getBlock()).getTicksBeforeFlicker(world));
             this.offTicks = 0;
         }
@@ -61,7 +61,7 @@ public class TintedLightBulbBlockEntity extends BlockEntity {
             this.name = state.get(AbstractLightBulbBlock.BRIGHTNESS).name();
             world.createAndScheduleBlockTick(pos, state.getBlock(), 2);
             world.setBlockState(pos, state.with(AbstractLightBulbBlock.BRIGHTNESS, LightBulbBrightness.OFF));
-            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_OFF, SoundCategory.BLOCKS, 1.0F, 0.25F);
+            world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_OFF, SoundCategory.BLOCKS, 0.1F, 0.25F);
             this.offTicks = MathHelper.nextInt(world.random, 1, 30);
         }
     }
