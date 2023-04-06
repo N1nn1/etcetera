@@ -78,6 +78,7 @@ public class PricklyCanScreen extends HandledScreen<PricklyCanScreenHandler> {
 
     @Environment(EnvType.CLIENT)
     class DeleteButtonWidget extends PricklyCanScreen.BaseButtonWidget {
+
         public DeleteButtonWidget(int x, int y) {
             super(x, y, Text.translatable(""));
         }
@@ -97,6 +98,7 @@ public class PricklyCanScreen extends HandledScreen<PricklyCanScreenHandler> {
             if (this.active && this.visible) {
                 if (keyCode != 257 && keyCode != 32 && keyCode != 335) return false;
                  else {
+                    if (!this.isDisabled()) this.playDownSound(MinecraftClient.getInstance().getSoundManager());
                     this.onPress();
                     return true;
                 }
@@ -105,12 +107,8 @@ public class PricklyCanScreen extends HandledScreen<PricklyCanScreenHandler> {
 
         @Override
         public void onPress() {
-            if (!this.isDisabled()) {
-                this.playDownSound(MinecraftClient.getInstance().getSoundManager());
-                PricklyCanScreen.this.getScreenHandler().onButtonClick(PricklyCanScreen.this.client.player, 1);
-            }
+            PricklyCanScreen.this.getScreenHandler().onButtonClick(PricklyCanScreen.this.client.player, 1);
         }
-
     }
 
 

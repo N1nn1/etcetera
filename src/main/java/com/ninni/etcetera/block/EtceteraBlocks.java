@@ -60,6 +60,7 @@ public class EtceteraBlocks {
     public static final Block POTTED_SWEET_BERRY_BUSH = register("potted_sweet_berry_bush", new PottedSweetBerryBushBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC, MapColor.BROWN).strength(1.5f, 1200.0f).sounds(EtceteraSoundEvents.SNAIL_SHELL)));
     public static final Block MUCUS = register("mucus", new MucusBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, MapColor.PALE_YELLOW).sounds(EtceteraSoundEvents.MUCUS).nonOpaque()));
     public static final Block MUCUS_BLOCK = register("mucus_block", new MucusBlockBlock(FabricBlockSettings.copyOf(MUCUS)));
+    public static final Block GHOSTLY_MUCUS_BLOCK = register("ghostly_mucus_block", new GhostlyMucusBlockBlock(FabricBlockSettings.copyOf(MUCUS)));
 
     private static Block register(String id, Block block) { return Registry.register(Registry.BLOCK, new Identifier(MOD_ID, id), block); }
     private static boolean never(BlockState state, BlockView world, BlockPos pos) { return false; }

@@ -78,6 +78,7 @@ public class EtceteraItems {
     public static final Item POTTED_SWEET_BERRIES = register("potted_sweet_berries", new BlockItem(EtceteraBlocks.POTTED_SWEET_BERRY_BUSH, new FabricItemSettings().recipeRemainder(SNAIL_SHELL).group(ITEM_GROUP).maxCount(16)));
     public static final Item MUCUS = register("mucus", new BlockItem(EtceteraBlocks.MUCUS, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item MUCUS_BLOCK = register("mucus_block", new BlockItem(EtceteraBlocks.MUCUS_BLOCK, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item GHOSTLY_MUCUS_BLOCK = register("ghostly_mucus_block", new BlockItem(EtceteraBlocks.GHOSTLY_MUCUS_BLOCK, new FabricItemSettings().group(ITEM_GROUP)));
 
     public static final Item CHAPPLE_SPAWN_EGG = register("chapple_spawn_egg", new SpawnEggItem(EtceteraEntityType.CHAPPLE, 0xE41826, 0x548630, new Item.Settings().maxCount(64).group(ITEM_GROUP)));
     public static final Item EGGPLE = register("eggple", new EggpleItem(false, new Item.Settings().maxCount(16).group(ITEM_GROUP)));

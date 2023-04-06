@@ -1,0 +1,10 @@
+{
+  "variants": {
+	"solid=false": {
+      "model": "etcetera:block/ghostly_mucus_block"
+    },
+    "solid=true": {
+      "model": "etcetera:block/ghostly_mucus_block_solid"
+    }
+  }
+}

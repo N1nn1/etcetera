@@ -68,11 +68,11 @@ public class MucusBlockBlock extends Block {
         return state.with(DISTANCE, i).with(SOLID, i < 7);
     }
 
-    private static int getDistanceFromWater(BlockState state) {
+    public static int getDistanceFromWater(BlockState state) {
         if (state.isIn(EtceteraTags.MUCUS_SOLIDIFIER)) {
             return 0;
         }
-        if (state.isOf(EtceteraBlocks.MUCUS_BLOCK)) {
+        if (state.isIn(EtceteraTags.MUCUS_SOLIDIFICATION_SPREADER)) {
             return state.get(DISTANCE);
         }
         return 7;
