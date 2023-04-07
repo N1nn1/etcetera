@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.biome.Biome;
 
 import static com.ninni.etcetera.Etcetera.*;
 
@@ -19,4 +20,6 @@ public interface EtceteraTags {
     TagKey<Block> OFFSET_REMOVER = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "offset_remover"));
     TagKey<Block> MUCUS_SOLIDIFIER = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "mucus_solidifier"));
     TagKey<Block> MUCUS_SOLIDIFICATION_SPREADER = TagKey.of(Registry.BLOCK_KEY, new Identifier(MOD_ID, "mucus_solidification_spreader"));
+
+    TagKey<Biome> SNAIL_SPAWNS = TagKey.of(Registry.BIOME_KEY, new Identifier(MOD_ID, "snail_spawns"));
 }

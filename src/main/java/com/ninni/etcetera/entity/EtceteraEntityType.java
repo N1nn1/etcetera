@@ -1,6 +1,9 @@
 package com.ninni.etcetera.entity;
 
 import com.ninni.etcetera.Etcetera;
+import com.ninni.etcetera.EtceteraTags;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -50,6 +53,10 @@ public class EtceteraEntityType {
                     .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
                     .trackRangeChunks(4)
     );
+
+    static {
+        BiomeModifications.addSpawn(BiomeSelectors.tag(EtceteraTags.SNAIL_SPAWNS), SpawnGroup.CREATURE, EtceteraEntityType.SNAIL, 12, 1, 3);
+    }
 
     private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> entityType) {
         return Registry.register(Registry.ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, id), entityType.build());
