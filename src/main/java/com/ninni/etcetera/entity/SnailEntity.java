@@ -45,7 +45,7 @@ public class SnailEntity extends AnimalEntity {
     private static final TrackedData<Integer> SCARED_TICKS = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> WET_TICKS = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> SHELL_GROWTH = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private final UniformIntProvider regrowthTicks = UniformIntProvider.create(24000, 48000);
+    private final UniformIntProvider regrowthTicks = UniformIntProvider.create(12000, 24000);
     private int cooldown = 2;
 
     protected SnailEntity(EntityType<? extends AnimalEntity> entityType, World world) {
@@ -80,7 +80,7 @@ public class SnailEntity extends AnimalEntity {
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
         nbt.putInt("ScaredTicks", this.getScaredTicks());
-        nbt.putInt("WetTicks", this.getScaredTicks());
+        nbt.putInt("WetTicks", this.getWetTicks());
         nbt.putInt("Shelled", this.getShellGrowthTicks());
     }
 
@@ -88,7 +88,7 @@ public class SnailEntity extends AnimalEntity {
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
         this.setScaredTicks(nbt.getInt("ScaredTicks"));
-        this.setScaredTicks(nbt.getInt("WetTicks"));
+        this.setWetTicks(nbt.getInt("WetTicks"));
         this.setShellGrowthTicks(nbt.getInt("Shelled"));
     }
 
@@ -105,8 +105,9 @@ public class SnailEntity extends AnimalEntity {
     public int getWetTicks() {
         return this.dataTracker.get(WET_TICKS);
     }
+    public void setWetTicks(int wetTicks) {this.dataTracker.set(WET_TICKS, wetTicks);}
     public void addWetTicks(int wetTicks) {
-        this.dataTracker.set(WET_TICKS, this.getWetTicks() + wetTicks);
+        this.setWetTicks(this.getWetTicks() + wetTicks);
     }
 
     public int getShellGrowthTicks() {
