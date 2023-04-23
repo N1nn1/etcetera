@@ -50,7 +50,8 @@ public class EtceteraClient implements ClientModInitializer {
 				EtceteraBlocks.ITEM_STAND,
 				EtceteraBlocks.FRAME,
 				EtceteraBlocks.POTTED_SWEET_BERRY_BUSH,
-				EtceteraBlocks.PRICKLY_CAN
+				EtceteraBlocks.PRICKLY_CAN,
+				EtceteraBlocks.SNAIL_EGG
 		);
 
 		HandledScreens.register(EtceteraScreenHandlerType.PRICKLY_CAN, PricklyCanScreen::new);

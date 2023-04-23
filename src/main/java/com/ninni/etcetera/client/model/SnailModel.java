@@ -137,7 +137,20 @@ public class SnailModel extends EntityModel<SnailEntity> {
 
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, float red, float green, float blue, float alpha) {
-        shell.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
-        foot.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+        if (child) {
+            float f = 0.5F;
+            matrices.push();
+            matrices.translate(0.0, 1.5F, 0.25F);
+            shell.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+            matrices.pop();
+            matrices.push();
+            matrices.scale(f, f, f);
+            matrices.translate(0.0, 1.5F, 0.0);
+            foot.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+            matrices.pop();
+        } else {
+            shell.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+            foot.render(matrices, vertexConsumer, light, overlay, red, green, blue, alpha);
+        }
     }
 }
