@@ -15,7 +15,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3f;
 
-@Environment(value= EnvType.CLIENT)
+@Environment(value=EnvType.CLIENT)
 public class ItemStandBlockEntityRenderer implements BlockEntityRenderer<ItemStandBlockEntity> {
     private final ItemRenderer itemRenderer;
 

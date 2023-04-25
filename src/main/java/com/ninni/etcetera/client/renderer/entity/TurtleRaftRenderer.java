@@ -5,6 +5,8 @@ import com.ninni.etcetera.client.model.TurtleRaftModel;
 import com.ninni.etcetera.client.renderer.entity.layer.TurtleRaftBannerLayer;
 import com.ninni.etcetera.client.renderer.entity.layer.TurtleRaftColorRenderLayer;
 import com.ninni.etcetera.entity.TurtleRaftEntity;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -19,6 +21,7 @@ import net.minecraft.util.math.Vec3f;
 
 import static com.ninni.etcetera.Etcetera.MOD_ID;
 
+@Environment(value=EnvType.CLIENT)
 public class TurtleRaftRenderer extends EntityRenderer<TurtleRaftEntity> {
     public static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/boat/turtle_raft_overlay.png");
     private final TurtleRaftModel model;

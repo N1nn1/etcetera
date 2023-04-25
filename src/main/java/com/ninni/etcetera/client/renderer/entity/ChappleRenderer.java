@@ -16,7 +16,7 @@ import java.util.Map;
 
 import static com.ninni.etcetera.Etcetera.MOD_ID;
 
-@Environment(value= EnvType.CLIENT)
+@Environment(value=EnvType.CLIENT)
 public class ChappleRenderer extends MobEntityRenderer<ChappleEntity, ChappleModel<ChappleEntity>> {
     private static final Map<ChappleEntity.Type, Identifier> TEXTURES = Util.make(Maps.newHashMap(), map -> {
         map.put(ChappleEntity.Type.NORMAL, new Identifier(MOD_ID, "textures/entity/chapple/chapple.png"));

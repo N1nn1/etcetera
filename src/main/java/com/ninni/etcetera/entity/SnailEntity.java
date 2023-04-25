@@ -1,14 +1,27 @@
 package com.ninni.etcetera.entity;
 
+import com.google.common.collect.Lists;
 import com.ninni.etcetera.EtceteraTags;
 import com.ninni.etcetera.block.EtceteraBlocks;
+import com.ninni.etcetera.block.SnailEggBlock;
 import com.ninni.etcetera.item.EtceteraItems;
 import com.ninni.etcetera.sound.EtceteraSoundEvents;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ExperienceOrbEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.brain.MemoryModuleType;
+import net.minecraft.entity.ai.goal.AnimalMateGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -24,27 +37,36 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.stat.Stats;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Unit;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class SnailEntity extends AnimalEntity {
     private static final TrackedData<Integer> SCARED_TICKS = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> WET_TICKS = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> SHELL_GROWTH = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<Boolean> HAS_EGG = DataTracker.registerData(SnailEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private final UniformIntProvider regrowthTicks = UniformIntProvider.create(12000, 24000);
     private int cooldown = 2;
 
@@ -53,12 +75,41 @@ public class SnailEntity extends AnimalEntity {
     }
 
     @Override
+    public boolean isBreedingItem(ItemStack stack) {
+        return stack.isIn(EtceteraTags.SNAIL_TEMPT_ITEMS);
+    }
+
+    @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
+        this.goalSelector.add(1, new AnimalMateGoal(this, 1.0));
+        this.goalSelector.add(2, new SnailLayEggGoal(this));
+        this.goalSelector.add(2, new TemptGoal(this, 1.25, Ingredient.fromTag(EtceteraTags.SNAIL_TEMPT_ITEMS), false));
         this.goalSelector.add(5, new FollowParentGoal(this, 1));
         this.goalSelector.add(6, new SnailWanderGoal(this, 1));
         this.goalSelector.add(7, new SnailLookAtEntityGoal(this, PlayerEntity.class, 6));
         this.goalSelector.add(8, new SnailLookAroundGoal(this));
+    }
+
+    @Override
+    public void breed(ServerWorld world, AnimalEntity other) {
+        ServerPlayerEntity serverPlayerEntity = this.getLovingPlayer();
+        if (serverPlayerEntity == null) {
+            serverPlayerEntity = other.getLovingPlayer();
+        }
+        if (serverPlayerEntity != null) {
+            serverPlayerEntity.incrementStat(Stats.ANIMALS_BRED);
+            Criteria.BRED_ANIMALS.trigger(serverPlayerEntity, this, other, null);
+        }
+        this.setBreedingAge(6000);
+        other.setBreedingAge(6000);
+        this.resetLoveTicks();
+        other.resetLoveTicks();
+        this.setHasEgg(true);
+        world.sendEntityStatus(this, EntityStatuses.ADD_BREEDING_PARTICLES);
+        if (world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
+            world.spawnEntity(new ExperienceOrbEntity(world, this.getX(), this.getY(), this.getZ(), this.getRandom().nextInt(7) + 1));
+        }
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
@@ -74,6 +125,7 @@ public class SnailEntity extends AnimalEntity {
         this.dataTracker.startTracking(SCARED_TICKS, 0);
         this.dataTracker.startTracking(WET_TICKS, 0);
         this.dataTracker.startTracking(SHELL_GROWTH, 0);
+        this.dataTracker.startTracking(HAS_EGG, false);
     }
 
     @Override
@@ -82,6 +134,7 @@ public class SnailEntity extends AnimalEntity {
         nbt.putInt("ScaredTicks", this.getScaredTicks());
         nbt.putInt("WetTicks", this.getWetTicks());
         nbt.putInt("Shelled", this.getShellGrowthTicks());
+        nbt.putBoolean("HasEgg", this.hasEgg());
     }
 
     @Override
@@ -90,6 +143,7 @@ public class SnailEntity extends AnimalEntity {
         this.setScaredTicks(nbt.getInt("ScaredTicks"));
         this.setWetTicks(nbt.getInt("WetTicks"));
         this.setShellGrowthTicks(nbt.getInt("Shelled"));
+        this.setHasEgg(nbt.getBoolean("HasEgg"));
     }
 
     public int getScaredTicks() {
@@ -100,6 +154,12 @@ public class SnailEntity extends AnimalEntity {
     }
     public boolean isScared() {
         return this.getScaredTicks() > 0;
+    }
+    public boolean hasEgg() {
+        return this.dataTracker.get(HAS_EGG);
+    }
+    public void setHasEgg(boolean hasEgg) {
+        this.dataTracker.set(HAS_EGG, hasEgg);
     }
 
     public int getWetTicks() {
@@ -172,7 +232,7 @@ public class SnailEntity extends AnimalEntity {
 
         if (!this.world.isClient()) {
             int shellGrowthTicks = this.getShellGrowthTicks();
-            if (shellGrowthTicks > 0) {
+            if (shellGrowthTicks > 0 && !this.isBaby()) {
                 if (shellGrowthTicks == 1) {
                     this.playSound(EtceteraSoundEvents.ENTITY_SNAIL_SHELL_GROW, 1.0F, 1.0F);
                 }
@@ -251,6 +311,68 @@ public class SnailEntity extends AnimalEntity {
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
         this.playSound(EtceteraSoundEvents.ENTITY_SNAIL_SLIDE, 0.15f, 1.0f);
+    }
+
+    public static class SnailLayEggGoal extends Goal {
+        private final SnailEntity snail;
+        private BlockPos layPos;
+
+        SnailLayEggGoal(SnailEntity snail) {
+            this.snail = snail;
+        }
+
+        @Override
+        public boolean canStart() {
+            BlockPos layPos = this.getLayPosition();
+            if (this.layPos == null && layPos != null) {
+                this.layPos = layPos;
+            }
+            return this.layPos != null && this.snail.hasEgg();
+        }
+
+        @Override
+        public boolean shouldContinue() {
+            return this.layPos != null && this.snail.world.getBlockState(this.layPos).isIn(BlockTags.DIRT) && this.snail.world.getBlockState(this.layPos.up()).isAir();
+        }
+
+        @Override
+        public void start() {
+            if (this.layPos != null) {
+                Vec3d vec3d = Vec3d.ofCenter(this.layPos);
+                this.snail.getNavigation().startMovingTo(vec3d.x, vec3d.y, vec3d.z, 1.0F);
+                this.snail.getLookControl().lookAt(vec3d);
+            }
+        }
+
+        @Override
+        public void tick() {
+            if (this.layPos != null) {
+                Vec3d vec3d = Vec3d.ofCenter(this.layPos);
+                double distance = MathHelper.sqrt((float) this.snail.squaredDistanceTo(vec3d));
+                if (distance <= 2) {
+                    this.snail.world.setBlockState(this.layPos, EtceteraBlocks.SNAIL_EGG.getDefaultState().with(SnailEggBlock.getProperty(Direction.DOWN), true), 2);
+                    this.snail.setHasEgg(false);
+                }
+            }
+        }
+
+        @Nullable
+        private BlockPos getLayPosition() {
+            List<BlockPos> list = Lists.newArrayList();
+            int range = 8;
+            for (int x = -range; x <= range; x++) {
+                for (int z = -range; z <= range; z++) {
+                    BlockPos position = new BlockPos(this.snail.getX() + x, this.snail.getY(), this.snail.getZ() + z);
+                    if (this.snail.world.getBlockState(position.down()).isIn(BlockTags.DIRT) && this.snail.world.getBlockState(position).isAir()) {
+                        list.add(position);
+                    }
+                }
+            }
+            if (list.isEmpty()) {
+                return null;
+            }
+            return list.get(this.snail.random.nextInt(list.size()));
+        }
     }
 
     public static class SnailWanderGoal extends WanderAroundFarGoal {

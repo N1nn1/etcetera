@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 import static com.ninni.etcetera.Etcetera.MOD_ID;
 
-@Environment(value= EnvType.CLIENT)
+@Environment(value=EnvType.CLIENT)
 public class SnailRenderer extends MobEntityRenderer<SnailEntity, SnailModel> {
     private static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/entity/snail/snail.png");
 
