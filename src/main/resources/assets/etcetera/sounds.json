@@ -18,6 +18,13 @@
 		],
 		"subtitle": "subtitles.entity.snail.hurt"
 	},
+	"entity.snail.eat": {
+		"sounds": [
+			"etcetera:entity/snail/eat1",
+			"etcetera:entity/snail/eat2"
+		],
+		"subtitle": "subtitles.entity.snail.eat"
+	},
 	"entity.snail.hurt_hidden": {
 		"sounds": [
 			"etcetera:entity/snail/hurt_hidden1",

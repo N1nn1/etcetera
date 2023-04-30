@@ -3,25 +3,13 @@ package com.ninni.etcetera.entity;
 import com.google.common.collect.Lists;
 import com.ninni.etcetera.EtceteraTags;
 import com.ninni.etcetera.block.EtceteraBlocks;
-import com.ninni.etcetera.block.SnailEggBlock;
+import com.ninni.etcetera.block.SnailEggsBlock;
 import com.ninni.etcetera.item.EtceteraItems;
 import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityStatuses;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ExperienceOrbEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.brain.MemoryModuleType;
-import net.minecraft.entity.ai.goal.AnimalMateGoal;
-import net.minecraft.entity.ai.goal.FollowParentGoal;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.LookAroundGoal;
-import net.minecraft.entity.ai.goal.LookAtEntityGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
-import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -47,7 +35,6 @@ import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Unit;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
@@ -93,22 +80,24 @@ public class SnailEntity extends AnimalEntity {
 
     @Override
     public void breed(ServerWorld world, AnimalEntity other) {
-        ServerPlayerEntity serverPlayerEntity = this.getLovingPlayer();
-        if (serverPlayerEntity == null) {
-            serverPlayerEntity = other.getLovingPlayer();
-        }
-        if (serverPlayerEntity != null) {
-            serverPlayerEntity.incrementStat(Stats.ANIMALS_BRED);
-            Criteria.BRED_ANIMALS.trigger(serverPlayerEntity, this, other, null);
-        }
-        this.setBreedingAge(6000);
-        other.setBreedingAge(6000);
-        this.resetLoveTicks();
-        other.resetLoveTicks();
-        this.setHasEgg(true);
-        world.sendEntityStatus(this, EntityStatuses.ADD_BREEDING_PARTICLES);
-        if (world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
-            world.spawnEntity(new ExperienceOrbEntity(world, this.getX(), this.getY(), this.getZ(), this.getRandom().nextInt(7) + 1));
+        if(other instanceof SnailEntity otherSnail) {
+            ServerPlayerEntity serverPlayerEntity = this.getLovingPlayer();
+            if (serverPlayerEntity == null) serverPlayerEntity = otherSnail.getLovingPlayer();
+            if (serverPlayerEntity != null) {
+                serverPlayerEntity.incrementStat(Stats.ANIMALS_BRED);
+                Criteria.BRED_ANIMALS.trigger(serverPlayerEntity, this, otherSnail, null);
+                Criteria.BRED_ANIMALS.trigger(serverPlayerEntity, otherSnail, this, null);
+            }
+            this.setBreedingAge(6000);
+            otherSnail.setBreedingAge(6000);
+            this.resetLoveTicks();
+            otherSnail.resetLoveTicks();
+            this.setHasEgg(true);
+            otherSnail.setHasEgg(true);
+            world.sendEntityStatus(this, EntityStatuses.ADD_BREEDING_PARTICLES);
+            if (world.getGameRules().getBoolean(GameRules.DO_MOB_LOOT)) {
+                world.spawnEntity(new ExperienceOrbEntity(world, this.getX(), this.getY(), this.getZ(), this.getRandom().nextInt(7) + 1));
+            }
         }
     }
 
@@ -182,7 +171,11 @@ public class SnailEntity extends AnimalEntity {
 
         ItemStack itemStack = player.getStackInHand(hand);
 
-        if (itemStack.isOf(Items.WATER_BUCKET) && !this.isScared() && this.getWetTicks() == 0) {
+        if (this.isBreedingItem(itemStack) && this.getBreedingAge() == 0) {
+            this.playSound(EtceteraSoundEvents.ENTITY_SNAIL_EAT, 1, 1);
+        }
+
+            if (itemStack.isOf(Items.WATER_BUCKET) && !this.isScared() && this.getWetTicks() == 0) {
             if (!this.world.isClient) {
                 if (!player.getAbilities().creativeMode) player.setStackInHand(player.getActiveHand(), Items.BUCKET.getDefaultStack());
                 this.addWetTicks(300);
@@ -313,6 +306,7 @@ public class SnailEntity extends AnimalEntity {
         this.playSound(EtceteraSoundEvents.ENTITY_SNAIL_SLIDE, 0.15f, 1.0f);
     }
 
+
     public static class SnailLayEggGoal extends Goal {
         private final SnailEntity snail;
         private BlockPos layPos;
@@ -350,7 +344,8 @@ public class SnailEntity extends AnimalEntity {
                 Vec3d vec3d = Vec3d.ofCenter(this.layPos);
                 double distance = MathHelper.sqrt((float) this.snail.squaredDistanceTo(vec3d));
                 if (distance <= 2) {
-                    this.snail.world.setBlockState(this.layPos, EtceteraBlocks.SNAIL_EGG.getDefaultState().with(SnailEggBlock.getProperty(Direction.DOWN), true), 2);
+                    this.snail.playSound(EtceteraSoundEvents.ENTITY_SNAIL_LAY_EGGS, 1, 1);
+                    this.snail.world.setBlockState(this.layPos, EtceteraBlocks.SNAIL_EGGS.getDefaultState().with(SnailEggsBlock.getProperty(Direction.DOWN), true), 2);
                     this.snail.setHasEgg(false);
                 }
             }

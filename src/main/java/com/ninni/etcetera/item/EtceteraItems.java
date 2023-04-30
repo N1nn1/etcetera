@@ -69,7 +69,7 @@ public class EtceteraItems {
     public static final Item TINTED_LIGHT_BULB = register("tinted_light_bulb", new BlockItem(EtceteraBlocks.TINTED_LIGHT_BULB, new FabricItemSettings().group(ITEM_GROUP)));
 
     public static final Item SNAIL_SPAWN_EGG = register("snail_spawn_egg", new SpawnEggItem(EtceteraEntityType.SNAIL, 0x5D3F30, 0xF6DEA2, new Item.Settings().maxCount(64).group(ITEM_GROUP)));
-    public static final Item SNAIL_EGG = register("snail_egg", new BlockItem(EtceteraBlocks.SNAIL_EGG, new FabricItemSettings().group(ITEM_GROUP)));
+    public static final Item SNAIL_EGGS = register("snail_eggs", new BlockItem(EtceteraBlocks.SNAIL_EGGS, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item SNAIL_SHELL = register("snail_shell", new Item(new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item BIG_SNAIL_SHELL = register("big_snail_shell", new BlockItem(EtceteraBlocks.BIG_SNAIL_SHELL, new FabricItemSettings().group(ITEM_GROUP)));
     public static final Item SNAIL_SHELL_TILES = register("snail_shell_tiles", new BlockItem(EtceteraBlocks.SNAIL_SHELL_TILES, new FabricItemSettings().group(ITEM_GROUP)));

@@ -20,14 +20,19 @@ public interface EtceteraSoundEvents {
     SoundEvent BLOCK_CRUMBLING_STONE_CRUMBLE = register("block.crumbling_stone.crumble");
     SoundEvent BLOCK_LIGHT_BULB_ON = register("block.light_bulb.on");
     SoundEvent BLOCK_LIGHT_BULB_OFF = register("block.light_bulb.off");
+
     SoundEvent ENTITY_CHAPPLE_CONVERT = register("entity.chapple.convert");
 
     SoundEvent ENTITY_SNAIL_SLIDE = register("entity.snail.slide");
     SoundEvent ENTITY_SNAIL_HURT_HIDDEN = register("entity.snail.hurt_hidden");
     SoundEvent ENTITY_SNAIL_HURT = register("entity.snail.hurt");
+    SoundEvent ENTITY_SNAIL_EAT = register("entity.snail.eat");
     SoundEvent ENTITY_SNAIL_DEATH = register("entity.snail.death");
     SoundEvent ENTITY_SNAIL_DEATH_HIDDEN = register("entity.snail.death_hidden");
     SoundEvent ENTITY_SNAIL_SHELL_GROW = register("entity.snail.shell_grow");
+    //TODO sounds
+    SoundEvent ENTITY_SNAIL_LAY_EGGS = register("entity.snail.lay_eggs");
+    SoundEvent BLOCK_SNAIL_EGGS_HATCH = register("block.snail_eggs.hatch");
 
     BlockSoundGroup NETHER_BISMUTH_ORE = register("nether_bismuth_ore", 1, 1);
     BlockSoundGroup BISMUTH_BLOCK = register("bismuth_block", 1, 1);

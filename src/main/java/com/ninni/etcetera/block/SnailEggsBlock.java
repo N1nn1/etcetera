@@ -3,12 +3,10 @@ package com.ninni.etcetera.block;
 import com.ninni.etcetera.entity.EtceteraEntityType;
 import com.ninni.etcetera.entity.SnailEntity;
 import com.ninni.etcetera.item.EtceteraItems;
+import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FrogspawnBlock;
 import net.minecraft.block.LichenGrower;
 import net.minecraft.block.MultifaceGrowthBlock;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.TadpoleEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -18,10 +16,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-public class SnailEggBlock extends MultifaceGrowthBlock {
+@SuppressWarnings("deprecation")
+public class SnailEggsBlock extends MultifaceGrowthBlock {
     private final LichenGrower grower = new LichenGrower(this);
 
-    public SnailEggBlock(Settings settings) {
+    public SnailEggsBlock(Settings settings) {
         super(settings);
     }
 
@@ -32,7 +31,7 @@ public class SnailEggBlock extends MultifaceGrowthBlock {
 
     @Override
     public boolean canReplace(BlockState state, ItemPlacementContext context) {
-        return !context.getStack().isOf(EtceteraItems.SNAIL_EGG.asItem()) || super.canReplace(state, context);
+        return !context.getStack().isOf(EtceteraItems.SNAIL_EGGS.asItem()) || super.canReplace(state, context);
     }
 
     @Override
@@ -47,7 +46,7 @@ public class SnailEggBlock extends MultifaceGrowthBlock {
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         world.breakBlock(pos, false);
-        world.playSound(null, pos, SoundEvents.BLOCK_FROGSPAWN_HATCH, SoundCategory.BLOCKS, 1.0f, 1.0f);
+        world.playSound(null, pos, EtceteraSoundEvents.BLOCK_SNAIL_EGGS_HATCH, SoundCategory.BLOCKS, 1.0f, 1.0f);
         this.spawnSnails(world, pos, random);
     }
 

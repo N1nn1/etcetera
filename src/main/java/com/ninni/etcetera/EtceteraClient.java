@@ -36,12 +36,13 @@ public class EtceteraClient implements ClientModInitializer {
 		TidalHelmetHud.init();
 
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
-			EtceteraBlocks.MUCUS,
-			EtceteraBlocks.MUCUS_BLOCK,
-			EtceteraBlocks.GHOSTLY_MUCUS_BLOCK,
-			EtceteraBlocks.IRIDESCENT_GLASS,
-			EtceteraBlocks.LIGHT_BULB,
-			EtceteraBlocks.TINTED_LIGHT_BULB
+				EtceteraBlocks.MUCUS,
+				EtceteraBlocks.MUCUS_BLOCK,
+				EtceteraBlocks.GHOSTLY_MUCUS_BLOCK,
+				EtceteraBlocks.IRIDESCENT_GLASS,
+				EtceteraBlocks.LIGHT_BULB,
+				EtceteraBlocks.TINTED_LIGHT_BULB,
+				EtceteraBlocks.SNAIL_EGGS
 		);
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
 				EtceteraBlocks.BISMUTH_BARS,
@@ -50,8 +51,7 @@ public class EtceteraClient implements ClientModInitializer {
 				EtceteraBlocks.ITEM_STAND,
 				EtceteraBlocks.FRAME,
 				EtceteraBlocks.POTTED_SWEET_BERRY_BUSH,
-				EtceteraBlocks.PRICKLY_CAN,
-				EtceteraBlocks.SNAIL_EGG
+				EtceteraBlocks.PRICKLY_CAN
 		);
 
 		HandledScreens.register(EtceteraScreenHandlerType.PRICKLY_CAN, PricklyCanScreen::new);
