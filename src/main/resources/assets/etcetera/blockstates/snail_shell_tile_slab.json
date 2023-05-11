@@ -4,7 +4,7 @@
       "model": "etcetera:block/snail_shell_tile_slab"
     },
     "type=double": {
-      "model": "etcetera:block/snail_shell_tile"
+      "model": "etcetera:block/snail_shell_tiles"
     },
     "type=top": {
       "model": "etcetera:block/snail_shell_tile_slab_top"
