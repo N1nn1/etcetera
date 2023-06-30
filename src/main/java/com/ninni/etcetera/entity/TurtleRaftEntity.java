@@ -1,6 +1,7 @@
 package com.ninni.etcetera.entity;
 
 import com.ninni.etcetera.item.EtceteraItems;
+import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
@@ -13,7 +14,6 @@ import net.minecraft.item.DyeableItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -35,7 +35,6 @@ public class TurtleRaftEntity extends BoatEntity {
         this.prevZ = z;
     }
 
-    //TODO: replace with a custom sound
     @Override
     public ActionResult interact(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
@@ -46,14 +45,14 @@ public class TurtleRaftEntity extends BoatEntity {
                     stack.decrement(1);
                 }
                 copy.setCount(1);
-                this.playSound(SoundEvents.ENTITY_HORSE_ARMOR, 1.0F, 1.0F);
+                this.playSound(EtceteraSoundEvents.ITEM_BANNER_EQUIP, 1.0F, 1.0F);
                 this.emitGameEvent(GameEvent.ENTITY_INTERACT, player);
                 this.setBanner(copy);
                 return ActionResult.SUCCESS;
             } else if (!this.getBanner().isEmpty() && stack.isEmpty() && player.isSneaking()) {
                 ItemStack copy = this.getBanner();
                 player.setStackInHand(hand, copy);
-                this.playSound(SoundEvents.ENTITY_HORSE_ARMOR, 1.0F, 1.0F);
+                this.playSound(EtceteraSoundEvents.ITEM_BANNER_EQUIP, 1.0F, 1.0F);
                 this.emitGameEvent(GameEvent.ENTITY_INTERACT, player);
                 this.setBanner(ItemStack.EMPTY);
                 return ActionResult.SUCCESS;

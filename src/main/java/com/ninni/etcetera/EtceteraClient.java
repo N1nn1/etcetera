@@ -9,7 +9,6 @@ import com.ninni.etcetera.client.gui.screen.PricklyCanScreen;
 import com.ninni.etcetera.client.model.EtceteraEntityModelLayers;
 import com.ninni.etcetera.client.renderer.block.entity.ItemStandBlockEntityRenderer;
 import com.ninni.etcetera.client.renderer.entity.ChappleRenderer;
-import com.ninni.etcetera.client.renderer.entity.SnailRenderer;
 import com.ninni.etcetera.client.renderer.entity.TidalArmorRenderer;
 import com.ninni.etcetera.client.renderer.entity.TurtleRaftRenderer;
 import com.ninni.etcetera.entity.EtceteraEntityType;
@@ -36,13 +35,9 @@ public class EtceteraClient implements ClientModInitializer {
 		TidalHelmetHud.init();
 
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
-				EtceteraBlocks.MUCUS,
-				EtceteraBlocks.MUCUS_BLOCK,
-				EtceteraBlocks.GHOSTLY_MUCUS_BLOCK,
 				EtceteraBlocks.IRIDESCENT_GLASS,
 				EtceteraBlocks.LIGHT_BULB,
-				EtceteraBlocks.TINTED_LIGHT_BULB,
-				EtceteraBlocks.SNAIL_EGGS
+				EtceteraBlocks.TINTED_LIGHT_BULB
 		);
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
 				EtceteraBlocks.BISMUTH_BARS,
@@ -50,7 +45,6 @@ public class EtceteraClient implements ClientModInitializer {
 				EtceteraBlocks.POTTED_BOUQUET,
 				EtceteraBlocks.ITEM_STAND,
 				EtceteraBlocks.FRAME,
-				EtceteraBlocks.POTTED_SWEET_BERRY_BUSH,
 				EtceteraBlocks.PRICKLY_CAN
 		);
 
@@ -58,7 +52,6 @@ public class EtceteraClient implements ClientModInitializer {
 
 		Reflection.initialize(EtceteraEntityModelLayers.class);
 		EntityRendererRegistry.register(EtceteraEntityType.TURTLE_RAFT, TurtleRaftRenderer::new);
-		EntityRendererRegistry.register(EtceteraEntityType.SNAIL, SnailRenderer::new);
 		EntityRendererRegistry.register(EtceteraEntityType.CHAPPLE, ChappleRenderer::new);
 		EntityRendererRegistry.register(EtceteraEntityType.EGGPLE, FlyingItemEntityRenderer::new);
 

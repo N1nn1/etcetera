@@ -53,16 +53,6 @@ public class EtceteraBlocks {
     public static final Block LIGHT_BULB = register("light_bulb", new LightBulbBlock(FabricBlockSettings.copyOf(GLASS).nonOpaque()));
     public static final Block TINTED_LIGHT_BULB = register("tinted_light_bulb", new TintedLightBulbBlock(FabricBlockSettings.copyOf(TINTED_GLASS).nonOpaque()));
 
-    public static final Block SNAIL_EGGS = register("snail_eggs", new SnailEggsBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, MapColor.WHITE).noCollision().strength(0.2F).sounds(BlockSoundGroup.FROGSPAWN)));
-    public static final Block BIG_SNAIL_SHELL = register("big_snail_shell", new BigSnailShellBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC, MapColor.BROWN).strength(1.5f, 1200.0f).sounds(EtceteraSoundEvents.SNAIL_SHELL)));
-    public static final Block SNAIL_SHELL_TILES = register("snail_shell_tiles", new Block(FabricBlockSettings.copyOf(BIG_SNAIL_SHELL).strength(1f, 1200.0f)));
-    public static final Block SNAIL_SHELL_TILE_STAIRS = register("snail_shell_tile_stairs", new PublicStairsBlock(SNAIL_SHELL_TILES.getDefaultState(), FabricBlockSettings.copyOf(SNAIL_SHELL_TILES)));
-    public static final Block SNAIL_SHELL_TILE_SLAB = register("snail_shell_tile_slab", new SlabBlock(FabricBlockSettings.copyOf(SNAIL_SHELL_TILES)));
-    public static final Block POTTED_SWEET_BERRY_BUSH = register("potted_sweet_berry_bush", new PottedSweetBerryBushBlock(FabricBlockSettings.of(Material.SOLID_ORGANIC, MapColor.BROWN).strength(1.5f, 1200.0f).sounds(EtceteraSoundEvents.SNAIL_SHELL)));
-    public static final Block MUCUS = register("mucus", new MucusBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, MapColor.PALE_YELLOW).sounds(EtceteraSoundEvents.MUCUS).nonOpaque()));
-    public static final Block MUCUS_BLOCK = register("mucus_block", new MucusBlockBlock(FabricBlockSettings.copyOf(MUCUS)));
-    public static final Block GHOSTLY_MUCUS_BLOCK = register("ghostly_mucus_block", new GhostlyMucusBlockBlock(FabricBlockSettings.copyOf(MUCUS)));
-
     private static Block register(String id, Block block) { return Registry.register(Registry.BLOCK, new Identifier(MOD_ID, id), block); }
     private static boolean never(BlockState state, BlockView world, BlockPos pos) { return false; }
 }

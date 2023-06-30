@@ -58,13 +58,13 @@ public class Etcetera implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		Reflection.initialize(
-			EtceteraSoundEvents.class,
-			EtceteraStats.class,
-			EtceteraBlockEntityType.class,
-			EtceteraScreenHandlerType.class,
-			EtceteraEntityType.class,
-			EtceteraItems.class,
-			EtceteraBlocks.class
+				EtceteraSoundEvents.class,
+				EtceteraStats.class,
+				EtceteraBlockEntityType.class,
+				EtceteraScreenHandlerType.class,
+				EtceteraEntityType.class,
+				EtceteraItems.class,
+				EtceteraBlocks.class
 		);
 
 		EtceteraNetwork.initCommon();

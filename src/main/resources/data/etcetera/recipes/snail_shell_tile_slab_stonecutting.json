@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "etcetera:snail_shell_tiles"
-  },
-  "result": "etcetera:snail_shell_tile_slab",
-  "count": 2
-}

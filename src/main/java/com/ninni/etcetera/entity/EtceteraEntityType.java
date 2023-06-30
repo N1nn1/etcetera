@@ -23,17 +23,6 @@ public class EtceteraEntityType {
                     .trackRangeChunks(10)
     );
 
-    public static final EntityType<SnailEntity> SNAIL = register(
-            "snail",
-            FabricEntityTypeBuilder.createMob()
-                    .entityFactory(SnailEntity::new)
-                    .defaultAttributes(SnailEntity::createAttributes)
-                    .spawnGroup(SpawnGroup.CREATURE)
-                    .spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.WORLD_SURFACE_WG, SnailEntity::canSpawn)
-                    .dimensions(EntityDimensions.changing(0.8F, 0.8F))
-                    .trackRangeChunks(10)
-    );
-
     public static final EntityType<ChappleEntity> CHAPPLE = register(
             "chapple",
             FabricEntityTypeBuilder.createMob()
@@ -54,9 +43,6 @@ public class EtceteraEntityType {
                     .trackRangeChunks(4)
     );
 
-    static {
-        BiomeModifications.addSpawn(BiomeSelectors.tag(EtceteraTags.SNAIL_SPAWNS), SpawnGroup.CREATURE, EtceteraEntityType.SNAIL, 12, 1, 3);
-    }
 
     private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> entityType) {
         return Registry.register(Registry.ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, id), entityType.build());

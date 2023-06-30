@@ -57,7 +57,6 @@ public class WrenchItem extends Item {
             || collection.contains(Properties.STAIR_SHAPE)
             || collection.contains(Properties.FACING))
         {
-            player.getItemCooldownManager().set(this, 5);
             player.incrementStat(Stats.USED.getOrCreateStat(this));
             if (update) {
                 if (property == null

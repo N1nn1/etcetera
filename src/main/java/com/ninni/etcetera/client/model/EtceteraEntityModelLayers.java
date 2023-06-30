@@ -11,7 +11,6 @@ import net.minecraft.util.Identifier;
 public interface EtceteraEntityModelLayers {
 
     EntityModelLayer TURTLE_RAFT = main("turtle_raft", TurtleRaftModel::getTexturedModelData);
-    EntityModelLayer SNAIL = main("snail", SnailModel::getTexturedModelData);
     EntityModelLayer CHAPPLE = main("chapple", ChappleModel::getTexturedModelData);
 
     private static EntityModelLayer register(String id, String name, EntityModelLayerRegistry.TexturedModelDataProvider provider) {
