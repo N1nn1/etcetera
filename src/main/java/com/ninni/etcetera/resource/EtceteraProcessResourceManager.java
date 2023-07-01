@@ -10,11 +10,11 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.ninni.etcetera.Etcetera;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.minecraft.block.Block;
+import net.minecraft.registry.Registries;
 import net.minecraft.resource.JsonDataLoader;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.profiler.Profiler;
-import net.minecraft.util.registry.Registry;
 
 import java.util.Collections;
 import java.util.Map;
@@ -58,7 +58,7 @@ public class EtceteraProcessResourceManager extends JsonDataLoader implements Id
     public record Data(Map<Block, Block> map) {
         public static final Codec<Data> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
-                Codec.unboundedMap(Registry.BLOCK.getCodec(), Registry.BLOCK.getCodec())
+                Codec.unboundedMap(Registries.BLOCK.getCodec(), Registries.BLOCK.getCodec())
                      .fieldOf("entries")
                      .forGetter(Data::map)
             ).apply(instance, Data::new));

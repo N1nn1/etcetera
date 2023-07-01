@@ -38,7 +38,7 @@ public class TurtleRaftEntity extends BoatEntity {
     @Override
     public ActionResult interact(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
-        if (!this.world.isClient) {
+        if (!this.getWorld().isClient) {
             if (this.getBanner().isEmpty() && stack.getItem() instanceof BannerItem) {
                 ItemStack copy = stack.copy();
                 if (!player.getAbilities().creativeMode) {

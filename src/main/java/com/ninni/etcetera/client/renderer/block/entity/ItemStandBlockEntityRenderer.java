@@ -4,16 +4,17 @@ import com.ninni.etcetera.block.entity.ItemStandBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.CampfireBlock;
+import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 
 @Environment(value=EnvType.CLIENT)
 public class ItemStandBlockEntityRenderer implements BlockEntityRenderer<ItemStandBlockEntity> {
@@ -35,12 +36,12 @@ public class ItemStandBlockEntityRenderer implements BlockEntityRenderer<ItemSta
             Direction direction2 = Direction.fromHorizontal((l + direction.getHorizontal()) % 4);
             float d = -direction2.asRotation();
             matrices.translate(0.5, 0.45, 0.5);
-            matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(d));
+            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(d));
             matrices.translate(0, 0, -0.1);
-            matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(20.0f));
+            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(20.0f));
             matrices.scale(0.65f, 0.65f, 0.65f);
 
-            this.itemRenderer.renderItem(itemStack, ModelTransformation.Mode.FIXED, light, overlay, matrices, vertexConsumers, k + l);
+            this.itemRenderer.renderItem(itemStack, ModelTransformationMode.FIXED, l, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, itemStack.getHolder().getWorld(), itemStack.getHolder().getId());
             matrices.pop();
         }
     }

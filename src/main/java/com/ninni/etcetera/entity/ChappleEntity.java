@@ -92,7 +92,7 @@ public class ChappleEntity extends ChickenEntity implements Shearable {
         this.eggLayTime = 1000;
 
         if (this.isAlive() && !this.isBaby() && !this.hasJockey()) this.setAppleLayTime(this.getAppleLayTime()-1);
-        if (this.isAlive() && !this.isBaby() && !this.hasJockey() && this.getAppleLayTime() <= 0 && !this.world.isClient && this.getAppleLayTime() <= 0) {
+        if (this.isAlive() && !this.isBaby() && !this.hasJockey() && this.getAppleLayTime() <= 0 && !this.getWorld().isClient && this.getAppleLayTime() <= 0) {
             this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, (this.random.nextFloat() - this.random.nextFloat()) * 0.2f + 1.0f);
             if (this.getChappleType() == Type.GOLDEN && this.random.nextInt(3) == 0) this.dropItem(Items.GOLDEN_APPLE);
             else this.dropItem(Items.APPLE);
@@ -108,23 +108,23 @@ public class ChappleEntity extends ChickenEntity implements Shearable {
         if (itemStack.isOf(Items.SHEARS) && this.isShearable()) {
             this.sheared(SoundCategory.PLAYERS);
             this.emitGameEvent(GameEvent.SHEAR, player2);
-            if (!this.world.isClient) {
+            if (!this.getWorld().isClient) {
                 itemStack.damage(1, player2, player -> player.sendToolBreakStatus(hand));
             }
-            return ActionResult.success(this.world.isClient);
+            return ActionResult.success(this.getWorld().isClient);
         }
         return ActionResult.PASS;
     }
 
     @Override
     public void sheared(SoundCategory shearedSoundCategory) {
-        this.world.playSoundFromEntity(null, this, SoundEvents.ENTITY_MOOSHROOM_SHEAR, shearedSoundCategory, 1.0f, 1.0f);
+        this.getWorld().playSoundFromEntity(null, this, SoundEvents.ENTITY_MOOSHROOM_SHEAR, shearedSoundCategory, 1.0f, 1.0f);
 
-        if (!this.world.isClient()) {
-            ((ServerWorld)this.world).spawnParticles(ParticleTypes.EXPLOSION, this.getX(), this.getBodyY(0.5), this.getZ(), 1, 0.0, 0.0, 0.0, 0.0);
+        if (!this.getWorld().isClient()) {
+            ((ServerWorld)this.getWorld()).spawnParticles(ParticleTypes.EXPLOSION, this.getX(), this.getBodyY(0.5), this.getZ(), 1, 0.0, 0.0, 0.0, 0.0);
             this.discard();
 
-            ChickenEntity chicken = EntityType.CHICKEN.create(this.world);
+            ChickenEntity chicken = EntityType.CHICKEN.create(this.getWorld());
             chicken.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
             chicken.setHealth(this.getHealth());
             chicken.bodyYaw = this.bodyYaw;
@@ -136,10 +136,10 @@ public class ChappleEntity extends ChickenEntity implements Shearable {
             if (this.isPersistent()) chicken.setPersistent();
             chicken.setInvulnerable(this.isInvulnerable());
 
-            this.world.spawnEntity(chicken);
+            this.getWorld().spawnEntity(chicken);
 
             for (int i = 0; i < 5; ++i) {
-                this.world.spawnEntity(new ItemEntity(this.world, this.getX(), this.getBodyY(1.0), this.getZ(), new ItemStack(this.getChappleType().apple)));
+                this.getWorld().spawnEntity(new ItemEntity(this.getWorld(), this.getX(), this.getBodyY(1.0), this.getZ(), new ItemStack(this.getChappleType().apple)));
             }
         }
     }

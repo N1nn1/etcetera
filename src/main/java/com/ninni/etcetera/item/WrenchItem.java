@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
@@ -18,7 +19,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldEvents;
@@ -44,7 +44,7 @@ public class WrenchItem extends Item {
         Block block = state.getBlock();
         StateManager<Block, BlockState> stateManager = block.getStateManager();
         Collection<Property<?>> collection = stateManager.getProperties();
-        String string = Registry.BLOCK.getId(block).toString();
+        String string = Registries.BLOCK.getId(block).toString();
         NbtCompound nbtCompound = stack.getOrCreateSubNbt("DebugProperty");
         Property<?> property = stateManager.getProperty(nbtCompound.getString(string));
         if (state.isIn(EtceteraTags.NON_MODIFIABLE)) {

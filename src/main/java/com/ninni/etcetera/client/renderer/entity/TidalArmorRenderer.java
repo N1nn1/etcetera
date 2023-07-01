@@ -10,7 +10,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tag.FluidTags;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.Identifier;
 
 import static com.ninni.etcetera.Etcetera.*;
@@ -24,7 +24,7 @@ public class TidalArmorRenderer implements ArmorRenderer {
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, ItemStack stack, LivingEntity entity, EquipmentSlot slot, int light, BipedEntityModel<LivingEntity> contextModel) {
         if (this.armorModel == null) this.armorModel = new BipedEntityModel<>(MinecraftClient.getInstance().getEntityModelLoader().getModelPart(EntityModelLayers.PLAYER_OUTER_ARMOR));
 
-        contextModel.setAttributes(this.armorModel);
+        contextModel.copyStateTo(this.armorModel);
         Identifier texture = entity.isSubmergedIn(FluidTags.WATER) && entity.hasStatusEffect(StatusEffects.CONDUIT_POWER) ? ACTIVATED_TEXTURE : TEXTURE;
         ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, this.armorModel, texture);
     }

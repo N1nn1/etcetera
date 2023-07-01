@@ -5,7 +5,6 @@ import com.ninni.etcetera.item.EtceteraItems;
 import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ItemStackParticleEffect;
@@ -32,7 +31,7 @@ public class EggpleEntity extends ThrownItemEntity {
     public void handleStatus(byte status) {
         if (status == EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES) {
             for (int i = 0; i < 8; ++i) {
-                this.world.addParticle(new ItemStackParticleEffect(ParticleTypes.ITEM, this.getStack()), this.getX(), this.getY(), this.getZ(), ((double)this.random.nextFloat() - 0.5) * 0.08, ((double)this.random.nextFloat() - 0.5) * 0.08, ((double)this.random.nextFloat() - 0.5) * 0.08);
+                this.getWorld().addParticle(new ItemStackParticleEffect(ParticleTypes.ITEM, this.getStack()), this.getX(), this.getY(), this.getZ(), ((double)this.random.nextFloat() - 0.5) * 0.08, ((double)this.random.nextFloat() - 0.5) * 0.08, ((double)this.random.nextFloat() - 0.5) * 0.08);
             }
         }
     }
@@ -40,25 +39,25 @@ public class EggpleEntity extends ThrownItemEntity {
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
-        entityHitResult.getEntity().damage(DamageSource.thrownProjectile(this, this.getOwner()), 0.0f);
+        entityHitResult.getEntity().damage(this.getDamageSources().thrown(this, this.getOwner()), 0.0f);
     }
 
     @Override
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
-        if (!this.world.isClient) {
+        if (!this.getWorld().isClient) {
             int i = 1;
             if (this.random.nextInt(160) == 0) {
                 i = 4;
             }
             for (int j = 0; j < i; ++j) {
-                ChappleEntity chapple = EtceteraEntityType.CHAPPLE.create(this.world);
+                ChappleEntity chapple = EtceteraEntityType.CHAPPLE.create(this.getWorld());
                 chapple.setBreedingAge(-24000);
                 if (this.getStack().getItem() instanceof EggpleItem eggpleItem && eggpleItem.isGolden) chapple.setType(ChappleEntity.Type.GOLDEN);
                 chapple.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), 0.0f);
-                this.world.spawnEntity(chapple);
+                this.getWorld().spawnEntity(chapple);
             }
-            this.world.sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
+            this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
             this.discard();
         }
     }

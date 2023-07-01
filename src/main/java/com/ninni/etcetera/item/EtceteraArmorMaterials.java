@@ -1,7 +1,7 @@
 package com.ninni.etcetera.item;
 
 import com.ninni.etcetera.sound.EtceteraSoundEvents;
-import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
@@ -36,12 +36,36 @@ public enum EtceteraArmorMaterials implements ArmorMaterial {
         this.repairIngredientSupplier = new Lazy<>(repairIngredientSupplier);
     }
 
-    @Override public int getDurability(EquipmentSlot slot) { return BASE_DURABILITY[slot.getEntitySlotId()] * this.durabilityMultiplier; }
-    @Override public int getProtectionAmount(EquipmentSlot slot) { return this.protectionAmounts[slot.getEntitySlotId()]; }
-    @Override public int getEnchantability() { return this.enchantability; }
-    @Override public SoundEvent getEquipSound() { return this.equipSound; }
-    @Override public Ingredient getRepairIngredient() { return this.repairIngredientSupplier.get(); }
-    @Override public String getName() { return this.name; }
-    @Override public float getToughness() { return this.toughness; }
-    @Override public float getKnockbackResistance() { return this.knockbackResistance; }
+    @Override
+    public int getDurability(ArmorItem.Type type) {
+        return BASE_DURABILITY[type.getEquipmentSlot().getEntitySlotId()] * this.durabilityMultiplier;
+    }
+    @Override
+    public int getProtection(ArmorItem.Type type) {
+        return this.protectionAmounts[type.getEquipmentSlot().getEntitySlotId()];
+    }
+    @Override
+    public int getEnchantability() {
+        return this.enchantability;
+    }
+    @Override
+    public SoundEvent getEquipSound() {
+        return this.equipSound;
+    }
+    @Override
+    public Ingredient getRepairIngredient() {
+        return this.repairIngredientSupplier.get();
+    }
+    @Override
+    public String getName() {
+        return this.name;
+    }
+    @Override
+    public float getToughness() {
+        return this.toughness;
+    }
+    @Override
+    public float getKnockbackResistance() {
+        return this.knockbackResistance;
+    }
 }

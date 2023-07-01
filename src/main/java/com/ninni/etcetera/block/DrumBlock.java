@@ -53,7 +53,7 @@ public class DrumBlock extends Block implements Waterloggable {
     public void playDrumSound(BlockState state, World world, BlockPos pos, Entity player, Vec3d hit) {
         world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
         world.setBlockState(pos, state.with(POWERED, true), 3);
-        world.createAndScheduleBlockTick(pos, this, getPressTicks());
+        world.scheduleBlockTick(pos, this, getPressTicks());
         int power = calculatePower(hit);
         if (power >= 1 && 5 >= power) {
             world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 16 / 24.0, 0.0, 0.0);
@@ -127,7 +127,7 @@ public class DrumBlock extends Block implements Waterloggable {
 
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (state.get(WATERLOGGED)) world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        if (state.get(WATERLOGGED)) world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         return direction == Direction.DOWN ? state.with(TYPE, DrumType.fromBlockState(neighborState)) : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
     }
     

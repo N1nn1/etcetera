@@ -47,7 +47,7 @@ public class DiceBlock extends FacingBlock {
         boolean powered = world.isReceivingRedstonePower(pos);
         boolean bl2 = state.get(POWERED);
         if (powered && !bl2) {
-            world.createAndScheduleBlockTick(pos, this, 4);
+            world.scheduleBlockTick(pos, this, 4);
             world.setBlockState(pos, state.with(POWERED, true), Block.NO_REDRAW);
         } else if (!powered && bl2) {
             world.setBlockState(pos, state.with(POWERED, false), Block.NO_REDRAW);

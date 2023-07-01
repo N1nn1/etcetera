@@ -27,7 +27,7 @@ public class TidalHelmetHud extends DrawableHelper {
     private int height;
 
     private void drawTidalEye(MatrixStack matrix, int x, int y) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.enableBlend();
         RenderSystem.blendFunc(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA);
         RenderSystem.setShaderColor(1, 1, 1, 1);
@@ -35,7 +35,7 @@ public class TidalHelmetHud extends DrawableHelper {
         drawTexture(matrix, (width / 2 - 6), height - 49, x, y, 12, 12);
     }
 
-    private void render(MatrixStack matrix, float delta) {
+    public void render(MatrixStack matrix, float delta) {
         width = client.getWindow().getScaledWidth();
         height = client.getWindow().getScaledHeight();
 

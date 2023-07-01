@@ -1,8 +1,9 @@
 package com.ninni.etcetera.stat;
 
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.stat.StatFormatter;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import static net.minecraft.stat.Stats.*;
 
@@ -15,7 +16,7 @@ public class EtceteraStats {
 
     private static Identifier register(String id, StatFormatter formatter) {
         Identifier identifier = new Identifier(id);
-        Registry.register(Registry.CUSTOM_STAT, id, identifier);
+        Registry.register(Registries.CUSTOM_STAT, id, identifier);
         CUSTOM.getOrCreateStat(identifier, formatter);
         return identifier;
     }

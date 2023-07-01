@@ -4,7 +4,6 @@ import com.ninni.etcetera.EtceteraProperties;
 import com.ninni.etcetera.block.enums.LightBulbBrightness;
 import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.minecraft.block.*;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -86,14 +85,9 @@ public class AbstractLightBulbBlock extends Block implements Waterloggable {
     }
 
     @Override
-    public PistonBehavior getPistonBehavior(BlockState state) {
-        return PistonBehavior.DESTROY;
-    }
-
-    @Override
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if (state.get(WATERLOGGED)) {
-            world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
         if (attachedDirection(state).getOpposite() == direction && !state.canPlaceAt(world, pos)) {
             return Blocks.AIR.getDefaultState();

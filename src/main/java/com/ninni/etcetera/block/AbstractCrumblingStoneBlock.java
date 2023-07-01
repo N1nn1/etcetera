@@ -4,10 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -29,7 +29,11 @@ public class AbstractCrumblingStoneBlock extends Block {
         }
     }
 
-    public static boolean canDisplayParticles(BlockState state) { return state.isAir() || state.isIn(BlockTags.FIRE) || state.getMaterial().isLiquid() || state.getMaterial().isReplaceable(); }
+    public static boolean canDisplayParticles(BlockState state) {
+        return state.isAir() || state.isIn(BlockTags.FIRE) || state.isLiquid() || state.isReplaceable();
+    }
 
-    @Override protected void appendProperties(StateManager.Builder<Block, BlockState> builder) { builder.add(LEVEL); }
+    @Override protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(LEVEL);
+    }
 }

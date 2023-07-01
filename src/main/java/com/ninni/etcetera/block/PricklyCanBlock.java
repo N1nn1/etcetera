@@ -3,7 +3,6 @@ package com.ninni.etcetera.block;
 import com.ninni.etcetera.block.entity.PricklyCanBlockEntity;
 import com.ninni.etcetera.stat.EtceteraStats;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BarrelBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -118,6 +117,6 @@ public class PricklyCanBlock extends BlockWithEntity {
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getPlayerFacing().getOpposite());
+        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 }

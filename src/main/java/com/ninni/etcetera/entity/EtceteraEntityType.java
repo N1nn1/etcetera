@@ -1,15 +1,13 @@
 package com.ninni.etcetera.entity;
 
 import com.ninni.etcetera.Etcetera;
-import com.ninni.etcetera.EtceteraTags;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
 
 public class EtceteraEntityType {
@@ -45,6 +43,6 @@ public class EtceteraEntityType {
 
 
     private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> entityType) {
-        return Registry.register(Registry.ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, id), entityType.build());
+        return Registry.register(Registries.ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, id), entityType.build());
     }
 }
