@@ -38,6 +38,6 @@ public interface EtceteraSoundEvents {
 
     static SoundEvent register(String id) {
         Identifier identifier = new Identifier(MOD_ID, id);
-        return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(new Identifier(id)));
+        return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));
     }
 }

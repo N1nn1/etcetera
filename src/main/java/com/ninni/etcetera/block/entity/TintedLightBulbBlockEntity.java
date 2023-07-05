@@ -59,7 +59,7 @@ public class TintedLightBulbBlockEntity extends BlockEntity {
             this.setTicksBeforeFlicker(this.ticksBeforeFlicker - 1);
         } else if (state.get(AbstractLightBulbBlock.BRIGHTNESS) != LightBulbBrightness.OFF){
             this.name = state.get(AbstractLightBulbBlock.BRIGHTNESS).name();
-            world.createAndScheduleBlockTick(pos, state.getBlock(), 2);
+            world.scheduleBlockTick(pos, state.getBlock(), 2);
             world.setBlockState(pos, state.with(AbstractLightBulbBlock.BRIGHTNESS, LightBulbBrightness.OFF));
             world.playSound(null, pos, EtceteraSoundEvents.BLOCK_LIGHT_BULB_OFF, SoundCategory.BLOCKS, 0.1F, 0.25F);
             this.offTicks = MathHelper.nextInt(world.random, 1, 30);

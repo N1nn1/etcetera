@@ -1,16 +1,14 @@
 package com.ninni.etcetera.client.gui.screen;
 
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.PressableWidget;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -30,10 +28,10 @@ public class PricklyCanScreen extends HandledScreen<PricklyCanScreenHandler> {
     }
 
     @Override
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        this.drawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
+        this.drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
     @Override
@@ -43,13 +41,11 @@ public class PricklyCanScreen extends HandledScreen<PricklyCanScreenHandler> {
     }
 
     @Override
-    protected void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, PricklyCanScreen.TEXTURE);
+    protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
+        this.renderBackground(context);
         int i = (this.width - this.backgroundWidth) / 2;
         int j = (this.height - this.backgroundHeight) / 2;
-        this.drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        context.drawTexture(TEXTURE, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
     }
 
     private <T extends ClickableWidget & PricklyCanButtonWidget> void addButton(T button) {
@@ -65,12 +61,11 @@ public class PricklyCanScreen extends HandledScreen<PricklyCanScreenHandler> {
     }
 
     @Override
-    protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-        this.textRenderer.draw(matrices, this.title, (float)this.titleX, (float)this.titleY, 4210752);
-        this.textRenderer.draw(matrices, this.playerInventoryTitle, (float)this.playerInventoryTitleX, (float)this.playerInventoryTitleY, 4210752);
+    protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
+        super.drawForeground(context, mouseX, mouseY);
         for (PricklyCanButtonWidget button : this.buttons) {
             if (button.shouldRenderTooltip()) {
-                button.renderTooltip(matrices, mouseX - this.x, mouseY - this.y);
+                context.drawTooltip(this.textRenderer, Text.translatable("etcetera.container.prickly_can_delete"), mouseX - this.x, mouseY - this.y);
                 break;
             }
         }
@@ -81,11 +76,6 @@ public class PricklyCanScreen extends HandledScreen<PricklyCanScreenHandler> {
 
         public DeleteButtonWidget(int x, int y) {
             super(x, y, Text.translatable(""));
-        }
-
-        @Override
-        public void renderTooltip(MatrixStack matrices, int mouseX, int mouseY) {
-            PricklyCanScreen.this.renderTooltip(matrices, Text.translatable("etcetera.container.prickly_can_delete"), mouseX, mouseY);
         }
 
         @Override
@@ -116,11 +106,8 @@ public class PricklyCanScreen extends HandledScreen<PricklyCanScreenHandler> {
     interface PricklyCanButtonWidget {
         boolean shouldRenderTooltip();
 
-        void renderTooltip(MatrixStack matrices, int mouseX, int mouseY);
-
         void tick();
     }
-
 
     @Environment(EnvType.CLIENT)
     abstract static class BaseButtonWidget extends PressableWidget implements PricklyCanButtonWidget {
@@ -131,20 +118,14 @@ public class PricklyCanScreen extends HandledScreen<PricklyCanScreenHandler> {
         }
 
         @Override
-        public void renderButton(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-            RenderSystem.setShader(GameRenderer::getPositionTexShader);
-            RenderSystem.setShaderTexture(0, PricklyCanScreen.TEXTURE);
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        public void renderButton(DrawContext context, int mouseX, int mouseY, float delta) {
             int j = 176;
             if (this.disabled) {
                 j += 26;
             } else if (this.isHovered()) {
                 j += 13;
-            } else  {
-                j = 176;
             }
-
-            this.drawTexture(matrices, this.x, this.y, j, 0, this.width, this.height);
+            context.drawTexture(TEXTURE, this.getX(), this.getY(), j, 0, this.width, this.height);
         }
 
         public boolean isDisabled() {
@@ -161,7 +142,7 @@ public class PricklyCanScreen extends HandledScreen<PricklyCanScreenHandler> {
         }
 
         @Override
-        public void appendNarrations(NarrationMessageBuilder builder) {
+        protected void appendClickableNarrations(NarrationMessageBuilder builder) {
             this.appendDefaultNarrations(builder);
         }
     }

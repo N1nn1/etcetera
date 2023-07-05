@@ -9,10 +9,10 @@ import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 
 @Environment(value=EnvType.CLIENT)
 public class TurtleRaftBannerLayer extends FeatureRenderer<TurtleRaftEntity, TurtleRaftModel> {
@@ -28,9 +28,9 @@ public class TurtleRaftBannerLayer extends FeatureRenderer<TurtleRaftEntity, Tur
             poseStack.push();
             poseStack.scale(1.0F, 1.0F, 1.0F);
             poseStack.translate(-0.65D, 0.4D, 0.0D);
-            poseStack.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion(90.0F));
+            poseStack.multiply(RotationAxis.NEGATIVE_Y.rotationDegrees(90.0F));
             poseStack.scale(0.625F, -0.625F, -0.625F);
-            MinecraftClient.getInstance().getItemRenderer().renderItem(null, itemstack, ModelTransformation.Mode.HEAD, false, poseStack, source, entity.world, packedLight, OverlayTexture.DEFAULT_UV, entity.getId() + ModelTransformation.Mode.HEAD.ordinal());
+            MinecraftClient.getInstance().getItemRenderer().renderItem(null, itemstack, ModelTransformationMode.HEAD, false, poseStack, source, entity.getWorld(), packedLight, OverlayTexture.DEFAULT_UV, entity.getId() + ModelTransformationMode.HEAD.ordinal());
             poseStack.pop();
         }
     }

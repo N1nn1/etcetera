@@ -1,17 +1,12 @@
 package com.ninni.etcetera.client;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.ninni.etcetera.Etcetera;
 import com.ninni.etcetera.item.EtceteraItems;
-
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffects;
@@ -19,23 +14,20 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class TidalHelmetHud extends DrawableHelper {
+public class TidalHelmetHud {
 
     private final MinecraftClient client = MinecraftClient.getInstance();
 
     private int width;
     private int height;
 
-    private void drawTidalEye(MatrixStack matrix, int x, int y) {
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-        RenderSystem.enableBlend();
-        RenderSystem.blendFunc(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA);
-        RenderSystem.setShaderColor(1, 1, 1, 1);
-        RenderSystem.setShaderTexture(0, new Identifier(Etcetera.MOD_ID, "textures/gui/icons.png"));
-        drawTexture(matrix, (width / 2 - 6), height - 49, x, y, 12, 12);
+    private void drawTidalEye(DrawContext matrix, int x, int y) {
+//        drawTexture(matrix, (width / 2 - 6), height - 49, x, y, 12, 12);
+//        matrix.drawTexture(new Identifier(Etcetera.MOD_ID, "textures/gui/icons.png"), (width / 2 - 6), height - 49, x, y);
+        matrix.drawTexture(new Identifier(Etcetera.MOD_ID, "textures/gui/icons.png"), (width / 2 -6), height - 49, x, y, 12, 12);
     }
 
-    public void render(MatrixStack matrix, float delta) {
+    public void render(DrawContext matrix, float delta) {
         width = client.getWindow().getScaledWidth();
         height = client.getWindow().getScaledHeight();
 
