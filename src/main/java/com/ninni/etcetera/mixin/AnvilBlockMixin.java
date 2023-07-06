@@ -1,6 +1,6 @@
 package com.ninni.etcetera.mixin;
 
-import com.ninni.etcetera.item.EtceteraItems;
+import com.ninni.etcetera.registry.EtceteraItems;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

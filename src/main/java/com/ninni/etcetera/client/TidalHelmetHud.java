@@ -1,7 +1,7 @@
 package com.ninni.etcetera.client;
 
 import com.ninni.etcetera.Etcetera;
-import com.ninni.etcetera.item.EtceteraItems;
+import com.ninni.etcetera.registry.EtceteraItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;

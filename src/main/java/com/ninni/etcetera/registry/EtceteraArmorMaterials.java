@@ -1,6 +1,5 @@
-package com.ninni.etcetera.item;
+package com.ninni.etcetera.registry;
 
-import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Items;

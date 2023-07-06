@@ -1,6 +1,9 @@
-package com.ninni.etcetera.entity;
+package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.Etcetera;
+import com.ninni.etcetera.entity.ChappleEntity;
+import com.ninni.etcetera.entity.EggpleEntity;
+import com.ninni.etcetera.entity.TurtleRaftEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.*;
 import net.minecraft.entity.passive.AnimalEntity;

@@ -1,7 +1,7 @@
 package com.ninni.etcetera.item;
 
-import com.ninni.etcetera.EtceteraTags;
-import com.ninni.etcetera.sound.EtceteraSoundEvents;
+import com.ninni.etcetera.registry.EtceteraTags;
+import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

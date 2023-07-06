@@ -1,6 +1,7 @@
 package com.ninni.etcetera.client.gui.screen;
 
 import com.ninni.etcetera.network.EtceteraNetwork;
+import com.ninni.etcetera.registry.EtceteraScreenHandlerType;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.entity.player.PlayerEntity;

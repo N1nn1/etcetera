@@ -1,8 +1,8 @@
 package com.ninni.etcetera.block;
 
-import com.ninni.etcetera.EtceteraProperties;
+import com.ninni.etcetera.registry.EtceteraProperties;
 import com.ninni.etcetera.block.enums.LightBulbBrightness;
-import com.ninni.etcetera.sound.EtceteraSoundEvents;
+import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import net.minecraft.block.*;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;

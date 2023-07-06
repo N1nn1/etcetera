@@ -1,9 +1,6 @@
-package com.ninni.etcetera.item;
+package com.ninni.etcetera.registry;
 
-import com.ninni.etcetera.EtceteraTags;
-import com.ninni.etcetera.block.EtceteraBlocks;
-import com.ninni.etcetera.entity.EtceteraEntityType;
-import com.ninni.etcetera.sound.EtceteraSoundEvents;
+import com.ninni.etcetera.item.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;

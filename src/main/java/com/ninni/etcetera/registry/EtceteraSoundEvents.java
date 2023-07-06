@@ -1,4 +1,4 @@
-package com.ninni.etcetera.sound;
+package com.ninni.etcetera.registry;
 
 import static com.ninni.etcetera.Etcetera.MOD_ID;
 

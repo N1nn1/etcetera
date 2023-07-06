@@ -1,6 +1,6 @@
 package com.ninni.etcetera.item;
 
-import com.ninni.etcetera.sound.EtceteraSoundEvents;
+import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.effect.StatusEffectInstance;

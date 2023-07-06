@@ -1,7 +1,8 @@
 package com.ninni.etcetera.entity;
 
-import com.ninni.etcetera.item.EtceteraItems;
-import com.ninni.etcetera.sound.EtceteraSoundEvents;
+import com.ninni.etcetera.registry.EtceteraItems;
+import com.ninni.etcetera.registry.EtceteraEntityType;
+import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;

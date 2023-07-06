@@ -1,7 +1,9 @@
-package com.ninni.etcetera.block.entity;
+package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.Etcetera;
-import com.ninni.etcetera.block.EtceteraBlocks;
+import com.ninni.etcetera.block.entity.ItemStandBlockEntity;
+import com.ninni.etcetera.block.entity.PricklyCanBlockEntity;
+import com.ninni.etcetera.block.entity.TintedLightBulbBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;

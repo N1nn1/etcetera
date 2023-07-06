@@ -1,6 +1,6 @@
 package com.ninni.etcetera.mixin;
 
-import com.ninni.etcetera.EtceteraTags;
+import com.ninni.etcetera.registry.EtceteraTags;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.PlantBlock;
 import net.minecraft.block.TallPlantBlock;

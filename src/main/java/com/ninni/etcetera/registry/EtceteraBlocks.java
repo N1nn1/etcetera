@@ -1,8 +1,8 @@
-package com.ninni.etcetera.block;
+package com.ninni.etcetera.registry;
 
+import com.ninni.etcetera.block.*;
 import com.ninni.etcetera.block.vanilla.PublicPaneBlock;
 import com.ninni.etcetera.block.vanilla.PublicStairsBlock;
-import com.ninni.etcetera.sound.EtceteraSoundEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;

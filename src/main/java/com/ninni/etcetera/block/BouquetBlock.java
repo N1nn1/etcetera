@@ -1,6 +1,6 @@
 package com.ninni.etcetera.block;
 
-import com.ninni.etcetera.EtceteraTags;
+import com.ninni.etcetera.registry.EtceteraTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PlantBlock;

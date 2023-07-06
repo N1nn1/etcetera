@@ -1,6 +1,6 @@
 package com.ninni.etcetera.client.renderer.entity.layer;
 
-import com.ninni.etcetera.client.model.EtceteraEntityModelLayers;
+import com.ninni.etcetera.registry.EtceteraEntityModelLayers;
 import com.ninni.etcetera.client.model.TurtleRaftModel;
 import com.ninni.etcetera.entity.TurtleRaftEntity;
 import net.fabricmc.api.EnvType;

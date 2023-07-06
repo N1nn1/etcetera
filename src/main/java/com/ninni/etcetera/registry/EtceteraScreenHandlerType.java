@@ -1,5 +1,6 @@
-package com.ninni.etcetera.client.gui.screen;
+package com.ninni.etcetera.registry;
 
+import com.ninni.etcetera.client.gui.screen.PricklyCanScreenHandler;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.resource.featuretoggle.FeatureFlags;

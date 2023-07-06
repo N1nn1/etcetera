@@ -2,7 +2,7 @@ package com.ninni.etcetera.client.renderer.entity;
 
 import com.google.common.collect.Maps;
 import com.ninni.etcetera.client.model.ChappleModel;
-import com.ninni.etcetera.client.model.EtceteraEntityModelLayers;
+import com.ninni.etcetera.registry.EtceteraEntityModelLayers;
 import com.ninni.etcetera.entity.ChappleEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

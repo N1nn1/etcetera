@@ -1,6 +1,8 @@
-package com.ninni.etcetera.client.model;
+package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.Etcetera;
+import com.ninni.etcetera.client.model.ChappleModel;
+import com.ninni.etcetera.client.model.TurtleRaftModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;

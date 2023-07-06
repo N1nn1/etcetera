@@ -1,6 +1,6 @@
 package com.ninni.etcetera.client.renderer.entity;
 
-import com.ninni.etcetera.client.model.EtceteraEntityModelLayers;
+import com.ninni.etcetera.registry.EtceteraEntityModelLayers;
 import com.ninni.etcetera.client.model.TurtleRaftModel;
 import com.ninni.etcetera.client.renderer.entity.layer.TurtleRaftBannerLayer;
 import com.ninni.etcetera.client.renderer.entity.layer.TurtleRaftColorRenderLayer;

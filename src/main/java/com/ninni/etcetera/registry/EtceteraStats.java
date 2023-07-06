@@ -1,4 +1,4 @@
-package com.ninni.etcetera.stat;
+package com.ninni.etcetera.registry;
 
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

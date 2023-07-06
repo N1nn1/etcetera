@@ -26,7 +26,7 @@ public class SquidLampBlock extends Block implements Waterloggable {
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape BOUNDING_SHAPE = Block.createCuboidShape(5, 0, 5, 11, 10, 11);
 
-    protected SquidLampBlock(AbstractBlock.Settings settings) {
+    public SquidLampBlock(AbstractBlock.Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false));
     }

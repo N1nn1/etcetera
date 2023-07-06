@@ -1,7 +1,7 @@
 package com.ninni.etcetera.block;
 
 import com.ninni.etcetera.block.entity.PricklyCanBlockEntity;
-import com.ninni.etcetera.stat.EtceteraStats;
+import com.ninni.etcetera.registry.EtceteraStats;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;

@@ -1,8 +1,8 @@
 package com.ninni.etcetera.block;
 
-import com.ninni.etcetera.EtceteraProperties;
+import com.ninni.etcetera.registry.EtceteraProperties;
 import com.ninni.etcetera.block.entity.ItemStandBlockEntity;
-import com.ninni.etcetera.stat.EtceteraStats;
+import com.ninni.etcetera.registry.EtceteraStats;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,7 +37,7 @@ public class ItemStandBlock extends BlockWithEntity implements Waterloggable {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(Block.createCuboidShape(1, 0, 1, 15, 2, 15), Block.createCuboidShape(7, 2, 7, 9, 7, 9), BooleanBiFunction.OR);
 
-    protected ItemStandBlock(Settings settings) {
+    public ItemStandBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false).with(FACING, Direction.NORTH).with(GLASS, false));
     }

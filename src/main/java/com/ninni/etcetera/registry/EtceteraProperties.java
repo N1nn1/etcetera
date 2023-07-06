@@ -1,4 +1,4 @@
-package com.ninni.etcetera;
+package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.block.enums.DrumType;
 import com.ninni.etcetera.block.enums.LightBulbBrightness;

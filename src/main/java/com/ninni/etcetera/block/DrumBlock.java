@@ -1,6 +1,6 @@
 package com.ninni.etcetera.block;
 
-import com.ninni.etcetera.EtceteraProperties;
+import com.ninni.etcetera.registry.EtceteraProperties;
 import com.ninni.etcetera.block.enums.DrumType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -45,7 +45,7 @@ public class DrumBlock extends Block implements Waterloggable {
     protected static final VoxelShape SHAPE = VoxelShapes.combineAndSimplify(Block.createCuboidShape(2, 0, 2, 14, 8, 14), Block.createCuboidShape(0, 8, 0, 16, 16, 16), BooleanBiFunction.OR);
     protected static final VoxelShape HIT_SHAPE = VoxelShapes.combineAndSimplify(Block.createCuboidShape(-0.25, 8, -0.25, 16.25, 15.75, 16.25), Block.createCuboidShape(2, 0, 2, 14, 8, 14), BooleanBiFunction.OR);
 
-    protected DrumBlock(Settings settings) {
+    public DrumBlock(Settings settings) {
         super(settings);
         setDefaultState(stateManager.getDefaultState().with(WATERLOGGED, false).with(POWERED, false).with(TYPE, DrumType.DJEMBE));
     }

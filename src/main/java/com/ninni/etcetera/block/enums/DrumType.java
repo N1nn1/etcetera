@@ -1,6 +1,6 @@
 package com.ninni.etcetera.block.enums;
 
-import com.ninni.etcetera.sound.EtceteraSoundEvents;
+import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.sound.SoundEvent;

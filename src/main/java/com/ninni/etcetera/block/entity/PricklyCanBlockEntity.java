@@ -2,6 +2,7 @@ package com.ninni.etcetera.block.entity;
 
 import com.ninni.etcetera.block.PricklyCanBlock;
 import com.ninni.etcetera.client.gui.screen.PricklyCanScreenHandler;
+import com.ninni.etcetera.registry.EtceteraBlockEntityType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.block.entity.ViewerCountManager;

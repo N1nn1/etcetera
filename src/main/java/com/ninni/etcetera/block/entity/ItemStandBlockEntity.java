@@ -1,5 +1,6 @@
 package com.ninni.etcetera.block.entity;
 
+import com.ninni.etcetera.registry.EtceteraBlockEntityType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

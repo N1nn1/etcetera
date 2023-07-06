@@ -1,7 +1,7 @@
 package com.ninni.etcetera.block;
 
-import com.ninni.etcetera.sound.EtceteraSoundEvents;
-import com.ninni.etcetera.stat.EtceteraStats;
+import com.ninni.etcetera.registry.EtceteraSoundEvents;
+import com.ninni.etcetera.registry.EtceteraStats;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FacingBlock;

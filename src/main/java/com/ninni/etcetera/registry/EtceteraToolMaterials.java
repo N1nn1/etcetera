@@ -1,4 +1,4 @@
-package com.ninni.etcetera.item;
+package com.ninni.etcetera.registry;
 
 import net.fabricmc.yarn.constants.MiningLevels;
 import net.minecraft.item.ToolMaterial;

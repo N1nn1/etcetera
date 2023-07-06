@@ -35,7 +35,7 @@ public class WallSquidLampBlock extends SquidLampBlock {
         Direction.EAST, Block.createCuboidShape(0, 5, 5, 9, 11, 11)
     ));
 
-    protected WallSquidLampBlock(AbstractBlock.Settings settings) {
+    public WallSquidLampBlock(AbstractBlock.Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
     }
