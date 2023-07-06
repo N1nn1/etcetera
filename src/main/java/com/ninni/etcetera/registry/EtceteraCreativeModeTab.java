@@ -62,6 +62,9 @@ public class EtceteraCreativeModeTab {
                 output.add(EGGPLE);
                 output.add(GOLDEN_EGGPLE);
 
+                output.add(COTTON_SEEDS);
+                output.add(COTTON_FLOWER);
+
 
             }).build()
     );

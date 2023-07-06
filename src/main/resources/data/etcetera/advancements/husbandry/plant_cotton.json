@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:husbandry/plant_seed",
+  "criteria": {
+    "cotton": {
+      "conditions": {
+        "location": [
+          {
+            "block": "etcetera:cotton",
+            "condition": "minecraft:block_state_property"
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.etcetera.husbandry.plant_cotton.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "etcetera:cotton_flower"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.etcetera.husbandry.plant_cotton.title"
+    }
+  },
+  "requirements": [
+    [
+      "cotton"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -55,6 +55,9 @@ public class EtceteraBlocks {
     public static final Block LIGHT_BULB = register("light_bulb", new LightBulbBlock(FabricBlockSettings.copyOf(GLASS).nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block TINTED_LIGHT_BULB = register("tinted_light_bulb", new TintedLightBulbBlock(FabricBlockSettings.copyOf(TINTED_GLASS).nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
 
+    public static final Block COTTON = register("cotton", new CottonBlock(AbstractBlock.Settings.create().mapColor(state -> state.get(CottonBlock.AGE) == 3 ? MapColor.GREEN : MapColor.SPRUCE_BROWN).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).pistonBehavior(PistonBehavior.DESTROY)));
+
+
     private static Block register(String id, Block block) { return Registry.register(Registries.BLOCK, new Identifier(MOD_ID, id), block); }
     private static boolean never(BlockState state, BlockView world, BlockPos pos) { return false; }
 }

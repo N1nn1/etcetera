@@ -2,22 +2,16 @@ package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.item.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.item.*;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTables;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.function.SetCountLootFunction;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.Direction;
 
-import static com.ninni.etcetera.Etcetera.*;
-import static com.ninni.etcetera.registry.EtceteraVanillaIntegration.*;
+import static com.ninni.etcetera.Etcetera.MOD_ID;
+import static com.ninni.etcetera.registry.EtceteraVanillaIntegration.CHISELLING_MANAGER;
+import static com.ninni.etcetera.registry.EtceteraVanillaIntegration.HAMMERING_MANAGER;
 
 @SuppressWarnings("unused")
 public class EtceteraItems {
@@ -53,9 +47,9 @@ public class EtceteraItems {
 
     public static final Item ITEM_STAND = register("item_stand", new BlockItem(EtceteraBlocks.ITEM_STAND, new FabricItemSettings()));
 
-    public static final Item SQUID_LAMP = register("squid_lamp", new VerticallyAttachableBlockItem(EtceteraBlocks.SQUID_LAMP, EtceteraBlocks.WALL_SQUID_LAMP, new Item.Settings(), Direction.DOWN));
-    public static final Item TIDAL_HELMET = register("tidal_helmet", new ArmorItem(EtceteraArmorMaterials.TIDAL, ArmorItem.Type.HELMET, new Item.Settings().rarity(Rarity.UNCOMMON)));
-    public static final Item TURTLE_RAFT = register("turtle_raft", new TurtleRaftItem(new Item.Settings().maxCount(1)));
+    public static final Item SQUID_LAMP = register("squid_lamp", new VerticallyAttachableBlockItem(EtceteraBlocks.SQUID_LAMP, EtceteraBlocks.WALL_SQUID_LAMP, new FabricItemSettings(), Direction.DOWN));
+    public static final Item TIDAL_HELMET = register("tidal_helmet", new ArmorItem(EtceteraArmorMaterials.TIDAL, ArmorItem.Type.HELMET, new FabricItemSettings().rarity(Rarity.UNCOMMON)));
+    public static final Item TURTLE_RAFT = register("turtle_raft", new TurtleRaftItem(new FabricItemSettings().maxCount(1)));
 
     public static final Item CRUMBLING_STONE = register("crumbling_stone", new BlockItem(EtceteraBlocks.CRUMBLING_STONE, new FabricItemSettings()));
     public static final Item WAXED_CRUMBLING_STONE = register("waxed_crumbling_stone", new BlockItem(EtceteraBlocks.WAXED_CRUMBLING_STONE, new FabricItemSettings()));
@@ -66,30 +60,13 @@ public class EtceteraItems {
     public static final Item LIGHT_BULB = register("light_bulb", new BlockItem(EtceteraBlocks.LIGHT_BULB, new FabricItemSettings()));
     public static final Item TINTED_LIGHT_BULB = register("tinted_light_bulb", new BlockItem(EtceteraBlocks.TINTED_LIGHT_BULB, new FabricItemSettings()));
 
-    public static final Item CHAPPLE_SPAWN_EGG = register("chapple_spawn_egg", new SpawnEggItem(EtceteraEntityType.CHAPPLE, 0xE41826, 0x548630, new Item.Settings().maxCount(64)));
-    public static final Item EGGPLE = register("eggple", new EggpleItem(false, new Item.Settings().maxCount(16)));
-    public static final Item GOLDEN_EGGPLE = register("golden_eggple", new EggpleItem(true, new Item.Settings().rarity(Rarity.RARE).maxCount(16)));
+    public static final Item CHAPPLE_SPAWN_EGG = register("chapple_spawn_egg", new SpawnEggItem(EtceteraEntityType.CHAPPLE, 0xE41826, 0x548630, new FabricItemSettings().maxCount(64)));
+    public static final Item EGGPLE = register("eggple", new EggpleItem(false, new FabricItemSettings().maxCount(16)));
+    public static final Item GOLDEN_EGGPLE = register("golden_eggple", new EggpleItem(true, new FabricItemSettings().rarity(Rarity.RARE).maxCount(16)));
 
-    static {
-        CompostingChanceRegistry.INSTANCE.add(BOUQUET, 0.85f);
+    public static final Item COTTON_SEEDS = register("cotton_seeds", new AliasedBlockItem(EtceteraBlocks.COTTON, new FabricItemSettings()));
+    public static final Item COTTON_FLOWER = register("cotton_flower", new Item(new FabricItemSettings()));
 
-
-        LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-            if (id.equals(LootTables.BASTION_OTHER_CHEST)) {
-                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(GOLDEN_EGGPLE).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1)))).build());
-            }
-            if (id.equals(LootTables.BASTION_TREASURE_CHEST)) {
-                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(GOLDEN_EGGPLE).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 1)))).build());
-            }
-            if (id.equals(LootTables.PILLAGER_OUTPOST_CHEST)) {
-                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EGGPLE).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1)))).build());
-            }
-            if (id.equals(LootTables.VILLAGE_PLAINS_CHEST)) {
-                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EGGPLE).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 3)))).build());
-            }
-        });
-
-    }
 
     private static Item register(String id, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(MOD_ID, id), item);

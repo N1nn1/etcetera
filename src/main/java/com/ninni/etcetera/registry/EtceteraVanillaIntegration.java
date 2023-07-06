@@ -16,7 +16,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.Block;
@@ -29,6 +31,11 @@ import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.Position;
@@ -52,6 +59,8 @@ public class EtceteraVanillaIntegration {
         registerReloadListeners();
         registerWaxables();
         registerVillagerTrades();
+        registerLootTableEvents();
+        registerCompostables();
     }
 
     public static void clientInit() {
@@ -87,6 +96,29 @@ public class EtceteraVanillaIntegration {
         resourceManager.registerReloadListener(HAMMERING_MANAGER);
     }
 
+    private static void registerCompostables() {
+        CompostingChanceRegistry.INSTANCE.add(EtceteraItems.BOUQUET, 0.85f);
+        CompostingChanceRegistry.INSTANCE.add(EtceteraItems.COTTON_SEEDS, 0.3f);
+        CompostingChanceRegistry.INSTANCE.add(EtceteraItems.COTTON_FLOWER, 0.65f);
+    }
+
+    private static void registerLootTableEvents() {
+        LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
+            if (id.equals(LootTables.BASTION_OTHER_CHEST)) {
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.GOLDEN_EGGPLE).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1)))).build());
+            }
+            if (id.equals(LootTables.BASTION_TREASURE_CHEST)) {
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.GOLDEN_EGGPLE).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 1)))).build());
+            }
+            if (id.equals(LootTables.PILLAGER_OUTPOST_CHEST)) {
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.EGGPLE).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1)))).build());
+            }
+            if (id.equals(LootTables.VILLAGE_PLAINS_CHEST)) {
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.EGGPLE).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 3)))).build());
+            }
+        });
+    }
+
     private static void registerWaxables() {
         LinkedHashMap<Block, Block> crumblingStone = Maps.newLinkedHashMap();
         crumblingStone.put(CRUMBLING_STONE, WAXED_CRUMBLING_STONE);
@@ -98,6 +130,8 @@ public class EtceteraVanillaIntegration {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.WEAPONSMITH, 2, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL), 6, 3, 0.2f)));
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.TOOLSMITH, 2, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL), 6, 3, 0.2f)));
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.TOOLSMITH, 3, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 16), ItemStack.EMPTY, new ItemStack(EtceteraItems.HAMMER), 6, 2, 0.2f)));
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 1, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 26), ItemStack.EMPTY, new ItemStack(EtceteraItems.COTTON_FLOWER), 16, 2, 0.05f)));
+        TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 1), ItemStack.EMPTY, new ItemStack(EtceteraItems.COTTON_FLOWER), 1, 12, 0.05f)));
     }
 
     //client
@@ -120,6 +154,7 @@ public class EtceteraVanillaIntegration {
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
                 EtceteraBlocks.BISMUTH_BARS,
                 EtceteraBlocks.BOUQUET,
+                EtceteraBlocks.COTTON,
                 EtceteraBlocks.POTTED_BOUQUET,
                 EtceteraBlocks.ITEM_STAND,
                 EtceteraBlocks.FRAME,
