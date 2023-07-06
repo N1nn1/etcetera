@@ -6,6 +6,7 @@ import com.ninni.etcetera.client.TidalHelmetHud;
 import com.ninni.etcetera.client.gui.screen.PricklyCanScreen;
 import com.ninni.etcetera.client.renderer.block.entity.ItemStandBlockEntityRenderer;
 import com.ninni.etcetera.client.renderer.entity.ChappleRenderer;
+import com.ninni.etcetera.client.renderer.entity.CottonArmorRenderer;
 import com.ninni.etcetera.client.renderer.entity.TidalArmorRenderer;
 import com.ninni.etcetera.client.renderer.entity.TurtleRaftRenderer;
 import com.ninni.etcetera.entity.EggpleEntity;
@@ -65,7 +66,7 @@ public class EtceteraVanillaIntegration {
 
     public static void clientInit() {
         registerBlockEntityRenderer();
-        registerTidalHelmet();
+        registerArmor();
         registerBlockRenderLayers();
         registerScreens();
         registerEntityModelLayers();
@@ -140,7 +141,24 @@ public class EtceteraVanillaIntegration {
         BlockEntityRendererRegistry.register(EtceteraBlockEntityType.ITEM_STAND, ItemStandBlockEntityRenderer::new);
     }
 
-    private static void registerTidalHelmet() {
+    private static void registerArmor() {
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.WHITE_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_GRAY_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GRAY_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLACK_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BROWN_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.RED_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.ORANGE_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.YELLOW_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIME_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GREEN_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.CYAN_SWEATER );
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_BLUE_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLUE_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PURPLE_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.MAGENTA_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PINK_SWEATER);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.TRADER_ROBE);
         ArmorRenderer.register(new TidalArmorRenderer(), EtceteraItems.TIDAL_HELMET);
         TidalHelmetHud.init();
     }

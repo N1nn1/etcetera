@@ -5,6 +5,7 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Lazy;
 
 import java.util.function.Supplier;
@@ -12,7 +13,8 @@ import java.util.function.Supplier;
 @SuppressWarnings("deprecation")
 public enum EtceteraArmorMaterials implements ArmorMaterial {
 
-    TIDAL("tidal", 35, new int[]{3, 6, 8, 3}, 15, EtceteraSoundEvents.ITEM_TIDEL_ARMOR_EQUIP, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.NAUTILUS_SHELL));
+    TIDAL("tidal", 35, new int[]{3, 6, 8, 3}, 15, EtceteraSoundEvents.ITEM_TIDEL_ARMOR_EQUIP, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.NAUTILUS_SHELL)),
+    COTTON("cotton", 0, new int[]{0, 0, 0, 0}, 0, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 0.0f, 0.0f, () -> Ingredient.ofItems(EtceteraItems.COTTON_FLOWER));
 
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
     private final String name;

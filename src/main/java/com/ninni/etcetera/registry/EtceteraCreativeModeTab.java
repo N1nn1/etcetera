@@ -64,6 +64,23 @@ public class EtceteraCreativeModeTab {
 
                 output.add(COTTON_SEEDS);
                 output.add(COTTON_FLOWER);
+                output.add(WHITE_SWEATER);
+                output.add(LIGHT_GRAY_SWEATER);
+                output.add(GRAY_SWEATER);
+                output.add(BLACK_SWEATER);
+                output.add(BROWN_SWEATER);
+                output.add(RED_SWEATER);
+                output.add(ORANGE_SWEATER);
+                output.add(YELLOW_SWEATER);
+                output.add(LIME_SWEATER);
+                output.add(GREEN_SWEATER);
+                output.add(CYAN_SWEATER );
+                output.add(LIGHT_BLUE_SWEATER);
+                output.add(BLUE_SWEATER);
+                output.add(PURPLE_SWEATER);
+                output.add(MAGENTA_SWEATER);
+                output.add(PINK_SWEATER);
+                output.add(TRADER_ROBE);
 
 
             }).build()
