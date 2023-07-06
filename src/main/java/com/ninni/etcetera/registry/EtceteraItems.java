@@ -17,6 +17,7 @@ import net.minecraft.util.Rarity;
 import net.minecraft.util.math.Direction;
 
 import static com.ninni.etcetera.Etcetera.*;
+import static com.ninni.etcetera.registry.EtceteraVanillaIntegration.*;
 
 @SuppressWarnings("unused")
 public class EtceteraItems {
@@ -58,7 +59,6 @@ public class EtceteraItems {
 
     public static final Item CRUMBLING_STONE = register("crumbling_stone", new BlockItem(EtceteraBlocks.CRUMBLING_STONE, new FabricItemSettings()));
     public static final Item WAXED_CRUMBLING_STONE = register("waxed_crumbling_stone", new BlockItem(EtceteraBlocks.WAXED_CRUMBLING_STONE, new FabricItemSettings()));
-
     public static final Item LEVELED_STONE = register("leveled_stone", new BlockItem(EtceteraBlocks.LEVELED_STONE, new FabricItemSettings()));
     public static final Item LEVELED_STONE_STAIRS = register("leveled_stone_stairs", new BlockItem(EtceteraBlocks.LEVELED_STONE_STAIRS, new FabricItemSettings()));
     public static final Item LEVELED_STONE_SLAB = register("leveled_stone_slab", new BlockItem(EtceteraBlocks.LEVELED_STONE_SLAB, new FabricItemSettings()));
