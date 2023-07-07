@@ -155,7 +155,7 @@ public class EtceteraVanillaIntegration {
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.YELLOW_SWEATER);
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIME_SWEATER);
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GREEN_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.CYAN_SWEATER );
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.CYAN_SWEATER);
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_BLUE_SWEATER);
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLUE_SWEATER);
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PURPLE_SWEATER);

@@ -41,7 +41,7 @@ public class ItemStandBlockEntityRenderer implements BlockEntityRenderer<ItemSta
             matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(20.0f));
             matrices.scale(0.65f, 0.65f, 0.65f);
 
-            this.itemRenderer.renderItem(itemStack, ModelTransformationMode.FIXED, l, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, itemStack.getHolder().getWorld(), itemStack.getHolder().getId());
+            this.itemRenderer.renderItem(itemStack, ModelTransformationMode.FIXED, l, OverlayTexture.DEFAULT_UV, matrices, vertexConsumers, entity.getWorld(), (int)entity.getPos().asLong());
             matrices.pop();
         }
     }
