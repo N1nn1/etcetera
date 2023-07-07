@@ -7,7 +7,8 @@
     "AbstractBlockStateMixin",
     "AnvilBlockMixin",
     "PlayerEntityMixin",
-    "SmithingTableBlockMixin"
+    "SmithingTableBlockMixin",
+    "VillagerEntityMixin"
   ],
   "client": [
     "client.ItemEntityRendererMixin",
