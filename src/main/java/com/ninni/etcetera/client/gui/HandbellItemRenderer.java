@@ -11,7 +11,7 @@ import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
-import static com.ninni.etcetera.Etcetera.*;
+import static com.ninni.etcetera.Etcetera.MOD_ID;
 
 @Environment(EnvType.CLIENT)
 public class HandbellItemRenderer {
@@ -19,14 +19,14 @@ public class HandbellItemRenderer {
     public static final ModelIdentifier INVENTORY_IN_HAND_MODEL_ID = new ModelIdentifier(new Identifier(MOD_ID, "handbell_in_hand"), "inventory");
 
     public static BakedModel modifyRenderItem(ItemStack stack, ModelTransformationMode mode) {
-        boolean isInventory = mode == ModelTransformationMode.GUI || mode == ModelTransformationMode.GROUND || mode == ModelTransformationMode.FIXED;
-        if (isInventory && stack.getItem() instanceof HandbellItem) {
+        if (isInventory(stack, mode)) {
             BakedModelManager models = MinecraftClient.getInstance().getBakedModelManager();
-
-
             return models.getModel(INVENTORY_MODEL_ID);
         }
-
         return null;
+    }
+
+    public static boolean isInventory(ItemStack stack, ModelTransformationMode mode) {
+        return (mode == ModelTransformationMode.GUI || mode == ModelTransformationMode.GROUND || mode == ModelTransformationMode.FIXED) && stack.getItem() instanceof HandbellItem;
     }
 }
