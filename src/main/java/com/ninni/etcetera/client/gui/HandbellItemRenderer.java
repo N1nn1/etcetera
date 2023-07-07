@@ -19,14 +19,15 @@ public class HandbellItemRenderer {
     public static final ModelIdentifier INVENTORY_IN_HAND_MODEL_ID = new ModelIdentifier(new Identifier(MOD_ID, "handbell_in_hand"), "inventory");
 
     public static BakedModel modifyRenderItem(ItemStack stack, ModelTransformationMode mode) {
-        boolean isInventory = mode == ModelTransformationMode.GUI || mode == ModelTransformationMode.GROUND || mode == ModelTransformationMode.FIXED;
-        if (isInventory && stack.getItem() instanceof HandbellItem) {
+        boolean isInventory = isInventory(stack, mode);
+        if (isInventory(stack, mode)) {
             BakedModelManager models = MinecraftClient.getInstance().getBakedModelManager();
-
-
             return models.getModel(INVENTORY_MODEL_ID);
         }
-
         return null;
+    }
+
+    public static boolean isInventory(ItemStack stack, ModelTransformationMode mode) {
+        return (mode == ModelTransformationMode.GUI || mode == ModelTransformationMode.GROUND || mode == ModelTransformationMode.FIXED) && stack.getItem() instanceof HandbellItem;
     }
 }
