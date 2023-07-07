@@ -25,6 +25,7 @@ public interface EtceteraSoundEvents {
 
     //TODO sounds
     SoundEvent ITEM_BANNER_EQUIP = register("item.banner.equip");
+    SoundEvent ITEM_ARMOR_EQUIP_COTTON = register("item.armor.equip.cotton");
 
     BlockSoundGroup NETHER_BISMUTH_ORE = register("nether_bismuth_ore", 1, 1);
     BlockSoundGroup BISMUTH_BLOCK = register("bismuth_block", 1, 1);

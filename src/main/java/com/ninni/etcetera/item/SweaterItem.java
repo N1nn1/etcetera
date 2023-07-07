@@ -1,5 +1,6 @@
 package com.ninni.etcetera.item;
 
+import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.DispenserBehavior;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
@@ -10,7 +11,6 @@ import net.minecraft.item.Equipment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPointer;
@@ -42,7 +42,6 @@ public class SweaterItem extends Item implements Equipment {
 
     @Override
     public SoundEvent getEquipSound() {
-        //TODO
-        return SoundEvents.ITEM_ARMOR_EQUIP_LEATHER;
+        return EtceteraSoundEvents.ITEM_ARMOR_EQUIP_COTTON;
     }
 }

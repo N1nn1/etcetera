@@ -115,7 +115,8 @@ public class EtceteraVanillaIntegration {
                 tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.EGGPLE).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1)))).build());
             }
             if (id.equals(LootTables.VILLAGE_PLAINS_CHEST)) {
-                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.EGGPLE).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 3)))).build());
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.EGGPLE).weight(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1)))).build());
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.COTTON_SEEDS).weight(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3, 5)))).build());
             }
         });
     }
@@ -131,7 +132,8 @@ public class EtceteraVanillaIntegration {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.WEAPONSMITH, 2, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL), 6, 3, 0.2f)));
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.TOOLSMITH, 2, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL), 6, 3, 0.2f)));
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.TOOLSMITH, 3, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 16), ItemStack.EMPTY, new ItemStack(EtceteraItems.HAMMER), 6, 2, 0.2f)));
-        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 1, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 2), ItemStack.EMPTY, new ItemStack(EtceteraItems.COTTON_FLOWER), 26, 2, 0.05f)));
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 1, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 2), ItemStack.EMPTY, new ItemStack(EtceteraItems.COTTON_FLOWER), 18, 2, 0.05f)));
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 1, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 2), ItemStack.EMPTY, new ItemStack(EtceteraItems.COTTON_SEEDS), 28, 2, 0.05f)));
         TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 1), ItemStack.EMPTY, new ItemStack(EtceteraItems.COTTON_SEEDS), 1, 12, 0.05f)));
         TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 26), ItemStack.EMPTY, new ItemStack(EtceteraItems.TRADER_ROBE), 1, 12, 0.05f)));
     }
