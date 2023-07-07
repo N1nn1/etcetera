@@ -129,7 +129,11 @@ public class EtceteraCreativeModeTab {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {
             entries.addAfter(Items.EGG, EGGPLE, GOLDEN_EGGPLE);
-            entries.addAfter(Items.TURTLE_HELMET, TIDAL_HELMET);
+            entries.addAfter(Items.TURTLE_HELMET,
+                    TIDAL_HELMET,
+                    WHITE_SWEATER,
+                    TRADER_ROBE
+            );
             entries.addAfter(Items.TRIDENT, HAMMER);
         });
 
@@ -147,12 +151,35 @@ public class EtceteraCreativeModeTab {
             entries.addAfter(Items.NETHER_GOLD_ORE, NETHER_BISMUTH_ORE);
             entries.addAfter(Items.RAW_GOLD_BLOCK, RAW_BISMUTH_BLOCK);
             entries.addAfter(Items.PINK_PETALS, BOUQUET);
+            entries.addAfter(Items.BEETROOT_SEEDS, COTTON_SEEDS);
+        });
+
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
+            entries.addAfter(Items.PINK_BED,
+                    WHITE_SWEATER,
+                    LIGHT_GRAY_SWEATER,
+                    GRAY_SWEATER,
+                    BLACK_SWEATER,
+                    BROWN_SWEATER,
+                    RED_SWEATER,
+                    ORANGE_SWEATER,
+                    YELLOW_SWEATER,
+                    LIME_SWEATER,
+                    GREEN_SWEATER,
+                    CYAN_SWEATER ,
+                    LIGHT_BLUE_SWEATER,
+                    BLUE_SWEATER,
+                    PURPLE_SWEATER,
+                    MAGENTA_SWEATER,
+                    PINK_SWEATER
+            );
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
             entries.addAfter(Items.EGG, EGGPLE, GOLDEN_EGGPLE);
             entries.addAfter(Items.RAW_GOLD, RAW_BISMUTH);
             entries.addAfter(Items.GOLD_INGOT, BISMUTH_INGOT);
+            entries.addAfter(Items.WHEAT, COTTON_FLOWER);
         });
     }
 
