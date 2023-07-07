@@ -48,7 +48,7 @@ public class EtceteraItems {
     public static final Item ITEM_STAND = register("item_stand", new BlockItem(EtceteraBlocks.ITEM_STAND, new FabricItemSettings()));
 
     public static final Item SQUID_LAMP = register("squid_lamp", new VerticallyAttachableBlockItem(EtceteraBlocks.SQUID_LAMP, EtceteraBlocks.WALL_SQUID_LAMP, new FabricItemSettings(), Direction.DOWN));
-    public static final Item TIDAL_HELMET = register("tidal_helmet", new ArmorItem(EtceteraArmorMaterials.TIDAL, ArmorItem.Type.HELMET, new FabricItemSettings().rarity(Rarity.UNCOMMON)));
+    public static final Item TIDAL_HELMET = register("tidal_helmet", new ArmorItem(EtceteraArmorMaterials.TIDAL, ArmorItem.Type.HELMET, new FabricItemSettings().rarity(Rarity.RARE)));
     public static final Item TURTLE_RAFT = register("turtle_raft", new TurtleRaftItem(new FabricItemSettings().maxCount(1)));
 
     public static final Item CRUMBLING_STONE = register("crumbling_stone", new BlockItem(EtceteraBlocks.CRUMBLING_STONE, new FabricItemSettings()));
@@ -65,24 +65,24 @@ public class EtceteraItems {
     public static final Item GOLDEN_EGGPLE = register("golden_eggple", new EggpleItem(true, new FabricItemSettings().rarity(Rarity.RARE).maxCount(16)));
 
     public static final Item COTTON_SEEDS = register("cotton_seeds", new AliasedBlockItem(EtceteraBlocks.COTTON, new FabricItemSettings()));
-    public static final Item COTTON_FLOWER = register("cotton_flower", new Item(new FabricItemSettings()));
-    public static final Item WHITE_SWEATER = register("white_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item LIGHT_GRAY_SWEATER = register("light_gray_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item GRAY_SWEATER = register("gray_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item BLACK_SWEATER = register("black_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item BROWN_SWEATER = register("brown_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item RED_SWEATER = register("red_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item ORANGE_SWEATER = register("orange_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item YELLOW_SWEATER = register("yellow_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item LIME_SWEATER = register("lime_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item GREEN_SWEATER = register("green_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item CYAN_SWEATER = register("cyan_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item LIGHT_BLUE_SWEATER = register("light_blue_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item BLUE_SWEATER = register("blue_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item PURPLE_SWEATER = register("purple_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item MAGENTA_SWEATER = register("magenta_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item PINK_SWEATER = register("pink_sweater", new SweaterItem(new FabricItemSettings().maxDamage(0)));
-    public static final Item TRADER_ROBE = register("trader_robe", new SweaterItem(new FabricItemSettings().maxDamage(0)));
+    public static final Item COTTON_FLOWER = register("cotton_flower", new Item(new FabricItemSettings().maxCount(16)));
+    public static final Item WHITE_SWEATER = register("white_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item LIGHT_GRAY_SWEATER = register("light_gray_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item GRAY_SWEATER = register("gray_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item BLACK_SWEATER = register("black_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item BROWN_SWEATER = register("brown_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item RED_SWEATER = register("red_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item ORANGE_SWEATER = register("orange_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item YELLOW_SWEATER = register("yellow_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item LIME_SWEATER = register("lime_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item GREEN_SWEATER = register("green_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item CYAN_SWEATER = register("cyan_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item LIGHT_BLUE_SWEATER = register("light_blue_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item BLUE_SWEATER = register("blue_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item PURPLE_SWEATER = register("purple_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item MAGENTA_SWEATER = register("magenta_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item PINK_SWEATER = register("pink_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
+    public static final Item TRADER_ROBE = register("trader_robe", new SweaterItem(new FabricItemSettings().maxCount(16).rarity(Rarity.UNCOMMON)));
 
 
     private static Item register(String id, Item item) {

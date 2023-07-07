@@ -1,32 +1,48 @@
 package com.ninni.etcetera.item;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
-import com.ninni.etcetera.registry.EtceteraArmorMaterials;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.dispenser.DispenserBehavior;
+import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.EntityAttribute;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.Equipment;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.BlockPointer;
+import net.minecraft.world.World;
 
-public class SweaterItem extends ArmorItem {
+public class SweaterItem extends Item implements Equipment {
+    public static final DispenserBehavior DISPENSER_BEHAVIOR = new ItemDispenserBehavior(){
+        @Override
+        protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
+            return ArmorItem.dispenseArmor(pointer, stack) ? stack : super.dispenseSilently(pointer, stack);
+        }
+    };
+
 
     public SweaterItem(Settings settings) {
-        super(EtceteraArmorMaterials.COTTON, ArmorItem.Type.CHESTPLATE, settings);
+        super(settings);
+        DispenserBlock.registerBehavior(this, DISPENSER_BEHAVIOR);
     }
 
     @Override
-    public boolean canRepair(ItemStack stack, ItemStack ingredient) {
-        return false;
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        return this.equipAndSwap(this, world, user, hand);
     }
 
     @Override
-    public Multimap<EntityAttribute, EntityAttributeModifier> getAttributeModifiers(EquipmentSlot slot) {
-        return ImmutableMultimap.of();
+    public EquipmentSlot getSlotType() {
+        return EquipmentSlot.CHEST;
     }
 
     @Override
-    public boolean isEnchantable(ItemStack stack) {
-        return false;
+    public SoundEvent getEquipSound() {
+        //TODO
+        return SoundEvents.ITEM_ARMOR_EQUIP_LEATHER;
     }
 }
