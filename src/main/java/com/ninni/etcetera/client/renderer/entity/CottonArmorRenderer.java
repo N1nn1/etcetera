@@ -1,5 +1,6 @@
 package com.ninni.etcetera.client.renderer.entity;
 
+import com.google.common.collect.Maps;
 import com.ninni.etcetera.client.model.SweaterModel;
 import com.ninni.etcetera.registry.EtceteraEntityModelLayers;
 import com.ninni.etcetera.registry.EtceteraItems;
@@ -12,28 +13,22 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
+
+import java.util.Map;
 
 import static com.ninni.etcetera.Etcetera.MOD_ID;
 
 public class CottonArmorRenderer implements ArmorRenderer {
     private SweaterModel<LivingEntity> armorModel;
-    public static final Identifier WHITE_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_white.png");
-    public static final Identifier LIGHT_GRAY_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_light_gray.png");
-    public static final Identifier GRAY_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_gray.png");
-    public static final Identifier BLACK_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_black.png");
-    public static final Identifier BROWN_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_brown.png");
-    public static final Identifier RED_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_red.png");
-    public static final Identifier ORANGE_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_orange.png");
-    public static final Identifier YELLOW_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_yellow.png");
-    public static final Identifier LIME_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_lime.png");
-    public static final Identifier GREEN_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_green.png");
-    public static final Identifier CYAN_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_cyan.png");
-    public static final Identifier LIGHT_BLUE_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_light_blue.png");
-    public static final Identifier BLUE_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_blue.png");
-    public static final Identifier PURPLE_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_purple.png");
-    public static final Identifier MAGENTA_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_magenta.png");
-    public static final Identifier PINK_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/sweater_pink.png");
+    private static final Map<DyeColor, Identifier> TEXTURES = Util.make(Maps.newHashMap(), map -> {
+       for (DyeColor dyeColor : DyeColor.values()) {
+           map.put(dyeColor, new Identifier(MOD_ID, "textures/models/armor/sweater_" + dyeColor.getName() + ".png"));
+       }
+    });
     public static final Identifier TRADER_TEXTURE = new Identifier(MOD_ID, "textures/models/armor/trader_robe.png");
 
     @Override
@@ -44,24 +39,11 @@ public class CottonArmorRenderer implements ArmorRenderer {
         ArmorRenderer.renderPart(matrices, vertexConsumers, light, stack, this.armorModel, getTexture(stack.getItem()));
     }
 
-
     public Identifier getTexture(Item item) {
-    if (item == EtceteraItems.WHITE_SWEATER) return WHITE_TEXTURE;
-    if (item == EtceteraItems.LIGHT_GRAY_SWEATER) return LIGHT_GRAY_TEXTURE;
-    if (item == EtceteraItems.GRAY_SWEATER) return GRAY_TEXTURE;
-    if (item == EtceteraItems.BLACK_SWEATER) return BLACK_TEXTURE;
-    if (item == EtceteraItems.BROWN_SWEATER) return BROWN_TEXTURE;
-    if (item == EtceteraItems.RED_SWEATER) return RED_TEXTURE;
-    if (item == EtceteraItems.ORANGE_SWEATER) return ORANGE_TEXTURE;
-    if (item == EtceteraItems.YELLOW_SWEATER) return YELLOW_TEXTURE;
-    if (item == EtceteraItems.LIME_SWEATER) return LIME_TEXTURE;
-    if (item == EtceteraItems.GREEN_SWEATER) return GREEN_TEXTURE;
-    if (item == EtceteraItems.CYAN_SWEATER) return CYAN_TEXTURE;
-    if (item == EtceteraItems.LIGHT_BLUE_SWEATER) return LIGHT_BLUE_TEXTURE;
-    if (item == EtceteraItems.BLUE_SWEATER) return BLUE_TEXTURE;
-    if (item == EtceteraItems.PURPLE_SWEATER) return PURPLE_TEXTURE;
-    if (item == EtceteraItems.MAGENTA_SWEATER) return MAGENTA_TEXTURE;
-    if (item == EtceteraItems.PINK_SWEATER) return PINK_TEXTURE;
-    else return TRADER_TEXTURE;
+        if (item.equals(EtceteraItems.TRADER_ROBE)) {
+            return TRADER_TEXTURE;
+        } else {
+            return TEXTURES.get(DyeColor.byName(Registries.ITEM.getId(item).getPath().replace("_sweater", ""), null));
+        }
     }
 }
