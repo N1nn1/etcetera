@@ -1,30 +1,30 @@
 {
   "etcetera.item_group": "Etcetera",
   "mod.etcetera.contact.discord": "Discord",
-
+  
   "item.etcetera.etcetera": "Etcetera",
-
+  
   "block.etcetera.drum": "Барабан",
   "subtitles.block.etcetera.drum": "Барабан грає",
-
+  
   "block.etcetera.dice": "Гральний куб",
   "stat.minecraft.rotate_dice": "Кубів кинуто",
   "subtitles.block.etcetera.dice.roll": "Гральний куб крутиться",
-
+  
   "block.etcetera.frame": "Рама",
-
+  
   "block.etcetera.prickly_can": "Колюча урна",
   "etcetera.container.prickly_can": "Колюча урна",
   "etcetera.container.prickly_can_delete": "Очистити інвентар",
   "stat.minecraft.open_prickly_can": "Колюча урна відкривається",
-
+  
   "block.etcetera.bouquet": "В'язка квітів",
   "block.etcetera.potted_bouquet": "Букет в горщику",
   "block.etcetera.terracotta_vase": "Керамічна ваза",
-
+  
   "block.etcetera.item_stand": "Стійка для предметів",
   "stat.minecraft.interact_with_item_stand": "Взаємодія зі стійкою для предметів",
-
+  
   "item.etcetera.raw_bismuth": "Необроблений бісмут",
   "item.etcetera.bismuth_ingot": "Бісмутовий злиток",
   "block.etcetera.raw_bismuth_block": "Блок необробленого бісмуту",
@@ -37,7 +37,7 @@
   "block.etcetera.iridescent_lantern": "Веселковий ліхтар",
   "advancements.etcetera.nether.obtain_bismuth.title": "До самого бісмуту",
   "advancements.etcetera.nether.obtain_bismuth.description": "Добудьте необроблений бісмут",
-
+  
   "item.etcetera.wrench": "Гайковий ключ",
   "item.etcetera.wrench.select": "Вибрано об'єкт: \"%1$s\"",
   "item.etcetera.wrench.invalid": "Об'єкт: \"%1$s\" не можна видозмінити",
@@ -51,7 +51,7 @@
   "subtitles.item.etcetera.hammer.use": "Стукання",
   "item.etcetera.handbell": "Ручний дзвіночок",
   "subtitles.item.etcetera.handbell.ring": "Ручний дзвіночок дзвенить",
-
+  
   "block.etcetera.squid_lamp": "Лампа-кальмар",
   "item.etcetera.tidal_helmet": "Хвилезахисний шолом",
   "subtitles.item.etcetera.tidal.armor.equip": "Хвилезахисний шолом хлюпає",
@@ -61,42 +61,50 @@
   "advancements.etcetera.story.tidal_helmet.description": "Поєднання сили черепахового панцира та морського серця",
   "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Діяльність головоногих",
   "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Отримайте лампу-кальмара",
-
+  
   "block.etcetera.crumbling_stone": "Крихкий камінь",
   "block.etcetera.waxed_crumbling_stone": "Вощений крихкий камінь",
   "subtitles.block.etcetera.crumbling_stone.crumble": "Блок розсипається",
-
+  
   "block.etcetera.leveled_stone": "Вирівняний камінь",
   "block.etcetera.leveled_stone_slab": "Вирівняна кам'яна плита",
   "block.etcetera.leveled_stone_stairs": "Вирівняні кам'яні сходи",
-
+  
   "block.etcetera.light_bulb": "Лампочка",
   "block.etcetera.tinted_light_bulb": "Тонована лампочка",
   "subtitles.block.etcetera.light_bulb.on": "Лампочка яскравішає",
   "subtitles.block.etcetera.light_bulb.off": "Лампочка гасне",
-
-  "entity.etcetera.snail": "Равлик",
-  "item.etcetera.snail_spawn_egg": "Яйце виклику равлика",
-  "item.etcetera.snail_shell": "Мушля равлика",
-  "block.etcetera.big_snail_shell": "Велика мушля равлика",
-  "block.etcetera.snail_shell_tiles": "Плитка з мушлі равлика",
-  "block.etcetera.snail_shell_tile_stairs": "Сходи з плитки мушлі равлика",
-  "block.etcetera.snail_shell_tile_slab": "Плита з плитки мушлі равлика",
-  "item.etcetera.escargot": "Ескарго",
-  "block.etcetera.potted_sweet_berry_bush": "Солодкі ягоди в мушлі",
-  "block.etcetera.mucus": "Слиз равлика",
-  "block.etcetera.mucus_block": "Блок слизу равлика",
-  "block.etcetera.ghostly_mucus_block": "Примарний блок слизу равлика",
-  "subtitles.entity.snail.death": "Равлик гине",
-  "subtitles.entity.snail.eat": "Равлик їсть",
-  "subtitles.entity.snail.hurt": "Равлика поранено",
-  "subtitles.entity.snail.hurt_hidden": "Равлик ухиляється",
-  "subtitles.entity.snail.shell_grow": "Мушля равлика відновлюється",
-  "subtitles.entity.snail.slide": "Равлик повзе",
-
+  
   "entity.etcetera.chapple": "Квоблуко",
   "item.etcetera.chapple_spawn_egg": "Яйце виклику квоблуки",
   "item.etcetera.eggple": "Яйцеблуко",
   "item.etcetera.golden_eggple": "Золоте яйцеблуко",
-  "subtitles.entity.chapple.convert": "Квоблуко перетворюється"
+  "subtitles.entity.chapple.convert": "Квоблуко перетворюється",
+  
+  "block.etcetera.cotton": "Бавовна",
+  "item.etcetera.cotton_seeds": "Насіння бавовни",
+  "item.etcetera.cotton_flower": "Бавовник",
+  "item.etcetera.white_sweater": "Білий светр",
+  "item.etcetera.light_gray_sweater": "Світло-сірий светр",
+  "item.etcetera.gray_sweater": "Сірий светр",
+  "item.etcetera.black_sweater": "Чорний светр",
+  "item.etcetera.brown_sweater": "Коричневий светр",
+  "item.etcetera.red_sweater": "Червоний светр",
+  "item.etcetera.orange_sweater": "Помаранчевий светр",
+  "item.etcetera.yellow_sweater": "Жовтий светр",
+  "item.etcetera.lime_sweater": "Лаймовий светр",
+  "item.etcetera.green_sweater": "Зелений светр",
+  "item.etcetera.cyan_sweater": "Бірюзовий светр",
+  "item.etcetera.light_blue_sweater": "Блакитний светр",
+  "item.etcetera.blue_sweater": "Синій светр",
+  "item.etcetera.purple_sweater": "Фіолетовий светр",
+  "item.etcetera.magenta_sweater": "Пурпуровий светр",
+  "item.etcetera.pink_sweater": "Рожевий светр",
+  "item.etcetera.trader_robe": "Мантія крамаря",
+  "advancements.etcetera.husbandry.obtain_sweater.title": "Теплий і кучерявий",
+  "advancements.etcetera.husbandry.obtain_sweater.description": "Зшийте светр",
+  "advancements.etcetera.story.obtain_trader_robe.title": "Крамарство зі стилем!",
+  "advancements.etcetera.story.obtain_trader_robe.description": "Виторгуйте в мандрівного крамаря - мантію крамаря",
+  "advancements.etcetera.husbandry.plant_cotton.title": "Бавовна в кожну оселю",
+  "advancements.etcetera.husbandry.plant_cotton.description": "Посадіть насіння бавовни"
 }
