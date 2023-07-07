@@ -1,0 +1,35 @@
+{
+  "parent": "etcetera:husbandry/plant_cotton",
+  "criteria": {
+    "sweater": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "etcetera:sweaters"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.etcetera.husbandry.obtain_sweater.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "etcetera:white_sweater"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.etcetera.husbandry.obtain_sweater.title"
+    }
+  },
+  "requirements": [
+    [
+      "sweater"
+    ]
+  ]
+}

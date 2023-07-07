@@ -65,7 +65,7 @@ public class EtceteraItems {
     public static final Item GOLDEN_EGGPLE = register("golden_eggple", new EggpleItem(true, new FabricItemSettings().rarity(Rarity.RARE).maxCount(16)));
 
     public static final Item COTTON_SEEDS = register("cotton_seeds", new AliasedBlockItem(EtceteraBlocks.COTTON, new FabricItemSettings()));
-    public static final Item COTTON_FLOWER = register("cotton_flower", new Item(new FabricItemSettings().maxCount(16)));
+    public static final Item COTTON_FLOWER = register("cotton_flower", new Item(new FabricItemSettings()));
     public static final Item WHITE_SWEATER = register("white_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
     public static final Item LIGHT_GRAY_SWEATER = register("light_gray_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));
     public static final Item GRAY_SWEATER = register("gray_sweater", new SweaterItem(new FabricItemSettings().maxCount(16)));

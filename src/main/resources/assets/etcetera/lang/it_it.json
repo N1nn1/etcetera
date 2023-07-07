@@ -99,5 +99,11 @@
   "item.etcetera.purple_sweater": "Maglione viola",
   "item.etcetera.magenta_sweater": "Maglione magenta",
   "item.etcetera.pink_sweater": "Maglione rosa",
-  "item.etcetera.trader_robe": "Vestaglia del mercante"
+  "item.etcetera.trader_robe": "Vestaglia del mercante",
+  "advancements.etcetera.husbandry.obtain_sweater.title": "Carino e coccoloso",
+  "advancements.etcetera.husbandry.obtain_sweater.description": "Ottieni un maglione",
+  "advancements.etcetera.story.obtain_trader_robe.title": "Scambiare con stile!",
+  "advancements.etcetera.story.obtain_trader_robe.description": "Scambia con un mercante per ottenere la sua vestaglia",
+  "advancements.etcetera.husbandry.plant_cotton.title": "Crescono così soffici...",
+  "advancements.etcetera.husbandry.plant_cotton.description": "Pianta un seme di cotone"
 }

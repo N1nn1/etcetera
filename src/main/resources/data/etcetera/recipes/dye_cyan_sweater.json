@@ -1,0 +1,58 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:cyan_dye"
+    },
+    [
+      {
+        "item": "etcetera:black_sweater"
+      },
+      {
+        "item": "etcetera:light_gray_sweater"
+      },
+      {
+        "item": "etcetera:brown_sweater"
+      },
+      {
+        "item": "etcetera:gray_sweater"
+      },
+      {
+        "item": "etcetera:green_sweater"
+      },
+      {
+        "item": "etcetera:light_blue_sweater"
+      },
+      {
+        "item": "etcetera:blue_sweater"
+      },
+      {
+        "item": "etcetera:lime_sweater"
+      },
+      {
+        "item": "etcetera:magenta_sweater"
+      },
+      {
+        "item": "etcetera:orange_sweater"
+      },
+      {
+        "item": "etcetera:pink_sweater"
+      },
+      {
+        "item": "etcetera:purple_sweater"
+      },
+      {
+        "item": "etcetera:red_sweater"
+      },
+      {
+        "item": "etcetera:yellow_sweater"
+      },
+      {
+        "item": "etcetera:white_sweater"
+      }
+    ]
+  ],
+  "result": {
+    "item": "etcetera:cyan_sweater"
+  }
+}

@@ -100,5 +100,11 @@
   "item.etcetera.purple_sweater": "Purple Sweater",
   "item.etcetera.magenta_sweater": "Magenta Sweater",
   "item.etcetera.pink_sweater": "Pink Sweater",
-  "item.etcetera.trader_robe": "Trader Robe"
+  "item.etcetera.trader_robe": "Trader Robe",
+  "advancements.etcetera.husbandry.obtain_sweater.title": "Warm and Fuzzy",
+  "advancements.etcetera.husbandry.obtain_sweater.description": "Obtain a Sweater",
+  "advancements.etcetera.story.obtain_trader_robe.title": "Trading with Style!",
+  "advancements.etcetera.story.obtain_trader_robe.description": "Trade with a Wandering Trader to Obtain a Trader Robe",
+  "advancements.etcetera.husbandry.plant_cotton.title": "A Seedy Soft Spot",
+  "advancements.etcetera.husbandry.plant_cotton.description": "Plant a Cotton seed"
 }

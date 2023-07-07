@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:adventure/trade",
+  "criteria": {
+    "trader_robe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "etcetera:trader_robe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.etcetera.story.obtain_trader_robe.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "etcetera:trader_robe"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.etcetera.story.obtain_trader_robe.title"
+    }
+  },
+  "requirements": [
+    [
+      "trader_robe"
+    ]
+  ]
+}
