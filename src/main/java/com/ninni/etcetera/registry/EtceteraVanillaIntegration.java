@@ -136,6 +136,7 @@ public class EtceteraVanillaIntegration {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 1, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 2), ItemStack.EMPTY, new ItemStack(EtceteraItems.COTTON_SEEDS), 28, 2, 0.05f)));
         TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 1), ItemStack.EMPTY, new ItemStack(EtceteraItems.COTTON_SEEDS), 1, 12, 0.05f)));
         TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 26), ItemStack.EMPTY, new ItemStack(EtceteraItems.TRADER_ROBE), 1, 12, 0.05f)));
+        TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 20), ItemStack.EMPTY, new ItemStack(EtceteraItems.TRADER_HOOD), 1, 10, 0.05f)));
     }
 
     //client
@@ -162,6 +163,23 @@ public class EtceteraVanillaIntegration {
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.MAGENTA_SWEATER);
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PINK_SWEATER);
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.TRADER_ROBE);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.WHITE_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_GRAY_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GRAY_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLACK_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BROWN_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.RED_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.ORANGE_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.YELLOW_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIME_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GREEN_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.CYAN_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_BLUE_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLUE_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PURPLE_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.MAGENTA_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PINK_HAT);
+        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.TRADER_HOOD);
         ArmorRenderer.register(new TidalArmorRenderer(), EtceteraItems.TIDAL_HELMET);
         TidalHelmetHud.init();
     }

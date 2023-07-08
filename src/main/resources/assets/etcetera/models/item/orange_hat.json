@@ -1,0 +1,6 @@
+{
+  "parent": "etcetera:item/hat_generated",
+  "textures": {
+    "layer0": "etcetera:item/orange_hat"
+  }
+}

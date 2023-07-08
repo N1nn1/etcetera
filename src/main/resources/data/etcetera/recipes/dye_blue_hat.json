@@ -1,0 +1,58 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:blue_dye"
+    },
+    [
+      {
+        "item": "etcetera:black_hat"
+      },
+      {
+        "item": "etcetera:light_gray_hat"
+      },
+      {
+        "item": "etcetera:cyan_hat"
+      },
+      {
+        "item": "etcetera:gray_hat"
+      },
+      {
+        "item": "etcetera:green_hat"
+      },
+      {
+        "item": "etcetera:light_blue_hat"
+      },
+      {
+        "item": "etcetera:brown_hat"
+      },
+      {
+        "item": "etcetera:lime_hat"
+      },
+      {
+        "item": "etcetera:magenta_hat"
+      },
+      {
+        "item": "etcetera:orange_hat"
+      },
+      {
+        "item": "etcetera:pink_hat"
+      },
+      {
+        "item": "etcetera:purple_hat"
+      },
+      {
+        "item": "etcetera:red_hat"
+      },
+      {
+        "item": "etcetera:yellow_hat"
+      },
+      {
+        "item": "etcetera:white_hat"
+      }
+    ]
+  ],
+  "result": {
+    "item": "etcetera:blue_hat"
+  }
+}

@@ -13,11 +13,6 @@
     "etcetera:waxed_crumbling_stone",
     "etcetera:leveled_stone",
     "etcetera:leveled_stone_stairs",
-    "etcetera:leveled_stone_slab",
-    "etcetera:potted_sweet_berry_bush",
-    "etcetera:big_snail_shell",
-    "etcetera:snail_shell_tiles",
-    "etcetera:snail_shell_tile_stairs",
-    "etcetera:snail_shell_tile_slab"
+    "etcetera:leveled_stone_slab"
   ]
 }

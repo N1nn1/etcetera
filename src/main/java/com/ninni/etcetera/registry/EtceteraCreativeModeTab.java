@@ -81,6 +81,23 @@ public class EtceteraCreativeModeTab {
                 output.add(MAGENTA_SWEATER);
                 output.add(PINK_SWEATER);
                 output.add(TRADER_ROBE);
+                output.add(WHITE_HAT);
+                output.add(LIGHT_GRAY_HAT);
+                output.add(GRAY_HAT);
+                output.add(BLACK_HAT);
+                output.add(BROWN_HAT);
+                output.add(RED_HAT);
+                output.add(ORANGE_HAT);
+                output.add(YELLOW_HAT);
+                output.add(LIME_HAT);
+                output.add(GREEN_HAT);
+                output.add(CYAN_HAT );
+                output.add(LIGHT_BLUE_HAT);
+                output.add(BLUE_HAT);
+                output.add(PURPLE_HAT);
+                output.add(MAGENTA_HAT);
+                output.add(PINK_HAT);
+                output.add(TRADER_HOOD);
 
 
             }).build()
@@ -132,7 +149,9 @@ public class EtceteraCreativeModeTab {
             entries.addAfter(Items.TURTLE_HELMET,
                     TIDAL_HELMET,
                     WHITE_SWEATER,
-                    TRADER_ROBE
+                    TRADER_ROBE,
+                    WHITE_HAT,
+                    TRADER_HOOD
             );
             entries.addAfter(Items.TRIDENT, HAMMER);
         });
@@ -171,7 +190,23 @@ public class EtceteraCreativeModeTab {
                     BLUE_SWEATER,
                     PURPLE_SWEATER,
                     MAGENTA_SWEATER,
-                    PINK_SWEATER
+                    PINK_SWEATER,
+                    WHITE_HAT,
+                    LIGHT_GRAY_HAT,
+                    GRAY_HAT,
+                    BLACK_HAT,
+                    BROWN_HAT,
+                    RED_HAT,
+                    ORANGE_HAT,
+                    YELLOW_HAT,
+                    LIME_HAT,
+                    GREEN_HAT,
+                    CYAN_HAT ,
+                    LIGHT_BLUE_HAT,
+                    BLUE_HAT,
+                    PURPLE_HAT,
+                    MAGENTA_HAT,
+                    PINK_HAT
             );
         });
 

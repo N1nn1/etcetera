@@ -2,7 +2,7 @@ package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.Etcetera;
 import com.ninni.etcetera.client.model.ChappleModel;
-import com.ninni.etcetera.client.model.SweaterModel;
+import com.ninni.etcetera.client.model.CottonArmorModel;
 import com.ninni.etcetera.client.model.TurtleRaftModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -15,7 +15,8 @@ public interface EtceteraEntityModelLayers {
 
     EntityModelLayer TURTLE_RAFT = main("turtle_raft", TurtleRaftModel::getTexturedModelData);
     EntityModelLayer CHAPPLE = main("chapple", ChappleModel::getTexturedModelData);
-    EntityModelLayer PLAYER_SWEATER = main("sweater", SweaterModel::getTexturedModelData);
+    EntityModelLayer PLAYER_COTTON = main("cotton", CottonArmorModel::getTexturedModelData);
+    EntityModelLayer PLAYER_COTTON_SLIM = main("cotton_slim", CottonArmorModel::getSlimTexturedModelData);
 
     private static EntityModelLayer register(String id, String name, EntityModelLayerRegistry.TexturedModelDataProvider provider) {
         EntityModelLayer layer = new EntityModelLayer(new Identifier(Etcetera.MOD_ID, id), name);

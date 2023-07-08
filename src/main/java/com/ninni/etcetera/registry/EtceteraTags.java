@@ -13,6 +13,7 @@ public interface EtceteraTags {
     TagKey<Item> ALL_CONCRETE = TagKey.of(RegistryKeys.ITEM, new Identifier(MOD_ID, "all_concrete"));
     TagKey<Item> ALL_TERRACOTTA = TagKey.of(RegistryKeys.ITEM, new Identifier(MOD_ID, "all_terracotta"));
     TagKey<Item> SWEATERS = TagKey.of(RegistryKeys.ITEM, new Identifier(MOD_ID, "sweaters"));
+    TagKey<Item> HATS = TagKey.of(RegistryKeys.ITEM, new Identifier(MOD_ID, "hats"));
     TagKey<Item> VILLAGER_CAN_PICKUP = TagKey.of(RegistryKeys.ITEM, new Identifier(MOD_ID, "villager_can_pickup"));
 
     TagKey<Block> NON_MODIFIABLE = TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "non_modifiable"));

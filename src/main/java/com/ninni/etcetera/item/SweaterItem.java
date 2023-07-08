@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPointer;
 import net.minecraft.world.World;
 
 public class SweaterItem extends Item implements Equipment {
+    boolean sweater;
     public static final DispenserBehavior DISPENSER_BEHAVIOR = new ItemDispenserBehavior(){
         @Override
         protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
@@ -25,8 +26,9 @@ public class SweaterItem extends Item implements Equipment {
     };
 
 
-    public SweaterItem(Settings settings) {
+    public SweaterItem(Settings settings, boolean sweater) {
         super(settings);
+        this.sweater = sweater;
         DispenserBlock.registerBehavior(this, DISPENSER_BEHAVIOR);
     }
 
@@ -37,7 +39,7 @@ public class SweaterItem extends Item implements Equipment {
 
     @Override
     public EquipmentSlot getSlotType() {
-        return EquipmentSlot.CHEST;
+        return sweater ? EquipmentSlot.CHEST : EquipmentSlot.HEAD;
     }
 
     @Override
