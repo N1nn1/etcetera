@@ -25,8 +25,11 @@ public class EtceteraItems {
     public static final Item RAW_BISMUTH = register("raw_bismuth", new Item(new FabricItemSettings()));
     public static final Item BISMUTH_INGOT = register("bismuth_ingot", new Item(new FabricItemSettings()));
     public static final Item IRIDESCENT_GLASS = register("iridescent_glass", new BlockItem(EtceteraBlocks.IRIDESCENT_GLASS, new FabricItemSettings()));
+    public static final Item IRIDESCENT_GLASS_PANE = register("iridescent_glass_pane", new BlockItem(EtceteraBlocks.IRIDESCENT_GLASS_PANE, new FabricItemSettings()));
     public static final Item IRIDESCENT_TERRACOTTA = register("iridescent_terracotta", new BlockItem(EtceteraBlocks.IRIDESCENT_TERRACOTTA, new FabricItemSettings()));
+    public static final Item IRIDESCENT_GLAZED_TERRACOTTA = register("iridescent_glazed_terracotta", new BlockItem(EtceteraBlocks.IRIDESCENT_GLAZED_TERRACOTTA, new FabricItemSettings()));
     public static final Item IRIDESCENT_CONCRETE = register("iridescent_concrete", new BlockItem(EtceteraBlocks.IRIDESCENT_CONCRETE, new FabricItemSettings()));
+    public static final Item IRIDESCENT_WOOL = register("iridescent_wool", new BlockItem(EtceteraBlocks.IRIDESCENT_WOOL, new FabricItemSettings()));
     public static final Item IRIDESCENT_LANTERN = register("iridescent_lantern", new BlockItem(EtceteraBlocks.IRIDESCENT_LANTERN, new FabricItemSettings()));
 
     public static final Item CHISEL = register("chisel", new TransformingItem(EtceteraToolMaterials.BISMUTH, CHISELLING_MANAGER::getMap, new FabricItemSettings().maxCount(1).maxDamage(145), EtceteraSoundEvents.ITEM_CHISEL_USE, EtceteraTags.CHISELLABLE));

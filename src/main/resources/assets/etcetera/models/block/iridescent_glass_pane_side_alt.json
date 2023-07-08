@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_glass_pane_side_alt",
+  "textures": {
+    "edge": "etcetera:block/iridescent_glass_pane_top",
+    "pane": "etcetera:block/iridescent_glass"
+  }
+}

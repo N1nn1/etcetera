@@ -24,8 +24,11 @@ public class EtceteraBlocks {
     public static final Block BISMUTH_BARS = register("bismuth_bars", new PublicPaneBlock(FabricBlockSettings.copyOf(BISMUTH_BLOCK)));
     public static final Block NETHER_BISMUTH_ORE = register("nether_bismuth_ore", new ExperienceDroppingBlock(FabricBlockSettings.create().requiresTool().mapColor(MapColor.DARK_RED).strength(3.0f, 3.0f).sounds(EtceteraSoundEvents.NETHER_BISMUTH_ORE), UniformIntProvider.create(1, 8)));
     public static final Block IRIDESCENT_GLASS = register("iridescent_glass", new GlassBlock(FabricBlockSettings.copyOf(GLASS).slipperiness(1.0F)));
+    public static final Block IRIDESCENT_GLASS_PANE = register("iridescent_glass_pane", new PaneBlock(FabricBlockSettings.copyOf(LIGHT_GRAY_STAINED_GLASS_PANE).slipperiness(1.0F)));
     public static final Block IRIDESCENT_TERRACOTTA = register("iridescent_terracotta", new Block(FabricBlockSettings.copyOf(TERRACOTTA)));
+    public static final Block IRIDESCENT_GLAZED_TERRACOTTA = register("iridescent_glazed_terracotta", new GlazedTerracottaBlock(FabricBlockSettings.copyOf(LIGHT_GRAY_GLAZED_TERRACOTTA)));
     public static final Block IRIDESCENT_CONCRETE = register("iridescent_concrete", new Block(FabricBlockSettings.copyOf(LIGHT_GRAY_CONCRETE)));
+    public static final Block IRIDESCENT_WOOL = register("iridescent_wool", new Block(FabricBlockSettings.copyOf(LIGHT_GRAY_WOOL)));
     public static final Block IRIDESCENT_LANTERN = register("iridescent_lantern", new Block(FabricBlockSettings.copyOf(SEA_LANTERN)));
 
     public static final Block DRUM = register("drum", new DrumBlock(FabricBlockSettings.copyOf(NOTE_BLOCK)));

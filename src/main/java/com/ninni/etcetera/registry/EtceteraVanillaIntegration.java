@@ -145,6 +145,25 @@ public class EtceteraVanillaIntegration {
         BlockEntityRendererRegistry.register(EtceteraBlockEntityType.ITEM_STAND, ItemStandBlockEntityRenderer::new);
     }
 
+    private static void registerBlockRenderLayers() {
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
+                EtceteraBlocks.IRIDESCENT_GLASS,
+                EtceteraBlocks.IRIDESCENT_GLASS_PANE,
+                EtceteraBlocks.LIGHT_BULB,
+                EtceteraBlocks.TINTED_LIGHT_BULB
+        );
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
+                EtceteraBlocks.BISMUTH_BARS,
+                EtceteraBlocks.BOUQUET,
+                EtceteraBlocks.COTTON,
+                EtceteraBlocks.POTTED_BOUQUET,
+                EtceteraBlocks.ITEM_STAND,
+                EtceteraBlocks.GLOW_ITEM_STAND,
+                EtceteraBlocks.FRAME,
+                EtceteraBlocks.PRICKLY_CAN
+        );
+    }
+
     private static void registerArmor() {
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.WHITE_SWEATER);
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_GRAY_SWEATER);
@@ -182,24 +201,6 @@ public class EtceteraVanillaIntegration {
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.TRADER_HOOD);
         ArmorRenderer.register(new TidalArmorRenderer(), EtceteraItems.TIDAL_HELMET);
         TidalHelmetHud.init();
-    }
-
-    private static void registerBlockRenderLayers() {
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
-                EtceteraBlocks.IRIDESCENT_GLASS,
-                EtceteraBlocks.LIGHT_BULB,
-                EtceteraBlocks.TINTED_LIGHT_BULB
-        );
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
-                EtceteraBlocks.BISMUTH_BARS,
-                EtceteraBlocks.BOUQUET,
-                EtceteraBlocks.COTTON,
-                EtceteraBlocks.POTTED_BOUQUET,
-                EtceteraBlocks.ITEM_STAND,
-                EtceteraBlocks.GLOW_ITEM_STAND,
-                EtceteraBlocks.FRAME,
-                EtceteraBlocks.PRICKLY_CAN
-        );
     }
 
     private static void registerScreens() {

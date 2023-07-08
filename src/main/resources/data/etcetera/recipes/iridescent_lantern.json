@@ -1,12 +1,20 @@
 {
-  "type": "minecraft:smithing",
-  "base": {
-    "item": "minecraft:sea_lantern"
-  },
-  "addition": {
-    "item": "etcetera:bismuth_ingot"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#W#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:sea_lantern"
+    },
+    "W": {
+      "item": "etcetera:bismuth_ingot"
+    }
   },
   "result": {
-    "item": "etcetera:iridescent_lantern"
+    "item": "etcetera:iridescent_lantern",
+    "count": 4
   }
 }

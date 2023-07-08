@@ -23,8 +23,11 @@ public class EtceteraCreativeModeTab {
                 output.add(RAW_BISMUTH);
                 output.add(BISMUTH_INGOT);
                 output.add(IRIDESCENT_GLASS);
+                output.add(IRIDESCENT_GLASS_PANE);
                 output.add(IRIDESCENT_TERRACOTTA);
+                output.add(IRIDESCENT_GLAZED_TERRACOTTA);
                 output.add(IRIDESCENT_CONCRETE);
+                output.add(IRIDESCENT_WOOL);
                 output.add(IRIDESCENT_LANTERN);
 
                 output.add(CHISEL);
@@ -107,12 +110,9 @@ public class EtceteraCreativeModeTab {
     static {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
-            entries.addAfter(Items.WAXED_OXIDIZED_CUT_COPPER_SLAB,
+            entries.addAfter(Items.SMOOTH_QUARTZ_SLAB,
                     BISMUTH_BLOCK,
-                    BISMUTH_BARS,
-                    IRIDESCENT_GLASS,
-                    IRIDESCENT_TERRACOTTA,
-                    IRIDESCENT_CONCRETE
+                    BISMUTH_BARS
             );
             entries.addAfter(Items.SMOOTH_STONE_SLAB,
                     LEVELED_STONE,
@@ -175,6 +175,12 @@ public class EtceteraCreativeModeTab {
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COLORED_BLOCKS).register(entries -> {
+            entries.addBefore(Items.WHITE_CONCRETE, IRIDESCENT_CONCRETE);
+            entries.addBefore(Items.WHITE_WOOL, IRIDESCENT_WOOL);
+            entries.addBefore(Items.WHITE_GLAZED_TERRACOTTA, IRIDESCENT_GLAZED_TERRACOTTA);
+            entries.addAfter(Items.TERRACOTTA, IRIDESCENT_TERRACOTTA);
+            entries.addAfter(Items.GLASS, IRIDESCENT_GLASS);
+            entries.addAfter(Items.GLASS_PANE, IRIDESCENT_GLASS_PANE);
             entries.addAfter(Items.PINK_BED,
                     WHITE_SWEATER,
                     LIGHT_GRAY_SWEATER,

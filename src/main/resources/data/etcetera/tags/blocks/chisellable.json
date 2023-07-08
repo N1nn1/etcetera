@@ -11,7 +11,10 @@
     "minecraft:quartz_block",
     "etcetera:iridescent_lantern",
     "etcetera:iridescent_terracotta",
+    "etcetera:iridescent_glazed_terracotta",
     "etcetera:iridescent_concrete",
-    "etcetera:iridescent_glass"
+    "etcetera:iridescent_wool",
+    "etcetera:iridescent_glass",
+    "etcetera:iridescent_glass_pane"
   ]
 }

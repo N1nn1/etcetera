@@ -1,12 +1,20 @@
 {
-  "type": "minecraft:smithing",
-  "base": {
-    "item": "minecraft:glass"
-  },
-  "addition": {
-    "item": "etcetera:bismuth_ingot"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#W#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "c:glass_blocks"
+    },
+    "W": {
+      "item": "etcetera:bismuth_ingot"
+    }
   },
   "result": {
-    "item": "etcetera:iridescent_glass"
+    "item": "etcetera:iridescent_glass",
+    "count": 4
   }
 }

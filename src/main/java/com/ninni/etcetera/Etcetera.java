@@ -12,9 +12,7 @@ public class Etcetera implements ModInitializer {
 
 	//TODO
 	//finish up the sounds,
-	//fix the turtle raft banner
 	//more advancements
-	//iridescent crafting recipes
 
 	@Override
 	public void onInitialize() {

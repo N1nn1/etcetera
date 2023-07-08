@@ -7,14 +7,14 @@
   ],
   "key": {
     "#": {
-      "tag": "etcetera:concrete"
+      "tag": "etcetera:glazed_terracotta"
     },
     "W": {
       "item": "etcetera:bismuth_ingot"
     }
   },
   "result": {
-    "item": "etcetera:iridescent_concrete",
+    "item": "etcetera:iridescent_glazed_terracotta",
     "count": 4
   }
 }

@@ -10,7 +10,10 @@
     "minecraft:quartz_block": "minecraft:chiseled_quartz_block",
     "etcetera:iridescent_lantern": "minecraft:sea_lantern",
     "etcetera:iridescent_terracotta": "minecraft:light_gray_terracotta",
+    "etcetera:iridescent_glazed_terracotta": "minecraft:light_gray_glazed_terracotta",
     "etcetera:iridescent_concrete": "minecraft:light_gray_concrete",
-    "etcetera:iridescent_glass": "minecraft:glass"
+    "etcetera:iridescent_wool": "minecraft:light_gray_wool",
+    "etcetera:iridescent_glass": "minecraft:glass",
+    "etcetera:iridescent_glass_pane": "minecraft:glass_pane"
   }
 }
