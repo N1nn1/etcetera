@@ -44,6 +44,7 @@ public class EtceteraCreativeModeTab {
                 output.add(TERRACOTTA_VASE);
 
                 output.add(ITEM_STAND);
+                output.add(GLOW_ITEM_STAND);
 
                 output.add(SQUID_LAMP);
                 output.add(TIDAL_HELMET);
@@ -129,7 +130,7 @@ public class EtceteraCreativeModeTab {
             entries.addAfter(Items.JUKEBOX, DRUM);
             entries.addAfter(Items.SCAFFOLDING, FRAME);
             entries.addAfter(Items.DECORATED_POT, TERRACOTTA_VASE);
-            entries.addAfter(Items.GLOW_ITEM_FRAME, ITEM_STAND);
+            entries.addAfter(Items.GLOW_ITEM_FRAME, ITEM_STAND, GLOW_ITEM_STAND);
             entries.addAfter(Items.ENDER_CHEST, PRICKLY_CAN);
             entries.addAfter(Items.SUSPICIOUS_GRAVEL, CRUMBLING_STONE, WAXED_CRUMBLING_STONE);
         });

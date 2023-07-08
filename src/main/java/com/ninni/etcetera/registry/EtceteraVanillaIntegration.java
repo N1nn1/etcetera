@@ -196,6 +196,7 @@ public class EtceteraVanillaIntegration {
                 EtceteraBlocks.COTTON,
                 EtceteraBlocks.POTTED_BOUQUET,
                 EtceteraBlocks.ITEM_STAND,
+                EtceteraBlocks.GLOW_ITEM_STAND,
                 EtceteraBlocks.FRAME,
                 EtceteraBlocks.PRICKLY_CAN
         );

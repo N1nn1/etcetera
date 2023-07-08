@@ -23,6 +23,7 @@
   "block.etcetera.terracotta_vase": "Terracotta Vase",
 
   "block.etcetera.item_stand": "Item Stand",
+  "block.etcetera.glow_item_stand": "Glow Item Stand",
   "stat.minecraft.interact_with_item_stand": "Interactions with Item Stand",
 
   "item.etcetera.raw_bismuth": "Raw Bismuth",

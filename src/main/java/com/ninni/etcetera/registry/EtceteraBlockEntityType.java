@@ -14,7 +14,8 @@ public class EtceteraBlockEntityType {
     public static final BlockEntityType<ItemStandBlockEntity> ITEM_STAND = Registry.register(
             Registries.BLOCK_ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, "item_stand"),
             FabricBlockEntityTypeBuilder.create(ItemStandBlockEntity::new,
-                    EtceteraBlocks.ITEM_STAND
+                    EtceteraBlocks.ITEM_STAND,
+                    EtceteraBlocks.GLOW_ITEM_STAND
             ).build(null)
     );
     public static final BlockEntityType<TintedLightBulbBlockEntity> TINTED_LIGHT_BULB = Registry.register(

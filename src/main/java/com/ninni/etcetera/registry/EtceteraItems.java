@@ -46,6 +46,7 @@ public class EtceteraItems {
     public static final Item TERRACOTTA_VASE = register("terracotta_vase", new BlockItem(EtceteraBlocks.TERRACOTTA_VASE, new FabricItemSettings()));
 
     public static final Item ITEM_STAND = register("item_stand", new BlockItem(EtceteraBlocks.ITEM_STAND, new FabricItemSettings()));
+    public static final Item GLOW_ITEM_STAND = register("glow_item_stand", new BlockItem(EtceteraBlocks.GLOW_ITEM_STAND, new FabricItemSettings()));
 
     public static final Item SQUID_LAMP = register("squid_lamp", new VerticallyAttachableBlockItem(EtceteraBlocks.SQUID_LAMP, EtceteraBlocks.WALL_SQUID_LAMP, new FabricItemSettings(), Direction.DOWN));
     public static final Item TIDAL_HELMET = register("tidal_helmet", new ArmorItem(EtceteraArmorMaterials.TIDAL, ArmorItem.Type.HELMET, new FabricItemSettings().rarity(Rarity.RARE)));

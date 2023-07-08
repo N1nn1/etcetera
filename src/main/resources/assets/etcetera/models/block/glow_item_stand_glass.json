@@ -1,9 +1,10 @@
 {
 	"textures": {
 		"top": "etcetera:block/item_stand_top",
-		"side": "etcetera:block/item_stand",
+		"side": "etcetera:block/glow_item_stand",
 		"bottom": "etcetera:block/item_stand_bottom",
-		"particle": "etcetera:block/item_stand_top"
+		"glass": "block/glass",
+		"particle": "block/glass"
 	},
 	"elements": [
 		{
@@ -28,6 +29,18 @@
 				"west": {"uv": [7, 9, 9, 14], "texture": "#side"},
 				"up": {"uv": [7, 9, 9, 11], "texture": "#side"},
 				"down": {"uv": [7, 12, 9, 14], "texture": "#side"}
+			}
+		},
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#glass"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#glass"}
 			}
 		}
 	]

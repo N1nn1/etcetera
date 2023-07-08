@@ -41,6 +41,7 @@ public class EtceteraBlocks {
     public static final Block TERRACOTTA_VASE = register("terracotta_vase", new TerracottaVaseBlock(FabricBlockSettings.copyOf(TERRACOTTA).sounds(EtceteraSoundEvents.TERRACOTTA_VASE)));
 
     public static final Block ITEM_STAND = register("item_stand", new ItemStandBlock(FabricBlockSettings.create().mapColor(MapColor.STONE_GRAY).breakInstantly().nonOpaque()));
+    public static final Block GLOW_ITEM_STAND = register("glow_item_stand", new ItemStandBlock(FabricBlockSettings.create().mapColor(MapColor.STONE_GRAY).breakInstantly().nonOpaque()));
 
     public static final Block SQUID_LAMP = register("squid_lamp", new SquidLampBlock(FabricBlockSettings.create().noCollision().mapColor(MapColor.TEAL).breakInstantly().sounds(EtceteraSoundEvents.SQUID_LAMP).luminance(state -> state.get(SquidLampBlock.WATERLOGGED) ? 15 : 7)));
     public static final Block WALL_SQUID_LAMP = register("wall_squid_lamp", new WallSquidLampBlock(FabricBlockSettings.copyOf(SQUID_LAMP).dropsLike(SQUID_LAMP)));

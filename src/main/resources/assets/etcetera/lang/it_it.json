@@ -22,6 +22,7 @@
   "block.etcetera.terracotta_vase": "Anfora",
 
   "block.etcetera.item_stand": "Supporto per oggetti",
+  "block.etcetera.glow_item_stand": "Supporto per oggetti luminescente",
   "stat.minecraft.interact_with_item_stand": "Interazioni con i supporti per oggetti",
 
   "item.etcetera.raw_bismuth": "Bismuto grezzo",

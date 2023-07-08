@@ -10,6 +10,12 @@ public class Etcetera implements ModInitializer {
 	public static final String MOD_ID = "etcetera";
 	public static final Logger LOGGER = LogManager.getLogger();
 
+	//TODO
+	//finish up the sounds,
+	//fix the turtle raft banner
+	//more advancements
+	//iridescent crafting recipes
+
 	@Override
 	public void onInitialize() {
 		Reflection.initialize(

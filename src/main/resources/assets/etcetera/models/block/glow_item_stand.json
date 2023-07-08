@@ -1,7 +1,7 @@
 {
 	"textures": {
 		"top": "etcetera:block/item_stand_top",
-		"side": "etcetera:block/item_stand",
+		"side": "etcetera:block/glow_item_stand",
 		"bottom": "etcetera:block/item_stand_bottom",
 		"particle": "etcetera:block/item_stand_top"
 	},
