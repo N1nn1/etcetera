@@ -99,12 +99,12 @@ public class TurtleRaftEntity extends BoatEntity {
 
     @Override
     protected float getPassengerHorizontalOffset() {
-        return -0.15f;
+        return 0.0f;
     }
 
     @Override
     public double getMountedHeightOffset() {
-        return 0.25;
+        return 0.3;
     }
 
     @Override
