@@ -3,6 +3,7 @@ package com.ninni.etcetera.block.entity;
 import com.ninni.etcetera.block.PricklyCanBlock;
 import com.ninni.etcetera.client.gui.screen.PricklyCanScreenHandler;
 import com.ninni.etcetera.registry.EtceteraBlockEntityType;
+import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.block.entity.ViewerCountManager;
@@ -15,7 +16,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -31,13 +31,13 @@ public class PricklyCanBlockEntity extends LootableContainerBlockEntity {
         this.stateManager = new ViewerCountManager() {
             @Override
             protected void onContainerOpen(World world, BlockPos pos, BlockState state) {
-                PricklyCanBlockEntity.this.playSound(SoundEvents.BLOCK_BARREL_OPEN);
+                PricklyCanBlockEntity.this.playSound(EtceteraSoundEvents.BLOCK_PRICKLY_CAN_OPEN);
                 PricklyCanBlockEntity.this.setOpen(state, true);
             }
 
             @Override
             protected void onContainerClose(World world, BlockPos pos, BlockState state) {
-                PricklyCanBlockEntity.this.playSound(SoundEvents.BLOCK_BARREL_CLOSE);
+                PricklyCanBlockEntity.this.playSound(EtceteraSoundEvents.BLOCK_PRICKLY_CAN_CLOSE);
                 PricklyCanBlockEntity.this.setOpen(state, false);
             }
 
@@ -125,6 +125,6 @@ public class PricklyCanBlockEntity extends LootableContainerBlockEntity {
     }
 
     void playSound(SoundEvent soundEvent) {
-        this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), soundEvent, SoundCategory.BLOCKS, 0.5F, this.world.random.nextFloat() * 0.1F + 0.9F);
+        this.world.playSound(null, this.pos.getX(), this.pos.getY(), this.pos.getZ(), soundEvent, SoundCategory.BLOCKS, 1F, this.world.random.nextFloat() * 0.1F + 0.9F);
     }
 }

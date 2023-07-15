@@ -21,10 +21,11 @@ public interface EtceteraSoundEvents {
     SoundEvent BLOCK_CRUMBLING_STONE_CRUMBLE = register("block.crumbling_stone.crumble");
     SoundEvent BLOCK_LIGHT_BULB_ON = register("block.light_bulb.on");
     SoundEvent BLOCK_LIGHT_BULB_OFF = register("block.light_bulb.off");
+    SoundEvent BLOCK_PRICKLY_CAN_OPEN = register("block.prickly_can.open");
+    SoundEvent BLOCK_PRICKLY_CAN_CLOSE = register("block.prickly_can.close");
     SoundEvent ENTITY_CHAPPLE_CONVERT = register("entity.chapple.convert");
-
-    //TODO sounds
     SoundEvent ITEM_BANNER_EQUIP = register("item.banner.equip");
+    SoundEvent ITEM_BANNER_COLLECT = register("item.banner.collect");
     SoundEvent ITEM_ARMOR_EQUIP_COTTON = register("item.armor.equip.cotton");
 
     BlockSoundGroup NETHER_BISMUTH_ORE = register("nether_bismuth_ore", 1, 1);

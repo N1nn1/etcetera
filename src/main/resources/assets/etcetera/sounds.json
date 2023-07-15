@@ -386,6 +386,18 @@
 		],
 		"subtitle": "subtitles.block.etcetera.light_bulb.off"
 	},
+	"block.prickly_can.open": {
+		"sounds": [
+			"etcetera:block/prickly_can/open"
+		],
+		"subtitle": "subtitles.block.etcetera.prickly_can.open"
+	},
+	"block.prickly_can.close": {
+		"sounds": [
+			"etcetera:block/prickly_can/close"
+		],
+		"subtitle": "subtitles.block.etcetera.prickly_can.close"
+	},
 	"item.chisel.use": {
 		"sounds": [
 			"etcetera:item/chisel/use1",
@@ -439,5 +451,28 @@
 			"etcetera:item/wrench/select"
 		],
 		"subtitle": "subtitles.item.etcetera.wrench.select"
+	},
+	"item.banner.equip": {
+		"sounds": [
+			"etcetera:entity/turtle_raft/banner_equip1",
+			"etcetera:entity/turtle_raft/banner_equip2"
+		],
+		"subtitle": "subtitles.item.etcetera.turtle_raft.banner_equip"
+	},
+	"item.banner.collect": {
+		"sounds": [
+			"etcetera:entity/turtle_raft/banner_collect1",
+			"etcetera:entity/turtle_raft/banner_collect2"
+		],
+		"subtitle": "subtitles.item.etcetera.turtle_raft.banner_collect"
+	},
+	"item.armor.equip.cotton": {
+		"sounds": [
+			"etcetera:item/armor/equip_cotton1",
+			"etcetera:item/armor/equip_cotton2",
+			"etcetera:item/armor/equip_cotton3",
+			"etcetera:item/armor/equip_cotton4"
+		],
+		"subtitle": "subtitles.item.etcetera.cotton.armor.equip"
 	}
 }

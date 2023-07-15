@@ -149,10 +149,10 @@ public class EtceteraCreativeModeTab {
             entries.addAfter(Items.EGG, EGGPLE, GOLDEN_EGGPLE);
             entries.addAfter(Items.TURTLE_HELMET,
                     TIDAL_HELMET,
-                    WHITE_SWEATER,
-                    TRADER_ROBE,
                     WHITE_HAT,
-                    TRADER_HOOD
+                    TRADER_HOOD,
+                    WHITE_SWEATER,
+                    TRADER_ROBE
             );
             entries.addAfter(Items.TRIDENT, HAMMER);
         });

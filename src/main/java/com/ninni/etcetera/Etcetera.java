@@ -10,10 +10,6 @@ public class Etcetera implements ModInitializer {
 	public static final String MOD_ID = "etcetera";
 	public static final Logger LOGGER = LogManager.getLogger();
 
-	//TODO
-	//finish up the sounds,
-	//more advancements
-
 	@Override
 	public void onInitialize() {
 		Reflection.initialize(

@@ -40,7 +40,7 @@ public class TurtleRaftEntity extends BoatEntity {
     public ActionResult interact(PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
         if (!this.getWorld().isClient) {
-            if (this.getBanner().isEmpty() && stack.getItem() instanceof BannerItem) {
+            if (this.getBanner().isEmpty() && stack.getItem() instanceof BannerItem && !player.isSneaking()) {
                 ItemStack copy = stack.copy();
                 if (!player.getAbilities().creativeMode) {
                     stack.decrement(1);
@@ -53,7 +53,7 @@ public class TurtleRaftEntity extends BoatEntity {
             } else if (!this.getBanner().isEmpty() && stack.isEmpty() && player.isSneaking()) {
                 ItemStack copy = this.getBanner();
                 player.setStackInHand(hand, copy);
-                this.playSound(EtceteraSoundEvents.ITEM_BANNER_EQUIP, 1.0F, 1.0F);
+                this.playSound(EtceteraSoundEvents.ITEM_BANNER_COLLECT, 1.0F, 1.0F);
                 this.emitGameEvent(GameEvent.ENTITY_INTERACT, player);
                 this.setBanner(ItemStack.EMPTY);
                 return ActionResult.SUCCESS;
