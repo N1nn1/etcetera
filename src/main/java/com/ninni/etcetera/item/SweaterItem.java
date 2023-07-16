@@ -95,11 +95,6 @@ public class SweaterItem extends ArmorItem implements Equipable {
     }
 
     @Override
-    public SoundEvent getEquipSound() {
-        return EtceteraSoundEvents.ITEM_ARMOR_EQUIP_COTTON.get();
-    }
-
-    @Override
     public boolean isValidRepairItem(ItemStack p_40392_, ItemStack p_40393_) {
         return false;
     }
@@ -128,7 +123,7 @@ public class SweaterItem extends ArmorItem implements Equipable {
 
         @Override
         public SoundEvent getEquipSound() {
-            return SoundEvents.ARMOR_EQUIP_LEATHER;
+            return EtceteraSoundEvents.ITEM_ARMOR_EQUIP_COTTON.get();
         }
 
         @Override

@@ -3,6 +3,7 @@ package com.ninni.etcetera.block.entity;
 import com.ninni.etcetera.block.PricklyCanBlock;
 import com.ninni.etcetera.client.gui.screen.PricklyCanScreenHandler;
 import com.ninni.etcetera.registry.EtceteraBlockEntityType;
+import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -31,13 +32,13 @@ public class PricklyCanBlockEntity extends RandomizableContainerBlockEntity {
         this.stateManager = new ContainerOpenersCounter() {
             @Override
             protected void onOpen(Level world, BlockPos worldPosition, BlockState state) {
-                PricklyCanBlockEntity.this.playSound(SoundEvents.BARREL_OPEN);
+                PricklyCanBlockEntity.this.playSound(EtceteraSoundEvents.BLOCK_PRICKLY_CAN_OPEN.get());
                 PricklyCanBlockEntity.this.setOpen(state, true);
             }
 
             @Override
             protected void onClose(Level world, BlockPos worldPosition, BlockState state) {
-                PricklyCanBlockEntity.this.playSound(SoundEvents.BARREL_CLOSE);
+                PricklyCanBlockEntity.this.playSound(EtceteraSoundEvents.BLOCK_PRICKLY_CAN_CLOSE.get());
                 PricklyCanBlockEntity.this.setOpen(state, false);
             }
 
@@ -110,7 +111,7 @@ public class PricklyCanBlockEntity extends RandomizableContainerBlockEntity {
     }
 
     void playSound(SoundEvent soundEvent) {
-        this.level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), soundEvent, SoundSource.BLOCKS, 0.5F, this.level.random.nextFloat() * 0.1F + 0.9F);
+        this.level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), soundEvent, SoundSource.BLOCKS, 1.0F, this.level.random.nextFloat() * 0.1F + 0.9F);
     }
 
     @Override

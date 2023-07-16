@@ -120,10 +120,10 @@ public class ClientEvents {
             addAfter(entries, Items.EGG, EtceteraItems.EGGPLE.get(), EtceteraItems.GOLDEN_EGGPLE.get());
             addAfter(entries, Items.TURTLE_HELMET,
                     EtceteraItems.TIDAL_HELMET.get(),
-                    EtceteraItems.WHITE_SWEATER.get(),
-                    EtceteraItems.TRADER_ROBE.get(),
                     EtceteraItems.WHITE_HAT.get(),
-                    EtceteraItems.TRADER_HOOD.get()
+                    EtceteraItems.TRADER_HOOD.get(),
+                    EtceteraItems.WHITE_SWEATER.get(),
+                    EtceteraItems.TRADER_ROBE.get()
             );
             addAfter(entries, Items.TRIDENT, EtceteraItems.HAMMER.get());
         }

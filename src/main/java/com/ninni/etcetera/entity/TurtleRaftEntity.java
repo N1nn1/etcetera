@@ -40,7 +40,7 @@ public class TurtleRaftEntity extends Boat {
     public InteractionResult interact(Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (!this.level().isClientSide) {
-            if (this.getBanner().isEmpty() && stack.getItem() instanceof BannerItem) {
+            if (this.getBanner().isEmpty() && stack.getItem() instanceof BannerItem && !player.isCrouching()) {
                 ItemStack copy = stack.copy();
                 if (!player.getAbilities().instabuild) {
                     stack.shrink(1);

@@ -27,6 +27,8 @@ public class EtceteraSoundEvents {
     public static final RegistryObject<SoundEvent> BLOCK_CRUMBLING_STONE_CRUMBLE = register("block.crumbling_stone.crumble");
     public static final RegistryObject<SoundEvent> BLOCK_LIGHT_BULB_ON = register("block.light_bulb.on");
     public static final RegistryObject<SoundEvent> BLOCK_LIGHT_BULB_OFF = register("block.light_bulb.off");
+    public static final RegistryObject<SoundEvent> BLOCK_PRICKLY_CAN_OPEN = register("block.prickly_can.open");
+    public static final RegistryObject<SoundEvent> BLOCK_PRICKLY_CAN_CLOSE = register("block.prickly_can.close");
     public static final RegistryObject<SoundEvent> ENTITY_CHAPPLE_CONVERT = register("entity.chapple.convert");
 
     public static final RegistryObject<SoundEvent> BLOCK_DRUM_BEATBOX_HIGH_SOUND = register("block.drum.beatbox.high");
@@ -48,6 +50,7 @@ public class EtceteraSoundEvents {
 
     //TODO sounds
     public static final RegistryObject<SoundEvent> ITEM_BANNER_EQUIP = register("item.banner.equip");
+    public static final RegistryObject<SoundEvent> ITEM_BANNER_COLLECT = register("item.banner.collect");
     public static final RegistryObject<SoundEvent> ITEM_ARMOR_EQUIP_COTTON = register("item.armor.equip.cotton");
 
     public static final SoundType NETHER_BISMUTH_ORE = register("nether_bismuth_ore", 1, 1);
