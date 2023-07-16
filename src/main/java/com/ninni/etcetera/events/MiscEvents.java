@@ -2,6 +2,7 @@ package com.ninni.etcetera.events;
 
 import com.ninni.etcetera.Etcetera;
 import com.ninni.etcetera.entity.EggpleEntity;
+import com.ninni.etcetera.registry.EtceteraBlocks;
 import com.ninni.etcetera.registry.EtceteraItems;
 import com.ninni.etcetera.registry.EtceteraVanillaIntegration;
 import net.minecraft.Util;
@@ -12,19 +13,32 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.TagsUpdatedEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Etcetera.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MiscEvents {
+
+    @SubscribeEvent
+    public void onBlockModified(BlockEvent.BlockToolModificationEvent event) {
+        BlockState state = event.getState();
+        ToolAction toolAction = event.getToolAction();
+        if (toolAction.equals(ToolActions.AXE_SCRAPE) && state.is(EtceteraBlocks.WAXED_CRUMBLING_STONE.get())) {
+            event.setFinalState(EtceteraBlocks.CRUMBLING_STONE.get().withPropertiesOf(state));
+        }
+    }
 
     @SubscribeEvent
     public void onLootTableLoad(LootTableLoadEvent event) {

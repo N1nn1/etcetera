@@ -1,10 +1,13 @@
 package com.ninni.etcetera.registry;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.ImmutableBiMap;
 import com.ninni.etcetera.network.EtceteraNetwork;
 import com.ninni.etcetera.resource.EtceteraProcessResourceManager;
 import net.minecraft.stats.StatFormatter;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.item.HoneycombItem;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ComposterBlock;
 
 import static com.ninni.etcetera.registry.EtceteraBlocks.CRUMBLING_STONE;
