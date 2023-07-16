@@ -56,18 +56,18 @@ public class DrumBlock extends Block implements SimpleWaterloggedBlock {
         world.setBlock(pos, state.setValue(POWERED, true), 3);
         world.scheduleTick(pos, this, getPressTicks());
         int power = calculatePower(hit);
-//        if (power >= 1 && 5 >= power) {
-//            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 16 / 24.0, 0.0, 0.0);
-//            world.playSound(null, pos, getType(state).getHighSound().get(), SoundSource.RECORDS, 2, 1);
-//        }
-//        if (power > 5 && 11 >= power) {
-//            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 8 / 24.0, 0.0, 0.0);
-//            world.playSound(null, pos, getType(state).getMediumSound().get(), SoundSource.RECORDS, 2, 1);
-//        }
-//        if (power > 11) {
-//            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 1 / 24.0, 0.0, 0.0);
-//            world.playSound(null, pos, getType(state).getLowSound().get(), SoundSource.RECORDS, 2, 1);
-//        }
+        if (power >= 1 && 5 >= power) {
+            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 16 / 24.0, 0.0, 0.0);
+            world.playSound(null, pos, getType(state).getHighSound(), SoundSource.RECORDS, 2, 1);
+        }
+        if (power > 5 && 11 >= power) {
+            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 8 / 24.0, 0.0, 0.0);
+            world.playSound(null, pos, getType(state).getMediumSound(), SoundSource.RECORDS, 2, 1);
+        }
+        if (power > 11) {
+            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 1 / 24.0, 0.0, 0.0);
+            world.playSound(null, pos, getType(state).getLowSound(), SoundSource.RECORDS, 2, 1);
+        }
     }
 
     private int getPressTicks() {

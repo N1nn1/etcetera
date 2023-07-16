@@ -1,11 +1,12 @@
 package com.ninni.etcetera.block.enums;
 
-import com.ninni.etcetera.registry.EtceteraSoundEvents;
+import com.ninni.etcetera.Etcetera;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public enum DrumType implements StringRepresentable {
     BEATBOX("beatbox"),
@@ -15,31 +16,22 @@ public enum DrumType implements StringRepresentable {
     TABLA("tabla");
 
     private final String name;
-//    private final RegistryObject<SoundEvent> highSound;
-//    private final RegistryObject<SoundEvent> mediumSound;
-//    private final RegistryObject<SoundEvent> lowSound;
 
     DrumType(String name) {
         this.name = name;
-
-        String prefix = "block.drum." + name + ".";
-
-//        highSound = EtceteraSoundEvents.register(prefix + "high");
-//        mediumSound = EtceteraSoundEvents.register(prefix + "medium");
-//        lowSound = EtceteraSoundEvents.register(prefix + "low");
     }
 
-//    public RegistryObject<SoundEvent> getHighSound() {
-//        return highSound;
-//    }
-//
-//    public RegistryObject<SoundEvent> getMediumSound() {
-//        return mediumSound;
-//    }
-//
-//    public RegistryObject<SoundEvent> getLowSound() {
-//        return lowSound;
-//    }
+    public SoundEvent getHighSound() {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(Etcetera.MOD_ID, "block.drum." + name + ".high"));
+    }
+
+    public SoundEvent getMediumSound() {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(Etcetera.MOD_ID, "block.drum." + name + ".medium"));
+    }
+
+    public SoundEvent getLowSound() {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation(Etcetera.MOD_ID, "block.drum." + name + ".low"));
+    }
 
     public static DrumType fromBlockState(BlockState state) {
         if (state.is(Blocks.PUMPKIN)) return BEATBOX;
