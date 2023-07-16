@@ -2,167 +2,173 @@ package com.ninni.etcetera.entity;
 
 import com.ninni.etcetera.registry.EtceteraEntityType;
 import com.ninni.etcetera.registry.EtceteraSoundEvents;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LightningEntity;
-import net.minecraft.entity.Shearable;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.Shearable;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.FollowParentGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public class ChappleEntity extends ChickenEntity implements Shearable {
-    private static final TrackedData<String> TYPE = DataTracker.registerData(ChappleEntity.class, TrackedDataHandlerRegistry.STRING);
-    private static final TrackedData<Integer> APPLE_LAY_TIME = DataTracker.registerData(ChappleEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private static final Ingredient BREEDING_INGREDIENT = Ingredient.ofItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
+public class ChappleEntity extends Chicken implements Shearable {
+    private static final EntityDataAccessor<String> TYPE = SynchedEntityData.defineId(ChappleEntity.class, EntityDataSerializers.STRING);
+    private static final EntityDataAccessor<Integer> APPLE_LAY_TIME = SynchedEntityData.defineId(ChappleEntity.class, EntityDataSerializers.INT);
+    private static final Ingredient BREEDING_INGREDIENT = Ingredient.of(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
     @Nullable
     private UUID lightningId;
 
-    public ChappleEntity(EntityType<? extends ChickenEntity> entityType, World world) {
+    public ChappleEntity(EntityType<? extends Chicken> entityType, Level world) {
         super(entityType, world);
     }
 
     @Override
-    protected void initGoals() {
-        this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new EscapeDangerGoal(this, 1.4));
-        this.goalSelector.add(3, new TemptGoal(this, 1.0, BREEDING_INGREDIENT, false));
-        this.goalSelector.add(4, new FollowParentGoal(this, 1.1));
-        this.goalSelector.add(5, new WanderAroundFarGoal(this, 1.0));
-        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 6.0f));
-        this.goalSelector.add(7, new LookAroundGoal(this));
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1.4));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0, BREEDING_INGREDIENT, false));
+        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 6.0f));
+        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(TYPE, Type.NORMAL.name);
-        this.dataTracker.startTracking(APPLE_LAY_TIME, this.random.nextInt(6000) + 6000);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(TYPE, Type.NORMAL.name);
+        this.entityData.define(APPLE_LAY_TIME, this.random.nextInt(6000) + 6000);
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
         nbt.putString("Type", this.getChappleType().name);
         nbt.putInt("AppleLayTime", this.getAppleLayTime());
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
         this.setType(Type.fromName(nbt.getString("Type")));
         this.setAppleLayTime(this.getAppleLayTime());
     }
 
     public void setType(Type type) {
-        this.dataTracker.set(TYPE, type.name);
+        this.entityData.set(TYPE, type.name);
     }
     public Type getChappleType() {
-        return Type.fromName(this.dataTracker.get(TYPE));
+        return Type.fromName(this.entityData.get(TYPE));
     }
     public int getAppleLayTime() {
-        return this.dataTracker.get(APPLE_LAY_TIME);
+        return this.entityData.get(APPLE_LAY_TIME);
     }
     public void setAppleLayTime(int appleLayTime) {
-        this.dataTracker.set(APPLE_LAY_TIME, appleLayTime);
+        this.entityData.set(APPLE_LAY_TIME, appleLayTime);
     }
 
 
     @Override
-    public void tickMovement() {
-        super.tickMovement();
-        this.eggLayTime = 1000;
+    public void aiStep() {
+        super.aiStep();
+        this.eggTime = 1000;
 
-        if (this.isAlive() && !this.isBaby() && !this.hasJockey()) this.setAppleLayTime(this.getAppleLayTime()-1);
-        if (this.isAlive() && !this.isBaby() && !this.hasJockey() && this.getAppleLayTime() <= 0 && !this.getWorld().isClient && this.getAppleLayTime() <= 0) {
-            this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0f, (this.random.nextFloat() - this.random.nextFloat()) * 0.2f + 1.0f);
-            if (this.getChappleType() == Type.GOLDEN && this.random.nextInt(3) == 0) this.dropItem(Items.GOLDEN_APPLE);
-            else this.dropItem(Items.APPLE);
-            this.emitGameEvent(GameEvent.ENTITY_PLACE);
+        if (this.isAlive() && !this.isBaby() && !this.isChickenJockey()) this.setAppleLayTime(this.getAppleLayTime()-1);
+        if (this.isAlive() && !this.isBaby() && !this.isChickenJockey() && this.getAppleLayTime() <= 0 && !this.level().isClientSide && this.getAppleLayTime() <= 0) {
+            this.playSound(SoundEvents.CHICKEN_EGG, 1.0f, (this.random.nextFloat() - this.random.nextFloat()) * 0.2f + 1.0f);
+            if (this.getChappleType() == Type.GOLDEN && this.random.nextInt(3) == 0) this.spawnAtLocation(Items.GOLDEN_APPLE);
+            else this.spawnAtLocation(Items.APPLE);
+            this.gameEvent(GameEvent.ENTITY_PLACE);
             this.setAppleLayTime(this.random.nextInt(6000) + 6000);
         }
     }
 
     @Override
-    public ActionResult interactMob(PlayerEntity player2, Hand hand) {
-        ItemStack itemStack = player2.getStackInHand(hand);
+    public InteractionResult mobInteract(Player player2, InteractionHand hand) {
+        ItemStack itemStack = player2.getItemInHand(hand);
 
-        if (itemStack.isOf(Items.SHEARS) && this.isShearable()) {
-            this.sheared(SoundCategory.PLAYERS);
-            this.emitGameEvent(GameEvent.SHEAR, player2);
-            if (!this.getWorld().isClient) {
-                itemStack.damage(1, player2, player -> player.sendToolBreakStatus(hand));
+        if (itemStack.is(Items.SHEARS) && this.readyForShearing()) {
+            this.shear(SoundSource.PLAYERS);
+            this.gameEvent(GameEvent.SHEAR, player2);
+            if (!this.level().isClientSide) {
+                itemStack.hurtAndBreak(1, player2, player -> player.broadcastBreakEvent(hand));
             }
-            return ActionResult.success(this.getWorld().isClient);
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
-        return ActionResult.PASS;
+        return InteractionResult.PASS;
     }
 
     @Override
-    public void sheared(SoundCategory shearedSoundCategory) {
-        this.getWorld().playSoundFromEntity(null, this, SoundEvents.ENTITY_MOOSHROOM_SHEAR, shearedSoundCategory, 1.0f, 1.0f);
+    public void shear(SoundSource shearedSoundCategory) {
+        this.level().playSound(null, this, SoundEvents.MOOSHROOM_SHEAR, shearedSoundCategory, 1.0f, 1.0f);
 
-        if (!this.getWorld().isClient()) {
-            ((ServerWorld)this.getWorld()).spawnParticles(ParticleTypes.EXPLOSION, this.getX(), this.getBodyY(0.5), this.getZ(), 1, 0.0, 0.0, 0.0, 0.0);
+        if (!this.level().isClientSide) {
+            ((ServerLevel)this.level()).sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(0.5), this.getZ(), 1, 0.0, 0.0, 0.0, 0.0);
             this.discard();
 
-            ChickenEntity chicken = EntityType.CHICKEN.create(this.getWorld());
-            chicken.refreshPositionAndAngles(this.getX(), this.getY(), this.getZ(), this.getYaw(), this.getPitch());
+            Chicken chicken = EntityType.CHICKEN.create(this.level());
+            chicken.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), this.getXRot());
             chicken.setHealth(this.getHealth());
-            chicken.bodyYaw = this.bodyYaw;
+            chicken.yBodyRot = this.yBodyRot;
 
             if (this.hasCustomName()) {
                 chicken.setCustomName(this.getCustomName());
                 chicken.setCustomNameVisible(this.isCustomNameVisible());
             }
-            if (this.isPersistent()) chicken.setPersistent();
+            if (this.isPersistenceRequired()) chicken.setPersistenceRequired();
             chicken.setInvulnerable(this.isInvulnerable());
 
-            this.getWorld().spawnEntity(chicken);
+            this.level().addFreshEntity(chicken);
 
             for (int i = 0; i < 5; ++i) {
-                this.getWorld().spawnEntity(new ItemEntity(this.getWorld(), this.getX(), this.getBodyY(1.0), this.getZ(), new ItemStack(this.getChappleType().apple)));
+                this.level().addFreshEntity(new ItemEntity(this.level(), this.getX(), this.getY(1.0), this.getZ(), new ItemStack(this.getChappleType().apple)));
             }
         }
     }
 
     @Override
-    public boolean isShearable() {
+    public boolean readyForShearing() {
         return this.isAlive() && !this.isBaby();
     }
 
     @Override
-    public void onStruckByLightning(ServerWorld world, LightningEntity lightning) {
-        UUID uUID = lightning.getUuid();
+    public void thunderHit(ServerLevel world, LightningBolt lightning) {
+        UUID uUID = lightning.getUUID();
         if (!uUID.equals(this.lightningId)) {
             this.setType(this.getChappleType() == Type.NORMAL ? Type.GOLDEN : Type.NORMAL);
             this.lightningId = uUID;
-            this.playSound(EtceteraSoundEvents.ENTITY_CHAPPLE_CONVERT, 3.0f, 1.0f);
+            this.playSound(EtceteraSoundEvents.ENTITY_CHAPPLE_CONVERT.get(), 3.0f, 1.0f);
         }
     }
 
     @Override
-    public ChappleEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        ChappleEntity chapple = EtceteraEntityType.CHAPPLE.create(serverWorld);
+    public ChappleEntity getBreedOffspring(ServerLevel serverWorld, AgeableMob passiveEntity) {
+        ChappleEntity chapple = EtceteraEntityType.CHAPPLE.get().create(serverWorld);
         chapple.setType(this.chooseBabyType((ChappleEntity)passiveEntity));
         return chapple;
     }

@@ -1,37 +1,38 @@
 package com.ninni.etcetera.client.renderer.entity.layer;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import com.ninni.etcetera.client.model.TurtleRaftModel;
 import com.ninni.etcetera.entity.TurtleRaftEntity;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.feature.FeatureRenderer;
-import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.RotationAxis;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
-@Environment(value=EnvType.CLIENT)
-public class TurtleRaftBannerLayer extends FeatureRenderer<TurtleRaftEntity, TurtleRaftModel> {
+@OnlyIn(Dist.CLIENT)
+public class TurtleRaftBannerLayer extends RenderLayer<TurtleRaftEntity, TurtleRaftModel> {
 
-    public TurtleRaftBannerLayer(FeatureRendererContext<TurtleRaftEntity, TurtleRaftModel> parent) {
+    public TurtleRaftBannerLayer(RenderLayerParent<TurtleRaftEntity, TurtleRaftModel> parent) {
         super(parent);
     }
 
     @Override
-    public void render(MatrixStack poseStack, VertexConsumerProvider source, int packedLight, TurtleRaftEntity entity, float p_117353_, float p_117354_, float p_117355_, float p_117356_, float p_117357_, float p_117358_) {
+    public void render(PoseStack poseStack, MultiBufferSource source, int packedLight, TurtleRaftEntity entity, float p_117353_, float p_117354_, float p_117355_, float p_117356_, float p_117357_, float p_117358_) {
         ItemStack itemstack = entity.getBanner();
         if (!itemstack.isEmpty()) {
-            poseStack.push();
+            poseStack.pushPose();
             poseStack.scale(1.0F, 1.0F, 1.0F);
             poseStack.translate(-0.1D, -0.09D, 0.0D);
-            poseStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90.0F));
+            poseStack.mulPose(Axis.YP.rotationDegrees(90.0F));
             poseStack.scale(0.625F, -0.625F, -0.625F);
-            MinecraftClient.getInstance().getItemRenderer().renderItem(null, itemstack, ModelTransformationMode.HEAD, false, poseStack, source, entity.getWorld(), packedLight, OverlayTexture.DEFAULT_UV, entity.getId() + ModelTransformationMode.HEAD.ordinal());
-            poseStack.pop();
+            Minecraft.getInstance().getItemRenderer().renderStatic(null, itemstack, ItemDisplayContext.HEAD, false, poseStack, source, entity.level(), packedLight, OverlayTexture.NO_OVERLAY, entity.getId() + ItemDisplayContext.HEAD.ordinal());
+            poseStack.popPose();
         }
     }
+
 }

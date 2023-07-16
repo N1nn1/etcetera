@@ -1,29 +1,16 @@
 package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.Etcetera;
-import com.ninni.etcetera.client.model.ChappleModel;
-import com.ninni.etcetera.client.model.CottonArmorModel;
-import com.ninni.etcetera.client.model.TurtleRaftModel;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.resources.ResourceLocation;
 
-@Environment(EnvType.CLIENT)
-public interface EtceteraEntityModelLayers {
+public class EtceteraEntityModelLayers {
 
-    EntityModelLayer TURTLE_RAFT = main("turtle_raft", TurtleRaftModel::getTexturedModelData);
-    EntityModelLayer CHAPPLE = main("chapple", ChappleModel::getTexturedModelData);
-    EntityModelLayer PLAYER_COTTON = main("cotton", CottonArmorModel::getTexturedModelData);
-    EntityModelLayer PLAYER_COTTON_SLIM = main("cotton_slim", CottonArmorModel::getSlimTexturedModelData);
+    public static final ModelLayerLocation TURTLE_RAFT = main("turtle_raft");
+    public static final ModelLayerLocation CHAPPLE = main("chapple");
+    public static final ModelLayerLocation PLAYER_COTTON = main("cotton");
 
-    private static EntityModelLayer register(String id, String name, EntityModelLayerRegistry.TexturedModelDataProvider provider) {
-        EntityModelLayer layer = new EntityModelLayer(new Identifier(Etcetera.MOD_ID, id), name);
-        EntityModelLayerRegistry.registerModelLayer(layer, provider);
-        return layer;
-    }
-    private static EntityModelLayer main(String id, EntityModelLayerRegistry.TexturedModelDataProvider provider) {
-        return register(id, "main", provider);
+    private static ModelLayerLocation main(String id) {
+        return new ModelLayerLocation(new ResourceLocation(Etcetera.MOD_ID, id), "main");
     }
 }

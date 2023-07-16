@@ -1,38 +1,39 @@
 package com.ninni.etcetera.item;
 
 import com.ninni.etcetera.entity.EggpleEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.World;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class EggpleItem extends Item {
     public boolean isGolden;
 
-    public EggpleItem(boolean golden, Settings settings) {
+    public EggpleItem(boolean golden, Properties settings) {
         super(settings);
         this.isGolden = golden;
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EGG_THROW, SoundCategory.PLAYERS, 0.5f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
+    public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
+        ItemStack itemStack = user.getItemInHand(hand);
+        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
 
-        if (!world.isClient) {
+        if (!world.isClientSide) {
             EggpleEntity eggple = new EggpleEntity(world, user);
             eggple.setItem(itemStack);
-            eggple.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 1.5f, 1.0f);
-            world.spawnEntity(eggple);
+            eggple.shootFromRotation(user, user.getXRot(), user.getYRot(), 0.0f, 1.5f, 1.0f);
+            world.addFreshEntity(eggple);
         }
 
-        user.incrementStat(Stats.USED.getOrCreateStat(this));
-        if (!user.getAbilities().creativeMode) itemStack.decrement(1);
-        return TypedActionResult.success(itemStack, world.isClient());
+        user.awardStat(Stats.ITEM_USED.get(this));
+        if (!user.getAbilities().instabuild) itemStack.shrink(1);
+        return InteractionResultHolder.sidedSuccess(itemStack, world.isClientSide());
     }
+
 }

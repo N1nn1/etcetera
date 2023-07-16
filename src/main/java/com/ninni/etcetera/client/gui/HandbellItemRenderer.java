@@ -1,32 +1,32 @@
 package com.ninni.etcetera.client.gui;
 
 import com.ninni.etcetera.item.HandbellItem;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.model.BakedModel;
-import net.minecraft.client.render.model.BakedModelManager;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.util.ModelIdentifier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelManager;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import static com.ninni.etcetera.Etcetera.MOD_ID;
 
-@Environment(EnvType.CLIENT)
+@OnlyIn(Dist.CLIENT)
 public class HandbellItemRenderer {
-    public static final ModelIdentifier INVENTORY_MODEL_ID = new ModelIdentifier(new Identifier(MOD_ID, "handbell"), "inventory");
-    public static final ModelIdentifier INVENTORY_IN_HAND_MODEL_ID = new ModelIdentifier(new Identifier(MOD_ID, "handbell_in_hand"), "inventory");
+    public static final ModelResourceLocation INVENTORY_MODEL_ID = new ModelResourceLocation(new ResourceLocation(MOD_ID, "handbell"), "inventory");
+    public static final ModelResourceLocation INVENTORY_IN_HAND_MODEL_ID = new ModelResourceLocation(new ResourceLocation(MOD_ID, "handbell_in_hand"), "inventory");
 
-    public static BakedModel modifyRenderItem(ItemStack stack, ModelTransformationMode mode) {
+    public static BakedModel modifyRenderItem(ItemStack stack, ItemDisplayContext mode) {
         if (isInventory(stack, mode)) {
-            BakedModelManager models = MinecraftClient.getInstance().getBakedModelManager();
+            ModelManager models = Minecraft.getInstance().getModelManager();
             return models.getModel(INVENTORY_MODEL_ID);
         }
         return null;
     }
 
-    public static boolean isInventory(ItemStack stack, ModelTransformationMode mode) {
-        return (mode == ModelTransformationMode.GUI || mode == ModelTransformationMode.GROUND || mode == ModelTransformationMode.FIXED) && stack.getItem() instanceof HandbellItem;
+    public static boolean isInventory(ItemStack stack, ItemDisplayContext mode) {
+        return (mode == ItemDisplayContext.GUI || mode == ItemDisplayContext.GROUND || mode == ItemDisplayContext.FIXED) && stack.getItem() instanceof HandbellItem;
     }
 }

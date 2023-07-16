@@ -1,18 +1,22 @@
 package com.ninni.etcetera.client.model;
 
 import com.google.common.collect.ImmutableList;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.model.AnimalModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.MathHelper;
-
-import static net.minecraft.client.render.entity.model.EntityModelPartNames.*;
+import net.minecraft.client.model.AgeableListModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartNames;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 @SuppressWarnings("FieldCanBeLocal, unused")
-@Environment(value= EnvType.CLIENT)
-public class ChappleModel<T extends Entity> extends AnimalModel<T> {
+@OnlyIn(Dist.CLIENT)
+public class ChappleModel<T extends Entity> extends AgeableListModel<T> {
     private static final String BEAK = "beak";
     private static final String WATTLE = "wattle";
     private static final String STALK = "stalk";
@@ -28,118 +32,118 @@ public class ChappleModel<T extends Entity> extends AnimalModel<T> {
     private final ModelPart rightLeg;
 
     public ChappleModel(ModelPart root) {
-        head = root.getChild(HEAD);
-        body = root.getChild(BODY);
+        head = root.getChild(PartNames.HEAD);
+        body = root.getChild(PartNames.BODY);
 
         beak = head.getChild(BEAK);
         wattle = head.getChild(WATTLE);
 
         stalk = body.getChild(STALK);
-        leftWing = body.getChild(LEFT_WING);
-        rightWing = body.getChild(RIGHT_WING);
-        leftLeg = body.getChild(LEFT_LEG);
-        rightLeg = body.getChild(RIGHT_LEG);
+        leftWing = body.getChild(PartNames.LEFT_WING);
+        rightWing = body.getChild(PartNames.RIGHT_WING);
+        leftLeg = body.getChild(PartNames.LEFT_LEG);
+        rightLeg = body.getChild(PartNames.RIGHT_LEG);
     }
 
-    public static TexturedModelData getTexturedModelData() {
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
+    public static LayerDefinition createLayerDefinition() {
+        MeshDefinition modelData = new MeshDefinition();
+        PartDefinition modelPartData = modelData.getRoot();
 
-        ModelPartData head = modelPartData.addChild(
-                HEAD,
-                ModelPartBuilder.create()
-                        .uv(0, 14)
-                        .cuboid(-2.0F, -6.0F, -2.0F, 4.0F, 6.0F, 3.0F),
-                ModelTransform.pivot(0.0F, 15.0F, -4.0F)
+        PartDefinition head = modelPartData.addOrReplaceChild(
+                PartNames.HEAD,
+                CubeListBuilder.create()
+                        .texOffs(0, 14)
+                        .addBox(-2.0F, -6.0F, -2.0F, 4.0F, 6.0F, 3.0F),
+                PartPose.offset(0.0F, 15.0F, -4.0F)
         );
 
-        ModelPartData bill = head.addChild(
-                BEAK,
-                ModelPartBuilder.create()
-                        .uv(0, 23)
-                        .cuboid(-2.0F, -4.0F, -4.0F, 4.0F, 2.0F, 2.0F),
-                ModelTransform.pivot(0.0F, 0.0F, 0.0F)
+        PartDefinition bill = head.addOrReplaceChild(
+                PartNames.BEAK,
+                CubeListBuilder.create()
+                        .texOffs(0, 23)
+                        .addBox(-2.0F, -4.0F, -4.0F, 4.0F, 2.0F, 2.0F),
+                PartPose.offset(0.0F, 0.0F, 0.0F)
         );
 
 
-        ModelPartData chin = head.addChild(
+        PartDefinition chin = head.addOrReplaceChild(
                 WATTLE,
-                ModelPartBuilder.create()
-                        .uv(0, 27)
-                        .cuboid(-1.0F, -2.0F, -3.0F, 2.0F, 2.0F, 2.0F),
-                ModelTransform.pivot(0.0F, 0.0F, 0.0F)
+                CubeListBuilder.create()
+                        .texOffs(0, 27)
+                        .addBox(-1.0F, -2.0F, -3.0F, 2.0F, 2.0F, 2.0F),
+                PartPose.offset(0.0F, 0.0F, 0.0F)
         );
 
-        ModelPartData body = modelPartData.addChild(
-                BODY,
-                ModelPartBuilder.create()
-                        .uv(0, 0)
-                        .cuboid(-3.0F, -3.0F, -4.0F, 6.0F, 6.0F, 8.0F),
-                ModelTransform.pivot(0.0F, 16.0F, 0.0F)
+        PartDefinition body = modelPartData.addOrReplaceChild(
+                PartNames.BODY,
+                CubeListBuilder.create()
+                        .texOffs(0, 0)
+                        .addBox(-3.0F, -3.0F, -4.0F, 6.0F, 6.0F, 8.0F),
+                PartPose.offset(0.0F, 16.0F, 0.0F)
         );
 
-        ModelPartData stalk = body.addChild(
+        PartDefinition stalk = body.addOrReplaceChild(
                 STALK,
-                ModelPartBuilder.create()
-                        .uv(0, -1)
-                        .cuboid(0.0F, -5.0F, -0.5F, 0.0F, 5.0F, 4.0F),
-                ModelTransform.of(0.0F, -3.0F, 0.0F, 0.0F, 0.7854F, 0.0F));
+                CubeListBuilder.create()
+                        .texOffs(0, -1)
+                        .addBox(0.0F, -5.0F, -0.5F, 0.0F, 5.0F, 4.0F),
+                PartPose.offsetAndRotation(0.0F, -3.0F, 0.0F, 0.0F, 0.7854F, 0.0F));
 
-        ModelPartData left_wing = body.addChild(
-                LEFT_WING,
-                ModelPartBuilder.create()
-                        .uv(14, 14)
-                        .cuboid(-1.0F, 0.0F, -3.0F, 1.0F, 4.0F, 6.0F),
-                ModelTransform.pivot(4.0F, -3.0F, 0.0F)
+        PartDefinition left_wing = body.addOrReplaceChild(
+                PartNames.LEFT_WING,
+                CubeListBuilder.create()
+                        .texOffs(14, 14)
+                        .addBox(-1.0F, 0.0F, -3.0F, 1.0F, 4.0F, 6.0F),
+                PartPose.offset(4.0F, -3.0F, 0.0F)
         );
 
-        ModelPartData right_wing = body.addChild(
-                RIGHT_WING,
-                ModelPartBuilder.create()
-                        .uv(14, 14)
-                        .mirrored()
-                        .cuboid(0.0F, 0.0F, -3.0F, 1.0F, 4.0F, 6.0F)
-                        .mirrored(false),
-                ModelTransform.pivot(-4.0F, -3.0F, 0.0F)
+        PartDefinition right_wing = body.addOrReplaceChild(
+                PartNames.RIGHT_WING,
+                CubeListBuilder.create()
+                        .texOffs(14, 14)
+                        .mirror()
+                        .addBox(0.0F, 0.0F, -3.0F, 1.0F, 4.0F, 6.0F)
+                        .mirror(false),
+                PartPose.offset(-4.0F, -3.0F, 0.0F)
         );
 
-        ModelPartData left_leg = body.addChild(
-                LEFT_LEG,
-                ModelPartBuilder.create()
-                        .uv(9, 24)
-                        .cuboid(-1.0F, 0.0F, -3.0F, 3.0F, 5.0F, 3.0F),
-                ModelTransform.pivot(1.0F, 3.0F, 1.0F)
+        PartDefinition left_leg = body.addOrReplaceChild(
+                PartNames.LEFT_LEG,
+                CubeListBuilder.create()
+                        .texOffs(9, 24)
+                        .addBox(-1.0F, 0.0F, -3.0F, 3.0F, 5.0F, 3.0F),
+                PartPose.offset(1.0F, 3.0F, 1.0F)
         );
 
-        ModelPartData right_leg = body.addChild(
-                RIGHT_LEG,
-                ModelPartBuilder.create()
-                        .uv(9, 24)
-                        .mirrored()
-                        .cuboid(-1.0F, 0.0F, -3.0F, 3.0F, 5.0F, 3.0F),
-                ModelTransform.pivot(-2.0F, 3.0F, 1.0F)
+        PartDefinition right_leg = body.addOrReplaceChild(
+                PartNames.RIGHT_LEG,
+                CubeListBuilder.create()
+                        .texOffs(9, 24)
+                        .mirror()
+                        .addBox(-1.0F, 0.0F, -3.0F, 3.0F, 5.0F, 3.0F),
+                PartPose.offset(-2.0F, 3.0F, 1.0F)
         );
 
-        return TexturedModelData.of(modelData, 32, 32);
+        return LayerDefinition.create(modelData, 32, 32);
     }
 
     @Override
-    protected Iterable<ModelPart> getHeadParts() {
+    protected Iterable<ModelPart> headParts() {
         return ImmutableList.of(this.head);
     }
 
     @Override
-    protected Iterable<ModelPart> getBodyParts() {
+    protected Iterable<ModelPart> bodyParts() {
         return ImmutableList.of(this.body);
     }
 
     @Override
-    public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-        head.pitch = headPitch * ((float)Math.PI / 180);
-        head.yaw = headYaw * ((float)Math.PI / 180);
-        rightLeg.pitch = MathHelper.cos(limbAngle * 0.6662f) * 1.4f * limbDistance;
-        leftLeg.pitch = MathHelper.cos(limbAngle * 0.6662f + (float)Math.PI) * 1.4f * limbDistance;
-        rightWing.roll = animationProgress;
-        leftWing.roll = -animationProgress;
+    public void setupAnim(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+        head.xRot = headPitch * ((float)Math.PI / 180);
+        head.yRot = headYaw * ((float)Math.PI / 180);
+        rightLeg.xRot = Mth.cos(limbAngle * 0.6662f) * 1.4f * limbDistance;
+        leftLeg.xRot = Mth.cos(limbAngle * 0.6662f + (float)Math.PI) * 1.4f * limbDistance;
+        rightWing.zRot = animationProgress;
+        leftWing.zRot = -animationProgress;
     }
 }

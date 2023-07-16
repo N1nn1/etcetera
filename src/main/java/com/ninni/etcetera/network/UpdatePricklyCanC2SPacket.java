@@ -1,19 +1,32 @@
 package com.ninni.etcetera.network;
 
 import com.ninni.etcetera.client.gui.screen.PricklyCanScreenHandler;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.network.NetworkEvent;
 
-public class UpdatePricklyCanC2SPacket implements ServerPlayNetworking.PlayChannelHandler {
+import java.util.function.Supplier;
 
-    @Override
-    public void receive(MinecraftServer server, ServerPlayerEntity player, ServerPlayNetworkHandler handler, PacketByteBuf buf, PacketSender responseSender) {
-        if (player.currentScreenHandler instanceof PricklyCanScreenHandler pricklyCanScreenHandler) {
-            pricklyCanScreenHandler.getInventory().clear();
-        }
+public class UpdatePricklyCanC2SPacket {
+
+    public UpdatePricklyCanC2SPacket() {
     }
+
+    public static UpdatePricklyCanC2SPacket read(FriendlyByteBuf buf) {
+        return new UpdatePricklyCanC2SPacket();
+    }
+
+    public static void write(UpdatePricklyCanC2SPacket packet, FriendlyByteBuf buf) {
+    }
+
+    public static void handle(UpdatePricklyCanC2SPacket packet, Supplier<NetworkEvent.Context> ctx) {
+        ctx.get().enqueueWork(() -> {
+            ServerPlayer sender = ctx.get().getSender();
+            if (sender.containerMenu instanceof PricklyCanScreenHandler pricklyCanScreenHandler) {
+                pricklyCanScreenHandler.getContainer().clearContent();
+            }
+        });
+        ctx.get().setPacketHandled(true);
+    }
+
 }

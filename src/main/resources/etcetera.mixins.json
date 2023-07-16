@@ -1,7 +1,8 @@
 {
   "required": true,
-  "minVersion": "0.8",
   "package": "com.ninni.etcetera.mixin",
+  "minVersion": "0.8",
+  "refmap": "etcetera.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AbstractBlockStateMixin",
@@ -11,10 +12,8 @@
     "VillagerEntityMixin"
   ],
   "client": [
-    "client.ItemEntityRendererMixin",
     "client.ItemModelsMixin",
-    "client.ItemRendererMixin",
-    "client.ModelLoaderMixin"
+    "client.ItemRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1 }

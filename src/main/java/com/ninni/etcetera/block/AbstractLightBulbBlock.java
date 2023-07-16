@@ -1,108 +1,112 @@
 package com.ninni.etcetera.block;
 
-import com.ninni.etcetera.registry.EtceteraProperties;
 import com.ninni.etcetera.block.enums.LightBulbBrightness;
+import com.ninni.etcetera.registry.EtceteraProperties;
 import com.ninni.etcetera.registry.EtceteraSoundEvents;
-import net.minecraft.block.*;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
-public class AbstractLightBulbBlock extends Block implements Waterloggable {
-    public static final BooleanProperty HANGING = Properties.HANGING;
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+public class AbstractLightBulbBlock extends Block implements SimpleWaterloggedBlock {
+    public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<LightBulbBrightness> BRIGHTNESS = EtceteraProperties.BRIGHTNESS;
-    protected static final VoxelShape STANDING_SHAPE = Block.createCuboidShape(3, 0, 3, 13, 13, 13);
-    protected static final VoxelShape HANGING_SHAPE = Block.createCuboidShape(3, 3, 3, 13, 16, 13);
+    protected static final VoxelShape STANDING_SHAPE = Block.box(3, 0, 3, 13, 13, 13);
+    protected static final VoxelShape HANGING_SHAPE = Block.box(3, 3, 3, 13, 16, 13);
 
-    public AbstractLightBulbBlock(Settings settings) {
+    public AbstractLightBulbBlock(Properties settings) {
         super(settings);
-        this.setDefaultState(((this.stateManager.getDefaultState()).with(HANGING, false)).with(WATERLOGGED, false).with(BRIGHTNESS, LightBulbBrightness.OFF));
+        this.registerDefaultState(((this.stateDefinition.any()).setValue(HANGING, false)).setValue(WATERLOGGED, false).setValue(BRIGHTNESS, LightBulbBrightness.OFF));
     }
 
-    @Override
     @Nullable
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
-        for (Direction direction : ctx.getPlacementDirections()) {
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        FluidState fluidState = ctx.getLevel().getFluidState(ctx.getClickedPos());
+        for (Direction direction : ctx.getNearestLookingDirections()) {
             BlockState blockState;
-            if (direction.getAxis() != Direction.Axis.Y || !(blockState = this.getDefaultState().with(HANGING, direction == Direction.UP)).canPlaceAt(ctx.getWorld(), ctx.getBlockPos())) continue;
-            return blockState.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+            if (direction.getAxis() != Direction.Axis.Y || !(blockState = this.defaultBlockState().setValue(HANGING, direction == Direction.UP)).canSurvive(ctx.getLevel(), ctx.getClickedPos())) continue;
+            return blockState.setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
         }
         return null;
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        this.turnBrightness(state, world, pos, state.get(BRIGHTNESS));
-        return ActionResult.SUCCESS;
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        this.turnBrightness(state, world, pos, state.getValue(BRIGHTNESS));
+        return InteractionResult.SUCCESS;
     }
 
-    public void turnBrightness(BlockState state, World world, BlockPos pos, LightBulbBrightness brightness) {
-        SoundEvent soundEvent = brightness == LightBulbBrightness.BRIGHT ? EtceteraSoundEvents.BLOCK_LIGHT_BULB_OFF : EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON;
-        world.setBlockState(pos, state.cycle(BRIGHTNESS));
-        world.playSound(null, pos, soundEvent, SoundCategory.BLOCKS, 1, 1);
-    }
-
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return state.get(HANGING) ? HANGING_SHAPE : STANDING_SHAPE;
+    public void turnBrightness(BlockState state, Level world, BlockPos pos, LightBulbBrightness brightness) {
+        SoundEvent soundEvent = brightness == LightBulbBrightness.BRIGHT ? EtceteraSoundEvents.BLOCK_LIGHT_BULB_OFF.get() : EtceteraSoundEvents.BLOCK_LIGHT_BULB_ON.get();
+        world.setBlockAndUpdate(pos, state.cycle(BRIGHTNESS));
+        world.playSound(null, pos, soundEvent, SoundSource.BLOCKS, 1, 1);
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return state.getValue(HANGING) ? HANGING_SHAPE : STANDING_SHAPE;
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(HANGING, WATERLOGGED, BRIGHTNESS);
     }
 
     @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         Direction direction = attachedDirection(state).getOpposite();
-        return Block.sideCoversSmallSquare(world, pos.offset(direction), direction.getOpposite());
+        return Block.canSupportCenter(world, pos.relative(direction), direction.getOpposite());
     }
 
     protected static Direction attachedDirection(BlockState state) {
-        return state.get(HANGING) ? Direction.DOWN : Direction.UP;
+        return state.getValue(HANGING) ? Direction.DOWN : Direction.UP;
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
-        if (state.get(WATERLOGGED)) {
-            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+    public BlockState updateShape(BlockState state, Direction direction, BlockState p_60543_, LevelAccessor world, BlockPos pos, BlockPos p_60546_) {
+        if (state.getValue(WATERLOGGED)) {
+            world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
-        if (attachedDirection(state).getOpposite() == direction && !state.canPlaceAt(world, pos)) {
-            return Blocks.AIR.getDefaultState();
+        if (attachedDirection(state).getOpposite() == direction && !state.canSurvive(world, pos)) {
+            return Blocks.AIR.defaultBlockState();
         }
-        return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+        return super.updateShape(state, direction, p_60543_, world, pos, p_60546_);
     }
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        if (state.get(WATERLOGGED)) return Fluids.WATER.getStill(false);
-        return super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
-    public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
+    public boolean isPathfindable(BlockState state, BlockGetter world, BlockPos pos, PathComputationType type) {
         return false;
     }
+
 }

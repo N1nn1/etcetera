@@ -1,4 +1,5 @@
 {
+	"render_type": "cutout",
 	"textures": {
 		"top": "etcetera:block/item_stand_top",
 		"side": "etcetera:block/item_stand",

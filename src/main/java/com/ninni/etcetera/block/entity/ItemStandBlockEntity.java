@@ -1,59 +1,58 @@
 package com.ninni.etcetera.block.entity;
 
 import com.ninni.etcetera.registry.EtceteraBlockEntityType;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.Entity;
-import net.minecraft.inventory.Inventories;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
-import net.minecraft.util.Clearable;
-import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Clearable;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 public class ItemStandBlockEntity extends BlockEntity implements Clearable {
-    private final DefaultedList<ItemStack> itemsDisplayed = DefaultedList.ofSize(1, ItemStack.EMPTY);
+    private final NonNullList<ItemStack> itemsDisplayed = NonNullList.withSize(1, ItemStack.EMPTY);
 
     public ItemStandBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
 
     public ItemStandBlockEntity(BlockPos pos, BlockState state) {
-        this(EtceteraBlockEntityType.ITEM_STAND, pos, state);
+        this(EtceteraBlockEntityType.ITEM_STAND.get(), pos, state);
     }
 
-    public DefaultedList<ItemStack> getItemsDisplayed() {
+    public NonNullList<ItemStack> getItemsDisplayed() {
         return this.itemsDisplayed;
     }
 
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        NbtCompound nbtCompound = new NbtCompound();
-        Inventories.writeNbt(nbtCompound, this.itemsDisplayed, true);
-        return nbtCompound;
+    public CompoundTag getUpdateTag() {
+        CompoundTag compoundtag = new CompoundTag();
+        ContainerHelper.saveAllItems(compoundtag, this.itemsDisplayed, true);
+        return compoundtag;
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
+    public void load(CompoundTag tag) {
+        super.load(tag);
         this.itemsDisplayed.clear();
-        Inventories.readNbt(nbt, this.itemsDisplayed);
+        ContainerHelper.loadAllItems(tag, this.itemsDisplayed);
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
-        super.writeNbt(nbt);
-        Inventories.writeNbt(nbt, this.itemsDisplayed, true);
+    protected void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+        ContainerHelper.saveAllItems(tag, this.itemsDisplayed, true);
     }
 
     @Override
-    public BlockEntityUpdateS2CPacket toUpdatePacket() {
-        return BlockEntityUpdateS2CPacket.create(this);
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     public boolean addItem(@Nullable Entity user, ItemStack stack) {
@@ -61,7 +60,7 @@ public class ItemStandBlockEntity extends BlockEntity implements Clearable {
             ItemStack itemStack = this.itemsDisplayed.get(i);
             if (!itemStack.isEmpty()) continue;
             this.itemsDisplayed.set(i, stack.split(1));
-            this.world.emitGameEvent(GameEvent.BLOCK_CHANGE, this.getPos(), GameEvent.Emitter.of(user, this.getCachedState()));
+            this.level.gameEvent(GameEvent.BLOCK_CHANGE, this.getBlockPos(), GameEvent.Context.of(user, this.getBlockState()));
             this.updateListeners();
             return true;
         }
@@ -69,12 +68,12 @@ public class ItemStandBlockEntity extends BlockEntity implements Clearable {
     }
 
     private void updateListeners() {
-        this.markDirty();
-        this.getWorld().updateListeners(this.getPos(), this.getCachedState(), this.getCachedState(), Block.NOTIFY_ALL);
+        this.setChanged();
+        this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
     }
 
     @Override
-    public void clear() {
+    public void clearContent() {
         this.itemsDisplayed.clear();
     }
 }

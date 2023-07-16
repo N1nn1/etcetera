@@ -1,67 +1,89 @@
 package com.ninni.etcetera.registry;
 
-import com.ninni.etcetera.block.*;
-import com.ninni.etcetera.block.vanilla.PublicPaneBlock;
-import com.ninni.etcetera.block.vanilla.PublicStairsBlock;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.*;
-import net.minecraft.block.piston.PistonBehavior;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.world.BlockView;
+import com.ninni.etcetera.Etcetera;
+import com.ninni.etcetera.block.AbstractCrumblingStoneBlock;
+import com.ninni.etcetera.block.BouquetBlock;
+import com.ninni.etcetera.block.CottonBlock;
+import com.ninni.etcetera.block.CrumblingStoneBlock;
+import com.ninni.etcetera.block.DiceBlock;
+import com.ninni.etcetera.block.DrumBlock;
+import com.ninni.etcetera.block.FrameBlock;
+import com.ninni.etcetera.block.ItemStandBlock;
+import com.ninni.etcetera.block.LightBulbBlock;
+import com.ninni.etcetera.block.PricklyCanBlock;
+import com.ninni.etcetera.block.SquidLampBlock;
+import com.ninni.etcetera.block.TerracottaVaseBlock;
+import com.ninni.etcetera.block.TintedLightBulbBlock;
+import com.ninni.etcetera.block.WallSquidLampBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DropExperienceBlock;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.GlassBlock;
+import net.minecraft.world.level.block.GlazedTerracottaBlock;
+import net.minecraft.world.level.block.IronBarsBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
-import static com.ninni.etcetera.Etcetera.MOD_ID;
-import static net.minecraft.block.Blocks.*;
-
+@Mod.EventBusSubscriber(modid = Etcetera.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EtceteraBlocks {
 
-    public static final Block RAW_BISMUTH_BLOCK = register("raw_bismuth_block", new Block(FabricBlockSettings.copyOf(RAW_COPPER_BLOCK)));
-    public static final Block BISMUTH_BLOCK = register("bismuth_block", new PillarBlock(FabricBlockSettings.copyOf(IRON_BLOCK).sounds(EtceteraSoundEvents.BISMUTH_BLOCK)));
-    public static final Block BISMUTH_BARS = register("bismuth_bars", new PublicPaneBlock(FabricBlockSettings.copyOf(BISMUTH_BLOCK)));
-    public static final Block NETHER_BISMUTH_ORE = register("nether_bismuth_ore", new ExperienceDroppingBlock(FabricBlockSettings.create().requiresTool().mapColor(MapColor.DARK_RED).strength(3.0f, 3.0f).sounds(EtceteraSoundEvents.NETHER_BISMUTH_ORE), UniformIntProvider.create(1, 8)));
-    public static final Block IRIDESCENT_GLASS = register("iridescent_glass", new GlassBlock(FabricBlockSettings.copyOf(GLASS).slipperiness(1.0F)));
-    public static final Block IRIDESCENT_GLASS_PANE = register("iridescent_glass_pane", new PaneBlock(FabricBlockSettings.copyOf(LIGHT_GRAY_STAINED_GLASS_PANE).slipperiness(1.0F)));
-    public static final Block IRIDESCENT_TERRACOTTA = register("iridescent_terracotta", new Block(FabricBlockSettings.copyOf(TERRACOTTA)));
-    public static final Block IRIDESCENT_GLAZED_TERRACOTTA = register("iridescent_glazed_terracotta", new GlazedTerracottaBlock(FabricBlockSettings.copyOf(LIGHT_GRAY_GLAZED_TERRACOTTA)));
-    public static final Block IRIDESCENT_CONCRETE = register("iridescent_concrete", new Block(FabricBlockSettings.copyOf(LIGHT_GRAY_CONCRETE)));
-    public static final Block IRIDESCENT_WOOL = register("iridescent_wool", new Block(FabricBlockSettings.copyOf(LIGHT_GRAY_WOOL)));
-    public static final Block IRIDESCENT_LANTERN = register("iridescent_lantern", new Block(FabricBlockSettings.copyOf(SEA_LANTERN)));
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Etcetera.MOD_ID);
 
-    public static final Block DRUM = register("drum", new DrumBlock(FabricBlockSettings.copyOf(NOTE_BLOCK)));
+    public static final RegistryObject<Block> RAW_BISMUTH_BLOCK = BLOCKS.register("raw_bismuth_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RAW_COPPER_BLOCK)));
+    public static final RegistryObject<Block> BISMUTH_BLOCK = BLOCKS.register("bismuth_block", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(EtceteraSoundEvents.BISMUTH_BLOCK)));
+    public static final RegistryObject<Block> BISMUTH_BARS = BLOCKS.register("bismuth_bars", () -> new IronBarsBlock(BlockBehaviour.Properties.copy(BISMUTH_BLOCK.get())));
+    public static final RegistryObject<Block> NETHER_BISMUTH_ORE = BLOCKS.register("nether_bismuth_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().mapColor(MapColor.NETHER).strength(3.0f, 3.0f).sound(EtceteraSoundEvents.NETHER_BISMUTH_ORE), UniformInt.of(1, 8)));
+    public static final RegistryObject<Block> IRIDESCENT_GLASS = BLOCKS.register("iridescent_glass", () -> new GlassBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).friction(1.0F)));
+    public static final RegistryObject<Block> IRIDESCENT_GLASS_PANE = BLOCKS.register("iridescent_glass_pane", () -> new IronBarsBlock(BlockBehaviour.Properties.copy(Blocks.LIGHT_GRAY_STAINED_GLASS_PANE).friction(1.0F)));
+    public static final RegistryObject<Block> IRIDESCENT_TERRACOTTA = BLOCKS.register("iridescent_terracotta", () -> new Block(BlockBehaviour.Properties.copy(Blocks.TERRACOTTA)));
+    public static final RegistryObject<Block> IRIDESCENT_GLAZED_TERRACOTTA = BLOCKS.register("iridescent_glazed_terracotta", () -> new GlazedTerracottaBlock(BlockBehaviour.Properties.copy(Blocks.LIGHT_GRAY_GLAZED_TERRACOTTA)));
+    public static final RegistryObject<Block> IRIDESCENT_CONCRETE = BLOCKS.register("iridescent_concrete", () -> new Block(BlockBehaviour.Properties.copy(Blocks.LIGHT_GRAY_CONCRETE)));
+    public static final RegistryObject<Block> IRIDESCENT_WOOL = BLOCKS.register("iridescent_wool", () -> new Block(BlockBehaviour.Properties.copy(Blocks.LIGHT_GRAY_WOOL)));
+    public static final RegistryObject<Block> IRIDESCENT_LANTERN = BLOCKS.register("iridescent_lantern", () -> new Block(BlockBehaviour.Properties.copy(Blocks.SEA_LANTERN)));
 
-    public static final Block DICE = register("dice", new DiceBlock(FabricBlockSettings.copyOf(QUARTZ_BLOCK)));
+    public static final RegistryObject<Block> DRUM = BLOCKS.register("drum", () -> new DrumBlock(BlockBehaviour.Properties.copy(Blocks.NOTE_BLOCK)));
 
-    public static final Block FRAME = register("frame", new FrameBlock(FabricBlockSettings.create().sounds(BlockSoundGroup.SCAFFOLDING).mapColor(MapColor.PALE_YELLOW).nonOpaque().suffocates(EtceteraBlocks::never).blockVision(EtceteraBlocks::never).nonOpaque()));
+    public static final RegistryObject<Block> DICE = BLOCKS.register("dice", () -> new DiceBlock(BlockBehaviour.Properties.copy(Blocks.QUARTZ_BLOCK)));
 
-    public static final Block PRICKLY_CAN = register("prickly_can", new PricklyCanBlock(FabricBlockSettings.copyOf(CACTUS).strength(1f, 4f)));
+    public static final RegistryObject<Block> FRAME = BLOCKS.register("frame", () -> new FrameBlock(BlockBehaviour.Properties.of().sound(SoundType.SCAFFOLDING).mapColor(MapColor.SAND).noOcclusion().isSuffocating(EtceteraBlocks::never).isViewBlocking(EtceteraBlocks::never).noOcclusion()));
 
-    public static final Block BOUQUET = register("bouquet", new BouquetBlock(FabricBlockSettings.create().sounds(BlockSoundGroup.GRASS).mapColor(MapColor.PALE_GREEN).noCollision().breakInstantly()));
-    public static final Block POTTED_BOUQUET = register("potted_bouquet", new FlowerPotBlock(BOUQUET, FabricBlockSettings.create().breakInstantly().nonOpaque()));
-    public static final Block TERRACOTTA_VASE = register("terracotta_vase", new TerracottaVaseBlock(FabricBlockSettings.copyOf(TERRACOTTA).sounds(EtceteraSoundEvents.TERRACOTTA_VASE)));
+    public static final RegistryObject<Block> PRICKLY_CAN = BLOCKS.register("prickly_can", () -> new PricklyCanBlock(BlockBehaviour.Properties.copy(Blocks.CACTUS).strength(1f, 4f)));
 
-    public static final Block ITEM_STAND = register("item_stand", new ItemStandBlock(FabricBlockSettings.create().mapColor(MapColor.STONE_GRAY).breakInstantly().nonOpaque()));
-    public static final Block GLOW_ITEM_STAND = register("glow_item_stand", new ItemStandBlock(FabricBlockSettings.create().mapColor(MapColor.STONE_GRAY).breakInstantly().nonOpaque()));
+    public static final RegistryObject<Block> BOUQUET = BLOCKS.register("bouquet", () -> new BouquetBlock(BlockBehaviour.Properties.of().sound(SoundType.GRASS).mapColor(MapColor.GRASS).noCollission().instabreak()));
+    public static final RegistryObject<Block> POTTED_BOUQUET = BLOCKS.register("potted_bouquet", () -> new FlowerPotBlock(BOUQUET.get(), BlockBehaviour.Properties.of().instabreak().noOcclusion()));
+    public static final RegistryObject<Block> TERRACOTTA_VASE = BLOCKS.register("terracotta_vase", () -> new TerracottaVaseBlock(BlockBehaviour.Properties.copy(Blocks.TERRACOTTA).sound(EtceteraSoundEvents.TERRACOTTA_VASE)));
 
-    public static final Block SQUID_LAMP = register("squid_lamp", new SquidLampBlock(FabricBlockSettings.create().noCollision().mapColor(MapColor.TEAL).breakInstantly().sounds(EtceteraSoundEvents.SQUID_LAMP).luminance(state -> state.get(SquidLampBlock.WATERLOGGED) ? 15 : 7)));
-    public static final Block WALL_SQUID_LAMP = register("wall_squid_lamp", new WallSquidLampBlock(FabricBlockSettings.copyOf(SQUID_LAMP).dropsLike(SQUID_LAMP)));
+    public static final RegistryObject<Block> ITEM_STAND = BLOCKS.register("item_stand", () -> new ItemStandBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instabreak().noOcclusion()));
+    public static final RegistryObject<Block> GLOW_ITEM_STAND = BLOCKS.register("glow_item_stand", () -> new ItemStandBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instabreak().noOcclusion()));
 
-    public static final Block CRUMBLING_STONE = register("crumbling_stone", new CrumblingStoneBlock(FabricBlockSettings.copyOf(STONE).sounds(EtceteraSoundEvents.CRUMBLING_STONE).strength(0.5f, 3f)));
-    public static final Block WAXED_CRUMBLING_STONE = register("waxed_crumbling_stone", new AbstractCrumblingStoneBlock(FabricBlockSettings.copyOf(CRUMBLING_STONE)));
+    public static final RegistryObject<Block> SQUID_LAMP = BLOCKS.register("squid_lamp", () -> new SquidLampBlock(BlockBehaviour.Properties.of().noCollission().mapColor(MapColor.WARPED_NYLIUM).instabreak().sound(EtceteraSoundEvents.SQUID_LAMP).lightLevel(state -> state.getValue(SquidLampBlock.WATERLOGGED) ? 15 : 7)));
+    public static final RegistryObject<Block> WALL_SQUID_LAMP = BLOCKS.register("wall_squid_lamp", () -> new WallSquidLampBlock(BlockBehaviour.Properties.copy(EtceteraBlocks.SQUID_LAMP.get()).dropsLike(SQUID_LAMP.get())));
 
-    public static final Block LEVELED_STONE = register("leveled_stone", new Block(FabricBlockSettings.copyOf(STONE).strength(1f, 4f)));
-    public static final Block LEVELED_STONE_STAIRS = register("leveled_stone_stairs", new PublicStairsBlock(LEVELED_STONE.getDefaultState(), FabricBlockSettings.copyOf(LEVELED_STONE)));
-    public static final Block LEVELED_STONE_SLAB = register("leveled_stone_slab", new SlabBlock(FabricBlockSettings.copyOf(LEVELED_STONE)));
+    public static final RegistryObject<Block> CRUMBLING_STONE = BLOCKS.register("crumbling_stone", () -> new CrumblingStoneBlock(BlockBehaviour.Properties.copy(Blocks.STONE).sound(EtceteraSoundEvents.CRUMBLING_STONE).strength(0.5f, 3f)));
+    public static final RegistryObject<Block> WAXED_CRUMBLING_STONE = BLOCKS.register("waxed_crumbling_stone", () -> new AbstractCrumblingStoneBlock(BlockBehaviour.Properties.copy(EtceteraBlocks.CRUMBLING_STONE.get())));
 
-    public static final Block LIGHT_BULB = register("light_bulb", new LightBulbBlock(FabricBlockSettings.copyOf(GLASS).nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block TINTED_LIGHT_BULB = register("tinted_light_bulb", new TintedLightBulbBlock(FabricBlockSettings.copyOf(TINTED_GLASS).nonOpaque().pistonBehavior(PistonBehavior.DESTROY)));
+    public static final RegistryObject<Block> LEVELED_STONE = BLOCKS.register("leveled_stone", () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE).strength(1f, 4f)));
+    public static final RegistryObject<Block> LEVELED_STONE_STAIRS = BLOCKS.register("leveled_stone_stairs", () -> new StairBlock(LEVELED_STONE.get().defaultBlockState(), BlockBehaviour.Properties.copy(EtceteraBlocks.LEVELED_STONE.get())));
+    public static final RegistryObject<Block> LEVELED_STONE_SLAB = BLOCKS.register("leveled_stone_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(EtceteraBlocks.LEVELED_STONE.get())));
 
-    public static final Block COTTON = register("cotton", new CottonBlock(AbstractBlock.Settings.create().mapColor(state -> state.get(CottonBlock.AGE) == 3 ? MapColor.GREEN : MapColor.SPRUCE_BROWN).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).pistonBehavior(PistonBehavior.DESTROY)));
+    public static final RegistryObject<Block> LIGHT_BULB = BLOCKS.register("light_bulb", () -> new LightBulbBlock(BlockBehaviour.Properties.copy(Blocks.GLASS).noOcclusion().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> TINTED_LIGHT_BULB = BLOCKS.register("tinted_light_bulb", () -> new TintedLightBulbBlock(BlockBehaviour.Properties.copy(Blocks.TINTED_GLASS).noOcclusion().pushReaction(PushReaction.DESTROY)));
 
+    public static final RegistryObject<Block> COTTON = BLOCKS.register("cotton", () -> new CottonBlock(BlockBehaviour.Properties.of().mapColor(state -> state.getValue(CottonBlock.AGE) == 3 ? MapColor.COLOR_GREEN : MapColor.PODZOL).noCollission().randomTicks().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY)));
 
-    private static Block register(String id, Block block) { return Registry.register(Registries.BLOCK, new Identifier(MOD_ID, id), block); }
-    private static boolean never(BlockState state, BlockView world, BlockPos pos) { return false; }
+    private static boolean never(BlockState state, BlockGetter world, BlockPos pos) { return false; }
 }

@@ -2,12 +2,12 @@ package com.ninni.etcetera.mixin.client;
 
 import com.ninni.etcetera.client.gui.HandbellItemRenderer;
 import com.ninni.etcetera.item.HandbellItem;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.render.item.ItemModels;
-import net.minecraft.client.render.model.BakedModel;
-import net.minecraft.client.render.model.BakedModelManager;
-import net.minecraft.item.ItemStack;
+import net.minecraft.client.renderer.ItemModelShaper;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.client.resources.model.ModelManager;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,21 +18,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 /**
  * I don't even know how this thing works but thanks anyway andante
  */
-
-@Environment(EnvType.CLIENT)
-@Mixin(ItemModels.class)
+@OnlyIn(Dist.CLIENT)
+@Mixin(ItemModelShaper.class)
 public abstract class ItemModelsMixin {
     @Shadow
-    public abstract BakedModelManager getModelManager();
+    public abstract ModelManager getModelManager();
 
-    @Inject(
-        method = "getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;",
-        at = @At("HEAD"),
-        cancellable = true
-    )
+    @Inject(method = "getItemModel(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/client/resources/model/BakedModel;", at = @At("HEAD"), cancellable = true)
     private void onGetModel(ItemStack stack, CallbackInfoReturnable<BakedModel> cir) {
-        BakedModelManager models = this.getModelManager();
-        if (stack.getItem() instanceof HandbellItem) cir.setReturnValue(models.getModel(HandbellItemRenderer.INVENTORY_IN_HAND_MODEL_ID));
-
+        if (stack.getItem() instanceof HandbellItem) {
+            cir.setReturnValue(this.getModelManager().getModel(HandbellItemRenderer.INVENTORY_IN_HAND_MODEL_ID));
+        }
     }
+
 }

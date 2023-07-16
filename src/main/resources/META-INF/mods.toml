@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[39,)"
+license="ARR"
+[[mods]]
+modId="etcetera"
+version="1.20.1-1.3"
+displayName="Etcetera"
+logoFile= "etcetera.png"
+authors="Ninni"
+description='''
+Simple mod that adds random features
+
+Contributors:
+- Orcinus
+'''
+[[dependencies.etcetera]]
+modId="forge"
+mandatory=true
+versionRange="[39,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.etcetera]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20,1.21)"
+ordering="NONE"
+side="BOTH"

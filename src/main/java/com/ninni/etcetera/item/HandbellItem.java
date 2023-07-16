@@ -1,89 +1,94 @@
 package com.ninni.etcetera.item;
 
+import com.ninni.etcetera.client.gui.HandbellItemRenderer;
 import com.ninni.etcetera.registry.EtceteraSoundEvents;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.brain.MemoryModuleType;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.passive.AllayEntity;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.ColorHelper;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.FastColor;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.animal.allay.Allay;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.apache.commons.lang3.mutable.MutableInt;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class HandbellItem extends Item {
 
-    public HandbellItem(Settings settings) {
+    public HandbellItem(Properties settings) {
         super(settings);
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        List<LivingEntity> hearingEntities = world.getNonSpectatingEntities(LivingEntity.class, new Box(player.getBlockPos()).expand(48.0));
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        List<LivingEntity> hearingEntities = world.getEntitiesOfClass(LivingEntity.class, new AABB(player.blockPosition()).inflate(48.0));
 
-        if (!world.isClient) applyGlowToFriends(player.getBlockPos(), hearingEntities, player);
-        else applyParticlesTooFriends(world, player.getBlockPos(), hearingEntities, player);
+        if (!world.isClientSide) applyGlowToFriends(player.blockPosition(), hearingEntities, player);
+        else applyParticlesTooFriends(world, player.blockPosition(), hearingEntities, player);
 
-        world.playSound(player, player.getBlockPos(), EtceteraSoundEvents.ITEM_HANDBELL_RING, SoundCategory.PLAYERS, 0.3f, 1.0f);
-        player.incrementStat(Stats.USED.getOrCreateStat(this));
+        world.playSound(player, player.blockPosition(), EtceteraSoundEvents.ITEM_HANDBELL_RING.get(), SoundSource.PLAYERS, 0.3f, 1.0f);
+        player.awardStat(Stats.ITEM_USED.get(this));
 
-        return TypedActionResult.success(player.getStackInHand(hand));
+        return InteractionResultHolder.success(player.getItemInHand(hand));
     }
 
-    private static void applyGlowToFriends(BlockPos pos, List<LivingEntity> hearingEntities, PlayerEntity player) {
+    private static void applyGlowToFriends(BlockPos pos, List<LivingEntity> hearingEntities, Player player) {
         hearingEntities.stream().filter(entity -> isFriendEntity(pos, entity, player)).forEach(HandbellItem::applyGlowToEntity);
     }
 
-    private static void applyParticlesTooFriends(World world, BlockPos pos, List<LivingEntity> hearingEntities, PlayerEntity player) {
-        int entiyCount = (int)hearingEntities.stream().filter(entity -> pos.isWithinDistance(entity.getPos(), 48.0)).count();
+    private static void applyParticlesTooFriends(Level world, BlockPos pos, List<LivingEntity> hearingEntities, Player player) {
+        int entiyCount = (int)hearingEntities.stream().filter(entity -> pos.closerToCenterThan(entity.position(), 48.0)).count();
 
         hearingEntities.stream().filter(entity -> isFriendEntity(pos, entity, player)).forEach(entity -> {
-            int j = MathHelper.clamp((entiyCount - 21) / -2, 3, 15);
+            int j = Mth.clamp((entiyCount - 21) / -2, 3, 15);
 
             for (int k = 0; k < j; ++k) {
                 MutableInt mutableInt = new MutableInt(16700985);
                 int l = mutableInt.addAndGet(5);
-                double h = (double) ColorHelper.Argb.getRed(l) / 255.0;
-                double m = (double)ColorHelper.Argb.getGreen(l) / 255.0;
-                double n = (double)ColorHelper.Argb.getBlue(l) / 255.0;
+                double h = (double) FastColor.ARGB32.red(l) / 255.0;
+                double m = (double)FastColor.ARGB32.green(l) / 255.0;
+                double n = (double)FastColor.ARGB32.blue(l) / 255.0;
                 world.addParticle(ParticleTypes.ENTITY_EFFECT, player.getX(), player.getY() + 1, player.getZ(), h, m, n);
             }
         });
     }
 
     private static void applyGlowToEntity(LivingEntity entity) {
-        entity.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 120));
+        entity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 120));
     }
 
-    private static boolean isFriendEntity(BlockPos pos, LivingEntity entity, PlayerEntity player) {
-        if ((entity instanceof TameableEntity tamedEntity && tamedEntity.isTamed() && tamedEntity.getOwnerUuid().equals(player.getUuid()))
-        || (entity instanceof AllayEntity allay && allay.getBrain().getOptionalMemory(MemoryModuleType.LIKED_PLAYER).isPresent() && player.getUuid().equals(allay.getBrain().getOptionalMemory(MemoryModuleType.LIKED_PLAYER).get()))) {
+    private static boolean isFriendEntity(BlockPos pos, LivingEntity entity, Player player) {
+        if ((entity instanceof TamableAnimal tamedEntity && tamedEntity.isTame() && tamedEntity.getOwnerUUID().equals(player.getUUID()))
+        || (entity instanceof Allay allay && allay.getBrain().getMemory(MemoryModuleType.LIKED_PLAYER).isPresent() && player.getUUID().equals(allay.getBrain().getMemory(MemoryModuleType.LIKED_PLAYER).get()))) {
             teleportEntity(pos, entity, player);
             return true;
         }
         return false;
     }
 
-    private static void teleportEntity(BlockPos pos, LivingEntity entity, PlayerEntity player) {
-        if (entity instanceof TameableEntity tamedEntity && player.isOnGround() && !tamedEntity.isSitting()) {
-            tamedEntity.teleport(player.getX(), player.getY(), player.getZ());
+    private static void teleportEntity(BlockPos pos, LivingEntity entity, Player player) {
+        if (entity instanceof TamableAnimal tamedEntity && player.onGround() && !tamedEntity.isInSittingPose()) {
+            tamedEntity.teleportTo(player.getX(), player.getY(), player.getZ());
             tamedEntity.getNavigation().stop();
         }
         if (entity.isAlive() && !entity.isRemoved()) {
-            pos.isWithinDistance(entity.getPos(), 48.0);
+            pos.closerToCenterThan(entity.position(), 48.0);
         }
     }
 }

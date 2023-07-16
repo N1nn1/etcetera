@@ -1,4 +1,5 @@
 {
+  "render_type": "cutout",
   "parent": "etcetera:block/cross_crop",
   "textures": {
     "crop": "etcetera:block/cotton_stage3"

@@ -4,30 +4,33 @@ import com.ninni.etcetera.Etcetera;
 import com.ninni.etcetera.block.entity.ItemStandBlockEntity;
 import com.ninni.etcetera.block.entity.PricklyCanBlockEntity;
 import com.ninni.etcetera.block.entity.TintedLightBulbBlockEntity;
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
+@Mod.EventBusSubscriber(modid = Etcetera.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EtceteraBlockEntityType {
-    public static final BlockEntityType<ItemStandBlockEntity> ITEM_STAND = Registry.register(
-            Registries.BLOCK_ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, "item_stand"),
-            FabricBlockEntityTypeBuilder.create(ItemStandBlockEntity::new,
-                    EtceteraBlocks.ITEM_STAND,
-                    EtceteraBlocks.GLOW_ITEM_STAND
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Etcetera.MOD_ID);
+
+    public static final RegistryObject<BlockEntityType<ItemStandBlockEntity>> ITEM_STAND = BLOCK_ENTITY_TYPES.register(
+            "item_stand", () ->
+            BlockEntityType.Builder.of(ItemStandBlockEntity::new,
+                    EtceteraBlocks.ITEM_STAND.get(),
+                    EtceteraBlocks.GLOW_ITEM_STAND.get()
             ).build(null)
     );
-    public static final BlockEntityType<TintedLightBulbBlockEntity> TINTED_LIGHT_BULB = Registry.register(
-            Registries.BLOCK_ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, "tinted_light_bulb"),
-            FabricBlockEntityTypeBuilder.create(TintedLightBulbBlockEntity::new,
-                    EtceteraBlocks.TINTED_LIGHT_BULB
+    public static final RegistryObject<BlockEntityType<TintedLightBulbBlockEntity>> TINTED_LIGHT_BULB = BLOCK_ENTITY_TYPES.register(
+            "tinted_light_bulb", () ->
+            BlockEntityType.Builder.of(TintedLightBulbBlockEntity::new,
+                    EtceteraBlocks.TINTED_LIGHT_BULB.get()
             ).build(null)
     );
-    public static final BlockEntityType<PricklyCanBlockEntity> PRICKLY_CAN = Registry.register(
-            Registries.BLOCK_ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, "prickly_can"),
-            FabricBlockEntityTypeBuilder.create(PricklyCanBlockEntity::new,
-                    EtceteraBlocks.PRICKLY_CAN
+    public static final RegistryObject<BlockEntityType<PricklyCanBlockEntity>> PRICKLY_CAN = BLOCK_ENTITY_TYPES.register(
+            "prickly_can", () ->
+            BlockEntityType.Builder.of(PricklyCanBlockEntity::new,
+                    EtceteraBlocks.PRICKLY_CAN.get()
             ).build(null)
     );
 }

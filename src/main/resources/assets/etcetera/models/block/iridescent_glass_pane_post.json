@@ -1,4 +1,5 @@
 {
+  "render_type": "translucent",
   "parent": "minecraft:block/template_glass_pane_post",
   "textures": {
     "edge": "etcetera:block/iridescent_glass_pane_top",

@@ -4,48 +4,32 @@ import com.ninni.etcetera.Etcetera;
 import com.ninni.etcetera.entity.ChappleEntity;
 import com.ninni.etcetera.entity.EggpleEntity;
 import com.ninni.etcetera.entity.TurtleRaftEntity;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-import net.minecraft.entity.*;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.Heightmap;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
+@Mod.EventBusSubscriber(modid = Etcetera.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EtceteraEntityType {
 
-    public static final EntityType<TurtleRaftEntity> TURTLE_RAFT = register(
-            "turtle_raft",
-            FabricEntityTypeBuilder.create()
-                    .<TurtleRaftEntity>entityFactory(TurtleRaftEntity::new)
-                    .spawnGroup(SpawnGroup.MISC)
-                    .dimensions(EntityDimensions.fixed(0.8f, 0.5625f))
-                    .trackRangeChunks(10)
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, Etcetera.MOD_ID);
+
+    public static final RegistryObject<EntityType<TurtleRaftEntity>> TURTLE_RAFT = ENTITY_TYPES.register(
+            "turtle_raft", () ->
+            EntityType.Builder.<TurtleRaftEntity>of(TurtleRaftEntity::new, MobCategory.MISC).sized(0.8F, 0.5625F).clientTrackingRange(10).build(new ResourceLocation(Etcetera.MOD_ID, "turtle_raft").toString())
     );
 
-    public static final EntityType<ChappleEntity> CHAPPLE = register(
-            "chapple",
-            FabricEntityTypeBuilder.createMob()
-                    .entityFactory(ChappleEntity::new)
-                    .defaultAttributes(ChickenEntity::createChickenAttributes)
-                    .spawnGroup(SpawnGroup.CREATURE)
-                    .spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.WORLD_SURFACE_WG, AnimalEntity::canMobSpawn)
-                    .dimensions(EntityDimensions.changing(0.4f, 0.7f))
-                    .trackRangeChunks(10)
+    public static final RegistryObject<EntityType<ChappleEntity>> CHAPPLE = ENTITY_TYPES.register(
+            "chapple", () ->
+            EntityType.Builder.of(ChappleEntity::new, MobCategory.CREATURE).sized(0.4f, 0.7f).clientTrackingRange(10).build(new ResourceLocation(Etcetera.MOD_ID, "chapple").toString())
     );
 
-    public static final EntityType<EggpleEntity> EGGPLE = register(
-            "eggple",
-            FabricEntityTypeBuilder.create()
-                    .<EggpleEntity>entityFactory(EggpleEntity::new)
-                    .spawnGroup(SpawnGroup.MISC)
-                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
-                    .trackRangeChunks(4)
+    public static final RegistryObject<EntityType<EggpleEntity>> EGGPLE = ENTITY_TYPES.register(
+            "eggple", () ->
+            EntityType.Builder.<EggpleEntity>of(EggpleEntity::new, MobCategory.MISC).sized(0.25f, 0.25f).clientTrackingRange(4).build(new ResourceLocation(Etcetera.MOD_ID, "eggple").toString())
     );
 
-
-    private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> entityType) {
-        return Registry.register(Registries.ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, id), entityType.build());
-    }
 }

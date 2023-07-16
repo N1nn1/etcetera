@@ -1,8 +1,8 @@
 package com.ninni.etcetera.block.enums;
 
-import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.StringRepresentable;
 
-public enum LightBulbBrightness implements StringIdentifiable {
+public enum LightBulbBrightness implements StringRepresentable {
     OFF("off"),
     DARK("dark"),
     DIM("dim"),
@@ -15,7 +15,7 @@ public enum LightBulbBrightness implements StringIdentifiable {
     }
 
     @Override
-    public String asString() {
-        return name;
+    public String getSerializedName() {
+        return this.name;
     }
 }

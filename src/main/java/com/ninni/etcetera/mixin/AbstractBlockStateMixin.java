@@ -1,26 +1,28 @@
 package com.ninni.etcetera.mixin;
 
 import com.ninni.etcetera.registry.EtceteraTags;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.PlantBlock;
-import net.minecraft.block.TallPlantBlock;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
-@Mixin(AbstractBlock.AbstractBlockState.class)
+@Mixin(BlockBehaviour.BlockStateBase.class)
 public class AbstractBlockStateMixin {
-    @Inject(method = "getModelOffset", at = @At("HEAD"), cancellable = true)
-    private void removeModelOffset(net.minecraft.world.BlockView world, BlockPos pos, CallbackInfoReturnable<Vec3d> cir) {
-        AbstractBlock.AbstractBlockState that = AbstractBlock.AbstractBlockState.class.cast(this);
-        if (that.getBlock() instanceof PlantBlock) {
-            if (world.getBlockState(pos.down(1)).isIn(EtceteraTags.OFFSET_REMOVER)
-                || (that.getBlock() instanceof TallPlantBlock && world.getBlockState(pos.down(2)).isIn(EtceteraTags.OFFSET_REMOVER))
-            ) cir.setReturnValue(Vec3d.ZERO);
+
+    @Inject(method = "getOffset", at = @At("HEAD"), cancellable = true)
+    private void removeModelOffset(BlockGetter world, BlockPos pos, CallbackInfoReturnable<Vec3> cir) {
+        BlockBehaviour.BlockStateBase $this = (BlockBehaviour.BlockStateBase) (Object) this;
+        if ($this.getBlock() instanceof BushBlock) {
+            if (world.getBlockState(pos.below()).is(EtceteraTags.OFFSET_REMOVER) || ($this.getBlock() instanceof DoublePlantBlock && world.getBlockState(pos.below(2)).is(EtceteraTags.OFFSET_REMOVER))) {
+                cir.setReturnValue(Vec3.ZERO);
+            }
         }
     }
 }

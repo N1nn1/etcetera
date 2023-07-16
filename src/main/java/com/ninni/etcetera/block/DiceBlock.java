@@ -2,72 +2,73 @@ package com.ninni.etcetera.block;
 
 import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import com.ninni.etcetera.registry.EtceteraStats;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FacingBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.BlockMirror;
-import net.minecraft.util.BlockRotation;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
 
 
 @SuppressWarnings("deprecation")
-public class DiceBlock extends FacingBlock {
-    public static final BooleanProperty POWERED = Properties.POWERED;
-    public static final DirectionProperty FACING = Properties.FACING;
+public class DiceBlock extends DirectionalBlock {
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
-    public DiceBlock(Settings settings) {
+    public DiceBlock(Properties settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.UP).with(POWERED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(POWERED, false));
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         trigger(state, world, pos);
-        player.incrementStat(EtceteraStats.ROTATE_DICE);
-        return ActionResult.SUCCESS;
+        player.awardStat(EtceteraStats.ROTATE_DICE.get());
+        return InteractionResult.SUCCESS;
     }
 
-
     @Override
-    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
-        boolean powered = world.isReceivingRedstonePower(pos);
-        boolean bl2 = state.get(POWERED);
+    public void neighborChanged(BlockState state, Level world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
+        boolean powered = world.hasNeighborSignal(pos);
+        boolean bl2 = state.getValue(POWERED);
         if (powered && !bl2) {
-            world.scheduleBlockTick(pos, this, 4);
-            world.setBlockState(pos, state.with(POWERED, true), Block.NO_REDRAW);
+            world.scheduleTick(pos, this, 4);
+            world.setBlock(pos, state.setValue(POWERED, true), 4);
         } else if (!powered && bl2) {
-            world.setBlockState(pos, state.with(POWERED, false), Block.NO_REDRAW);
+            world.setBlock(pos, state.setValue(POWERED, false), 4);
         }
     }
 
     @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         trigger(state, world, pos);
     }
 
-    public void trigger(BlockState state, World world, BlockPos pos) {
+    public void trigger(BlockState state, Level world, BlockPos pos) {
         Direction[] directions = Direction.values();
-        if (!world.isClient) world.setBlockState(pos, state.with(FACING, directions[world.getRandom().nextInt(directions.length)]));
-        world.playSound(null, pos, EtceteraSoundEvents.BLOCK_DICE_ROLL, SoundCategory.BLOCKS, 1, 1);
+        if (!world.isClientSide) world.setBlockAndUpdate(pos, state.setValue(FACING, directions[world.getRandom().nextInt(directions.length)]));
+        world.playSound(null, pos, EtceteraSoundEvents.BLOCK_DICE_ROLL.get(), SoundSource.BLOCKS, 1, 1);
     }
 
     public static int calculateComparatorOutput(BlockState state) {
         int p;
-        switch (state.get(FACING)) {
+        switch (state.getValue(FACING)) {
             case UP -> p = 1;
             case DOWN -> p = 6;
             case NORTH -> p = 3;
@@ -78,34 +79,35 @@ public class DiceBlock extends FacingBlock {
         return p;
     }
 
-
     @Override
-    public boolean hasComparatorOutput(BlockState state) {
+    public boolean hasAnalogOutputSignal(BlockState p_60457_) {
         return true;
     }
 
     @Override
-    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-        return calculateComparatorOutput(state);
+    public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
+        return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        return this.defaultBlockState().setValue(FACING, Direction.NORTH);
     }
 
     @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, Direction.NORTH);
+    public BlockState rotate(BlockState state, Rotation rotation) {
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public BlockState rotate(BlockState state, BlockRotation rotation) {
-        return state.with(FACING, rotation.rotate(state.get(FACING)));
+    public BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState state, BlockMirror mirror) {
-        return state.rotate(mirror.getRotation(state.get(FACING)));
-    }
-
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, POWERED);
     }
+
 }

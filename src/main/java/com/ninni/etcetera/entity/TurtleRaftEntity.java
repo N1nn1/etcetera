@@ -1,125 +1,126 @@
 package com.ninni.etcetera.entity;
 
-import com.ninni.etcetera.registry.EtceteraItems;
 import com.ninni.etcetera.registry.EtceteraEntityType;
+import com.ninni.etcetera.registry.EtceteraItems;
 import com.ninni.etcetera.registry.EtceteraSoundEvents;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.vehicle.BoatEntity;
-import net.minecraft.item.BannerItem;
-import net.minecraft.item.DyeableItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.item.BannerItem;
+import net.minecraft.world.item.DyeableLeatherItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
 
-public class TurtleRaftEntity extends BoatEntity {
-    private static final TrackedData<Integer> COLOR = DataTracker.registerData(TurtleRaftEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private static final TrackedData<ItemStack> BANNER_STACK = DataTracker.registerData(TurtleRaftEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
+public class TurtleRaftEntity extends Boat {
+    private static final EntityDataAccessor<Integer> COLOR = SynchedEntityData.defineId(TurtleRaftEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<ItemStack> BANNER_STACK = SynchedEntityData.defineId(TurtleRaftEntity.class, EntityDataSerializers.ITEM_STACK);
 
-    public TurtleRaftEntity(EntityType<? extends BoatEntity> entityType, World world) {
+    public TurtleRaftEntity(EntityType<? extends TurtleRaftEntity> entityType, Level world) {
         super(entityType, world);
     }
 
-    public TurtleRaftEntity(World world, double x, double y, double z) {
-        this(EtceteraEntityType.TURTLE_RAFT, world);
-        this.setPosition(x, y, z);
-        this.prevX = x;
-        this.prevY = y;
-        this.prevZ = z;
+    public TurtleRaftEntity(Level world, double x, double y, double z) {
+        this(EtceteraEntityType.TURTLE_RAFT.get(), world);
+        this.setPos(x, y, z);
+        this.xo = x;
+        this.yo = y;
+        this.zo = z;
     }
 
     @Override
-    public ActionResult interact(PlayerEntity player, Hand hand) {
-        ItemStack stack = player.getStackInHand(hand);
-        if (!this.getWorld().isClient) {
+    public InteractionResult interact(Player player, InteractionHand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (!this.level().isClientSide) {
             if (this.getBanner().isEmpty() && stack.getItem() instanceof BannerItem) {
                 ItemStack copy = stack.copy();
-                if (!player.getAbilities().creativeMode) {
-                    stack.decrement(1);
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
                 }
                 copy.setCount(1);
-                this.playSound(EtceteraSoundEvents.ITEM_BANNER_EQUIP, 1.0F, 1.0F);
-                this.emitGameEvent(GameEvent.ENTITY_INTERACT, player);
+                this.playSound(EtceteraSoundEvents.ITEM_BANNER_EQUIP.get(), 1.0F, 1.0F);
+                this.gameEvent(GameEvent.ENTITY_INTERACT, player);
                 this.setBanner(copy);
-                return ActionResult.SUCCESS;
-            } else if (!this.getBanner().isEmpty() && stack.isEmpty() && player.isSneaking()) {
+                return InteractionResult.SUCCESS;
+            } else if (!this.getBanner().isEmpty() && stack.isEmpty() && player.isShiftKeyDown()) {
                 ItemStack copy = this.getBanner();
-                player.setStackInHand(hand, copy);
-                this.playSound(EtceteraSoundEvents.ITEM_BANNER_EQUIP, 1.0F, 1.0F);
-                this.emitGameEvent(GameEvent.ENTITY_INTERACT, player);
+                player.setItemInHand(hand, copy);
+                this.playSound(EtceteraSoundEvents.ITEM_BANNER_EQUIP.get(), 1.0F, 1.0F);
+                this.gameEvent(GameEvent.ENTITY_INTERACT, player);
                 this.setBanner(ItemStack.EMPTY);
-                return ActionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
         return super.interact(player, hand);
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(COLOR, 0);
-        this.dataTracker.startTracking(BANNER_STACK, ItemStack.EMPTY);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(COLOR, 0);
+        this.entityData.define(BANNER_STACK, ItemStack.EMPTY);
     }
 
     @Override
-    protected void writeCustomDataToNbt(NbtCompound nbt) {
-        nbt.put("BannerStack", this.dataTracker.get(BANNER_STACK).writeNbt(new NbtCompound()));
+    protected void addAdditionalSaveData(CompoundTag nbt) {
+        nbt.put("BannerStack", this.entityData.get(BANNER_STACK).save(new CompoundTag()));
         nbt.putInt("Color", this.getColor());
     }
 
     @Override
-    protected void readCustomDataFromNbt(NbtCompound nbt) {
-        this.setBanner(ItemStack.fromNbt(nbt.getCompound("BannerStack")));
+    protected void readAdditionalSaveData(CompoundTag nbt) {
+        this.setBanner(ItemStack.of(nbt.getCompound("BannerStack")));
         this.setColor(nbt.getInt("Color"));
     }
 
     public ItemStack getBanner() {
-        return this.dataTracker.get(BANNER_STACK);
+        return this.entityData.get(BANNER_STACK);
     }
 
     public void setBanner(ItemStack stack) {
-        this.dataTracker.set(BANNER_STACK, stack);
+        this.entityData.set(BANNER_STACK, stack);
     }
 
     public int getColor() {
-        return this.dataTracker.get(COLOR);
+        return this.entityData.get(COLOR);
     }
 
     public void setColor(int color) {
-        this.dataTracker.set(COLOR, color);
+        this.entityData.set(COLOR, color);
     }
 
     @Override
-    protected float getPassengerHorizontalOffset() {
-        return 0.0f;
+    protected float getSinglePassengerXOffset() {
+        return 0.0F;
     }
 
     @Override
-    public double getMountedHeightOffset() {
-        return 0.3;
+    public double getPassengersRidingOffset() {
+        return 0.3D;
     }
 
     @Override
-    public void onBubbleColumnSurfaceCollision(boolean drag) { }
-
-    @Override
-    public Item asItem() {
-        return EtceteraItems.TURTLE_RAFT;
+    public void onAboveBubbleCol(boolean drag) {
     }
 
     @Override
-    protected void dropItems(DamageSource source) {
-        ItemStack stack = new ItemStack(EtceteraItems.TURTLE_RAFT);
-        stack.getOrCreateSubNbt(DyeableItem.DISPLAY_KEY).putInt(DyeableItem.COLOR_KEY, this.getColor());
-        this.dropStack(stack);
+    public Item getDropItem() {
+        return EtceteraItems.TURTLE_RAFT.get();
+    }
+
+    @Override
+    protected void destroy(DamageSource source) {
+        ItemStack stack = new ItemStack(EtceteraItems.TURTLE_RAFT.get());
+        stack.getOrCreateTagElement(DyeableLeatherItem.TAG_DISPLAY).putInt(DyeableLeatherItem.TAG_COLOR, this.getColor());
+        this.spawnAtLocation(stack);
     }
 
     @Override

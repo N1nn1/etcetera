@@ -1,22 +1,21 @@
 package com.ninni.etcetera.registry;
 
-import net.fabricmc.yarn.constants.MiningLevels;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.util.Lazy;
+import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 
-public enum EtceteraToolMaterials implements ToolMaterial
+public enum EtceteraToolMaterials implements Tier
 {
-    BISMUTH(MiningLevels.IRON, 145, 7.0f, 2f, 30, () -> Ingredient.ofItems(EtceteraItems.BISMUTH_INGOT));
+    BISMUTH(2, 145, 7.0f, 2f, 30, () -> Ingredient.of(EtceteraItems.BISMUTH_INGOT.get()));
 
     private final int miningLevel;
     private final int itemDurability;
     private final float miningSpeed;
     private final float attackDamage;
     private final int enchantability;
-    private final Lazy<Ingredient> repairIngredient;
+    private final LazyLoadedValue<Ingredient> repairIngredient;
 
     EtceteraToolMaterials(int miningLevel, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
         this.miningLevel = miningLevel;
@@ -24,31 +23,31 @@ public enum EtceteraToolMaterials implements ToolMaterial
         this.miningSpeed = miningSpeed;
         this.attackDamage = attackDamage;
         this.enchantability = enchantability;
-        this.repairIngredient = new Lazy<Ingredient>(repairIngredient);
+        this.repairIngredient = new LazyLoadedValue<Ingredient>(repairIngredient);
     }
 
     @Override
-    public int getDurability() {
+    public int getUses() {
         return this.itemDurability;
     }
 
     @Override
-    public float getMiningSpeedMultiplier() {
+    public float getSpeed() {
         return this.miningSpeed;
     }
 
     @Override
-    public float getAttackDamage() {
-        return this.attackDamage;
+    public float getAttackDamageBonus() {
+        return attackDamage;
     }
 
     @Override
-    public int getMiningLevel() {
-        return this.miningLevel;
+    public int getLevel() {
+        return miningLevel;
     }
 
     @Override
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
         return this.enchantability;
     }
 

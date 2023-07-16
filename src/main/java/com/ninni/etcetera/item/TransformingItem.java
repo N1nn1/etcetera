@@ -1,34 +1,33 @@
 package com.ninni.etcetera.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.ToolItem;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.stat.Stats;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.DirectionProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Property;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.stats.Stats;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class TransformingItem extends ToolItem {
+public class TransformingItem extends TieredItem {
     private final TagKey<Block> blockTagKey;
     private final SoundEvent sound;
     private final Supplier<Map<Block, Block>> transformations;
 
-    public TransformingItem(ToolMaterial material, Supplier<Map<Block, Block>> transformations, Settings settings, SoundEvent sound, TagKey<Block> blockTagKey) {
+    public TransformingItem(Tier material, Supplier<Map<Block, Block>> transformations, Properties settings, SoundEvent sound, TagKey<Block> blockTagKey) {
         super(material, settings);
         this.transformations = transformations;
         this.sound = sound;
@@ -36,50 +35,50 @@ public class TransformingItem extends ToolItem {
     }
 
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        World world = context.getWorld();
-        PlayerEntity player = context.getPlayer();
-        BlockPos pos = context.getBlockPos();
+    public InteractionResult useOn(UseOnContext context) {
+        Level world = context.getLevel();
+        Player player = context.getPlayer();
+        BlockPos pos = context.getClickedPos();
         BlockState state = world.getBlockState(pos);
 
-        if (world.isClient && state.isIn(blockTagKey)) {
+        if (world.isClientSide && state.is(blockTagKey)) {
             player.playSound(this.sound, 0.75F, 1);
-            return ActionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
 
         return this.transformations.get()
                                    .entrySet()
                                    .stream()
-                                   .filter(entry -> state.isOf(entry.getKey()))
+                                   .filter(entry -> state.is(entry.getKey()))
                                    .findFirst()
                                    .map(entry -> {
-                                       this.transform(world, state, entry.getValue(), pos, player, context.getStack());
-                                       return ActionResult.SUCCESS;
+                                       this.transform(world, state, entry.getValue(), pos, player, context.getItemInHand());
+                                       return InteractionResult.SUCCESS;
                                    })
-                                   .orElseGet(() -> super.useOnBlock(context));
+                                   .orElseGet(() -> super.useOn(context));
     }
 
     @SuppressWarnings("unchecked")
-    public void transform(World world, BlockState oldState, Block block, BlockPos pos, PlayerEntity player, ItemStack stack) {
-        BlockState state = block.getDefaultState();
+    public void transform(Level world, BlockState oldState, Block block, BlockPos pos, Player player, ItemStack stack) {
+        BlockState state = block.defaultBlockState();
         for (Property<?> property : oldState.getProperties()) {
-            if (state.contains(property)) {
+            if (state.hasProperty(property)) {
                 if (property instanceof BooleanProperty bool) {
-                    state = state.with(bool, oldState.get(bool));
+                    state = state.setValue(bool, oldState.getValue(bool));
                 } else if (property instanceof DirectionProperty direction) {
-                    state = state.with(direction, oldState.get(direction));
+                    state = state.setValue(direction, oldState.getValue(direction));
                 } else if (property instanceof EnumProperty enu) {
-                    state = state.with(enu, oldState.get(enu));
-                } else if (property instanceof IntProperty i) {
-                    state = state.with(i, state.get(i));
+                    state = state.setValue(enu, oldState.getValue(enu));
+                } else if (property instanceof IntegerProperty i) {
+                    state = state.setValue(i, state.getValue(i));
                 }
             }
         }
 
-        world.setBlockState(pos, state);
-        player.incrementStat(Stats.USED.getOrCreateStat(this));
-        if (!player.getAbilities().creativeMode) stack.damage(1, player, p -> p.sendToolBreakStatus(player.getActiveHand()));
-        player.playSound(world.getBlockState(pos).getSoundGroup().getPlaceSound(), 1, 1);
-        world.syncWorldEvent(WorldEvents.BLOCK_BROKEN, pos, Block.getRawIdFromState(state));
+        world.setBlockAndUpdate(pos, state);
+        player.awardStat(Stats.ITEM_USED.get(this));
+        if (!player.getAbilities().instabuild) stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(player.getUsedItemHand()));
+        player.playSound(world.getBlockState(pos).getSoundType().getPlaceSound(), 1, 1);
+        world.levelEvent(2001, pos, Block.getId(state));
     }
 }
