@@ -35,7 +35,9 @@ public class TintedLightBulbBlockEntity extends BlockEntity {
         super.writeNbt(nbt);
         nbt.putInt("ticks_before_flicker", this.ticksBeforeFlicker);
         nbt.putInt("off_ticks", this.offTicks);
-        nbt.putString("brightness", this.name);
+        if (this.name != null) {
+            nbt.putString("brightness", this.name);
+        }
     }
 
     public void setTicksBeforeFlicker(int ticksBeforeFlicker) {

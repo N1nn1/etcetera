@@ -12,6 +12,8 @@ import com.ninni.etcetera.client.renderer.entity.TurtleRaftRenderer;
 import com.ninni.etcetera.entity.EggpleEntity;
 import com.ninni.etcetera.network.EtceteraNetwork;
 import com.ninni.etcetera.resource.EtceteraProcessResourceManager;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
@@ -164,6 +166,7 @@ public class EtceteraVanillaIntegration {
         );
     }
 
+    @Environment(EnvType.CLIENT)
     private static void registerArmor() {
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.WHITE_SWEATER);
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_GRAY_SWEATER);
