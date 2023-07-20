@@ -1,6 +1,7 @@
 package com.ninni.etcetera.events;
 
 import com.ninni.etcetera.Etcetera;
+import com.ninni.etcetera.entity.ChappleEntity;
 import com.ninni.etcetera.registry.EtceteraEntityType;
 import com.ninni.etcetera.registry.EtceteraItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -26,12 +27,12 @@ import java.util.List;
 public class MobEvents {
 
     @SubscribeEvent
-    public void createEntityAttributes(EntityAttributeCreationEvent event) {
-        event.put(EtceteraEntityType.CHAPPLE.get(), Chicken.createAttributes().build());
+    public static void createEntityAttributes(EntityAttributeCreationEvent event) {
+        event.put(EtceteraEntityType.CHAPPLE.get(), ChappleEntity.createAttributes().build());
     }
 
     @SubscribeEvent
-    public void registerSpawnPlacements(SpawnPlacementRegisterEvent event) {
+    public static void registerSpawnPlacements(SpawnPlacementRegisterEvent event) {
         event.register(EtceteraEntityType.CHAPPLE.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.WORLD_SURFACE_WG, Animal::checkAnimalSpawnRules, SpawnPlacementRegisterEvent.Operation.AND);
     }
 

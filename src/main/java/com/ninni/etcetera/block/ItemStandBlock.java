@@ -128,7 +128,7 @@ public class ItemStandBlock extends BaseEntityBlock implements SimpleWaterlogged
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        return this.defaultBlockState().setValue(WATERLOGGED, ctx.getLevel().getFluidState(ctx.getClickedPos()).getType() == Fluids.WATER).setValue(FACING, ctx.getNearestLookingDirection());
+        return this.defaultBlockState().setValue(WATERLOGGED, ctx.getLevel().getFluidState(ctx.getClickedPos()).getType() == Fluids.WATER).setValue(FACING, ctx.getHorizontalDirection());
     }
 
     @Override
