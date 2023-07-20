@@ -7,7 +7,6 @@ import com.ninni.etcetera.registry.EtceteraItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Chicken;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.ItemStack;
@@ -49,18 +48,18 @@ public class MobEvents {
         VillagerProfession type = event.getType();
         Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
         if (type == VillagerProfession.ARMORER) {
-            trades.put(2, List.of(new BasicItemListing(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL.get()), 6, 3, 0.2F)));
+            trades.get(2).add(new BasicItemListing(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL.get()), 6, 3, 0.2F));
         }
         if (type == VillagerProfession.WEAPONSMITH) {
-            trades.put(2, List.of(new BasicItemListing(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL.get()), 6, 3, 0.2f)));
+            trades.get(2).add(new BasicItemListing(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL.get()), 6, 3, 0.2f));
         }
         if (type == VillagerProfession.TOOLSMITH) {
-            trades.put(2, List.of(new BasicItemListing(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL.get()), 6, 3, 0.2f)));
-            trades.put(2, List.of(new BasicItemListing(new ItemStack(Items.EMERALD, 16), ItemStack.EMPTY, new ItemStack(EtceteraItems.HAMMER.get()), 6, 2, 0.2f)));
+            trades.get(2).add(new BasicItemListing(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL.get()), 6, 3, 0.2f));
+            trades.get(2).add(new BasicItemListing(new ItemStack(Items.EMERALD, 16), ItemStack.EMPTY, new ItemStack(EtceteraItems.HAMMER.get()), 6, 2, 0.2f));
         }
         if (type == VillagerProfession.FARMER) {
-            trades.put(1, List.of(new BasicItemListing(new ItemStack(Items.EMERALD, 2), ItemStack.EMPTY, new ItemStack(EtceteraItems.COTTON_FLOWER.get()), 18, 2, 0.05f)));
-            trades.put(1, List.of(new BasicItemListing(new ItemStack(Items.EMERALD, 2), ItemStack.EMPTY, new ItemStack(EtceteraItems.COTTON_SEEDS.get()), 28, 2, 0.05f)));
+            trades.get(1).add(new BasicItemListing(new ItemStack(Items.EMERALD, 2), ItemStack.EMPTY, new ItemStack(EtceteraItems.COTTON_FLOWER.get()), 18, 2, 0.05f));
+            trades.get(1).add(new BasicItemListing(new ItemStack(Items.EMERALD, 2), ItemStack.EMPTY, new ItemStack(EtceteraItems.COTTON_SEEDS.get()), 28, 2, 0.05f));
         }
     }
 
