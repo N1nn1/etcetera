@@ -24,5 +24,6 @@ public class Etcetera implements ModInitializer {
 		);
 
 		EtceteraVanillaIntegration.serverInit();
+		EtceteraWorldgen.init();
 	}
 }
