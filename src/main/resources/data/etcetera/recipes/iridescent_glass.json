@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": {
-      "tag": "c:glass_blocks"
+      "tag": "forge:glass"
     },
     "W": {
       "item": "etcetera:bismuth_ingot"
