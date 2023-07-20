@@ -33,7 +33,7 @@ public class ItemStandBlockEntityRenderer implements BlockEntityRenderer<ItemSta
             ItemStack itemStack = defaultedList.get(l);
             if (itemStack == ItemStack.EMPTY) continue;
             matrices.pushPose();
-            Direction direction2 = Direction.from3DDataValue((l + direction.get3DDataValue()) % 4);
+            Direction direction2 = Direction.from2DDataValue((l + direction.get2DDataValue()) % 4);
             float d = -direction2.toYRot();
             matrices.translate(0.5, 0.45, 0.5);
             matrices.mulPose(Axis.YP.rotationDegrees(d));

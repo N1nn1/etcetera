@@ -3,7 +3,7 @@ loaderVersion="[39,)"
 license="ARR"
 [[mods]]
 modId="etcetera"
-version="1.20.1-0.2"
+version="1.20.1-0.3"
 displayName="Etcetera"
 logoFile= "etcetera.png"
 authors="Ninni"
