@@ -119,8 +119,12 @@ public class TurtleRaftEntity extends Boat {
     @Override
     protected void destroy(DamageSource source) {
         ItemStack stack = new ItemStack(EtceteraItems.TURTLE_RAFT.get());
+        ItemStack bannerStack = this.getBanner();
         stack.getOrCreateTagElement(DyeableLeatherItem.TAG_DISPLAY).putInt(DyeableLeatherItem.TAG_COLOR, this.getColor());
         this.spawnAtLocation(stack);
+        if (!bannerStack.isEmpty()) {
+            this.spawnAtLocation(bannerStack);
+        }
     }
 
     @Override
