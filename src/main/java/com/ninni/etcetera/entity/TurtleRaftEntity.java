@@ -120,6 +120,9 @@ public class TurtleRaftEntity extends BoatEntity {
         ItemStack stack = new ItemStack(EtceteraItems.TURTLE_RAFT);
         stack.getOrCreateSubNbt(DyeableItem.DISPLAY_KEY).putInt(DyeableItem.COLOR_KEY, this.getColor());
         this.dropStack(stack);
+        if (!this.getBanner().isEmpty()) {
+            this.dropStack(this.getBanner());
+        }
     }
 
     @Override
