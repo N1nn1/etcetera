@@ -10,6 +10,8 @@ import com.ninni.etcetera.client.renderer.entity.CottonArmorRenderer;
 import com.ninni.etcetera.client.renderer.entity.TidalArmorRenderer;
 import com.ninni.etcetera.client.renderer.entity.TurtleRaftRenderer;
 import com.ninni.etcetera.entity.EggpleEntity;
+import com.ninni.etcetera.entity.TurtleRaftEntity;
+import com.ninni.etcetera.item.TurtleRaftItem;
 import com.ninni.etcetera.network.EtceteraNetwork;
 import com.ninni.etcetera.resource.EtceteraProcessResourceManager;
 import net.fabricmc.api.EnvType;
@@ -26,6 +28,7 @@ import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
@@ -39,8 +42,12 @@ import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.BlockPointer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Position;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.VillagerProfession;
@@ -89,6 +96,47 @@ public class EtceteraVanillaIntegration {
             protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
                 return Util.make(new EggpleEntity(world, position.getX(), position.getY(), position.getZ()), entity -> entity.setItem(stack));
             }
+        });
+        DispenserBlock.registerBehavior(EtceteraItems.TURTLE_RAFT, new ItemDispenserBehavior() {
+            private final ItemDispenserBehavior defaultDispenseItemBehavior = new ItemDispenserBehavior();
+
+            @Override
+            protected ItemStack dispenseSilently(BlockPointer world, ItemStack stack) {
+                Direction direction = world.getBlockState().get(DispenserBlock.FACING);
+                World level = world.getWorld();
+                double d0 = 0.5625D + (double) EtceteraEntityType.TURTLE_RAFT.getWidth() / 2.0D;
+                double d1 = world.getX() + (double)direction.getOffsetX() * d0;
+                double d2 = world.getY() + (double)((float)direction.getOffsetY() * 1.125F);
+                double d3 = world.getZ() + (double)direction.getOffsetZ() * d0;
+                BlockPos blockpos = world.getPos().offset(direction);
+                TurtleRaftEntity turtleRaftEntity = new TurtleRaftEntity(level, d0, d1, d2);
+                if (stack.getItem() instanceof TurtleRaftItem turtleRaftItem) {
+                    turtleRaftEntity.setColor(turtleRaftItem.getColor(stack));
+                }
+                turtleRaftEntity.setYaw(direction.asRotation());
+                double d4;
+                if (level.getFluidState(blockpos).isIn(FluidTags.WATER)) {
+                    d4 = 1.0D;
+                } else {
+                    if (!level.getBlockState(blockpos).isAir() || !level.getFluidState(blockpos.down()).isIn(FluidTags.WATER)) {
+                        return this.defaultDispenseItemBehavior.dispense(world, stack);
+                    }
+
+                    d4 = 0.0D;
+                }
+
+                turtleRaftEntity.setPos(d1, d2 + d4, d3);
+                level.spawnEntity(turtleRaftEntity);
+                stack.decrement(1);
+                return stack;
+            }
+
+            @Override
+            protected void playSound(BlockPointer pointer) {
+                super.playSound(pointer);
+                pointer.getWorld().syncWorldEvent(1000, pointer.getPos(), 0);
+            }
+
         });
 
     }
