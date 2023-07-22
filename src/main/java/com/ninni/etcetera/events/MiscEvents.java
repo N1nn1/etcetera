@@ -2,12 +2,19 @@ package com.ninni.etcetera.events;
 
 import com.ninni.etcetera.Etcetera;
 import com.ninni.etcetera.entity.EggpleEntity;
+import com.ninni.etcetera.entity.TurtleRaftEntity;
+import com.ninni.etcetera.item.TurtleRaftItem;
 import com.ninni.etcetera.registry.EtceteraBlocks;
+import com.ninni.etcetera.registry.EtceteraEntityType;
 import com.ninni.etcetera.registry.EtceteraItems;
 import com.ninni.etcetera.registry.EtceteraVanillaIntegration;
 import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockSource;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.core.dispenser.AbstractProjectileDispenseBehavior;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
@@ -71,6 +78,46 @@ public class MiscEvents {
             @Override
             protected Projectile getProjectile(Level world, Position position, ItemStack stack) {
                 return Util.make(new EggpleEntity(world, position.x(), position.y(), position.z()), entity -> entity.setItem(stack));
+            }
+        });
+
+        DispenserBlock.registerBehavior(EtceteraItems.TURTLE_RAFT.get(), new DefaultDispenseItemBehavior() {
+            private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
+
+            @Override
+            protected ItemStack execute(BlockSource world, ItemStack stack) {
+                Direction direction = world.getBlockState().getValue(DispenserBlock.FACING);
+                Level level = world.getLevel();
+                double d0 = 0.5625D + (double) EtceteraEntityType.TURTLE_RAFT.get().getWidth() / 2.0D;
+                double d1 = world.x() + (double)direction.getStepX() * d0;
+                double d2 = world.y() + (double)((float)direction.getStepY() * 1.125F);
+                double d3 = world.z() + (double)direction.getStepZ() * d0;
+                BlockPos blockpos = world.getPos().relative(direction);
+                TurtleRaftEntity turtleRaftEntity = new TurtleRaftEntity(level, d0, d1, d2);
+                if (stack.getItem() instanceof TurtleRaftItem turtleRaftItem) {
+                    turtleRaftEntity.setColor(turtleRaftItem.getColor(stack));
+                }
+                turtleRaftEntity.setYRot(direction.toYRot());
+                double d4;
+                if (turtleRaftEntity.canBoatInFluid(level.getFluidState(blockpos))) {
+                    d4 = 1.0D;
+                } else {
+                    if (!level.getBlockState(blockpos).isAir() || !turtleRaftEntity.canBoatInFluid(level.getFluidState(blockpos.below()))) {
+                        return this.defaultDispenseItemBehavior.dispense(world, stack);
+                    }
+
+                    d4 = 0.0D;
+                }
+
+                turtleRaftEntity.setPos(d1, d2 + d4, d3);
+                level.addFreshEntity(turtleRaftEntity);
+                stack.shrink(1);
+                return stack;
+            }
+
+            @Override
+            protected void playSound(BlockSource source) {
+                source.getLevel().levelEvent(1000, source.getPos(), 0);
             }
         });
     }
