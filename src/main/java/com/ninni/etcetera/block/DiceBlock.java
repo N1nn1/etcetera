@@ -86,7 +86,7 @@ public class DiceBlock extends DirectionalBlock {
 
     @Override
     public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
-        return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
+        return calculateComparatorOutput(state);
     }
 
     @Nullable
