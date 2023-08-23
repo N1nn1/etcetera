@@ -23,7 +23,8 @@ public abstract class VillagerEntityMixin extends AbstractVillager implements Re
 
     @Inject(method = "wantsToPickUp", at = @At("HEAD"), cancellable = true)
     private void hammeringAnvil(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        cir.cancel();
-        cir.setReturnValue((stack.is(EtceteraTags.VILLAGER_CAN_PICKUP) || this.getVillagerData().getProfession().requestedItems().contains(stack.getItem())) && this.getInventory().canAddItem(stack));
+        if (!cir.getReturnValue()) { //so we are compatible with other mods
+            cir.setReturnValue((stack.is(EtceteraTags.VILLAGER_CAN_PICKUP) || this.getVillagerData().getProfession().requestedItems().contains(stack.getItem())) && this.getInventory().canAddItem(stack));
+        }
     }
 }

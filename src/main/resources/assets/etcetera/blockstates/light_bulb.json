@@ -1,32 +1,112 @@
 {
   "variants": {
-    "brightness=off,hanging=false": {
+    "brightness=off,facing=up": {
       "model": "etcetera:block/light_bulb"
     },
-    "brightness=dark,hanging=false": {
+    "brightness=dark,facing=up": {
       "model": "etcetera:block/light_bulb_dark"
     },
-    "brightness=dim,hanging=false": {
+    "brightness=dim,facing=up": {
       "model": "etcetera:block/light_bulb_dim"
     },
-    "brightness=bright,hanging=false": {
+    "brightness=bright,facing=up": {
       "model": "etcetera:block/light_bulb_bright"
     },
-    "brightness=off,hanging=true": {
+    "brightness=off,facing=down": {
       "model": "etcetera:block/light_bulb",
       "x": 180
     },
-    "brightness=dark,hanging=true": {
+    "brightness=dark,facing=down": {
       "model": "etcetera:block/light_bulb_dark",
       "x": 180
     },
-    "brightness=dim,hanging=true": {
+    "brightness=dim,facing=down": {
       "model": "etcetera:block/light_bulb_dim",
       "x": 180
     },
-    "brightness=bright,hanging=true": {
+    "brightness=bright,facing=down": {
       "model": "etcetera:block/light_bulb_bright",
       "x": 180
+    },
+    "brightness=off,facing=north": {
+      "model": "etcetera:block/light_bulb",
+      "x": 90
+    },
+    "brightness=dark,facing=north": {
+      "model": "etcetera:block/light_bulb_dark",
+      "x": 90
+    },
+    "brightness=dim,facing=north": {
+      "model": "etcetera:block/light_bulb_dim",
+      "x": 90
+    },
+    "brightness=bright,facing=north": {
+      "model": "etcetera:block/light_bulb_bright",
+      "x": 90
+    },
+
+    "brightness=off,facing=south": {
+      "model": "etcetera:block/light_bulb",
+      "x": 90,
+      "y": 180
+    },
+    "brightness=dark,facing=south": {
+      "model": "etcetera:block/light_bulb_dark",
+      "x": 90,
+      "y": 180
+    },
+    "brightness=dim,facing=south": {
+      "model": "etcetera:block/light_bulb_dim",
+      "x": 90,
+      "y": 180
+    },
+    "brightness=bright,facing=south": {
+      "model": "etcetera:block/light_bulb_bright",
+      "x": 90,
+      "y": 180
+    },
+
+
+    "brightness=off,facing=east": {
+      "model": "etcetera:block/light_bulb",
+      "x": 90,
+      "y": 90
+    },
+    "brightness=dark,facing=east": {
+      "model": "etcetera:block/light_bulb_dark",
+      "x": 90,
+      "y": 90
+    },
+    "brightness=dim,facing=east": {
+      "model": "etcetera:block/light_bulb_dim",
+      "x": 90,
+      "y": 90
+    },
+    "brightness=bright,facing=east": {
+      "model": "etcetera:block/light_bulb_bright",
+      "x": 90,
+      "y": 90
+    },
+
+    "brightness=off,facing=west": {
+      "model": "etcetera:block/light_bulb",
+      "x": 90,
+      "y": 270
+    },
+    "brightness=dark,facing=west": {
+      "model": "etcetera:block/light_bulb_dark",
+      "x": 90,
+      "y": 270
+    },
+    "brightness=dim,facing=west": {
+      "model": "etcetera:block/light_bulb_dim",
+      "x": 90,
+      "y": 270
+    },
+    "brightness=bright,facing=west": {
+      "model": "etcetera:block/light_bulb_bright",
+      "x": 90,
+      "y": 270
     }
   }
 }
