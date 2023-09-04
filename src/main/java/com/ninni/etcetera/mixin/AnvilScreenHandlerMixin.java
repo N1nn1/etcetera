@@ -34,12 +34,12 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
             NbtCompound nbt = itemStack3.getOrCreateNbt();
             String labelText = itemStack2.getName().getString();
 
-            if (itemStack3.hasNbt() && !itemStack3.getNbt().contains("LabelTop") && !itemStack3.getNbt().contains("LabelBottom")) {
+            if (!itemStack3.getNbt().contains("LabelTop") && !itemStack3.getNbt().contains("LabelBottom")) {
                 nbt.putString("LabelTop", labelText);
                 this.levelCost.set(1);
                 this.repairItemUsage = 1;
                 this.output.setStack(0, itemStack3);
-            } else if (itemStack3.hasNbt() && itemStack3.getNbt().contains("LabelTop") && !itemStack3.getNbt().contains("LabelBottom")) {
+            } else if (itemStack3.getNbt().contains("LabelTop") && !itemStack3.getNbt().contains("LabelBottom")) {
                 nbt.putString("LabelBottom", labelText);
                 this.levelCost.set(1);
                 this.repairItemUsage = 1;
