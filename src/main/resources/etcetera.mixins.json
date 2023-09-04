@@ -6,6 +6,7 @@
   "mixins": [
     "AbstractBlockStateMixin",
     "AnvilBlockMixin",
+    "AnvilScreenHandlerMixin",
     "PlayerEntityMixin",
     "SmithingTableBlockMixin",
     "VillagerEntityMixin"

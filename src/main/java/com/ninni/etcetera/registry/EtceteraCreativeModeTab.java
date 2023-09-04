@@ -35,6 +35,8 @@ public class EtceteraCreativeModeTab {
                 output.add(HAMMER);
                 output.add(HANDBELL);
 
+                output.add(ITEM_LABEL);
+
                 output.add(DRUM);
 
                 output.add(DICE);

@@ -17,6 +17,7 @@ import com.ninni.etcetera.resource.EtceteraProcessResourceManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -44,6 +45,9 @@ import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
@@ -65,6 +69,7 @@ public class EtceteraVanillaIntegration {
 
     public static void serverInit() {
         EtceteraNetwork.initCommon();
+        itemTooltipCallback();
         registerDispenserBehavior();
         registerReloadListeners();
         registerWaxables();
@@ -83,6 +88,23 @@ public class EtceteraVanillaIntegration {
     }
 
     //server
+    private static void itemTooltipCallback(){
+        ItemTooltipCallback.EVENT.register((stack, context1, lines) ->{
+            if (stack.hasNbt() && stack.getNbt().contains("Label")) {
+                int color=0x959595;
+                switch (stack.getRarity()){
+                    case COMMON -> color=0x959595;
+                    case UNCOMMON -> color=0xbb7d2b;
+                    case RARE -> color=Formatting.DARK_AQUA.getColorValue();
+                    case EPIC -> color= Formatting.DARK_PURPLE.getColorValue();
+                }
+                Style style = Style.EMPTY.withColor(color).withItalic(true);
+
+                lines.add(1, Text.literal(stack.getNbt().getString("Label")).setStyle(style));
+            }
+        });
+    }
+
     private static void registerDispenserBehavior() {
 
         DispenserBlock.registerBehavior(EtceteraItems.EGGPLE, new ProjectileDispenserBehavior(){

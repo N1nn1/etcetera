@@ -37,6 +37,8 @@ public class EtceteraItems {
     public static final Item HAMMER = register("hammer", new HammerItem(EtceteraToolMaterials.BISMUTH, (int)7.5, -3.6F, HAMMERING_MANAGER::getMap, new FabricItemSettings().maxCount(1).maxDamage(80), EtceteraSoundEvents.ITEM_HAMMER_USE, EtceteraTags.HAMMERABLE));
     public static final Item HANDBELL = register("handbell", new HandbellItem(new FabricItemSettings().maxCount(1)));
 
+    public static final Item ITEM_LABEL = register("item_label", new Item(new FabricItemSettings()));
+
     public static final Item DRUM = register("drum", new BlockItem(EtceteraBlocks.DRUM, new FabricItemSettings()));
 
     public static final Item DICE = register("dice", new BlockItem(EtceteraBlocks.DICE, new FabricItemSettings()));
