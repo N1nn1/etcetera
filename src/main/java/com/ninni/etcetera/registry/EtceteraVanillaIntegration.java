@@ -90,17 +90,18 @@ public class EtceteraVanillaIntegration {
     //server
     private static void itemTooltipCallback(){
         ItemTooltipCallback.EVENT.register((stack, context1, lines) ->{
-            if (stack.hasNbt() && stack.getNbt().contains("Label")) {
-                int color=0x959595;
-                switch (stack.getRarity()){
-                    case COMMON -> color=0x959595;
-                    case UNCOMMON -> color=0xbb7d2b;
-                    case RARE -> color=Formatting.DARK_AQUA.getColorValue();
-                    case EPIC -> color= Formatting.DARK_PURPLE.getColorValue();
-                }
-                Style style = Style.EMPTY.withColor(color).withItalic(true);
+            int color = 0x959595;
+            switch (stack.getRarity()){
+                case COMMON -> color=0x959595;
+                case UNCOMMON -> color=0xbb7d2b;
+                case RARE -> color=Formatting.DARK_AQUA.getColorValue();
+                case EPIC -> color= Formatting.DARK_PURPLE.getColorValue();
+            }
+            Style style = Style.EMPTY.withColor(color).withItalic(true);
 
-                lines.add(1, Text.literal(stack.getNbt().getString("Label")).setStyle(style));
+            if (stack.hasNbt()) {
+                if (stack.getNbt().contains("LabelTop")) lines.add(1, Text.literal(stack.getNbt().getString("LabelTop")).setStyle(style));
+                if (stack.getNbt().contains("LabelBottom")) lines.add(2, Text.literal(stack.getNbt().getString("LabelBottom")).setStyle(style));
             }
         });
     }

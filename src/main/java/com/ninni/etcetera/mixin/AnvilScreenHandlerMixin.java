@@ -30,15 +30,24 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
 
         if (itemStack2.isOf(EtceteraItems.ITEM_LABEL) && itemStack2.hasCustomName() && !itemStack.isEmpty()) {
             ci.cancel();
-            this.levelCost.set(1);
             ItemStack itemStack3 = itemStack.copy();
             NbtCompound nbt = itemStack3.getOrCreateNbt();
             String labelText = itemStack2.getName().getString();
 
-            nbt.putString("Label", labelText);
-
-            this.repairItemUsage = 1;
-            this.output.setStack(0, itemStack3);
+            if (itemStack3.hasNbt() && !itemStack3.getNbt().contains("LabelTop") && !itemStack3.getNbt().contains("LabelBottom")) {
+                nbt.putString("LabelTop", labelText);
+                this.levelCost.set(1);
+                this.repairItemUsage = 1;
+                this.output.setStack(0, itemStack3);
+            } else if (itemStack3.hasNbt() && itemStack3.getNbt().contains("LabelTop") && !itemStack3.getNbt().contains("LabelBottom")) {
+                nbt.putString("LabelBottom", labelText);
+                this.levelCost.set(1);
+                this.repairItemUsage = 1;
+                this.output.setStack(0, itemStack3);
+            } else {
+                this.output.setStack(0, ItemStack.EMPTY);
+                this.levelCost.set(0);
+            }
             this.sendContentUpdates();
         }
 
