@@ -19,6 +19,8 @@
   "etcetera.container.prickly_can": "Prickly Can",
   "etcetera.container.prickly_can_delete": "Clear Inventory",
   "stat.minecraft.open_prickly_can": "Prickly Cans Opened",
+  "subtitles.block.etcetera.prickly_can.open": "Prickly Can opens",
+  "subtitles.block.etcetera.prickly_can.close": "Prickly Can closes",
 
   "block.etcetera.bouquet": "Bouquet",
   "block.etcetera.potted_bouquet": "Potted Bouquet",

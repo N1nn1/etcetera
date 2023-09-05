@@ -18,6 +18,8 @@
   "block.etcetera.prickly_can": "Bidone spinoso",
   "etcetera.container.prickly_can": "Bidone spinoso",
   "stat.minecraft.open_prickly_can": "Bidoni spinosi aperti",
+  "subtitles.block.etcetera.prickly_can.open": "Bidoni spinoso aperto",
+  "subtitles.block.etcetera.prickly_can.close": "Bidoni spinoso chiuso",
 
   "block.etcetera.bouquet": "Bouquet",
   "block.etcetera.potted_bouquet": "Vaso con bouquet",

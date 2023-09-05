@@ -99,9 +99,8 @@ public class EtceteraVanillaIntegration {
             }
             Style style = Style.EMPTY.withColor(color).withItalic(true);
 
-            if (stack.hasNbt()) {
-                if (stack.getNbt().contains("LabelTop")) lines.add(1, Text.literal(stack.getNbt().getString("LabelTop")).setStyle(style));
-                if (stack.getNbt().contains("LabelBottom")) lines.add(2, Text.literal(stack.getNbt().getString("LabelBottom")).setStyle(style));
+            for (int row = 1; row < 5; row++) {
+                if (stack.hasNbt() && stack.getNbt().contains("Label" + row)) lines.add(row, Text.literal(stack.getNbt().getString("Label" + row)).setStyle(style));
             }
         });
     }
@@ -191,6 +190,17 @@ public class EtceteraVanillaIntegration {
                 tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.EGGPLE).weight(1).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1)))).build());
                 tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.COTTON_SEEDS).weight(3).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3, 5)))).build());
             }
+
+            if (id.equals(LootTables.ABANDONED_MINESHAFT_CHEST)) {
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ITEM_LABEL).weight(30)).build());
+            }
+            if (id.equals(LootTables.SIMPLE_DUNGEON_CHEST) || id.equals(LootTables.WOODLAND_MANSION_CHEST)) {
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ITEM_LABEL).weight(20)).build());
+            }
+            if (id.equals(LootTables.ANCIENT_CITY_CHEST) || id.equals(LootTables.ANCIENT_CITY_ICE_BOX_CHEST)) {
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ITEM_LABEL).weight(2)).build());
+            }
+
         });
     }
 
