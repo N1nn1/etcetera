@@ -31,6 +31,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldEvents;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.gen.feature.util.DripstoneHelper;
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
@@ -44,7 +45,7 @@ public class DreamCatcher extends HorizontalFacingBlock implements BlockEntityPr
 
     public DreamCatcher(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(HALF, DoubleBlockHalf.LOWER));
+        this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(HALF, DoubleBlockHalf.UPPER));
     }
 
     @Override
@@ -95,17 +96,17 @@ public class DreamCatcher extends HorizontalFacingBlock implements BlockEntityPr
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-        BlockPos blockPos = pos.up();
-        world.setBlockState(blockPos, withWaterloggedState(world, blockPos, this.getDefaultState().with(HALF, DoubleBlockHalf.UPPER).with(FACING, state.get(FACING))), Block.NOTIFY_ALL);
+        BlockPos blockPos = pos.down();
+        world.setBlockState(blockPos, withWaterloggedState(world, blockPos, this.getDefaultState().with(HALF, DoubleBlockHalf.LOWER).with(FACING, state.get(FACING))), Block.NOTIFY_ALL);
     }
 
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        if (state.get(HALF) == DoubleBlockHalf.UPPER) {
-            BlockState blockState = world.getBlockState(pos.down());
-            return blockState.isOf(this) && blockState.get(HALF) == DoubleBlockHalf.LOWER;
+        if (state.get(HALF) == DoubleBlockHalf.LOWER) {
+            BlockState blockState = world.getBlockState(pos.up());
+            return blockState.isOf(this) && blockState.get(HALF) == DoubleBlockHalf.UPPER;
         }
-        return super.canPlaceAt(state, world, pos);
+        return world.getBlockState(pos.down()).isAir() || world.getBlockState(pos.down()).isOf(Blocks.WATER);
     }
 
     public static BlockState withWaterloggedState(WorldView world, BlockPos pos, BlockState state) {
