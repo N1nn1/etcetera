@@ -243,6 +243,7 @@ public class EtceteraVanillaIntegration {
                 EtceteraBlocks.ITEM_STAND,
                 EtceteraBlocks.GLOW_ITEM_STAND,
                 EtceteraBlocks.FRAME,
+                EtceteraBlocks.DREAM_CATCHER,
                 EtceteraBlocks.PRICKLY_CAN
         );
     }

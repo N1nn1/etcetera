@@ -45,6 +45,8 @@ public class EtceteraCreativeModeTab {
 
                 output.add(PRICKLY_CAN);
 
+                output.add(DREAM_CATCHER);
+
                 output.add(BOUQUET);
                 output.add(TERRACOTTA_VASE);
 

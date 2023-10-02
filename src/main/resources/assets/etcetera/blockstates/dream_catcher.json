@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,half=lower": {
+      "model": "etcetera:block/dream_catcher_bottom",
+      "y": 90
+    },
+    "facing=north,half=lower": {
+      "model": "etcetera:block/dream_catcher_bottom"
+    },
+    "facing=south,half=lower": {
+      "model": "etcetera:block/dream_catcher_bottom",
+      "y": 180
+    },
+    "facing=west,half=lower": {
+      "model": "etcetera:block/dream_catcher_bottom",
+      "y": 270
+    },
+    "facing=east,half=upper": {
+      "model": "etcetera:block/dream_catcher_top",
+      "y": 90
+    },
+    "facing=north,half=upper": {
+      "model": "etcetera:block/dream_catcher_top"
+    },
+    "facing=south,half=upper": {
+      "model": "etcetera:block/dream_catcher_top",
+      "y": 180
+    },
+    "facing=west,half=upper": {
+      "model": "etcetera:block/dream_catcher_top",
+      "y": 270
+    }
+  }
+}

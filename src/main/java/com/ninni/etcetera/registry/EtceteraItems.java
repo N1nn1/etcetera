@@ -47,6 +47,8 @@ public class EtceteraItems {
 
     public static final Item PRICKLY_CAN = register("prickly_can", new BlockItem(EtceteraBlocks.PRICKLY_CAN, new FabricItemSettings()));
 
+    public static final Item DREAM_CATCHER = register("dream_catcher", new TallBlockItem(EtceteraBlocks.DREAM_CATCHER, new FabricItemSettings()));
+
     public static final Item BOUQUET = register("bouquet", new BlockItem(EtceteraBlocks.BOUQUET, new FabricItemSettings().maxCount(16)));
     public static final Item TERRACOTTA_VASE = register("terracotta_vase", new BlockItem(EtceteraBlocks.TERRACOTTA_VASE, new FabricItemSettings()));
 
