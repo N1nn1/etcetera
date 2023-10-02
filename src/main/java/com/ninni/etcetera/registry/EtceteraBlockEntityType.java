@@ -1,6 +1,7 @@
 package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.Etcetera;
+import com.ninni.etcetera.block.entity.DreamCatcherBlockEntity;
 import com.ninni.etcetera.block.entity.ItemStandBlockEntity;
 import com.ninni.etcetera.block.entity.PricklyCanBlockEntity;
 import com.ninni.etcetera.block.entity.TintedLightBulbBlockEntity;
@@ -28,6 +29,12 @@ public class EtceteraBlockEntityType {
             Registries.BLOCK_ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, "prickly_can"),
             FabricBlockEntityTypeBuilder.create(PricklyCanBlockEntity::new,
                     EtceteraBlocks.PRICKLY_CAN
+            ).build(null)
+    );
+    public static final BlockEntityType<DreamCatcherBlockEntity> DREAM_CATCHER = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, "dream_catcher"),
+            FabricBlockEntityTypeBuilder.create(DreamCatcherBlockEntity::new,
+                    EtceteraBlocks.DREAM_CATCHER
             ).build(null)
     );
 }

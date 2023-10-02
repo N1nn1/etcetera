@@ -1,30 +1,40 @@
 package com.ninni.etcetera.block;
 
-import com.ninni.etcetera.registry.EtceteraStatusEffects;
-import net.minecraft.block.*;
+import com.ninni.etcetera.block.entity.DreamCatcherBlockEntity;
+import com.ninni.etcetera.registry.EtceteraBlockEntityType;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HorizontalFacingBlock;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.*;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.*;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
+import net.minecraft.world.WorldEvents;
+import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
 @SuppressWarnings("deprecation")
-public class DreamCatcher extends HorizontalFacingBlock {
+public class DreamCatcher extends HorizontalFacingBlock implements BlockEntityProvider {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
     private static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 1.0, 16.0, 16.0);
@@ -52,23 +62,6 @@ public class DreamCatcher extends HorizontalFacingBlock {
             }
             case NORTH -> {
                 return NORTH_SHAPE;
-            }
-        }
-    }
-
-    @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        super.randomTick(state, world, pos, random);
-        //TODO this doesn't work
-        if (state.get(HALF) == DoubleBlockHalf.LOWER && world.getTimeOfDay() > 13000 && world.getTimeOfDay() < 24500) {
-            Vec3d vec3d = Vec3d.ofBottomCenter(pos);
-            List<PlayerEntity> list = world.getEntitiesByClass(PlayerEntity.class, new Box(vec3d.getX() - 8.0, vec3d.getY() - 5.0, vec3d.getZ() - 8.0, vec3d.getX() + 8.0, vec3d.getY() + 5.0, vec3d.getZ() + 8.0), player -> !player.isCreative());
-            for (PlayerEntity player : list) {
-                if (world.getTimeOfDay() > 24000) {
-                    player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 20 * 30, 2, false, true));
-                    player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 20 * 90, 0, false, true));
-                }
-                player.addStatusEffect(new StatusEffectInstance(EtceteraStatusEffects.DROWSY, 20 * 10, 0, false, true));
             }
         }
     }
@@ -146,4 +139,25 @@ public class DreamCatcher extends HorizontalFacingBlock {
         builder.add(HALF, FACING);
     }
 
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new DreamCatcherBlockEntity(pos, state);
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, EtceteraBlockEntityType.DREAM_CATCHER, DreamCatcherBlockEntity::tick);
+    }
+
+    @Nullable
+    protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> checkType(BlockEntityType<A> givenType, BlockEntityType<E> expectedType, BlockEntityTicker<? super E> ticker) {
+        return expectedType == givenType ? (BlockEntityTicker<A>) ticker : null;
+    }
 }
