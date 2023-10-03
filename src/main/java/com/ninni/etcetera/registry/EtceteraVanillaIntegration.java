@@ -5,10 +5,7 @@ import com.google.common.reflect.Reflection;
 import com.ninni.etcetera.client.TidalHelmetHud;
 import com.ninni.etcetera.client.gui.screen.PricklyCanScreen;
 import com.ninni.etcetera.client.renderer.block.entity.ItemStandBlockEntityRenderer;
-import com.ninni.etcetera.client.renderer.entity.ChappleRenderer;
-import com.ninni.etcetera.client.renderer.entity.CottonArmorRenderer;
-import com.ninni.etcetera.client.renderer.entity.TidalArmorRenderer;
-import com.ninni.etcetera.client.renderer.entity.TurtleRaftRenderer;
+import com.ninni.etcetera.client.renderer.entity.*;
 import com.ninni.etcetera.entity.EggpleEntity;
 import com.ninni.etcetera.entity.TurtleRaftEntity;
 import com.ninni.etcetera.item.TurtleRaftItem;
@@ -297,6 +294,8 @@ public class EtceteraVanillaIntegration {
         EntityRendererRegistry.register(EtceteraEntityType.TURTLE_RAFT, TurtleRaftRenderer::new);
         EntityRendererRegistry.register(EtceteraEntityType.CHAPPLE, ChappleRenderer::new);
         EntityRendererRegistry.register(EtceteraEntityType.EGGPLE, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(EtceteraEntityType.WEAVER, WeaverRenderer::new);
+        EntityRendererRegistry.register(EtceteraEntityType.COBWEB, CobwebProjectileEntityRenderer::new);
     }
 
     private static void registerColorProviders() {

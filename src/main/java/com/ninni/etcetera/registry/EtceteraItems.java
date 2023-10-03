@@ -47,7 +47,7 @@ public class EtceteraItems {
 
     public static final Item PRICKLY_CAN = register("prickly_can", new BlockItem(EtceteraBlocks.PRICKLY_CAN, new FabricItemSettings()));
 
-    public static final Item DREAM_CATCHER = register("dream_catcher", new TallBlockItem(EtceteraBlocks.DREAM_CATCHER, new FabricItemSettings()));
+    public static final Item DREAM_CATCHER = register("dream_catcher", new DreamCatcherItem(EtceteraBlocks.DREAM_CATCHER, new FabricItemSettings()));
 
     public static final Item BOUQUET = register("bouquet", new BlockItem(EtceteraBlocks.BOUQUET, new FabricItemSettings().maxCount(16)));
     public static final Item TERRACOTTA_VASE = register("terracotta_vase", new BlockItem(EtceteraBlocks.TERRACOTTA_VASE, new FabricItemSettings()));
@@ -67,6 +67,8 @@ public class EtceteraItems {
 
     public static final Item LIGHT_BULB = register("light_bulb", new BlockItem(EtceteraBlocks.LIGHT_BULB, new FabricItemSettings()));
     public static final Item TINTED_LIGHT_BULB = register("tinted_light_bulb", new BlockItem(EtceteraBlocks.TINTED_LIGHT_BULB, new FabricItemSettings()));
+
+    public static final Item WEAVER_SPAWN_EGG = register("weaver_spawn_egg", new SpawnEggItem(EtceteraEntityType.WEAVER, 0x191919, 0xFF1B00, new FabricItemSettings().maxCount(64)));
 
     public static final Item CHAPPLE_SPAWN_EGG = register("chapple_spawn_egg", new SpawnEggItem(EtceteraEntityType.CHAPPLE, 0xE41826, 0x548630, new FabricItemSettings().maxCount(64)));
     public static final Item EGGPLE = register("eggple", new EggpleItem(false, new FabricItemSettings().maxCount(16)));

@@ -22,7 +22,7 @@ public class DreamCatcherBlockEntity extends BlockEntity {
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, DreamCatcherBlockEntity blockEntity) {
-        if (state.get(Properties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.LOWER && world.getTimeOfDay() > 13000 && world.getTimeOfDay() < 24500) {
+        if (state.get(Properties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.LOWER && world.getTimeOfDay() > 13000 && world.getTimeOfDay() < 24020) {
             List<PlayerEntity> list = world.getEntitiesByClass(PlayerEntity.class, new Box(pos).expand(8.0D, 5.0D, 8.0D), player -> !player.isCreative());
             for (PlayerEntity player : list) {
                 if (world.getTimeOfDay() > 24000) {

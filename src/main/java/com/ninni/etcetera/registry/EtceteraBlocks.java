@@ -39,7 +39,7 @@ public class EtceteraBlocks {
 
     public static final Block PRICKLY_CAN = register("prickly_can", new PricklyCanBlock(FabricBlockSettings.copyOf(CACTUS).strength(1f, 4f)));
 
-    public static final Block DREAM_CATCHER = register("dream_catcher", new DreamCatcher(FabricBlockSettings.create().noCollision().burnable().pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.WOOL)));
+    public static final Block DREAM_CATCHER = register("dream_catcher", new DreamCatcherBlock(FabricBlockSettings.create().noCollision().burnable().pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.WOOL)));
 
     public static final Block BOUQUET = register("bouquet", new BouquetBlock(FabricBlockSettings.create().sounds(BlockSoundGroup.GRASS).mapColor(MapColor.PALE_GREEN).noCollision().breakInstantly()));
     public static final Block POTTED_BOUQUET = register("potted_bouquet", new FlowerPotBlock(BOUQUET, FabricBlockSettings.create().breakInstantly().nonOpaque()));

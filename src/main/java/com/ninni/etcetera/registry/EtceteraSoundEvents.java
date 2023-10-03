@@ -34,6 +34,14 @@ public interface EtceteraSoundEvents {
     BlockSoundGroup TERRACOTTA_VASE = register("terracotta_vase", 1, 1);
     BlockSoundGroup CRUMBLING_STONE = register("crumbling_stone", 1, 1);
 
+    SoundEvent ENTITY_WEAVER_SPIT = register("entity.weaver.spit");
+    SoundEvent ENTITY_WEAVER_LAND = register("entity.weaver.land");
+    SoundEvent ENTITY_WEAVER_STEP = register("entity.weaver.step");
+    SoundEvent ENTITY_WEAVER_IDLE = register("entity.weaver.idle");
+    SoundEvent ENTITY_WEAVER_HURT = register("entity.weaver.hurt");
+    SoundEvent ENTITY_WEAVER_DEATH = register("entity.weaver.death");
+    SoundEvent ENTITY_WEAVER_ATTACK = register("entity.weaver.attack");
+
 	private static BlockSoundGroup register(String name, float volume, float pitch) {
         return new BlockSoundGroup(volume, pitch, register("block." + name + ".break"), register("block." + name + ".step"), register("block." + name + ".place"), register("block." + name + ".hit"), register("block." + name + ".fall"));
     }

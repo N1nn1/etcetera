@@ -66,6 +66,8 @@ public class EtceteraCreativeModeTab {
                 output.add(LIGHT_BULB);
                 output.add(TINTED_LIGHT_BULB);
 
+                output.add(WEAVER_SPAWN_EGG);
+
                 output.add(CHAPPLE_SPAWN_EGG);
                 output.add(EGGPLE);
                 output.add(GOLDEN_EGGPLE);
@@ -147,6 +149,7 @@ public class EtceteraCreativeModeTab {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> {
             entries.addAfter(Items.CAVE_SPIDER_SPAWN_EGG, CHAPPLE_SPAWN_EGG);
+            entries.addAfter(Items.WARDEN_SPAWN_EGG, WEAVER_SPAWN_EGG);
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(entries -> {

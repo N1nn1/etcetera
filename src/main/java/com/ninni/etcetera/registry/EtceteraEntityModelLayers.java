@@ -1,9 +1,7 @@
 package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.Etcetera;
-import com.ninni.etcetera.client.model.ChappleModel;
-import com.ninni.etcetera.client.model.CottonArmorModel;
-import com.ninni.etcetera.client.model.TurtleRaftModel;
+import com.ninni.etcetera.client.model.*;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
@@ -15,6 +13,8 @@ public interface EtceteraEntityModelLayers {
 
     EntityModelLayer TURTLE_RAFT = main("turtle_raft", TurtleRaftModel::getTexturedModelData);
     EntityModelLayer CHAPPLE = main("chapple", ChappleModel::getTexturedModelData);
+    EntityModelLayer WEAVER = main("weaver", WeaverModel::getTexturedModelData);
+    EntityModelLayer COBWEB = main("cobweb", CobwebProjectileModel::getTexturedModelData);
     EntityModelLayer PLAYER_COTTON = main("cotton", CottonArmorModel::getTexturedModelData);
     EntityModelLayer PLAYER_COTTON_SLIM = main("cotton_slim", CottonArmorModel::getSlimTexturedModelData);
 

@@ -1,11 +1,10 @@
 package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.Etcetera;
-import com.ninni.etcetera.entity.ChappleEntity;
-import com.ninni.etcetera.entity.EggpleEntity;
-import com.ninni.etcetera.entity.TurtleRaftEntity;
+import com.ninni.etcetera.entity.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.*;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.registry.Registries;
@@ -35,6 +34,17 @@ public class EtceteraEntityType {
                     .trackRangeChunks(10)
     );
 
+    public static final EntityType<WeaverEntity> WEAVER = register(
+            "weaver",
+            FabricEntityTypeBuilder.createMob()
+                    .entityFactory(WeaverEntity::new)
+                    .defaultAttributes(WeaverEntity::createAttributes)
+                    .spawnGroup(SpawnGroup.MONSTER)
+                    .spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, HostileEntity::canSpawnInDark)
+                    .dimensions(EntityDimensions.changing(1.6f, 1.4f))
+                    .trackRangeChunks(10)
+    );
+
     public static final EntityType<EggpleEntity> EGGPLE = register(
             "eggple",
             FabricEntityTypeBuilder.create()
@@ -44,6 +54,14 @@ public class EtceteraEntityType {
                     .trackRangeChunks(4)
     );
 
+    public static final EntityType<CobwebProjectileEntity> COBWEB = register(
+            "cobweb",
+            FabricEntityTypeBuilder.create()
+                    .<CobwebProjectileEntity>entityFactory(CobwebProjectileEntity::new)
+                    .spawnGroup(SpawnGroup.MISC)
+                    .dimensions(EntityDimensions.fixed(0.3f, 0.3f))
+                    .trackRangeChunks(4)
+    );
 
     private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> entityType) {
         return Registry.register(Registries.ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, id), entityType.build());

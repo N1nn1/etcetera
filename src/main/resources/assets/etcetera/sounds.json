@@ -474,5 +474,59 @@
 			"etcetera:item/armor/equip_cotton4"
 		],
 		"subtitle": "subtitles.item.etcetera.cotton.armor.equip"
+	},
+	"entity.weaver.attack": {
+		"sounds": [
+			"etcetera:entity/weaver/attack1",
+			"etcetera:entity/weaver/attack2"
+		],
+		"subtitle": "subtitles.entity.etcetera.weaver.attack"
+	},
+	"entity.weaver.death": {
+		"sounds": [
+			"etcetera:entity/weaver/death"
+		],
+		"subtitle": "subtitles.entity.etcetera.weaver.death"
+	},
+	"entity.weaver.hurt": {
+		"sounds": [
+			"etcetera:entity/weaver/hurt1",
+			"etcetera:entity/weaver/hurt2",
+			"etcetera:entity/weaver/hurt3"
+		],
+		"subtitle": "subtitles.entity.etcetera.weaver.hurt"
+	},
+	"entity.weaver.idle": {
+		"sounds": [
+			"etcetera:entity/weaver/idle1",
+			"etcetera:entity/weaver/idle2",
+			"etcetera:entity/weaver/idle3",
+			"etcetera:entity/weaver/idle4"
+		],
+		"subtitle": "subtitles.entity.etcetera.weaver.idle"
+	},
+	"entity.weaver.land": {
+		"sounds": [
+			"etcetera:entity/weaver/land1",
+			"etcetera:entity/weaver/land2"
+		],
+		"subtitle": "subtitles.entity.etcetera.weaver.land"
+	},
+	"entity.weaver.spit": {
+		"sounds": [
+			"etcetera:entity/weaver/spit1",
+			"etcetera:entity/weaver/spit2"
+		],
+		"subtitle": "subtitles.entity.etcetera.weaver.spit"
+	},
+	"entity.weaver.step": {
+		"sounds": [
+			"etcetera:entity/weaver/step1",
+			"etcetera:entity/weaver/step2",
+			"etcetera:entity/weaver/step3",
+			"etcetera:entity/weaver/step4",
+			"etcetera:entity/weaver/step5"
+		],
+		"subtitle": "subtitles.entity.etcetera.weaver.step"
 	}
 }
