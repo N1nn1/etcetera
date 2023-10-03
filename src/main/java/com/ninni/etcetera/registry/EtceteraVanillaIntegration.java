@@ -22,9 +22,11 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
@@ -67,6 +69,7 @@ public class EtceteraVanillaIntegration {
     public static void serverInit() {
         EtceteraNetwork.initCommon();
         itemTooltipCallback();
+        flattenableBlockRegistry();
         registerDispenserBehavior();
         registerReloadListeners();
         registerWaxables();
@@ -85,7 +88,16 @@ public class EtceteraVanillaIntegration {
     }
 
     //server
+
+    private static void flattenableBlockRegistry(){
+        FlattenableBlockRegistry.register(Blocks.SAND, EtceteraBlocks.SAND_PATH.getDefaultState());
+        FlattenableBlockRegistry.register(Blocks.RED_SAND, EtceteraBlocks.RED_SAND_PATH.getDefaultState());
+        FlattenableBlockRegistry.register(Blocks.SNOW_BLOCK, EtceteraBlocks.SNOW_PATH.getDefaultState());
+        FlattenableBlockRegistry.register(Blocks.GRAVEL, EtceteraBlocks.GRAVEL_PATH.getDefaultState());
+    }
+
     private static void itemTooltipCallback(){
+
         ItemTooltipCallback.EVENT.register((stack, context1, lines) ->{
             int color = 0x959595;
             switch (stack.getRarity()){

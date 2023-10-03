@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "etcetera:block/gravel_path"
+      },
+      {
+        "model": "etcetera:block/gravel_path",
+        "y": 90
+      },
+      {
+        "model": "etcetera:block/gravel_path",
+        "y": 180
+      },
+      {
+        "model": "etcetera:block/gravel_path",
+        "y": 270
+      }
+    ]
+  }
+}

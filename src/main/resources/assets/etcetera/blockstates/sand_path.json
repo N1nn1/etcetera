@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "etcetera:block/sand_path"
+      },
+      {
+        "model": "etcetera:block/sand_path",
+        "y": 90
+      },
+      {
+        "model": "etcetera:block/sand_path",
+        "y": 180
+      },
+      {
+        "model": "etcetera:block/sand_path",
+        "y": 270
+      }
+    ]
+  }
+}

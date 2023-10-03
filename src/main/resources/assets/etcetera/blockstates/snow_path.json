@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "etcetera:block/snow_path"
+      },
+      {
+        "model": "etcetera:block/snow_path",
+        "y": 90
+      },
+      {
+        "model": "etcetera:block/snow_path",
+        "y": 180
+      },
+      {
+        "model": "etcetera:block/snow_path",
+        "y": 270
+      }
+    ]
+  }
+}

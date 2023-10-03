@@ -51,6 +51,11 @@ public class EtceteraBlocks {
     public static final Block SQUID_LAMP = register("squid_lamp", new SquidLampBlock(FabricBlockSettings.create().noCollision().mapColor(MapColor.TEAL).breakInstantly().sounds(EtceteraSoundEvents.SQUID_LAMP).luminance(state -> state.get(SquidLampBlock.WATERLOGGED) ? 15 : 7)));
     public static final Block WALL_SQUID_LAMP = register("wall_squid_lamp", new WallSquidLampBlock(FabricBlockSettings.copyOf(SQUID_LAMP).dropsLike(SQUID_LAMP)));
 
+    public static final Block SAND_PATH = register("sand_path", new PathBlock(SAND, true, FabricBlockSettings.copyOf(SAND).blockVision(Blocks::always).suffocates(Blocks::always)));
+    public static final Block RED_SAND_PATH = register("red_sand_path", new PathBlock(RED_SAND,true, FabricBlockSettings.copyOf(RED_SAND).blockVision(Blocks::always).suffocates(Blocks::always)));
+    public static final Block SNOW_PATH = register("snow_path", new PathBlock(SNOW_BLOCK,false, FabricBlockSettings.copyOf(SNOW_BLOCK).blockVision(Blocks::always).suffocates(Blocks::always)));
+    public static final Block GRAVEL_PATH = register("gravel_path", new PathBlock(GRAVEL,true, FabricBlockSettings.copyOf(GRAVEL).blockVision(Blocks::always).suffocates(Blocks::always)));
+
     public static final Block CRUMBLING_STONE = register("crumbling_stone", new CrumblingStoneBlock(FabricBlockSettings.copyOf(STONE).sounds(EtceteraSoundEvents.CRUMBLING_STONE).strength(0.5f, 3f)));
     public static final Block WAXED_CRUMBLING_STONE = register("waxed_crumbling_stone", new AbstractCrumblingStoneBlock(FabricBlockSettings.copyOf(CRUMBLING_STONE)));
 

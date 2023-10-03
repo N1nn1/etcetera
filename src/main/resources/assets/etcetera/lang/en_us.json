@@ -75,6 +75,11 @@
   "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Cephalopod Activities",
   "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Obtain a Squid Lamp",
 
+  "block.etcetera.sand_path": "Sand Path",
+  "block.etcetera.red_sand_path": "Red Sand Path",
+  "block.etcetera.gravel_path": "Gravel Path",
+  "block.etcetera.snow_path": "Snow Path",
+
   "block.etcetera.crumbling_stone": "Crumbling Stone",
   "block.etcetera.waxed_crumbling_stone": "Waxed Crumbling Stone",
   "subtitles.block.etcetera.crumbling_stone.crumble": "Block crumbles",
