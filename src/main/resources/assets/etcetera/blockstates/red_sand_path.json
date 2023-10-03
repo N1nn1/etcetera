@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "etcetera:block/red_sand_path"
+      },
+      {
+        "model": "etcetera:block/red_sand_path",
+        "y": 90
+      },
+      {
+        "model": "etcetera:block/red_sand_path",
+        "y": 180
+      },
+      {
+        "model": "etcetera:block/red_sand_path",
+        "y": 270
+      }
+    ]
+  }
+}

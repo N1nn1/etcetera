@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "etcetera:sand_path",
+    "etcetera:red_sand_path",
+    "etcetera:gravel_path",
+    "etcetera:snow_path"
+  ]
+}

@@ -57,6 +57,11 @@ public class EtceteraCreativeModeTab {
                 output.add(TIDAL_HELMET);
                 output.add(TURTLE_RAFT);
 
+                output.add(GRAVEL_PATH);
+                output.add(SAND_PATH);
+                output.add(RED_SAND_PATH);
+                output.add(SNOW_PATH);
+
                 output.add(CRUMBLING_STONE);
                 output.add(WAXED_CRUMBLING_STONE);
                 output.add(LEVELED_STONE);
@@ -176,6 +181,10 @@ public class EtceteraCreativeModeTab {
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
+            entries.addAfter(Items.GRAVEL, GRAVEL_PATH);
+            entries.addAfter(Items.SAND, SAND_PATH);
+            entries.addAfter(Items.RED_SAND, RED_SAND_PATH);
+            entries.addAfter(Items.SNOW, SNOW_PATH);
             entries.addAfter(Items.NETHER_GOLD_ORE, NETHER_BISMUTH_ORE);
             entries.addAfter(Items.RAW_GOLD_BLOCK, RAW_BISMUTH_BLOCK);
             entries.addAfter(Items.PINK_PETALS, BOUQUET);

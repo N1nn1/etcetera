@@ -59,6 +59,11 @@ public class EtceteraItems {
     public static final Item TIDAL_HELMET = register("tidal_helmet", new ArmorItem(EtceteraArmorMaterials.TIDAL, ArmorItem.Type.HELMET, new FabricItemSettings().rarity(Rarity.RARE)));
     public static final Item TURTLE_RAFT = register("turtle_raft", new TurtleRaftItem(new FabricItemSettings().maxCount(1)));
 
+    public static final Item SAND_PATH = register("sand_path", new BlockItem(EtceteraBlocks.SAND_PATH, new FabricItemSettings()));
+    public static final Item RED_SAND_PATH = register("red_sand_path", new BlockItem(EtceteraBlocks.RED_SAND_PATH, new FabricItemSettings()));
+    public static final Item GRAVEL_PATH = register("gravel_path", new BlockItem(EtceteraBlocks.GRAVEL_PATH, new FabricItemSettings()));
+    public static final Item SNOW_PATH = register("snow_path", new BlockItem(EtceteraBlocks.SNOW_PATH, new FabricItemSettings()));
+
     public static final Item CRUMBLING_STONE = register("crumbling_stone", new BlockItem(EtceteraBlocks.CRUMBLING_STONE, new FabricItemSettings()));
     public static final Item WAXED_CRUMBLING_STONE = register("waxed_crumbling_stone", new BlockItem(EtceteraBlocks.WAXED_CRUMBLING_STONE, new FabricItemSettings()));
     public static final Item LEVELED_STONE = register("leveled_stone", new BlockItem(EtceteraBlocks.LEVELED_STONE, new FabricItemSettings()));
