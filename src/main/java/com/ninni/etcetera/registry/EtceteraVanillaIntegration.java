@@ -282,6 +282,7 @@ public class EtceteraVanillaIntegration {
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PINK_HAT);
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.TRADER_HOOD);
         ArmorRenderer.register(new TidalArmorRenderer(), EtceteraItems.TIDAL_HELMET);
+        ArmorRenderer.register(new SilkArmorRenderer(), EtceteraItems.SILKEN_SLACKS);
         TidalHelmetHud.init();
     }
 

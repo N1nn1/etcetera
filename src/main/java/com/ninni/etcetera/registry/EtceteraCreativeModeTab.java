@@ -67,6 +67,7 @@ public class EtceteraCreativeModeTab {
                 output.add(TINTED_LIGHT_BULB);
 
                 output.add(WEAVER_SPAWN_EGG);
+                output.add(SILKEN_SLACKS);
 
                 output.add(CHAPPLE_SPAWN_EGG);
                 output.add(EGGPLE);

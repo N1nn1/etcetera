@@ -21,6 +21,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+//TODO Figure out a way to make it drop damaged silken slacks
+//TODO Spawning
+
 public class WeaverEntity extends HostileEntity implements RangedAttackMob {
     public WeaverEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);

@@ -12,7 +12,8 @@ import java.util.function.Supplier;
 @SuppressWarnings("deprecation")
 public enum EtceteraArmorMaterials implements ArmorMaterial {
 
-    TIDAL("tidal", 35, new int[]{3, 6, 8, 3}, 15, EtceteraSoundEvents.ITEM_TIDEL_ARMOR_EQUIP, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.NAUTILUS_SHELL));
+    TIDAL("tidal", 35, new int[]{3, 6, 8, 3}, 15, EtceteraSoundEvents.ITEM_TIDEL_ARMOR_EQUIP, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.NAUTILUS_SHELL)),
+    SILK("silk", 20, new int[]{2, 5, 6, 2}, 15, EtceteraSoundEvents.ITEM_ARMOR_SILK_EQUIP, 0.0f, 0.0f, () -> Ingredient.ofItems(Items.COBWEB));
 
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
     private final String name;

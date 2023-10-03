@@ -528,5 +528,13 @@
 			"etcetera:entity/weaver/step5"
 		],
 		"subtitle": "subtitles.entity.etcetera.weaver.step"
+	},
+	"item.armor.equip.silk": {
+		"sounds": [
+			"etcetera:item/armor/equip_silk1",
+			"etcetera:item/armor/equip_silk2",
+			"etcetera:item/armor/equip_silk3"
+		],
+		"subtitle": "subtitles.item.etcetera.silk.armor.equip"
 	}
 }

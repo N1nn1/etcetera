@@ -7,7 +7,9 @@
     "AbstractBlockStateMixin",
     "AnvilBlockMixin",
     "AnvilScreenHandlerMixin",
+    "EntityMixin",
     "HostileEntityMixin",
+    "LivingEntityMixin",
     "PlayerEntityMixin",
     "SmithingTableBlockMixin",
     "VillagerEntityMixin"
