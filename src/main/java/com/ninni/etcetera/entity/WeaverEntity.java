@@ -3,9 +3,23 @@ package com.ninni.etcetera.entity;
 import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityGroup;
+import net.minecraft.entity.EntityPose;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.RangedAttackMob;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.ActiveTargetGoal;
+import net.minecraft.entity.ai.goal.AttackGoal;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.ai.goal.PounceAtTargetGoal;
+import net.minecraft.entity.ai.goal.ProjectileAttackGoal;
+import net.minecraft.entity.ai.goal.RevengeGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
@@ -17,6 +31,7 @@ import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -112,6 +127,29 @@ public class WeaverEntity extends HostileEntity implements RangedAttackMob {
         return super.tryAttack(target);
     }
 
+    private boolean inWeb(@Nullable LivingEntity target) {
+        if (target == null) {
+            return false;
+        }
+        boolean flag = false;
+        Box box = target.getBoundingBox();
+        BlockPos blockPos = BlockPos.ofFloored(box.minX + 1.0E-7, box.minY + 1.0E-7, box.minZ + 1.0E-7);
+        BlockPos blockPos2 = BlockPos.ofFloored(box.maxX - 1.0E-7, box.maxY - 1.0E-7, box.maxZ - 1.0E-7);
+        BlockPos.Mutable mutable = new BlockPos.Mutable();
+        for (int i = blockPos.getX(); i <= blockPos2.getX(); ++i) {
+            for (int j = blockPos.getY(); j <= blockPos2.getY(); ++j) {
+                for (int k = blockPos.getZ(); k <= blockPos2.getZ(); ++k) {
+                    mutable.set(i, j, k);
+                    BlockState blockState = this.getWorld().getBlockState(mutable);
+                    if (blockState.isOf(Blocks.COBWEB)) {
+                        flag = true;
+                    }
+                }
+            }
+        }
+        return flag;
+    }
+
     public class WeaverPounceGoal extends PounceAtTargetGoal {
 
         public WeaverPounceGoal(MobEntity mob, float velocity) {
@@ -120,12 +158,12 @@ public class WeaverEntity extends HostileEntity implements RangedAttackMob {
 
         @Override
         public boolean canStart() {
-            return  (WeaverEntity.this.getTarget() != null && WeaverEntity.this.getWorld().getBlockState(WeaverEntity.this.getTarget().getBlockPos()).isOf(Blocks.COBWEB)) && super.canStart();
+            return WeaverEntity.this.inWeb(WeaverEntity.this.getTarget()) && super.canStart();
         }
 
         @Override
         public boolean shouldContinue() {
-            return (WeaverEntity.this.getTarget() != null && WeaverEntity.this.getWorld().getBlockState(WeaverEntity.this.getTarget().getBlockPos()).isOf(Blocks.COBWEB)) && super.shouldContinue();
+            return WeaverEntity.this.inWeb(WeaverEntity.this.getTarget()) && super.shouldContinue();
         }
     }
 
@@ -137,12 +175,12 @@ public class WeaverEntity extends HostileEntity implements RangedAttackMob {
 
         @Override
         public boolean canStart() {
-            return (WeaverEntity.this.getTarget() != null && !WeaverEntity.this.getWorld().getBlockState(WeaverEntity.this.getTarget().getBlockPos()).isOf(Blocks.COBWEB)) && super.canStart();
+            return !WeaverEntity.this.inWeb(WeaverEntity.this.getTarget()) && super.canStart();
         }
 
         @Override
         public boolean shouldContinue() {
-            return (WeaverEntity.this.getTarget() != null && !WeaverEntity.this.getWorld().getBlockState(WeaverEntity.this.getTarget().getBlockPos()).isOf(Blocks.COBWEB)) && super.shouldContinue();
+            return !WeaverEntity.this.inWeb(WeaverEntity.this.getTarget()) && super.shouldContinue();
         }
     }
 
