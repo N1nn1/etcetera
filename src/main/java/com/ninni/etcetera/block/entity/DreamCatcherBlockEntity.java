@@ -26,10 +26,10 @@ public class DreamCatcherBlockEntity extends BlockEntity {
             List<PlayerEntity> list = world.getEntitiesByClass(PlayerEntity.class, new Box(pos).expand(8.0D, 5.0D, 8.0D), player -> !player.isCreative());
             for (PlayerEntity player : list) {
                 if (world.getTimeOfDay() > 24000) {
-                    player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 20 * 30, 2, false, true));
+                    player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 20 * 15, 2, false, true));
                     player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 20 * 90, 0, false, true));
                 }
-                player.addStatusEffect(new StatusEffectInstance(EtceteraStatusEffects.DROWSY, 20 * 10, 0, false, true));
+                player.addStatusEffect(new StatusEffectInstance(EtceteraStatusEffects.DROWSY, 10, 0, true, true));
             }
         }
     }
