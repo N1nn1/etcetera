@@ -35,6 +35,7 @@ public interface EtceteraSoundEvents {
     SoundEvent ENTITY_WEAVER_DEATH = register("entity.weaver.death");
     SoundEvent ENTITY_WEAVER_ATTACK = register("entity.weaver.attack");
     SoundEvent ITEM_ARMOR_SILK_EQUIP = register("item.armor.equip.silk");
+    SoundEvent ITEM_ARMOR_ADVENTURER_EQUIP = register("item.armor.equip.adventurer");
 
     BlockSoundGroup NETHER_BISMUTH_ORE = register("nether_bismuth_ore", 1, 1);
     BlockSoundGroup BISMUTH_BLOCK = register("bismuth_block", 1, 1);

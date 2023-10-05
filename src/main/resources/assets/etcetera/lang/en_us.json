@@ -77,6 +77,7 @@
 
   "item.etcetera.adventurers_boots": "Adventurer's Boots",
   "block.etcetera.footsteps": "Footsteps",
+  "subtitles.item.etcetera.adventurer.armor.equip": "Adventurer's Boots rustle",
 
   "block.etcetera.sand_path": "Sand Path",
   "block.etcetera.red_sand_path": "Red Sand Path",
@@ -106,7 +107,7 @@
   "subtitles.entity.etcetera.weaver.land": "Cobweb forms",
   "subtitles.entity.etcetera.weaver.spit": "Weaver spits",
   "subtitles.entity.etcetera.weaver.step": "Weaver crawls",
-  "subtitles.item.etcetera.silk.armor.equip": "Silken Slacks rustle",
+  "subtitles.item.etcetera.silk.armor.equip": "Silken Slacks hiss",
 
   "entity.etcetera.chapple": "Chapple",
   "item.etcetera.chapple_spawn_egg": "Chapple Spawn Egg",

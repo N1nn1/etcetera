@@ -536,5 +536,16 @@
 			"etcetera:item/armor/equip_silk3"
 		],
 		"subtitle": "subtitles.item.etcetera.silk.armor.equip"
+	},
+	"item.armor.equip.adventurer": {
+		"sounds": [
+			"etcetera:item/armor/equip_adventurer1",
+			"etcetera:item/armor/equip_adventurer2",
+			"etcetera:item/armor/equip_adventurer3",
+			"etcetera:item/armor/equip_adventurer4",
+			"etcetera:item/armor/equip_adventurer5",
+			"etcetera:item/armor/equip_adventurer6"
+		],
+		"subtitle": "subtitles.item.etcetera.adventurer.armor.equip"
 	}
 }
