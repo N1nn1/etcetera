@@ -205,6 +205,7 @@ public class EtceteraVanillaIntegration {
             }
             if (id.equals(LootTables.SIMPLE_DUNGEON_CHEST) || id.equals(LootTables.WOODLAND_MANSION_CHEST)) {
                 tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ITEM_LABEL).weight(20)).build());
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ADVENTURERS_BOOTS).weight(40)).build());
             }
             if (id.equals(LootTables.ANCIENT_CITY_CHEST) || id.equals(LootTables.ANCIENT_CITY_ICE_BOX_CHEST)) {
                 tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ITEM_LABEL).weight(2)).build());
@@ -221,6 +222,7 @@ public class EtceteraVanillaIntegration {
 
     private static void registerVillagerTrades() {
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 2, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL), 6, 3, 0.2f)));
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 3, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 22), ItemStack.EMPTY, new ItemStack(EtceteraItems.ADVENTURERS_BOOTS), 6, 3, 0.2f)));
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.WEAPONSMITH, 2, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL), 6, 3, 0.2f)));
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.TOOLSMITH, 2, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 18), ItemStack.EMPTY, new ItemStack(EtceteraItems.HANDBELL), 6, 3, 0.2f)));
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.TOOLSMITH, 3, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 16), ItemStack.EMPTY, new ItemStack(EtceteraItems.HAMMER), 6, 2, 0.2f)));
@@ -242,7 +244,8 @@ public class EtceteraVanillaIntegration {
                 EtceteraBlocks.IRIDESCENT_GLASS,
                 EtceteraBlocks.IRIDESCENT_GLASS_PANE,
                 EtceteraBlocks.LIGHT_BULB,
-                EtceteraBlocks.TINTED_LIGHT_BULB
+                EtceteraBlocks.TINTED_LIGHT_BULB,
+                EtceteraBlocks.FOOTSTEPS
         );
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
                 EtceteraBlocks.BISMUTH_BARS,
@@ -295,6 +298,7 @@ public class EtceteraVanillaIntegration {
         ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.TRADER_HOOD);
         ArmorRenderer.register(new TidalArmorRenderer(), EtceteraItems.TIDAL_HELMET);
         ArmorRenderer.register(new SilkArmorRenderer(), EtceteraItems.SILKEN_SLACKS);
+        ArmorRenderer.register(new AdventurerArmorRenderer(), EtceteraItems.ADVENTURERS_BOOTS);
         TidalHelmetHud.init();
     }
 

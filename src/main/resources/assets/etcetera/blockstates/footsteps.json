@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "etcetera:block/footsteps",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "etcetera:block/footsteps"
+    },
+    "facing=south": {
+      "model": "etcetera:block/footsteps",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "etcetera:block/footsteps",
+      "y": 270
+    }
+  }
+}

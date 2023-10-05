@@ -75,6 +75,9 @@
   "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Cephalopod Activities",
   "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Obtain a Squid Lamp",
 
+  "item.etcetera.adventurers_boots": "Adventurer's Boots",
+  "block.etcetera.footsteps": "Footsteps",
+
   "block.etcetera.sand_path": "Sand Path",
   "block.etcetera.red_sand_path": "Red Sand Path",
   "block.etcetera.gravel_path": "Gravel Path",

@@ -57,6 +57,8 @@ public class EtceteraCreativeModeTab {
                 output.add(TIDAL_HELMET);
                 output.add(TURTLE_RAFT);
 
+                output.add(ADVENTURERS_BOOTS);
+
                 output.add(GRAVEL_PATH);
                 output.add(SAND_PATH);
                 output.add(RED_SAND_PATH);
@@ -145,6 +147,7 @@ public class EtceteraCreativeModeTab {
             entries.addAfter(Items.GLOW_ITEM_FRAME, ITEM_STAND, GLOW_ITEM_STAND);
             entries.addAfter(Items.ENDER_CHEST, PRICKLY_CAN);
             entries.addAfter(Items.SUSPICIOUS_GRAVEL, CRUMBLING_STONE, WAXED_CRUMBLING_STONE);
+            entries.addAfter(Items.BELL, DREAM_CATCHER);
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
@@ -162,6 +165,8 @@ public class EtceteraCreativeModeTab {
             entries.addAfter(Items.EGG, EGGPLE, GOLDEN_EGGPLE);
             entries.addAfter(Items.TURTLE_HELMET,
                     TIDAL_HELMET,
+                    SILKEN_SLACKS,
+                    ADVENTURERS_BOOTS,
                     WHITE_HAT,
                     TRADER_HOOD,
                     WHITE_SWEATER,
@@ -178,6 +183,7 @@ public class EtceteraCreativeModeTab {
                     HANDBELL
             );
             entries.addAfter(Items.BAMBOO_CHEST_RAFT, TURTLE_RAFT);
+            entries.addAfter(Items.NAME_TAG, ITEM_LABEL);
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {
