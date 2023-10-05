@@ -1,8 +1,9 @@
 package com.ninni.etcetera.entity;
 
-import com.ninni.etcetera.registry.EtceteraItems;
 import com.ninni.etcetera.registry.EtceteraEntityType;
+import com.ninni.etcetera.registry.EtceteraItems;
 import com.ninni.etcetera.registry.EtceteraSoundEvents;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
@@ -10,13 +11,13 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
-import net.minecraft.item.BannerItem;
-import net.minecraft.item.DyeableItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
@@ -60,6 +61,31 @@ public class TurtleRaftEntity extends BoatEntity {
             }
         }
         return super.interact(player, hand);
+    }
+
+    @Override
+    protected void fall(double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition) {
+        if (!this.hasVehicle()) {
+            if (onGround) {
+                if (this.fallDistance > 10.0F) {
+                    this.handleFallDamage(this.fallDistance, 1.0F, this.getDamageSources().fall());
+                    if (!this.getWorld().isClient && !this.isRemoved()) {
+                        this.kill();
+                        if (this.getWorld().getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
+                            int i;
+                            for(i = 0; i < 5; ++i) {
+                                this.dropItem(Items.SCUTE);
+                            }
+                        }
+                    }
+                }
+
+                this.onLanding();
+            } else if (!this.getWorld().getFluidState(this.getBlockPos().down()).isIn(FluidTags.WATER) && heightDifference < 0.0) {
+                this.fallDistance -= (float)heightDifference;
+            }
+
+        }
     }
 
     @Override
