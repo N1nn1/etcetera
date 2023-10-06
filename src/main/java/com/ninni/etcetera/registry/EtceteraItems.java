@@ -75,6 +75,8 @@ public class EtceteraItems {
     public static final Item LIGHT_BULB = register("light_bulb", new BlockItem(EtceteraBlocks.LIGHT_BULB, new FabricItemSettings()));
     public static final Item TINTED_LIGHT_BULB = register("tinted_light_bulb", new BlockItem(EtceteraBlocks.TINTED_LIGHT_BULB, new FabricItemSettings()));
 
+    public static final Item GOLDEN_GOLEM = register("golden_golem", new GoldenGolemItem(new FabricItemSettings().maxCount(1)));
+
     public static final Item WEAVER_SPAWN_EGG = register("weaver_spawn_egg", new SpawnEggItem(EtceteraEntityType.WEAVER, 0x191919, 0xFF1B00, new FabricItemSettings().maxCount(64)));
     public static final Item SILKEN_SLACKS = register("silken_slacks", new ArmorItem(EtceteraArmorMaterials.SILK, ArmorItem.Type.LEGGINGS, new FabricItemSettings()));
 

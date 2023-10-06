@@ -73,6 +73,8 @@ public class EtceteraCreativeModeTab {
                 output.add(LIGHT_BULB);
                 output.add(TINTED_LIGHT_BULB);
 
+                output.add(GOLDEN_GOLEM);
+
                 output.add(WEAVER_SPAWN_EGG);
                 output.add(SILKEN_SLACKS);
 

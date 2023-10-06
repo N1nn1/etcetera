@@ -16,7 +16,7 @@ public interface EtceteraEntityModelLayers {
     EntityModelLayer WEAVER = main("weaver", WeaverModel::getTexturedModelData);
     EntityModelLayer COBWEB = main("cobweb", CobwebProjectileModel::getTexturedModelData);
     EntityModelLayer PLAYER_COTTON = main("cotton", CottonArmorModel::getTexturedModelData);
-    EntityModelLayer PLAYER_COTTON_SLIM = main("cotton_slim", CottonArmorModel::getSlimTexturedModelData);
+    EntityModelLayer GOLDEN_GOLEM = main("golden_golem", GoldenGolemModel::getTexturedModelData);
 
     private static EntityModelLayer register(String id, String name, EntityModelLayerRegistry.TexturedModelDataProvider provider) {
         EntityModelLayer layer = new EntityModelLayer(new Identifier(Etcetera.MOD_ID, id), name);

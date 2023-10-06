@@ -5,6 +5,7 @@ import com.ninni.etcetera.entity.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.registry.Registries;
@@ -45,6 +46,18 @@ public class EtceteraEntityType {
                     .trackRangeChunks(10)
     );
 
+    public static final EntityType<GoldenGolemEntity> GOLDEN_GOLEM = register(
+            "golden_golem",
+            FabricEntityTypeBuilder.createMob()
+                    .entityFactory(GoldenGolemEntity::new)
+                    .defaultAttributes(GoldenGolemEntity::createAttributes)
+                    .spawnGroup(SpawnGroup.MISC)
+                    .spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, PathAwareEntity::canMobSpawn)
+                    .dimensions(EntityDimensions.changing(0.35f, 0.6f))
+                    .trackRangeChunks(10)
+                    .trackedUpdateRate(2)
+    );
+
     public static final EntityType<EggpleEntity> EGGPLE = register(
             "eggple",
             FabricEntityTypeBuilder.create()
@@ -60,6 +73,15 @@ public class EtceteraEntityType {
                     .<CobwebProjectileEntity>entityFactory(CobwebProjectileEntity::new)
                     .spawnGroup(SpawnGroup.MISC)
                     .dimensions(EntityDimensions.fixed(0.3f, 0.3f))
+                    .trackRangeChunks(4)
+    );
+
+    public static final EntityType<GoldenGolemItemEntity> THROWN_GOLDEN_GOLEM = register(
+            "thrown_golden_golem",
+            FabricEntityTypeBuilder.create()
+                    .<GoldenGolemItemEntity>entityFactory(GoldenGolemItemEntity::new)
+                    .spawnGroup(SpawnGroup.MISC)
+                    .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
                     .trackRangeChunks(4)
     );
 

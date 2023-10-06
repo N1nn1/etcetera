@@ -12,10 +12,10 @@ import static net.minecraft.client.render.entity.model.EntityModelPartNames.*;
 @SuppressWarnings("FieldCanBeLocal, unused")
 @Environment(value= EnvType.CLIENT)
 public class WeaverModel<T extends WeaverEntity> extends SinglePartEntityModel<T> {
-    private static final String RIGHT_MiddleDLE_FRONT_LEG = "right_Middle_front_leg";
-    private static final String LEFT_MiddleDLE_FRONT_LEG = "left_Middle_front_leg";
-    private static final String RIGHT_MiddleDLE_HIND_LEG = "right_Middle_hind_leg";
-    private static final String LEFT_MiddleDLE_HIND_LEG = "left_Middle_hind_leg";
+    private static final String RIGHT_MIDDLE_FRONT_LEG = "right_Middle_front_leg";
+    private static final String LEFT_MIDDLE_FRONT_LEG = "left_Middle_front_leg";
+    private static final String RIGHT_MIDDLE_HIND_LEG = "right_Middle_hind_leg";
+    private static final String LEFT_MIDDLE_HIND_LEG = "left_Middle_hind_leg";
 
     private final ModelPart root;
     private final ModelPart neck;
@@ -36,10 +36,10 @@ public class WeaverModel<T extends WeaverEntity> extends SinglePartEntityModel<T
         this.neck = root.getChild(NECK);
         this.leftFrontLeg = root.getChild(LEFT_FRONT_LEG);
         this.rightFrontLeg = root.getChild(RIGHT_FRONT_LEG);
-        this.leftMiddleFrontLeg = root.getChild(LEFT_MiddleDLE_FRONT_LEG);
-        this.rightMiddleFrontLeg = root.getChild(RIGHT_MiddleDLE_FRONT_LEG);
-        this.leftMiddleHindLeg = root.getChild(LEFT_MiddleDLE_HIND_LEG);
-        this.rightMiddleHindLeg = root.getChild(RIGHT_MiddleDLE_HIND_LEG);
+        this.leftMiddleFrontLeg = root.getChild(LEFT_MIDDLE_FRONT_LEG);
+        this.rightMiddleFrontLeg = root.getChild(RIGHT_MIDDLE_FRONT_LEG);
+        this.leftMiddleHindLeg = root.getChild(LEFT_MIDDLE_HIND_LEG);
+        this.rightMiddleHindLeg = root.getChild(RIGHT_MIDDLE_HIND_LEG);
         this.leftHindLeg = root.getChild(LEFT_HIND_LEG);
         this.rightHindLeg = root.getChild(RIGHT_HIND_LEG);
 
@@ -50,39 +50,125 @@ public class WeaverModel<T extends WeaverEntity> extends SinglePartEntityModel<T
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
-        ModelPartData neck = modelPartData.addChild(NECK, ModelPartBuilder.create().uv(80, 52).cuboid(-3.0F, -2.5F, -4.0F, 6.0F, 5.0F, 7.0F, new Dilation(0.0F))
-                .uv(80, 64).cuboid(-3.0F, -2.5F, -4.0F, 6.0F, 5.0F, 7.0F, new Dilation(0.5F)), ModelTransform.pivot(0.0F, 15.5F, -3.0F));
+        
+        ModelPartData neck = modelPartData.addChild(
+                NECK,
+                ModelPartBuilder.create()
+                        .uv(80, 52)
+                        .cuboid(-3.0F, -2.5F, -4.0F, 6.0F, 5.0F, 7.0F)
+                        .uv(80, 64).cuboid(-3.0F, -2.5F, -4.0F, 6.0F, 5.0F, 7.0F, new Dilation(0.5F)),
+                ModelTransform.pivot(0.0F, 15.5F, -3.0F)
+        );
 
-        ModelPartData head = neck.addChild(HEAD, ModelPartBuilder.create().uv(60, 0).cuboid(-7.0F, -5.0F, -8.0F, 14.0F, 8.0F, 8.0F, new Dilation(0.0F))
-                .uv(60, 36).cuboid(-7.0F, -5.0F, -8.0F, 14.0F, 8.0F, 8.0F, new Dilation(0.5F))
-                .uv(60, 52).cuboid(-4.0F, -5.0F, 1.0F, 8.0F, 1.0F, 1.0F, new Dilation(0.5F)), ModelTransform.pivot(0.0F, -0.5F, -4.0F));
+        ModelPartData head = neck.addChild(
+                HEAD,
+                ModelPartBuilder.create()
+                        .uv(60, 0)
+                        .cuboid(-7.0F, -5.0F, -8.0F, 14.0F, 8.0F, 8.0F)
+                        .uv(60, 36)
+                        .cuboid(-7.0F, -5.0F, -8.0F, 14.0F, 8.0F, 8.0F, new Dilation(0.5F))
+                        .uv(60, 52)
+                        .cuboid(-4.0F, -5.0F, 1.0F, 8.0F, 1.0F, 1.0F, new Dilation(0.5F)),
+                ModelTransform.pivot(0.0F, -0.5F, -4.0F)
+        );
 
-        ModelPartData body = neck.addChild(BODY, ModelPartBuilder.create().uv(0, 0).cuboid(-10.0F, -13.0F, 0.0F, 20.0F, 16.0F, 20.0F, new Dilation(0.0F))
-                .uv(0, 36).cuboid(-10.0F, -13.0F, 0.4F, 20.0F, 16.0F, 20.0F, new Dilation(0.5F)), ModelTransform.pivot(0.0F, 0.5F, 3.0F));
+        ModelPartData body = neck.addChild(
+                BODY,
+                ModelPartBuilder.create()
+                        .uv(0, 0)
+                        .cuboid(-10.0F, -13.0F, 0.0F, 20.0F, 16.0F, 20.0F)
+                        .uv(0, 36)
+                        .cuboid(-10.0F, -13.0F, 0.4F, 20.0F, 16.0F, 20.0F, new Dilation(0.5F)),
+                ModelTransform.pivot(0.0F, 0.5F, 3.0F)
+        );
 
-        ModelPartData leftFrontLeg = modelPartData.addChild(LEFT_FRONT_LEG, ModelPartBuilder.create().uv(0, 72).cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.0F))
-                .uv(0, 76).cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F)), ModelTransform.pivot(3.0F, 17.0F, -7.0F));
+        ModelPartData leftFrontLeg = modelPartData.addChild(
+                LEFT_FRONT_LEG,
+                ModelPartBuilder.create()
+                        .uv(0, 72)
+                        .cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F)
+                        .uv(0, 76)
+                        .cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F)),
+                ModelTransform.pivot(3.0F, 17.0F, -7.0F)
+        );
 
-        ModelPartData rightFrontLeg = modelPartData.addChild(RIGHT_FRONT_LEG, ModelPartBuilder.create().uv(0, 72).mirrored().cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
-                .uv(0, 76).mirrored().cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F)).mirrored(false), ModelTransform.pivot(-3.0F, 17.0F, -7.0F));
+        ModelPartData rightFrontLeg = modelPartData.addChild(
+                RIGHT_FRONT_LEG,
+                ModelPartBuilder.create()
+                        .uv(0, 72).mirrored()
+                        .cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F)
+                        .mirrored(false)
+                        .uv(0, 76).mirrored()
+                        .cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F))
+                        .mirrored(false),
+                ModelTransform.pivot(-3.0F, 17.0F, -7.0F)
+        );
 
-        ModelPartData leftMiddleFrontLeg = modelPartData.addChild(LEFT_MiddleDLE_FRONT_LEG, ModelPartBuilder.create().uv(0, 72).cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.0F))
-                .uv(0, 76).cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F)), ModelTransform.pivot(3.0F, 17.0F, -4.0F));
+        ModelPartData leftMiddleFrontLeg = modelPartData.addChild(
+                LEFT_MIDDLE_FRONT_LEG,
+                ModelPartBuilder.create()
+                        .uv(0, 72)
+                        .cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F)
+                        .uv(0, 76)
+                        .cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F)),
+                ModelTransform.pivot(3.0F, 17.0F, -4.0F)
+        );
 
-        ModelPartData rightMiddleFrontLeg = modelPartData.addChild(RIGHT_MiddleDLE_FRONT_LEG, ModelPartBuilder.create().uv(0, 72).mirrored().cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
-                .uv(0, 76).mirrored().cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F)).mirrored(false), ModelTransform.pivot(-3.0F, 17.0F, -4.0F));
+        ModelPartData rightMiddleFrontLeg = modelPartData.addChild(
+                RIGHT_MIDDLE_FRONT_LEG,
+                ModelPartBuilder.create()
+                        .uv(0, 72).mirrored()
+                        .cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F)
+                        .mirrored(false)
+                        .uv(0, 76).mirrored()
+                        .cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F))
+                        .mirrored(false),
+                ModelTransform.pivot(-3.0F, 17.0F, -4.0F)
+        );
 
-        ModelPartData leftMiddleHindLeg = modelPartData.addChild(LEFT_MiddleDLE_HIND_LEG, ModelPartBuilder.create().uv(0, 72).cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.0F))
-                .uv(0, 76).cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F)), ModelTransform.pivot(3.0F, 17.0F, -1.0F));
+        ModelPartData leftMiddleHindLeg = modelPartData.addChild(
+                LEFT_MIDDLE_HIND_LEG, 
+                ModelPartBuilder.create()
+                        .uv(0, 72)
+                        .cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F)
+                        .uv(0, 76)
+                        .cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F)),
+                ModelTransform.pivot(3.0F, 17.0F, -1.0F)
+        );
 
-        ModelPartData rightMiddleHindLeg = modelPartData.addChild(RIGHT_MiddleDLE_HIND_LEG, ModelPartBuilder.create().uv(0, 72).mirrored().cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
-                .uv(0, 76).mirrored().cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F)).mirrored(false), ModelTransform.pivot(-3.0F, 17.0F, -1.0F));
+        ModelPartData rightMiddleHindLeg = modelPartData.addChild(
+                RIGHT_MIDDLE_HIND_LEG, 
+                ModelPartBuilder.create()
+                        .uv(0, 72).mirrored()
+                        .cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F)
+                        .mirrored(false)
+                        .uv(0, 76).mirrored()
+                        .cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F))
+                        .mirrored(false),
+                ModelTransform.pivot(-3.0F, 17.0F, -1.0F)
+        );
 
-        ModelPartData leftHindLeg = modelPartData.addChild(LEFT_HIND_LEG, ModelPartBuilder.create().uv(0, 72).cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.0F))
-                .uv(0, 76).cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F)), ModelTransform.pivot(3.0F, 17.0F, 2.0F));
+        ModelPartData leftHindLeg = modelPartData.addChild(
+                LEFT_HIND_LEG,
+                ModelPartBuilder.create()
+                        .uv(0, 72)
+                        .cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F)
+                        .uv(0, 76)
+                        .cuboid(0.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F)),
+                ModelTransform.pivot(3.0F, 17.0F, 2.0F)
+        );
 
-        ModelPartData rightHindLeg = modelPartData.addChild(RIGHT_HIND_LEG, ModelPartBuilder.create().uv(0, 72).mirrored().cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.0F)).mirrored(false)
-                .uv(0, 76).mirrored().cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F)).mirrored(false), ModelTransform.pivot(-3.0F, 17.0F, 2.0F));
+        ModelPartData rightHindLeg = modelPartData.addChild(
+                RIGHT_HIND_LEG,
+                ModelPartBuilder.create()
+                        .uv(0, 72).mirrored()
+                        .cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F)
+                        .mirrored(false)
+                        .uv(0, 76).mirrored()
+                        .cuboid(-20.0F, -1.0F, -1.0F, 20.0F, 2.0F, 2.0F, new Dilation(0.25F))
+                        .mirrored(false),
+                ModelTransform.pivot(-3.0F, 17.0F, 2.0F)
+        );
         return TexturedModelData.of(modelData, 112, 80);
     }
 

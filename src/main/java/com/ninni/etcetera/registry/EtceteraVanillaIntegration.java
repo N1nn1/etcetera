@@ -98,20 +98,22 @@ public class EtceteraVanillaIntegration {
 
     private static void itemTooltipCallback(){
 
-        ItemTooltipCallback.EVENT.register((stack, context1, lines) ->{
-            int color = 0x959595;
-            switch (stack.getRarity()){
-                case COMMON -> color=0x959595;
-                case UNCOMMON -> color=0xbb7d2b;
-                case RARE -> color=Formatting.DARK_AQUA.getColorValue();
-                case EPIC -> color= Formatting.DARK_PURPLE.getColorValue();
-            }
-            Style style = Style.EMPTY.withColor(color).withItalic(true);
+        //TODO this crashes SERVERS
 
-            for (int row = 1; row < 5; row++) {
-                if (stack.hasNbt() && stack.getNbt().contains("Label" + row)) lines.add(row, Text.literal(stack.getNbt().getString("Label" + row)).setStyle(style));
-            }
-        });
+        //ItemTooltipCallback.EVENT.register((stack, context1, lines) ->{
+        //    int color = 0x959595;
+        //    switch (stack.getRarity()){
+        //        case COMMON -> color=0x959595;
+        //        case UNCOMMON -> color=0xbb7d2b;
+        //        case RARE -> color=Formatting.DARK_AQUA.getColorValue();
+        //        case EPIC -> color= Formatting.DARK_PURPLE.getColorValue();
+        //    }
+        //    Style style = Style.EMPTY.withColor(color).withItalic(true);
+//
+        //    for (int row = 1; row < 5; row++) {
+        //        if (stack.hasNbt() && stack.getNbt().contains("Label" + row)) lines.add(row, Text.literal(stack.getNbt().getString("Label" + row)).setStyle(style));
+        //    }
+        //});
     }
 
     private static void registerDispenserBehavior() {
@@ -313,6 +315,8 @@ public class EtceteraVanillaIntegration {
         EntityRendererRegistry.register(EtceteraEntityType.EGGPLE, FlyingItemEntityRenderer::new);
         EntityRendererRegistry.register(EtceteraEntityType.WEAVER, WeaverRenderer::new);
         EntityRendererRegistry.register(EtceteraEntityType.COBWEB, CobwebProjectileEntityRenderer::new);
+        EntityRendererRegistry.register(EtceteraEntityType.GOLDEN_GOLEM, GoldenGolemRenderer::new);
+        EntityRendererRegistry.register(EtceteraEntityType.THROWN_GOLDEN_GOLEM, FlyingItemEntityRenderer::new);
     }
 
     private static void registerColorProviders() {

@@ -97,6 +97,10 @@
   "subtitles.block.etcetera.light_bulb.on": "Light Bulb brightens",
   "subtitles.block.etcetera.light_bulb.off": "Light Bulb darkens",
 
+  "item.etcetera.golden_golem": "Golden Golem",
+  "entity.etcetera.golden_golem": "Golden Golem",
+  "item.etcetera.golden_golem.healing_amount": "Healing Amount: %s",
+
   "entity.etcetera.weaver": "Weaver",
   "item.etcetera.weaver_spawn_egg": "Weaver Spawn Egg",
   "item.etcetera.silken_slacks": "Silken Slacks",
