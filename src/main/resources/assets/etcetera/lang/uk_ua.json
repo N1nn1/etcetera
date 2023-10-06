@@ -50,7 +50,7 @@
   "advancements.etcetera.nether.obtain_bismuth.description": "Добудьте необроблений бісмут",
 
   "item.etcetera.wrench": "Гайковий ключ",
-  "item.etcetera.wrench.select": "Обрано об'єкт: \"%1$s\"",
+  "item.etcetera.wrench.select": "Обрано об'єкт: «%1$s»",
   "item.etcetera.wrench.invalid": "Об'єкт: «%1$s» неможливо видозмінити",
   "item.etcetera.wrench.block.invalid": "Цей блок неможливо видозмінити",
   "subtitles.item.etcetera.wrench.select": "Гайковий ключ видозмінює",
