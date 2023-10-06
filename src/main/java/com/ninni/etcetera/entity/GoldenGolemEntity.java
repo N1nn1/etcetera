@@ -92,6 +92,13 @@ public class GoldenGolemEntity extends PathAwareEntity {
             this.discard();
         }
 
+        if (!this.getWorld().isClient) {
+            LivingEntity defendedEntity = this.getDefendedEntity();
+            if (defendedEntity != null && defendedEntity.isDead()) {
+                this.turnIntoAnItem();
+            }
+        }
+
         if (!this.getWorld().isClient && this.isAlive() && this.age % 10 == 0) {
             this.heal(1.0f);
         }
@@ -160,25 +167,39 @@ public class GoldenGolemEntity extends PathAwareEntity {
     protected void fall(double heightDifference, boolean onGround, BlockState state, BlockPos landedPosition) {
     }
 
+    @Nullable
     public LivingEntity getDefendedEntity() {
         if (this.getWorld() instanceof ServerWorld serverWorld) {
-            if (serverWorld.getEntity(this.getDefendingUuid()) instanceof LivingEntity livingEntity) return livingEntity;
+            UUID uuid = this.getDefendingUuid();
+            if (uuid != null) {
+                PlayerEntity player = serverWorld.getPlayerByUuid(uuid);
+                if (player != null) {
+                    return player;
+                } else {
+                    if (serverWorld.getEntity(uuid) instanceof LivingEntity livingEntity) {
+                        return livingEntity;
+                    }
+                }
+            }
         }
         return null;
     }
 
     public class HealDefendingGoal extends Goal {
         private final GoldenGolemEntity golem;
-        private final LivingEntity defending;
+        @Nullable
+        private LivingEntity defending;
 
         public HealDefendingGoal() {
             this.golem = GoldenGolemEntity.this;
-            this.defending = this.golem.getDefendedEntity();
         }
 
         @Override
         public boolean canStart() {
-            if (this.cannotFollow()) return false;
+            if (this.cannotFollow()) {
+                return false;
+            }
+            this.defending = this.golem.getDefendedEntity();
             return this.defending != null && this.defending.getHealth() < this.defending.getMaxHealth() && this.golem.getHealingAmount() > 0;
         }
 
@@ -190,6 +211,9 @@ public class GoldenGolemEntity extends PathAwareEntity {
 
         @Override
         public boolean shouldContinue() {
+            if (this.golem.distanceTo(this.defending) < 3.0F) {
+                return false;
+            }
             return !this.cannotFollow();
         }
 
@@ -208,6 +232,7 @@ public class GoldenGolemEntity extends PathAwareEntity {
 
     public class FollowDefendingEntityGoal extends Goal {
         private final GoldenGolemEntity golem;
+        @Nullable
         private LivingEntity defending;
         private final WorldView world;
         private final double speed;
@@ -222,7 +247,6 @@ public class GoldenGolemEntity extends PathAwareEntity {
             this.world = golem.getWorld();
             this.speed = speed;
             this.defending = this.golem.getDefendedEntity();
-            System.out.println(this.golem.getDefendingUuid());
             this.navigation = golem.getNavigation();
             this.minDistance = minDistance;
             this.maxDistance = maxDistance;
@@ -231,7 +255,7 @@ public class GoldenGolemEntity extends PathAwareEntity {
 
         @Override
         public boolean canStart() {
-            LivingEntity livingEntity = this.defending;
+            LivingEntity livingEntity = this.golem.getDefendedEntity();
             if (livingEntity == null) return false;
             if (livingEntity.isSpectator()) return false;
             if (this.cannotFollow()) return false;

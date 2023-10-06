@@ -35,7 +35,9 @@ public class GoldenGolemItemEntity extends ThrownItemEntity {
             if (hitResult instanceof EntityHitResult entityHitResult) {
                 goldenGolem.setDefendingUuid(entityHitResult.getEntity().getUuid());
             } else {
-                goldenGolem.setDefendingUuid(this.getOwner().getUuid());
+                if (this.getOwner() != null) {
+                    goldenGolem.setDefendingUuid(this.getOwner().getUuid());
+                }
             }
 
             if (this.getItem().hasNbt() && this.getItem().getNbt().contains("HealingAmount")) goldenGolem.setHealingAmount(this.getItem().getNbt().getInt("HealingAmount"));
