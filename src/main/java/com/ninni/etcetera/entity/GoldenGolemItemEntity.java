@@ -41,7 +41,8 @@ public class GoldenGolemItemEntity extends ThrownItemEntity {
             }
 
             if (this.getItem().hasNbt() && this.getItem().getNbt().contains("HealingAmount")) goldenGolem.setHealingAmount(this.getItem().getNbt().getInt("HealingAmount"));
-            else goldenGolem.setHealingAmount(20);
+            if (this.getItem().hasNbt() && this.getItem().getNbt().contains("HealingCooldown")) goldenGolem.setHealingCooldown(this.getItem().getNbt().getInt("HealingCooldown"));
+            else goldenGolem.setHealingAmount(10);
             this.getWorld().spawnEntity(goldenGolem);
 
 

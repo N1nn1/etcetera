@@ -14,7 +14,6 @@ import com.ninni.etcetera.resource.EtceteraProcessResourceManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -31,6 +30,7 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.entity.projectile.ProjectileEntity;
@@ -44,9 +44,7 @@ import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.resource.ResourceType;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
@@ -84,6 +82,7 @@ public class EtceteraVanillaIntegration {
         registerBlockRenderLayers();
         registerScreens();
         registerEntityModelLayers();
+        registerModelPredicates();
         registerColorProviders();
     }
 
@@ -236,6 +235,15 @@ public class EtceteraVanillaIntegration {
     }
 
     //client
+
+    private static void registerModelPredicates() {
+        ModelPredicateProviderRegistry.register(EtceteraItems.GOLDEN_GOLEM, new Identifier("broken"), (stack, world, entity, seed) -> {
+            if (stack.hasNbt() && stack.getNbt().contains("Broken") && stack.getNbt().getBoolean("Broken")) return 1;
+            return 0;
+        });
+
+    }
+
     @SuppressWarnings("deprecation")
     private static void registerBlockEntityRenderer() {
         BlockEntityRendererRegistry.register(EtceteraBlockEntityType.ITEM_STAND, ItemStandBlockEntityRenderer::new);

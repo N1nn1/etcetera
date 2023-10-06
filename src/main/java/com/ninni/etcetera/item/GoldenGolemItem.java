@@ -5,6 +5,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
@@ -26,23 +27,33 @@ public class GoldenGolemItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EGG_THROW, SoundCategory.PLAYERS, 0.5f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
+
 
         if (!world.isClient) {
-            GoldenGolemItemEntity goldenGolemItem = new GoldenGolemItemEntity(world, user);
-            goldenGolemItem.setItem(itemStack);
-            goldenGolemItem.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 1.5f, 1.0f);
-            world.spawnEntity(goldenGolemItem);
+            if (itemStack.hasNbt() && itemStack.getNbt().contains("Broken") && itemStack.getNbt().getBoolean("Broken")) {
+                return TypedActionResult.fail(itemStack);
+            } else {
+                world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EGG_THROW, SoundCategory.PLAYERS, 0.5f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
+                GoldenGolemItemEntity goldenGolemItem = new GoldenGolemItemEntity(world, user);
+                goldenGolemItem.setItem(itemStack);
+                goldenGolemItem.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 1.5f, 1.0f);
+                world.spawnEntity(goldenGolemItem);
+                user.incrementStat(Stats.USED.getOrCreateStat(this));
+                if (!user.getAbilities().creativeMode) itemStack.decrement(1);
+
+                return TypedActionResult.success(itemStack);
+            }
         }
 
-        user.incrementStat(Stats.USED.getOrCreateStat(this));
-        if (!user.getAbilities().creativeMode) itemStack.decrement(1);
-        return TypedActionResult.success(itemStack, world.isClient());
+        return TypedActionResult.fail(itemStack);
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
-        if (stack.hasNbt() && stack.getNbt().contains("HealingAmount")) tooltip.add(Text.translatable("item.etcetera.golden_golem.healing_amount", stack.getNbt().getInt("HealingAmount")).formatted(Formatting.YELLOW));
+        NbtCompound nbt = stack.getNbt();
+
+        if (stack.hasNbt() && nbt.contains("HealingAmount")) tooltip.add(Text.translatable("item.etcetera.golden_golem.healing_amount", nbt.getInt("HealingAmount")).formatted(Formatting.YELLOW));
+        if (stack.hasNbt() && nbt.contains("Broken") && nbt.getBoolean("Broken")) tooltip.add(Text.translatable("item.etcetera.golden_golem.broken").formatted(Formatting.GRAY));
     }
 }

@@ -3,6 +3,7 @@ package com.ninni.etcetera.mixin;
 import com.ninni.etcetera.registry.EtceteraItems;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.*;
 import org.jetbrains.annotations.Nullable;
@@ -26,14 +27,14 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     @Inject(method = "updateResult", at = @At("HEAD"), cancellable = true)
     private void hammeringAnvil(CallbackInfo ci) {
         ItemStack input = this.input.getStack(0);
-        ItemStack label = this.input.getStack(1);
+        ItemStack secondStack = this.input.getStack(1);
 
 
-        if (label.isOf(EtceteraItems.ITEM_LABEL) && label.hasCustomName() && !input.isEmpty()) {
+        if (secondStack.isOf(EtceteraItems.ITEM_LABEL) && secondStack.hasCustomName() && !input.isEmpty()) {
             ci.cancel();
             ItemStack output = input.copy();
             NbtCompound nbt = output.getOrCreateNbt();
-            String labelText = label.getName().getString();
+            String labelText = secondStack.getName().getString();
 
             if (!output.getNbt().contains("Label1")) {
                 nbt.putString("Label1", labelText);
@@ -58,6 +59,20 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
             this.repairItemUsage = 1;
             this.output.setStack(0, output);
             this.sendContentUpdates();
+        }
+        if (input.isOf(EtceteraItems.GOLDEN_GOLEM) && secondStack.isOf(Items.GOLD_INGOT) && input.hasNbt() && input.getNbt().contains("HealingAmount") && input.getNbt().getInt("HealingAmount") < 10) {
+            ci.cancel();
+            ItemStack output = input.copy();
+            NbtCompound nbt = output.getNbt();
+
+            nbt.putInt("HealingAmount", Math.min(nbt.getInt("HealingAmount") + 2, 10));
+            if (nbt.contains("Broken") && nbt.getBoolean("Broken")) nbt.putBoolean("Broken", false);
+            this.levelCost.set(2);
+
+            this.repairItemUsage = 1;
+            this.output.setStack(0, output);
+            this.sendContentUpdates();
+
         }
 
     }

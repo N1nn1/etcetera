@@ -2,6 +2,7 @@ package com.ninni.etcetera.entity;
 
 import com.ninni.etcetera.registry.EtceteraItems;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.control.FlightMoveControl;
@@ -9,6 +10,7 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
@@ -18,8 +20,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
-import net.minecraft.server.ServerConfigHandler;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -32,6 +34,7 @@ import java.util.*;
 public class GoldenGolemEntity extends PathAwareEntity {
     private static final TrackedData<Optional<UUID>> DEFENDING_UUID = DataTracker.registerData(GoldenGolemEntity.class, TrackedDataHandlerRegistry.OPTIONAL_UUID);
     private static final TrackedData<Integer> HEALING_AMOUNT = DataTracker.registerData(GoldenGolemEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<Integer> HEALING_COOLDOWN = DataTracker.registerData(GoldenGolemEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     public GoldenGolemEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
         super(entityType, world);
@@ -49,7 +52,7 @@ public class GoldenGolemEntity extends PathAwareEntity {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0).add(EntityAttributes.GENERIC_FLYING_SPEED, 0.8f).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.1f).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0);
+        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0).add(EntityAttributes.GENERIC_FLYING_SPEED, 1f).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5f).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0);
     }
 
     @Override
@@ -63,39 +66,42 @@ public class GoldenGolemEntity extends PathAwareEntity {
                         if (uuid2 != player.getUuid()) {
                             return ActionResult.PASS;
                         } else {
-                            this.turnIntoAnItem();
+                            this.dropAsItem(false);
                             return ActionResult.SUCCESS;
                         }
                     }
                 }
             } else {
-                this.turnIntoAnItem();
+                this.dropAsItem(false);
                 return ActionResult.SUCCESS;
             }
         }
         return super.interactMob(player, hand);
     }
 
-    public void turnIntoAnItem() {
+    public void dropAsItem(boolean broken) {
         ItemStack stack = new ItemStack(EtceteraItems.GOLDEN_GOLEM);
         NbtCompound nbt = stack.getOrCreateNbt();
         nbt.putInt("HealingAmount", this.getHealingAmount());
+        nbt.putInt("HealingCooldown", this.getHealingCooldown());
+        nbt.putBoolean("Broken", broken);
         this.dropStack(stack);
         this.discard();
     }
+
 
     @Override
     public void tickMovement() {
         super.tickMovement();
 
         if (this.getHealingAmount() == 0) {
-            this.discard();
+            this.dropAsItem(true);
         }
-
+        if (this.getHealingCooldown() > 0) this.setHealingCooldown(this.getHealingCooldown()-1);
         if (!this.getWorld().isClient) {
             LivingEntity defendedEntity = this.getDefendedEntity();
             if (defendedEntity != null && defendedEntity.isDead()) {
-                this.turnIntoAnItem();
+                this.dropAsItem(false);
             }
         }
 
@@ -111,19 +117,25 @@ public class GoldenGolemEntity extends PathAwareEntity {
     public void setDefendingUuid(@Nullable UUID uuid) {
         this.dataTracker.set(DEFENDING_UUID, Optional.ofNullable(uuid));
     }
-    @Nullable
     public int getHealingAmount() {
         return this.dataTracker.get(HEALING_AMOUNT);
     }
     public void setHealingAmount(int amount) {
         this.dataTracker.set(HEALING_AMOUNT, amount);
     }
+    public int getHealingCooldown() {
+        return this.dataTracker.get(HEALING_COOLDOWN);
+    }
+    public void setHealingCooldown(int cooldown) {
+        this.dataTracker.set(HEALING_COOLDOWN, cooldown);
+    }
 
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
         this.dataTracker.startTracking(DEFENDING_UUID, Optional.empty());
-        this.dataTracker.startTracking(HEALING_AMOUNT, 20);
+        this.dataTracker.startTracking(HEALING_AMOUNT, 10);
+        this.dataTracker.startTracking(HEALING_COOLDOWN, 0);
     }
 
     @Override
@@ -131,6 +143,7 @@ public class GoldenGolemEntity extends PathAwareEntity {
         super.writeCustomDataToNbt(nbt);
         if (this.getDefendingUuid() != null) nbt.putUuid("Defending", this.getDefendingUuid());
         nbt.putInt("HealingAmount", this.getHealingAmount());
+        nbt.putInt("HealingCooldown", this.getHealingCooldown());
     }
 
     @Override
@@ -142,6 +155,9 @@ public class GoldenGolemEntity extends PathAwareEntity {
         if (nbt.contains("HealingAmount", NbtElement.INT_TYPE)) {
             this.setHealingAmount(nbt.getInt("HealingAmount"));
         }
+        if (nbt.contains("HealingCooldown", NbtElement.INT_TYPE)) {
+            this.setHealingAmount(nbt.getInt("HealingCooldown"));
+        }
     }
 
     @Override
@@ -151,6 +167,15 @@ public class GoldenGolemEntity extends PathAwareEntity {
         birdNavigation.setCanSwim(true);
         birdNavigation.setCanEnterOpenDoors(true);
         return birdNavigation;
+    }
+
+    @Override
+    public boolean damage(DamageSource source, float amount) {
+        Entity entity = source.getAttacker();
+        if (entity == this.getDefendedEntity()) {
+            return false;
+        }
+        return super.damage(source, amount);
     }
 
     @Override
@@ -200,7 +225,7 @@ public class GoldenGolemEntity extends PathAwareEntity {
                 return false;
             }
             this.defending = this.golem.getDefendedEntity();
-            return this.defending != null && this.defending.getHealth() < this.defending.getMaxHealth() && this.golem.getHealingAmount() > 0;
+            return this.defending != null && this.defending.getHealth() < this.defending.getMaxHealth()/3 && this.golem.getHealingAmount() > 0 && this.golem.getHealingCooldown() == 0;
         }
 
         @Override
@@ -224,8 +249,10 @@ public class GoldenGolemEntity extends PathAwareEntity {
         @Override
         public void stop() {
             super.stop();
+            this.golem.playSound(SoundEvents.ENTITY_VILLAGER_CELEBRATE, 1, 1);
+            this.golem.setHealingCooldown(20 * 120);
+            this.defending.heal(20);
             this.golem.setHealingAmount(this.golem.getHealingAmount()-1);
-            this.defending.heal(10);
         }
     }
 
