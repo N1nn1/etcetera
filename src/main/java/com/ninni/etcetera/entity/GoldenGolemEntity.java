@@ -153,6 +153,16 @@ public class GoldenGolemEntity extends PathAwareEntity {
     }
 
     @Override
+    public boolean canImmediatelyDespawn(double distanceSquared) {
+        return false;
+    }
+
+    @Override
+    public boolean cannotDespawn() {
+        return true;
+    }
+
+    @Override
     public void onTrackedDataSet(TrackedData<?> data) {
         if (POSE.equals(data)) {
             EntityPose entityPose = this.getPose();
