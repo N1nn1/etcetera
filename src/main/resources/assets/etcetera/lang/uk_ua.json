@@ -53,7 +53,7 @@
   "item.etcetera.wrench.select": "Обрано об'єкт: «%1$s»",
   "item.etcetera.wrench.invalid": "Об'єкт: «%1$s» неможливо видозмінити",
   "item.etcetera.wrench.block.invalid": "Цей блок неможливо видозмінити",
-  "subtitles.item.etcetera.wrench.select": "Гайковий ключ видозмінює",
+  "subtitles.item.etcetera.wrench.select": "Гайковий ключ перемикає",
   "subtitles.item.etcetera.wrench.fail": "Гайковий ключ хибить",
   "subtitles.item.etcetera.wrench.modify": "Гайковий ключ видозмінює",
   "item.etcetera.chisel": "Зубило",
@@ -81,7 +81,7 @@
 
   "block.etcetera.sand_path": "Піщана стежка",
   "block.etcetera.red_sand_path": "Стежка з червоного піску",
-  "block.etcetera.gravel_path": "Стежка з гравію",
+  "block.etcetera.gravel_path": "Гравійна стежка",
   "block.etcetera.snow_path": "Снігова стежка",
 
   "block.etcetera.crumbling_stone": "Крихкий камінь",
@@ -95,7 +95,19 @@
   "block.etcetera.light_bulb": "Лампа",
   "block.etcetera.tinted_light_bulb": "Тонована лампа",
   "subtitles.block.etcetera.light_bulb.on": "Лампа яскравішає",
-  "subtitles.block.etcetera.light_bulb.off": "Лампочка гасне",
+  "subtitles.block.etcetera.light_bulb.off": "Лампа тускніє",
+
+  "item.etcetera.golden_golem": "Золотий ґолем",
+  "entity.etcetera.golden_golem": "Золотий ґолем",
+  "item.etcetera.golden_golem.healing_amount": "Використань лишилось: %s",
+  "item.etcetera.golden_golem.cooldown": "На відновлені",
+  "subtitles.entity.etcetera.golden_golem.idle": "Золотий ґолем бурмоче",
+  "subtitles.entity.etcetera.golden_golem.hurt": "Золотого ґолема поранено",
+  "subtitles.entity.etcetera.golden_golem.death": "Золотий ґолем гине",
+  "subtitles.entity.etcetera.golden_golem.land": "Золотого ґолема розміщено",
+  "subtitles.entity.etcetera.golden_golem.grant": "Золотий ґолем зцілює",
+  "subtitles.entity.etcetera.golden_golem.item": "Золотого ґолема демонтовано",
+  "subtitles.entity.etcetera.golden_golem.throw": "Золотий ґолем літає",
 
   "entity.etcetera.weaver": "Ткач",
   "item.etcetera.weaver_spawn_egg": "Яйце виклику ткача",
@@ -116,7 +128,7 @@
   "subtitles.entity.chapple.convert": "Квоблуко перетворюється",
 
   "block.etcetera.cotton": "Бавовна",
-  "item.etcetera.cotton_seeds": "Насіння бавовни",
+  "item.etcetera.cotton_seeds": "Насіння бавовника",
   "item.etcetera.cotton_flower": "Бавовник",
   "item.etcetera.white_sweater": "Білий светр",
   "item.etcetera.light_gray_sweater": "Світло-сірий светр",
@@ -156,7 +168,7 @@
   "advancements.etcetera.husbandry.obtain_cotton_armor.title": "Теплий і кучерявий",
   "advancements.etcetera.husbandry.obtain_cotton_armor.description": "Зшийте бавовняне вбрання",
   "advancements.etcetera.story.obtain_trader_armor.title": "Крамарство зі стилем!",
-  "advancements.etcetera.story.obtain_trader_armor.description": "Торгуйте з мандрівним крамарем та придбайте ексклюзивне вбрання",
+  "advancements.etcetera.story.obtain_trader_armor.description": "Торгуйте з мандрівним крамарем і придбайте ексклюзивне вбрання",
   "advancements.etcetera.husbandry.plant_cotton.title": "Бавовна в кожну оселю",
-  "advancements.etcetera.husbandry.plant_cotton.description": "Посадіть насіння бавовни"
+  "advancements.etcetera.husbandry.plant_cotton.description": "Посадіть насіння бавовника"
 }
