@@ -1,7 +1,7 @@
-package com.ninni.etcetera.client.renderer.entity;
+package com.ninni.etcetera.client.render.entity;
 
 import com.ninni.etcetera.client.model.WeaverModel;
-import com.ninni.etcetera.client.renderer.entity.layer.WeaverEyesFeatureRenderer;
+import com.ninni.etcetera.client.render.entity.layer.WeaverEyesFeatureRenderer;
 import com.ninni.etcetera.entity.WeaverEntity;
 import com.ninni.etcetera.registry.EtceteraEntityModelLayers;
 import net.fabricmc.api.EnvType;

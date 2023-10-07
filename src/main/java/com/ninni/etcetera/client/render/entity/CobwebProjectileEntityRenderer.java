@@ -1,4 +1,4 @@
-package com.ninni.etcetera.client.renderer.entity;
+package com.ninni.etcetera.client.render.entity;
 
 import com.ninni.etcetera.Etcetera;
 import com.ninni.etcetera.client.model.CobwebProjectileModel;

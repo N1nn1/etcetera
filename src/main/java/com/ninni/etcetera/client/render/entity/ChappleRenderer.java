@@ -1,4 +1,4 @@
-package com.ninni.etcetera.client.renderer.entity;
+package com.ninni.etcetera.client.render.entity;
 
 import com.google.common.collect.Maps;
 import com.ninni.etcetera.client.model.ChappleModel;

@@ -547,5 +547,58 @@
 			"etcetera:item/armor/equip_adventurer6"
 		],
 		"subtitle": "subtitles.item.etcetera.adventurer.armor.equip"
+	},
+	"entity.golden_golem.death": {
+		"sounds": [
+			"etcetera:entity/golden_golem/death1",
+			"etcetera:entity/golden_golem/death2"
+		],
+		"subtitle": "subtitles.entity.etcetera.golden_golem.death"
+	},
+	"entity.golden_golem.grant": {
+		"sounds": [
+			"etcetera:entity/golden_golem/grant1",
+			"etcetera:entity/golden_golem/grant2"
+		],
+		"subtitle": "subtitles.entity.etcetera.golden_golem.grant"
+	},
+	"entity.golden_golem.hurt": {
+		"sounds": [
+			"etcetera:entity/golden_golem/hurt1",
+			"etcetera:entity/golden_golem/hurt2",
+			"etcetera:entity/golden_golem/hurt3"
+		],
+		"subtitle": "subtitles.entity.etcetera.golden_golem.hurt"
+	},
+	"entity.golden_golem.idle": {
+		"sounds": [
+			"etcetera:entity/golden_golem/idle1",
+			"etcetera:entity/golden_golem/idle2",
+			"etcetera:entity/golden_golem/idle3",
+			"etcetera:entity/golden_golem/idle4",
+			"etcetera:entity/golden_golem/idle5",
+			"etcetera:entity/golden_golem/idle6"
+		],
+		"subtitle": "subtitles.entity.etcetera.golden_golem.idle"
+	},
+	"entity.golden_golem.item": {
+		"sounds": [
+			"etcetera:entity/golden_golem/item"
+		],
+		"subtitle": "subtitles.entity.etcetera.golden_golem.item"
+	},
+	"entity.golden_golem.land": {
+		"sounds": [
+			"etcetera:entity/golden_golem/land"
+		],
+		"subtitle": "subtitles.entity.etcetera.golden_golem.land"
+	},
+	"entity.golden_golem.throw": {
+		"sounds": [
+			"etcetera:entity/golden_golem/throw1",
+			"etcetera:entity/golden_golem/throw2",
+			"etcetera:entity/golden_golem/throw3"
+		],
+		"subtitle": "subtitles.entity.etcetera.golden_golem.throw"
 	}
 }

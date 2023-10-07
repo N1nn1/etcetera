@@ -1,4 +1,4 @@
-package com.ninni.etcetera.client.renderer.entity;
+package com.ninni.etcetera.client.render.entity;
 
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.minecraft.client.MinecraftClient;
@@ -13,9 +13,9 @@ import net.minecraft.util.Identifier;
 
 import static com.ninni.etcetera.Etcetera.MOD_ID;
 
-public class SilkArmorRenderer implements ArmorRenderer {
+public class AdventurerArmorRenderer implements ArmorRenderer {
     private BipedEntityModel<LivingEntity> armorModel;
-    public static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/models/armor/silk_layer_2.png");
+    public static final Identifier TEXTURE = new Identifier(MOD_ID, "textures/models/armor/adventurer_layer_1.png");
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, ItemStack stack, LivingEntity entity, EquipmentSlot slot, int light, BipedEntityModel<LivingEntity> contextModel) {

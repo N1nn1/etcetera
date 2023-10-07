@@ -4,8 +4,9 @@ import com.google.common.collect.Maps;
 import com.google.common.reflect.Reflection;
 import com.ninni.etcetera.client.TidalHelmetHud;
 import com.ninni.etcetera.client.gui.screen.PricklyCanScreen;
-import com.ninni.etcetera.client.renderer.block.entity.ItemStandBlockEntityRenderer;
-import com.ninni.etcetera.client.renderer.entity.*;
+import com.ninni.etcetera.client.particles.GoldenParticle;
+import com.ninni.etcetera.client.render.block.entity.ItemStandBlockEntityRenderer;
+import com.ninni.etcetera.client.render.entity.*;
 import com.ninni.etcetera.entity.EggpleEntity;
 import com.ninni.etcetera.entity.TurtleRaftEntity;
 import com.ninni.etcetera.item.TurtleRaftItem;
@@ -14,6 +15,7 @@ import com.ninni.etcetera.resource.EtceteraProcessResourceManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -84,6 +86,7 @@ public class EtceteraVanillaIntegration {
         registerEntityModelLayers();
         registerModelPredicates();
         registerColorProviders();
+        registerParticles();
     }
 
     //server
@@ -235,6 +238,11 @@ public class EtceteraVanillaIntegration {
     }
 
     //client
+
+    private static void registerParticles() {
+        ParticleFactoryRegistry.getInstance().register(EtceteraParticleTypes.GOLDEN_HEART, GoldenParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(EtceteraParticleTypes.GOLDEN_SHEEN, GoldenParticle.Factory::new);
+    }
 
     private static void registerModelPredicates() {
         ModelPredicateProviderRegistry.register(EtceteraItems.GOLDEN_GOLEM, new Identifier("broken"), (stack, world, entity, seed) -> {

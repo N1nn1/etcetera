@@ -1,10 +1,10 @@
 package com.ninni.etcetera.entity;
 
 import com.ninni.etcetera.registry.EtceteraItems;
+import com.ninni.etcetera.registry.EtceteraParticleTypes;
+import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.control.FlightMoveControl;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.ai.pathing.*;
@@ -14,14 +14,15 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -35,6 +36,9 @@ public class GoldenGolemEntity extends PathAwareEntity {
     private static final TrackedData<Optional<UUID>> DEFENDING_UUID = DataTracker.registerData(GoldenGolemEntity.class, TrackedDataHandlerRegistry.OPTIONAL_UUID);
     private static final TrackedData<Integer> HEALING_AMOUNT = DataTracker.registerData(GoldenGolemEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Integer> HEALING_COOLDOWN = DataTracker.registerData(GoldenGolemEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    public final AnimationState grantingAnimationState = new AnimationState();
+    public int grantPoseTick = 28;
+
 
     public GoldenGolemEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
         super(entityType, world);
@@ -52,17 +56,17 @@ public class GoldenGolemEntity extends PathAwareEntity {
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
-        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0).add(EntityAttributes.GENERIC_FLYING_SPEED, 1f).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5f).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0);
+        return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 20.0).add(EntityAttributes.GENERIC_FLYING_SPEED, 1f).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3f).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0).add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0);
     }
 
     @Override
     protected ActionResult interactMob(PlayerEntity player, Hand hand) {
         List<UUID> list = new ArrayList<>();
         this.getWorld().getPlayers().forEach(player1 -> list.add(player1.getUuid()));
-        if (!this.getWorld().isClient) {
+        if (!this.getWorld().isClient && player.isSneaking()) {
             if (list.contains(this.getDefendingUuid())) {
                 for (UUID uuid2 : list) {
-                    if (this.getDefendingUuid() == uuid2 && player.isSneaking()) {
+                    if (this.getDefendingUuid() == uuid2) {
                         if (uuid2 != player.getUuid()) {
                             return ActionResult.PASS;
                         } else {
@@ -85,14 +89,26 @@ public class GoldenGolemEntity extends PathAwareEntity {
         nbt.putInt("HealingAmount", this.getHealingAmount());
         nbt.putInt("HealingCooldown", this.getHealingCooldown());
         nbt.putBoolean("Broken", broken);
+        this.playSound(EtceteraSoundEvents.ENTITY_GOLDEN_GOLEM_ITEM, this.getSoundVolume(), this.getSoundPitch());
         this.dropStack(stack);
         this.discard();
     }
 
-
     @Override
     public void tickMovement() {
         super.tickMovement();
+
+        if (this.random.nextFloat() < 0.05f) {
+            this.getWorld().addParticle(EtceteraParticleTypes.GOLDEN_SHEEN, this.getParticleX(0.8), this.getRandomBodyY(), this.getParticleZ(0.8), 0.0, 0.0, 0.0);
+        }
+
+        if (this.getPose() == EntityPose.CROAKING) {
+            if (!this.getWorld().isClient) grantPoseTick--;
+        } else {
+            grantPoseTick = 28;
+        }
+        if (grantPoseTick == 0) this.setPose(EntityPose.STANDING);
+
 
         if (this.getHealingAmount() == 0) {
             this.dropAsItem(true);
@@ -108,6 +124,44 @@ public class GoldenGolemEntity extends PathAwareEntity {
         if (!this.getWorld().isClient && this.isAlive() && this.age % 10 == 0) {
             this.heal(1.0f);
         }
+    }
+
+    public void grantHealing() {
+        this.setPose(EntityPose.CROAKING);
+        this.playSound(EtceteraSoundEvents.ENTITY_GOLDEN_GOLEM_GRANT, 1, 1);
+        this.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 1, true, false));
+        this.getDefendedEntity().heal(8);
+        this.setHealingAmount(this.getHealingAmount()-1);
+        this.setHealingCooldown(20 * 120);
+
+        if (this.getWorld() instanceof ServerWorld serverWorld) {
+            for (int i = 0; i < 7; ++i) {
+                serverWorld.spawnParticles(
+                        EtceteraParticleTypes.GOLDEN_HEART,
+                        this.getDefendedEntity().getParticleX(0.8),
+                        this.getDefendedEntity().getRandomBodyY(),
+                        this.getDefendedEntity().getParticleZ(0.8),
+                        1,
+                        0,
+                        0.1f,
+                        0,
+                        1);
+
+            }
+        }
+    }
+
+    @Override
+    public void onTrackedDataSet(TrackedData<?> data) {
+        if (POSE.equals(data)) {
+            EntityPose entityPose = this.getPose();
+            if (entityPose == EntityPose.CROAKING) {
+                this.grantingAnimationState.start(this.age);
+            } else {
+                this.grantingAnimationState.stop();
+            }
+        }
+        super.onTrackedDataSet(data);
     }
 
     @Nullable
@@ -152,11 +206,11 @@ public class GoldenGolemEntity extends PathAwareEntity {
         if (nbt.containsUuid("Defending")) {
             this.setDefendingUuid(nbt.getUuid("Defending"));
         }
-        if (nbt.contains("HealingAmount", NbtElement.INT_TYPE)) {
+        if (nbt.contains("HealingAmount")) {
             this.setHealingAmount(nbt.getInt("HealingAmount"));
         }
-        if (nbt.contains("HealingCooldown", NbtElement.INT_TYPE)) {
-            this.setHealingAmount(nbt.getInt("HealingCooldown"));
+        if (nbt.contains("HealingCooldown")) {
+            this.setHealingCooldown(nbt.getInt("HealingCooldown"));
         }
     }
 
@@ -183,6 +237,21 @@ public class GoldenGolemEntity extends PathAwareEntity {
         return this.getDefendingUuid() == player.getUuid();
     }
 
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return EtceteraSoundEvents.ENTITY_GOLDEN_GOLEM_IDLE;
+    }
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return EtceteraSoundEvents.ENTITY_GOLDEN_GOLEM_HURT;
+    }
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return EtceteraSoundEvents.ENTITY_GOLDEN_GOLEM_DEATH;
+    }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
@@ -249,10 +318,7 @@ public class GoldenGolemEntity extends PathAwareEntity {
         @Override
         public void stop() {
             super.stop();
-            this.golem.playSound(SoundEvents.ENTITY_VILLAGER_CELEBRATE, 1, 1);
-            this.golem.setHealingCooldown(20 * 120);
-            this.defending.heal(20);
-            this.golem.setHealingAmount(this.golem.getHealingAmount()-1);
+            this.golem.grantHealing();
         }
     }
 

@@ -1,4 +1,4 @@
-package com.ninni.etcetera.client.renderer.entity.layer;
+package com.ninni.etcetera.client.render.entity.layer;
 
 import com.ninni.etcetera.client.model.TurtleRaftModel;
 import com.ninni.etcetera.entity.TurtleRaftEntity;

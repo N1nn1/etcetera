@@ -1,4 +1,4 @@
-package com.ninni.etcetera.client.renderer.block.entity;
+package com.ninni.etcetera.client.render.block.entity;
 
 import com.ninni.etcetera.block.entity.ItemStandBlockEntity;
 import com.ninni.etcetera.registry.EtceteraBlocks;

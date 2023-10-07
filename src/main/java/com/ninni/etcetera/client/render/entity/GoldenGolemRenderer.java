@@ -1,7 +1,7 @@
-package com.ninni.etcetera.client.renderer.entity;
+package com.ninni.etcetera.client.render.entity;
 
 import com.ninni.etcetera.client.model.GoldenGolemModel;
-import com.ninni.etcetera.client.renderer.entity.layer.GoldenGolemEyesFeatureRenderer;
+import com.ninni.etcetera.client.render.entity.layer.GoldenGolemEyesFeatureRenderer;
 import com.ninni.etcetera.entity.GoldenGolemEntity;
 import com.ninni.etcetera.registry.EtceteraEntityModelLayers;
 import net.fabricmc.api.EnvType;

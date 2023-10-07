@@ -1,13 +1,13 @@
 package com.ninni.etcetera.item;
 
 import com.ninni.etcetera.entity.GoldenGolemItemEntity;
+import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -33,7 +33,7 @@ public class GoldenGolemItem extends Item {
             if (itemStack.hasNbt() && itemStack.getNbt().contains("Broken") && itemStack.getNbt().getBoolean("Broken")) {
                 return TypedActionResult.fail(itemStack);
             } else {
-                world.playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EGG_THROW, SoundCategory.PLAYERS, 0.5f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
+                world.playSound(null, user.getX(), user.getY(), user.getZ(), EtceteraSoundEvents.ENTITY_GOLDEN_GOLEM_THROW, SoundCategory.PLAYERS, 0.7f, 1f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
                 GoldenGolemItemEntity goldenGolemItem = new GoldenGolemItemEntity(world, user);
                 goldenGolemItem.setItem(itemStack);
                 goldenGolemItem.setVelocity(user, user.getPitch(), user.getYaw(), 0.0f, 1.5f, 1.0f);
@@ -54,6 +54,6 @@ public class GoldenGolemItem extends Item {
         NbtCompound nbt = stack.getNbt();
 
         if (stack.hasNbt() && nbt.contains("HealingAmount")) tooltip.add(Text.translatable("item.etcetera.golden_golem.healing_amount", nbt.getInt("HealingAmount")).formatted(Formatting.YELLOW));
-        if (stack.hasNbt() && nbt.contains("Broken") && nbt.getBoolean("Broken")) tooltip.add(Text.translatable("item.etcetera.golden_golem.broken").formatted(Formatting.GRAY));
+        if (stack.hasNbt() && nbt.contains("HealingCooldown") && nbt.getInt("HealingCooldown") > 0) tooltip.add(Text.translatable("item.etcetera.golden_golem.cooldown").formatted(Formatting.GRAY));
     }
 }
