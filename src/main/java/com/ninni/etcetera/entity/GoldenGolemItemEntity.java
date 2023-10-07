@@ -59,8 +59,9 @@ public class GoldenGolemItemEntity extends ThrownItemEntity {
             if (this.getItem().hasNbt() && this.getItem().getNbt().contains("HealingAmount")) goldenGolem.setHealingAmount(this.getItem().getNbt().getInt("HealingAmount"));
             if (this.getItem().hasNbt() && this.getItem().getNbt().contains("HealingCooldown")) goldenGolem.setHealingCooldown(this.getItem().getNbt().getInt("HealingCooldown"));
             else goldenGolem.setHealingAmount(10);
-            this.getWorld().spawnEntity(goldenGolem);
+            if (this.getItem().hasCustomName()) goldenGolem.setCustomName(this.getItem().getName());
 
+            this.getWorld().spawnEntity(goldenGolem);
             this.getWorld().playSound(null, this.getBlockPos(), EtceteraSoundEvents.ENTITY_GOLDEN_GOLEM_LAND, SoundCategory.NEUTRAL, 1, 1);
             this.getWorld().sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES);
 

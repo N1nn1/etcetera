@@ -175,6 +175,7 @@ public class EtceteraCreativeModeTab {
                     TRADER_ROBE
             );
             entries.addAfter(Items.TRIDENT, HAMMER);
+            entries.addBefore(Items.TOTEM_OF_UNDYING, GOLDEN_GOLEM);
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(entries -> {

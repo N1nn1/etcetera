@@ -89,6 +89,7 @@ public class GoldenGolemEntity extends PathAwareEntity {
         nbt.putInt("HealingAmount", this.getHealingAmount());
         nbt.putInt("HealingCooldown", this.getHealingCooldown());
         nbt.putBoolean("Broken", broken);
+        if (this.hasCustomName()) stack.setCustomName(this.getCustomName());
         this.playSound(EtceteraSoundEvents.ENTITY_GOLDEN_GOLEM_ITEM, this.getSoundVolume(), this.getSoundPitch());
         this.dropStack(stack);
         this.discard();
@@ -98,7 +99,7 @@ public class GoldenGolemEntity extends PathAwareEntity {
     public void tickMovement() {
         super.tickMovement();
 
-        if (this.random.nextFloat() < 0.05f) {
+        if (this.random.nextFloat() < 0.05f && this.getHealingCooldown() == 0) {
             this.getWorld().addParticle(EtceteraParticleTypes.GOLDEN_SHEEN, this.getParticleX(0.8), this.getRandomBodyY(), this.getParticleZ(0.8), 0.0, 0.0, 0.0);
         }
 
@@ -129,7 +130,7 @@ public class GoldenGolemEntity extends PathAwareEntity {
     public void grantHealing() {
         this.setPose(EntityPose.CROAKING);
         this.playSound(EtceteraSoundEvents.ENTITY_GOLDEN_GOLEM_GRANT, 1, 1);
-        this.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 1, true, false));
+        this.getDefendedEntity().addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 1, true, false));
         this.getDefendedEntity().heal(8);
         this.setHealingAmount(this.getHealingAmount()-1);
         this.setHealingCooldown(20 * 120);

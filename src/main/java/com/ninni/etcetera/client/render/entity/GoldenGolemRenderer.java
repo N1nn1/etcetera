@@ -25,7 +25,11 @@ public class GoldenGolemRenderer extends MobEntityRenderer<GoldenGolemEntity, Go
 
     @Override
     protected int getBlockLight(GoldenGolemEntity entity, BlockPos pos) {
-        return entity.isOnFire() ? 15 : Math.min(entity.getWorld().getLightLevel(LightType.BLOCK, pos) + 6, 15);
+
+        if (entity.isOnFire()) return 15;
+        if (entity.getHealingCooldown() > 0) return entity.getWorld().getLightLevel(LightType.BLOCK, pos);
+
+        return Math.min(entity.getWorld().getLightLevel(LightType.BLOCK, pos) + 6, 15);
     }
 
     @Override
