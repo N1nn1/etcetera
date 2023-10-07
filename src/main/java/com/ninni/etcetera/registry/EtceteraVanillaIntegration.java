@@ -190,6 +190,9 @@ public class EtceteraVanillaIntegration {
 
     private static void registerLootTableEvents() {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
+
+            //TODO fix all of these they all suck
+
             if (id.equals(LootTables.BASTION_OTHER_CHEST)) {
                 tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.GOLDEN_EGGPLE).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1)))).build());
             }
@@ -205,16 +208,19 @@ public class EtceteraVanillaIntegration {
             }
 
             if (id.equals(LootTables.ABANDONED_MINESHAFT_CHEST)) {
-                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ITEM_LABEL).weight(30)).build());
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ITEM_LABEL).weight(3)).build());
             }
             if (id.equals(LootTables.SIMPLE_DUNGEON_CHEST) || id.equals(LootTables.WOODLAND_MANSION_CHEST)) {
-                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ITEM_LABEL).weight(20)).build());
-                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ADVENTURERS_BOOTS).weight(40)).build());
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ITEM_LABEL).weight(2)).build());
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ADVENTURERS_BOOTS).weight(4)).build());
             }
             if (id.equals(LootTables.ANCIENT_CITY_CHEST) || id.equals(LootTables.ANCIENT_CITY_ICE_BOX_CHEST)) {
                 tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.ITEM_LABEL).weight(2)).build());
             }
 
+            if (id.equals(LootTables.UNDERWATER_RUIN_BIG_CHEST)) {
+                tableBuilder.pool(LootPool.builder().with(ItemEntry.builder(EtceteraItems.MUSIC_DISC_SQUALL).weight(2)).build());
+            }
         });
     }
 

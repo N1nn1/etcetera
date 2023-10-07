@@ -57,6 +57,8 @@ public class EtceteraCreativeModeTab {
                 output.add(TIDAL_HELMET);
                 output.add(TURTLE_RAFT);
 
+                output.add(MUSIC_DISC_SQUALL);
+
                 output.add(ADVENTURERS_BOOTS);
 
                 output.add(GRAVEL_PATH);
@@ -187,6 +189,7 @@ public class EtceteraCreativeModeTab {
             );
             entries.addAfter(Items.BAMBOO_CHEST_RAFT, TURTLE_RAFT);
             entries.addAfter(Items.NAME_TAG, ITEM_LABEL);
+            entries.addBefore(Items.MUSIC_DISC_OTHERSIDE, MUSIC_DISC_SQUALL);
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(entries -> {

@@ -75,6 +75,9 @@
   "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Cephalopod Activities",
   "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Obtain a Squid Lamp",
 
+  "item.etcetera.music_disc_squall": "Music Disc",
+  "item.etcetera.music_disc_squall.desc": "Ninni - squall",
+
   "item.etcetera.adventurers_boots": "Adventurer's Boots",
   "block.etcetera.footsteps": "Footsteps",
   "subtitles.item.etcetera.adventurer.armor.equip": "Adventurer's Boots rustle",

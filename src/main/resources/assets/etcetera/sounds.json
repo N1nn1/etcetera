@@ -600,5 +600,10 @@
 			"etcetera:entity/golden_golem/throw3"
 		],
 		"subtitle": "subtitles.entity.etcetera.golden_golem.throw"
+	},
+	"music_disc.squall": {
+		"sounds": [
+			"etcetera:records/music_disc_squall"
+		]
 	}
 }

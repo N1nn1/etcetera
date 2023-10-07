@@ -56,6 +56,7 @@ public interface EtceteraSoundEvents {
     SoundEvent ENTITY_GOLDEN_GOLEM_LAND = register("entity.golden_golem.land");
     SoundEvent ENTITY_GOLDEN_GOLEM_THROW = register("entity.golden_golem.throw");
 
+    SoundEvent MUSIC_DISC_SQUALL = register("music_disc.squall");
 
     BlockSoundGroup NETHER_BISMUTH_ORE = register("nether_bismuth_ore", 1, 1);
     BlockSoundGroup BISMUTH_BLOCK = register("bismuth_block", 1, 1);
