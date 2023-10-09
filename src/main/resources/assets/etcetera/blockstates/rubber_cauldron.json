@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "solid=1": {
+      "model": "etcetera:block/rubber_cauldron"
+    },
+    "solid=2": {
+      "model": "etcetera:block/rubber_cauldron_solidifying"
+    },
+    "solid=3": {
+      "model": "etcetera:block/rubber_cauldron_solidified"
+    }
+  }
+}

@@ -28,5 +28,12 @@ public interface EtceteraTags {
     TagKey<Block> HAMMERABLE = TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "hammerable"));
     TagKey<Block> OFFSET_REMOVER = TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "offset_remover"));
 
+    TagKey<Block> TAP_LAVA = TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "tap_lava"));
+    TagKey<Block> TAP_WATER = TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "tap_water"));
+    TagKey<Block> TAP_HONEY = TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "tap_honey"));
+    TagKey<Block> TAP_RUBBER = TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "tap_rubber"));
+    TagKey<Block> TAP_CRYING_OBSIDIAN = TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "tap_crying_obsidian"));
+    TagKey<Block> TAP_ALWAYS_PLACEABLE = TagKey.of(RegistryKeys.BLOCK, new Identifier(MOD_ID, "tap_always_placeable"));
+
     TagKey<PaintingVariant> ETCETERA_PAINTING_VARIANTS = TagKey.of(RegistryKeys.PAINTING_VARIANT, new Identifier(MOD_ID, "etcetera_painting_variants"));
 }

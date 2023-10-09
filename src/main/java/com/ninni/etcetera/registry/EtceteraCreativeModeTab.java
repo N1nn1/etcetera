@@ -96,6 +96,8 @@ public class EtceteraCreativeModeTab {
                 output.add(EGGPLE);
                 output.add(GOLDEN_EGGPLE);
 
+                output.add(COPPER_TAP);
+
                 output.add(COTTON_SEEDS);
                 output.add(COTTON_FLOWER);
                 output.add(WHITE_SWEATER);

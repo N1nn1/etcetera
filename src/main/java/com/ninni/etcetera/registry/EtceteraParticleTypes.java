@@ -11,5 +11,8 @@ public class EtceteraParticleTypes {
 
     public static final DefaultParticleType GOLDEN_HEART = Registry.register(Registries.PARTICLE_TYPE, new Identifier(Etcetera.MOD_ID, "golden_heart"), FabricParticleTypes.simple());
     public static final DefaultParticleType GOLDEN_SHEEN = Registry.register(Registries.PARTICLE_TYPE, new Identifier(Etcetera.MOD_ID, "golden_sheen"), FabricParticleTypes.simple());
+    public static final DefaultParticleType DRIPPING_RUBBER = Registry.register(Registries.PARTICLE_TYPE, new Identifier(Etcetera.MOD_ID, "dripping_rubber"), FabricParticleTypes.simple());
+    public static final DefaultParticleType FALLING_RUBBER = Registry.register(Registries.PARTICLE_TYPE, new Identifier(Etcetera.MOD_ID, "falling_rubber"), FabricParticleTypes.simple());
+    public static final DefaultParticleType LANDING_RUBBER = Registry.register(Registries.PARTICLE_TYPE, new Identifier(Etcetera.MOD_ID, "landing_rubber"), FabricParticleTypes.simple());
 
 }

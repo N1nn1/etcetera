@@ -5,6 +5,7 @@ import com.google.common.reflect.Reflection;
 import com.ninni.etcetera.client.TidalHelmetHud;
 import com.ninni.etcetera.client.gui.screen.PricklyCanScreen;
 import com.ninni.etcetera.client.particles.GoldenParticle;
+import com.ninni.etcetera.client.particles.RubberParticle;
 import com.ninni.etcetera.client.render.block.entity.ItemStandBlockEntityRenderer;
 import com.ninni.etcetera.client.render.entity.*;
 import com.ninni.etcetera.entity.EggpleEntity;
@@ -248,6 +249,9 @@ public class EtceteraVanillaIntegration {
     private static void registerParticles() {
         ParticleFactoryRegistry.getInstance().register(EtceteraParticleTypes.GOLDEN_HEART, GoldenParticle.Factory::new);
         ParticleFactoryRegistry.getInstance().register(EtceteraParticleTypes.GOLDEN_SHEEN, GoldenParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(EtceteraParticleTypes.DRIPPING_RUBBER, RubberParticle::createDrippingRubber);
+        ParticleFactoryRegistry.getInstance().register(EtceteraParticleTypes.FALLING_RUBBER, RubberParticle::createFallingRubber);
+        ParticleFactoryRegistry.getInstance().register(EtceteraParticleTypes.LANDING_RUBBER, RubberParticle::createLandingRubber);
     }
 
     private static void registerModelPredicates() {
@@ -280,7 +284,8 @@ public class EtceteraVanillaIntegration {
                 EtceteraBlocks.GLOW_ITEM_STAND,
                 EtceteraBlocks.FRAME,
                 EtceteraBlocks.DREAM_CATCHER,
-                EtceteraBlocks.PRICKLY_CAN
+                EtceteraBlocks.PRICKLY_CAN,
+                EtceteraBlocks.COPPER_TAP
         );
     }
 

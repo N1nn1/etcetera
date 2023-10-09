@@ -1,0 +1,6 @@
+{
+	"parent": "etcetera:block/template_rubber_cauldron",
+	"textures": {
+		"rubber": "etcetera:block/rubber_cauldron"
+	}
+}
