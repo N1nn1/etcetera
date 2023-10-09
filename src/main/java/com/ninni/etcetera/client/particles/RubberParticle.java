@@ -70,7 +70,7 @@ public class RubberParticle extends SpriteBillboardParticle {
     protected void updateVelocity() {
     }
 
-    public static SpriteBillboardParticle createDrippingRubber(DefaultParticleType type, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+    public static SpriteBillboardParticle createDrippingRubber(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
         RubberParticle.Dripping particle = new RubberParticle.Dripping(world, x, y, z, Fluids.EMPTY, EtceteraParticleTypes.FALLING_RUBBER);
         particle.gravityStrength *= 0.01F;
         particle.maxAge = 100;
@@ -78,14 +78,14 @@ public class RubberParticle extends SpriteBillboardParticle {
         return particle;
     }
 
-    public static SpriteBillboardParticle createFallingRubber(DefaultParticleType type, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+    public static SpriteBillboardParticle createFallingRubber(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
         RubberParticle particle = new RubberParticle.ContinuousFalling(world, x, y, z, Fluids.EMPTY, EtceteraParticleTypes.LANDING_RUBBER);
         particle.gravityStrength = 0.01F;
         particle.setColor(0.9F, 0.9F, 0.9F);
         return particle;
     }
 
-    public static SpriteBillboardParticle createLandingRubber(DefaultParticleType type, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+    public static SpriteBillboardParticle createLandingRubber(ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
         RubberParticle particle = new RubberParticle.Landing(world, x, y, z, Fluids.EMPTY);
         particle.maxAge = (int)(28.0 / (Math.random() * 0.8 + 0.2));
         particle.setColor(0.9F, 0.9F, 0.9F);

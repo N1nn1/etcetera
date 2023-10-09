@@ -34,9 +34,13 @@ import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.client.particle.ParticleFactory;
+import net.minecraft.client.particle.SpriteBillboardParticle;
+import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -45,6 +49,10 @@ import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleType;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
@@ -56,6 +64,7 @@ import net.minecraft.util.math.Position;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashMap;
 
@@ -247,11 +256,24 @@ public class EtceteraVanillaIntegration {
     //client
 
     private static void registerParticles() {
-        ParticleFactoryRegistry.getInstance().register(EtceteraParticleTypes.GOLDEN_HEART, GoldenParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(EtceteraParticleTypes.GOLDEN_SHEEN, GoldenParticle.Factory::new);
-        ParticleFactoryRegistry.getInstance().register(EtceteraParticleTypes.DRIPPING_RUBBER, RubberParticle::createDrippingRubber);
-        ParticleFactoryRegistry.getInstance().register(EtceteraParticleTypes.FALLING_RUBBER, RubberParticle::createFallingRubber);
-        ParticleFactoryRegistry.getInstance().register(EtceteraParticleTypes.LANDING_RUBBER, RubberParticle::createLandingRubber);
+        ParticleFactoryRegistry instance = ParticleFactoryRegistry.getInstance();
+        instance.register(EtceteraParticleTypes.GOLDEN_HEART, GoldenParticle.Factory::new);
+        instance.register(EtceteraParticleTypes.GOLDEN_SHEEN, GoldenParticle.Factory::new);
+        instance.register(EtceteraParticleTypes.DRIPPING_RUBBER, sprites -> (type, world, x, y, z, xSpeed, ySpeed, zSpeed) -> {
+            SpriteBillboardParticle drippingRubber = RubberParticle.createDrippingRubber(world, x, y, z, xSpeed, ySpeed, zSpeed);
+            drippingRubber.setSprite(sprites);
+            return drippingRubber;
+        });
+        instance.register(EtceteraParticleTypes.FALLING_RUBBER, sprites -> (type, world, x, y, z, xSpeed, ySpeed, zSpeed) -> {
+            SpriteBillboardParticle fallingRubber = RubberParticle.createFallingRubber(world, x, y, z, xSpeed, ySpeed, zSpeed);
+            fallingRubber.setSprite(sprites);
+            return fallingRubber;
+        });
+        instance.register(EtceteraParticleTypes.LANDING_RUBBER, sprites -> (type, world, x, y, z, xSpeed, ySpeed, zSpeed) -> {
+            SpriteBillboardParticle landingRubber = RubberParticle.createLandingRubber(world, x, y, z, xSpeed, ySpeed, zSpeed);
+            landingRubber.setSprite(sprites);
+            return landingRubber;
+        });
     }
 
     private static void registerModelPredicates() {
