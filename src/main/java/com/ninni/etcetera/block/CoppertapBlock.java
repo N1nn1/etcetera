@@ -103,7 +103,7 @@ public class CoppertapBlock extends Block {
                 else if (state2.isIn(EtceteraTags.TAP_HONEY)) world.addParticle(ParticleTypes.DRIPPING_HONEY, (double) pos.getX() + d, (double) pos.getY() + e, (double) pos.getZ() + f, 0.0, 0.0, 0.0);
                 else if (state2.isIn(EtceteraTags.TAP_CRYING_OBSIDIAN)) world.addParticle(ParticleTypes.DRIPPING_OBSIDIAN_TEAR, (double) pos.getX() + d, (double) pos.getY() + e, (double) pos.getZ() + f, 0.0, 0.0, 0.0);
                 else if (state2.isIn(EtceteraTags.TAP_WATER) || state2.getFluidState().isOf(Fluids.WATER)) world.addParticle(ParticleTypes.DRIPPING_WATER, (double) pos.getX() + d, (double) pos.getY() + e, (double) pos.getZ() + f, 0.0, 0.0, 0.0);
-                else if (state2.isIn(EtceteraTags.TAP_LAVA) || state2.getFluidState().isOf(Fluids.LAVA)) world.addParticle(ParticleTypes.LAVA, (double) pos.getX() + d, (double) pos.getY() + e, (double) pos.getZ() + f, 0.0, 0.0, 0.0);
+                else if (state2.isIn(EtceteraTags.TAP_LAVA) || state2.getFluidState().isOf(Fluids.LAVA)) world.addParticle(ParticleTypes.DRIPPING_LAVA, (double) pos.getX() + d, (double) pos.getY() + e, (double) pos.getZ() + f, 0.0, 0.0, 0.0);
             }
         }
     }
@@ -113,11 +113,11 @@ public class CoppertapBlock extends Block {
         super.randomTick(state, world, pos, random);
 
         if (state.get(POWERED) && world.getBlockState(pos.down()).isOf(Blocks.CAULDRON) && world.getBlockState(pos.offset(state.get(FACING).getOpposite())).isIn(BlockTags.LOGS_THAT_BURN)) {
-                if (random.nextInt(7) == 0) {
-                    world.setBlockState(pos.down(), EtceteraBlocks.RUBBER_CAULDRON.getDefaultState());
-                }
-
+            if (random.nextInt(7) == 0) {
+                world.setBlockState(pos.down(), EtceteraBlocks.RUBBER_CAULDRON.getDefaultState());
+            }
         }
+
     }
 
     @Override
