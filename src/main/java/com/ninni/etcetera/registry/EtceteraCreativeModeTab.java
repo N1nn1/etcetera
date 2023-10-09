@@ -1,15 +1,25 @@
 package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.Etcetera;
+import com.ninni.etcetera.mixin.ItemGroupsAccessor;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.entity.decoration.painting.PaintingEntity;
+import net.minecraft.entity.decoration.painting.PaintingVariant;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+
+import java.util.function.Predicate;
 
 import static com.ninni.etcetera.registry.EtceteraItems.*;
 
@@ -52,6 +62,8 @@ public class EtceteraCreativeModeTab {
 
                 output.add(ITEM_STAND);
                 output.add(GLOW_ITEM_STAND);
+
+                featureFlagSet.lookup().getOptionalWrapper(RegistryKeys.PAINTING_VARIANT).ifPresent((wrapper) -> addEtcPaintings(output, wrapper, (registryEntry) -> registryEntry.isIn(EtceteraTags.ETCETERA_PAINTING_VARIANTS), ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS));
 
                 output.add(SQUID_LAMP);
                 output.add(TIDAL_HELMET);
@@ -251,6 +263,15 @@ public class EtceteraCreativeModeTab {
             entries.addAfter(Items.RAW_GOLD, RAW_BISMUTH);
             entries.addAfter(Items.GOLD_INGOT, BISMUTH_INGOT);
             entries.addAfter(Items.WHEAT, COTTON_FLOWER);
+        });
+    }
+
+    private static void addEtcPaintings(ItemGroup.Entries entries, RegistryWrapper.Impl<PaintingVariant> registryWrapper, Predicate<RegistryEntry<PaintingVariant>> predicate, ItemGroup.StackVisibility visibility) {
+        registryWrapper.streamEntries().filter(predicate).sorted(ItemGroupsAccessor.getPAINTING_VARIANT_COMPARATOR()).forEach((variant) -> {
+            ItemStack itemStack = new ItemStack(Items.PAINTING);
+            NbtCompound nbtCompound = itemStack.getOrCreateSubNbt("EntityTag");
+            PaintingEntity.writeVariantToNbt(nbtCompound, variant);
+            entries.add(itemStack, visibility);
         });
     }
 

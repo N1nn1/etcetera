@@ -19,6 +19,7 @@ public class Etcetera implements ModInitializer {
 				EtceteraScreenHandlerType.class,
 				EtceteraStatusEffects.class,
 				EtceteraEntityType.class,
+				EtceteraPaintingVariants.class,
 				EtceteraCreativeModeTab.class,
 				EtceteraItems.class,
 				EtceteraBlocks.class

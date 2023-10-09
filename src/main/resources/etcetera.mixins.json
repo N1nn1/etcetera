@@ -9,6 +9,7 @@
     "AnvilScreenHandlerMixin",
     "EntityMixin",
     "HostileEntityMixin",
+    "ItemGroupsAccessor",
     "LivingEntityMixin",
     "PlayerEntityMixin",
     "SmithingTableBlockMixin",
