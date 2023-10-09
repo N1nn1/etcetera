@@ -47,5 +47,6 @@ public class RubberChickenModel<T extends Entity> extends AnimalModel<T> {
 
     @Override
     public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+        this.body.yaw = (float)Math.PI / 180 * entity.getYaw();
     }
 }

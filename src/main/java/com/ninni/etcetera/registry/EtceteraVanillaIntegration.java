@@ -366,6 +366,7 @@ public class EtceteraVanillaIntegration {
         EntityRendererRegistry.register(EtceteraEntityType.COBWEB, CobwebProjectileEntityRenderer::new);
         EntityRendererRegistry.register(EtceteraEntityType.GOLDEN_GOLEM, GoldenGolemRenderer::new);
         EntityRendererRegistry.register(EtceteraEntityType.THROWN_GOLDEN_GOLEM, FlyingItemEntityRenderer::new);
+        EntityRendererRegistry.register(EtceteraEntityType.RUBBER_CHICKEN, RubberChickenRenderer::new);
     }
 
     private static void registerColorProviders() {

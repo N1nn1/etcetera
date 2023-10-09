@@ -85,6 +85,16 @@ public class EtceteraEntityType {
                     .trackRangeChunks(4)
     );
 
+    public static final EntityType<RubberChickenEntity> RUBBER_CHICKEN = register(
+            "rubber_chicken",
+            FabricEntityTypeBuilder.createLiving()
+                    .<RubberChickenEntity>entityFactory(RubberChickenEntity::new)
+                    .defaultAttributes(LivingEntity::createLivingAttributes)
+                    .spawnGroup(SpawnGroup.MISC)
+                    .dimensions(EntityDimensions.fixed(0.3F, 0.3F))
+                    .trackRangeChunks(4)
+    );
+
     private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> entityType) {
         return Registry.register(Registries.ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, id), entityType.build());
     }

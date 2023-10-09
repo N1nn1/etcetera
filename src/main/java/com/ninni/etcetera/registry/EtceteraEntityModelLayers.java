@@ -2,6 +2,7 @@ package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.Etcetera;
 import com.ninni.etcetera.client.model.*;
+import com.ninni.etcetera.entity.RubberChickenEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
@@ -17,6 +18,7 @@ public interface EtceteraEntityModelLayers {
     EntityModelLayer COBWEB = main("cobweb", CobwebProjectileModel::getTexturedModelData);
     EntityModelLayer PLAYER_COTTON = main("cotton", CottonArmorModel::getTexturedModelData);
     EntityModelLayer GOLDEN_GOLEM = main("golden_golem", GoldenGolemModel::getTexturedModelData);
+    EntityModelLayer RUBBER_CHICKEN = main("rubber_chicken", RubberChickenModel::getTexturedModelData);
 
     private static EntityModelLayer register(String id, String name, EntityModelLayerRegistry.TexturedModelDataProvider provider) {
         EntityModelLayer layer = new EntityModelLayer(new Identifier(Etcetera.MOD_ID, id), name);
