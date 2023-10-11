@@ -75,6 +75,9 @@
   "advancements.etcetera.husbandry.obtain_squid_lamp.title": "Діяльність головоногих",
   "advancements.etcetera.husbandry.obtain_squid_lamp.description": "Отримайте чорнильну лампу",
 
+  "item.etcetera.music_disc_squall": "Платівка",
+  "item.etcetera.music_disc_squall.desc": "Нінні — squall",
+
   "item.etcetera.adventurers_boots": "Чоботи авантюриста",
   "block.etcetera.footsteps": "Кроки",
   "subtitles.item.etcetera.adventurer.armor.equip": "Чоботи авантюриста шурхочуть",
@@ -126,6 +129,17 @@
   "item.etcetera.eggple": "Яйцеблуко",
   "item.etcetera.golden_eggple": "Золоте яйцеблуко",
   "subtitles.entity.chapple.convert": "Квоблуко перетворюється",
+
+  "block.etcetera.copper_tap": "Мідний кран",
+  "block.etcetera.rubber_cauldron": "Казан гуми",
+  "block.etcetera.rubber_block": "Гумовий блок",
+  "item.etcetera.rubber": "Гума",
+  "entity.etcetera.rubber_chicken": "Гумова курка",
+  "item.etcetera.rubber_chicken": "Гумова курка",
+  "subtitles.entity.etcetera.rubber_chicken.squeeze": "Гумова курка стискається",
+
+  "painting.etcetera.calamity.title": "Calamity",
+  "painting.etcetera.calamity.author": "Нінні",
 
   "block.etcetera.cotton": "Бавовна",
   "item.etcetera.cotton_seeds": "Насіння бавовника",
