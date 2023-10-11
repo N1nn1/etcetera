@@ -24,8 +24,7 @@ import java.util.Collections;
 
 public class RubberChickenEntity extends LivingEntity {
     public long lastHitTime;
-    public final AnimationState squeezingAnimationState = new AnimationState();
-    public int squeezePoseTick = 20;
+    public AnimationState squeezingAnimationState = new AnimationState();
 
     public RubberChickenEntity(EntityType<? extends RubberChickenEntity> entityType, World world) {
         super(entityType, world);
@@ -57,39 +56,13 @@ public class RubberChickenEntity extends LivingEntity {
     @Override
     public void tickMovement() {
         super.tickMovement();
-
-        System.out.println(this.getPose());
-
-        if (this.getPose() == EntityPose.CROAKING) {
-            if (!this.getWorld().isClient) squeezePoseTick--;
-        } else {
-            squeezePoseTick = 20;
-        }
-        if (squeezePoseTick == 0) this.setPose(EntityPose.STANDING);
-
-    }
-
-    @Override
-    public void onTrackedDataSet(TrackedData<?> data) {
-        if (POSE.equals(data)) {
-            EntityPose entityPose = this.getPose();
-            if (entityPose == EntityPose.CROAKING) {
-                this.squeezingAnimationState.start(this.age);
-            } else {
-                this.squeezingAnimationState.stop();
-            }
-        }
-        super.onTrackedDataSet(data);
     }
 
     @Override
     public ActionResult interactAt(PlayerEntity player, Vec3d hitPos, Hand hand) {
-        if (this.getPose() == EntityPose.STANDING) {
-            this.setPose(EntityPose.CROAKING);
-            this.playSound(EtceteraSoundEvents.ENTITY_RUBBER_CHICKEN_SQUEEZE, 1, 1);
-            return ActionResult.SUCCESS;
-        }
-        return super.interactAt(player, hitPos, hand);
+        this.getWorld().sendEntityStatus(this, (byte) 4);
+        this.playSound(EtceteraSoundEvents.ENTITY_RUBBER_CHICKEN_SQUEEZE, 1, 1);
+        return ActionResult.SUCCESS;
     }
 
     @Override
@@ -172,7 +145,9 @@ public class RubberChickenEntity extends LivingEntity {
 
     @Override
     public void handleStatus(byte status) {
-        if (status == 32) {
+        if (status == 4) {
+          this.squeezingAnimationState.start(this.age);
+        } else if (status == 32) {
             if (this.getWorld().isClient) {
                 this.getWorld().playSound(this.getX(), this.getY(), this.getZ(), EtceteraBlocks.RUBBER_BLOCK.getSoundGroup(EtceteraBlocks.RUBBER_BLOCK.getDefaultState()).getHitSound(), this.getSoundCategory(), 0.3f, 1.0f, false);
                 this.lastHitTime = this.getWorld().getTime();

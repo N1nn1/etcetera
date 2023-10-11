@@ -13,27 +13,11 @@ import static net.minecraft.client.render.entity.model.EntityModelPartNames.*;
 public class RubberChickenAnimations {
 
     public static final Animation SQUEEZE = Animation.Builder.create(0.5f)
-            .addBoneAnimation(BODY,
-                    new Transformation(Transformation.Targets.TRANSLATE,
-                            new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f),
-                                    Transformation.Interpolations.CUBIC),
-                            new Keyframe(0.041676664f, AnimationHelper.createTranslationalVector(0f, -0.5f, 0f),
-                                    Transformation.Interpolations.CUBIC),
-                            new Keyframe(0.2916767f, AnimationHelper.createTranslationalVector(0f, 0f, 0f),
-                                    Transformation.Interpolations.CUBIC),
-                            new Keyframe(0.375f, AnimationHelper.createTranslationalVector(0f, -0.2f, 0f),
-                                    Transformation.Interpolations.CUBIC),
-                            new Keyframe(0.4583433f, AnimationHelper.createTranslationalVector(0f, 0f, 0f),
-                                    Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(BODY,
+            .addBoneAnimation("body",
                     new Transformation(Transformation.Targets.SCALE,
                             new Keyframe(0f, AnimationHelper.createScalingVector(1f, 1f, 1f),
                                     Transformation.Interpolations.CUBIC),
                             new Keyframe(0.041676664f, AnimationHelper.createScalingVector(1f, 0.8f, 1f),
-                                    Transformation.Interpolations.CUBIC),
-                            new Keyframe(0.2916767f, AnimationHelper.createScalingVector(1f, 1f, 1f),
-                                    Transformation.Interpolations.CUBIC),
-                            new Keyframe(0.375f, AnimationHelper.createScalingVector(1f, 0.96f, 1f),
                                     Transformation.Interpolations.CUBIC),
                             new Keyframe(0.4583433f, AnimationHelper.createScalingVector(1f, 1f, 1f),
                                     Transformation.Interpolations.CUBIC))).build();
