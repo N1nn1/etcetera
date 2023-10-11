@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:yellow_dye"
+    },
+    {
+      "item": "etcetera:rubber"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "etcetera:rubber"
+    }
+  ],
+  "result": {
+    "item": "etcetera:rubber_chicken"
+  }
+}

@@ -3,8 +3,6 @@ package com.ninni.etcetera.item;
 import com.ninni.etcetera.entity.RubberChickenEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.vehicle.BoatEntity;
-import net.minecraft.entity.vehicle.ChestBoatEntity;
 import net.minecraft.item.BoatItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -50,7 +48,7 @@ public class RubberChickenItem extends Item {
         }
         if (((HitResult)hitResult).getType() == HitResult.Type.BLOCK) {
             RubberChickenEntity rubberChicken = this.createEntity(world, hitResult);
-            float f = (float) MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0f) + 22.5f) / 45.0f) * 45.0f;
+            float f = (float)MathHelper.floor((MathHelper.wrapDegrees(user.getYaw() - 180.0f) + 22.5f) / 45.0f) * 45.0f;
             rubberChicken.refreshPositionAndAngles(rubberChicken.getX(), rubberChicken.getY(), rubberChicken.getZ(), f, 0.0f);
             if (!world.isSpaceEmpty(rubberChicken, rubberChicken.getBoundingBox())) {
                 return TypedActionResult.fail(itemStack);

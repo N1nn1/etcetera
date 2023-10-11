@@ -1,21 +1,21 @@
 package com.ninni.etcetera.entity;
 
+import com.ninni.etcetera.registry.EtceteraBlocks;
 import com.ninni.etcetera.registry.EtceteraEntityType;
 import com.ninni.etcetera.registry.EtceteraItems;
+import com.ninni.etcetera.registry.EtceteraSoundEvents;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Arm;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
@@ -24,6 +24,8 @@ import java.util.Collections;
 
 public class RubberChickenEntity extends LivingEntity {
     public long lastHitTime;
+    public final AnimationState squeezingAnimationState = new AnimationState();
+    public int squeezePoseTick = 20;
 
     public RubberChickenEntity(EntityType<? extends RubberChickenEntity> entityType, World world) {
         super(entityType, world);
@@ -44,7 +46,50 @@ public class RubberChickenEntity extends LivingEntity {
         this.updateVelocity(0.02f, movementInput);
         double fluidHeight1 = this.getFluidHeight(FluidTags.WATER);
         double multiplier = fluidHeight1 < 0.1F ? 1 : -1;
-        this.setVelocity(this.getVelocity().multiply(1.0D, 0.5D * multiplier, 1.0D));
+        double multiplier2 = fluidHeight1 < 0.3F ? 0.01f : 0.2f;
+
+        if (this.isTouchingWater()) {
+            this.setVelocity(this.getVelocity().multiply(1.0D, 0.5D * multiplier, 1.0D));
+            this.addVelocity(0.0D, multiplier2, 0.0D);
+        }
+    }
+
+    @Override
+    public void tickMovement() {
+        super.tickMovement();
+
+        System.out.println(this.getPose());
+
+        if (this.getPose() == EntityPose.CROAKING) {
+            if (!this.getWorld().isClient) squeezePoseTick--;
+        } else {
+            squeezePoseTick = 20;
+        }
+        if (squeezePoseTick == 0) this.setPose(EntityPose.STANDING);
+
+    }
+
+    @Override
+    public void onTrackedDataSet(TrackedData<?> data) {
+        if (POSE.equals(data)) {
+            EntityPose entityPose = this.getPose();
+            if (entityPose == EntityPose.CROAKING) {
+                this.squeezingAnimationState.start(this.age);
+            } else {
+                this.squeezingAnimationState.stop();
+            }
+        }
+        super.onTrackedDataSet(data);
+    }
+
+    @Override
+    public ActionResult interactAt(PlayerEntity player, Vec3d hitPos, Hand hand) {
+        if (this.getPose() == EntityPose.STANDING) {
+            this.setPose(EntityPose.CROAKING);
+            this.playSound(EtceteraSoundEvents.ENTITY_RUBBER_CHICKEN_SQUEEZE, 1, 1);
+            return ActionResult.SUCCESS;
+        }
+        return super.interactAt(player, hitPos, hand);
     }
 
     @Override
@@ -85,7 +130,7 @@ public class RubberChickenEntity extends LivingEntity {
             }
         }
         if (source.isSourceCreativePlayer()) {
-            this.getWorld().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_ARMOR_STAND_BREAK, this.getSoundCategory(), 1.0f, 1.0f);
+            this.getWorld().playSound(null, this.getX(), this.getY(), this.getZ(), EtceteraBlocks.RUBBER_BLOCK.getSoundGroup(EtceteraBlocks.RUBBER_BLOCK.getDefaultState()).getBreakSound(), this.getSoundCategory(), 1.0f, 1.0f);
             this.kill();
             return bl2;
         }
@@ -129,7 +174,7 @@ public class RubberChickenEntity extends LivingEntity {
     public void handleStatus(byte status) {
         if (status == 32) {
             if (this.getWorld().isClient) {
-                this.getWorld().playSound(this.getX(), this.getY(), this.getZ(), SoundEvents.ENTITY_ARMOR_STAND_HIT, this.getSoundCategory(), 0.3f, 1.0f, false);
+                this.getWorld().playSound(this.getX(), this.getY(), this.getZ(), EtceteraBlocks.RUBBER_BLOCK.getSoundGroup(EtceteraBlocks.RUBBER_BLOCK.getDefaultState()).getHitSound(), this.getSoundCategory(), 0.3f, 1.0f, false);
                 this.lastHitTime = this.getWorld().getTime();
             }
         } else {

@@ -605,5 +605,11 @@
 		"sounds": [
 			"etcetera:records/music_disc_squall"
 		]
+	},
+	"entity.rubber_chicken.squeeze": {
+		"sounds": [
+			"etcetera:entity/rubber_chicken/squeeze"
+		],
+		"subtitle": "subtitles.entity.etcetera.rubber_chicken.squeeze"
 	}
 }

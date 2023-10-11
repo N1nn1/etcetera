@@ -58,6 +58,11 @@ public interface EtceteraSoundEvents {
 
     SoundEvent MUSIC_DISC_SQUALL = register("music_disc.squall");
 
+    SoundEvent ENTITY_RUBBER_CHICKEN_SQUEEZE = register("entity.rubber_chicken.squeeze");
+
+    //TODO
+    BlockSoundGroup RUBBER = register("rubber", 1, 1);
+
     BlockSoundGroup NETHER_BISMUTH_ORE = register("nether_bismuth_ore", 1, 1);
     BlockSoundGroup BISMUTH_BLOCK = register("bismuth_block", 1, 1);
     BlockSoundGroup SQUID_LAMP = register("squid_lamp", 1, 1);

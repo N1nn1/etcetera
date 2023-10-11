@@ -98,6 +98,10 @@ public class EtceteraCreativeModeTab {
 
                 output.add(COPPER_TAP);
 
+                output.add(RUBBER_BLOCK);
+                output.add(RUBBER);
+                output.add(RUBBER_CHICKEN);
+
                 output.add(COTTON_SEEDS);
                 output.add(COTTON_FLOWER);
                 output.add(WHITE_SWEATER);

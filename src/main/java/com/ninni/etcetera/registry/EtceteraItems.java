@@ -86,9 +86,11 @@ public class EtceteraItems {
     public static final Item EGGPLE = register("eggple", new EggpleItem(false, new FabricItemSettings().maxCount(16)));
     public static final Item GOLDEN_EGGPLE = register("golden_eggple", new EggpleItem(true, new FabricItemSettings().rarity(Rarity.RARE).maxCount(16)));
 
-    public static final Item RUBBER_CHICKEN = register("rubber_chicken", new RubberChickenItem(new FabricItemSettings().maxCount(1)));
-
     public static final Item COPPER_TAP = register("copper_tap", new BlockItem(EtceteraBlocks.COPPER_TAP, new FabricItemSettings()));
+
+    public static final Item RUBBER_BLOCK = register("rubber_block", new BlockItem(EtceteraBlocks.RUBBER_BLOCK, new FabricItemSettings()));
+    public static final Item RUBBER = register("rubber", new Item(new FabricItemSettings()));
+    public static final Item RUBBER_CHICKEN = register("rubber_chicken", new RubberChickenItem(new FabricItemSettings().maxCount(16)));
 
     public static final Item COTTON_SEEDS = register("cotton_seeds", new AliasedBlockItem(EtceteraBlocks.COTTON, new FabricItemSettings()));
     public static final Item COTTON_FLOWER = register("cotton_flower", new Item(new FabricItemSettings()));

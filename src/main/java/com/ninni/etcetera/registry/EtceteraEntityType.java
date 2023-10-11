@@ -91,7 +91,7 @@ public class EtceteraEntityType {
                     .<RubberChickenEntity>entityFactory(RubberChickenEntity::new)
                     .defaultAttributes(LivingEntity::createLivingAttributes)
                     .spawnGroup(SpawnGroup.MISC)
-                    .dimensions(EntityDimensions.fixed(0.3F, 0.3F))
+                    .dimensions(EntityDimensions.fixed(0.4F, 0.4F))
                     .trackRangeChunks(4)
     );
 

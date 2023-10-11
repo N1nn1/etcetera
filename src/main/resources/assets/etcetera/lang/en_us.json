@@ -129,8 +129,13 @@
   "item.etcetera.eggple": "Eggple",
   "item.etcetera.golden_eggple": "Golden Eggple",
 
+  "block.etcetera.copper_tap": "Copper Tap",
+  "block.etcetera.rubber_cauldron": "Rubber Cauldron",
+  "block.etcetera.rubber_block": "Rubber Block",
+  "item.etcetera.rubber": "Rubber",
   "entity.etcetera.rubber_chicken": "Rubber Chicken",
   "item.etcetera.rubber_chicken": "Rubber Chicken",
+  "subtitles.entity.etcetera.rubber_chicken.squeeze": "Rubber Chicken is squeezed",
 
   "subtitles.entity.chapple.convert": "Chapple transforms",
 

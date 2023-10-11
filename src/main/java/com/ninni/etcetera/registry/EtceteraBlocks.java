@@ -72,6 +72,7 @@ public class EtceteraBlocks {
 
     public static final Block COPPER_TAP = register("copper_tap", new CoppertapBlock(FabricBlockSettings.copyOf(COPPER_BLOCK).ticksRandomly().pistonBehavior(PistonBehavior.DESTROY)));
     public static final Block RUBBER_CAULDRON = register("rubber_cauldron", new RubberCauldronBlock(FabricBlockSettings.copyOf(CAULDRON).ticksRandomly()));
+    public static final Block RUBBER_BLOCK = register("rubber_block", new Block(FabricBlockSettings.create().mapColor(MapColor.TERRACOTTA_BROWN).strength(2, 2).sounds(EtceteraSoundEvents.RUBBER)));
 
     private static Block register(String id, Block block) { return Registry.register(Registries.BLOCK, new Identifier(MOD_ID, id), block); }
     private static boolean never(BlockState state, BlockView world, BlockPos pos) { return false; }
