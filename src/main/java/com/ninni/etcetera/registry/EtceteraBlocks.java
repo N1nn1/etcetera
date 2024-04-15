@@ -74,11 +74,11 @@ public class EtceteraBlocks {
     public static final Block RUBBER_CAULDRON = register("rubber_cauldron", new RubberCauldronBlock(FabricBlockSettings.copyOf(CAULDRON).ticksRandomly()));
     public static final Block RUBBER_BLOCK = register("rubber_block", new Block(FabricBlockSettings.create().mapColor(MapColor.TERRACOTTA_BROWN).strength(2, 2).sounds(EtceteraSoundEvents.RUBBER)));
     public static final Block RUBBER_BUTTON = register("rubber_button", new RubberButtonBlock(FabricBlockSettings.copyOf(RUBBER_BLOCK).noCollision().strength(0.5f).pistonBehavior(PistonBehavior.DESTROY)));
-    public static final Block REDSTONE_WIRES = register("redstone_wires", new RedstoneWiresBlock(FabricBlockSettings.copyOf(REDSTONE_WIRE).collidable(true)));
+    public static final Block REDSTONE_WIRES = register("redstone_wires", new RedstoneWiresBlock(FabricBlockSettings.copyOf(REDSTONE_WIRE).collidable(true).sounds(EtceteraSoundEvents.RUBBER)));
     public static final Block REDSTONE_WIRE_TORCH = register("redstone_wire_torch", new RedstoneWireTorchBlock(FabricBlockSettings.copyOf(REDSTONE_TORCH)));
-    public static final Block REDSTONE_WIRE_WALL_TORCH = register("redstone_wire_wall_torch", new WallRedstoneWireTorchBlock(FabricBlockSettings.copyOf(REDSTONE_WALL_TORCH)));
-    public static final Block REDSTONE_WIRE_COMPARATOR = register("redstone_wire_comparator", new RedstoneWireComparatorBlock(FabricBlockSettings.copyOf(COMPARATOR)));
-    public static final Block REDSTONE_WIRE_REPEATER = register("redstone_wire_repeater", new RedstoneWireRepeaterBlock(FabricBlockSettings.copyOf(REPEATER)));
+    public static final Block REDSTONE_WIRE_WALL_TORCH = register("redstone_wire_wall_torch", new WallRedstoneWireTorchBlock(FabricBlockSettings.copyOf(REDSTONE_WALL_TORCH).dropsLike(REDSTONE_WIRE_TORCH)));
+    public static final Block REDSTONE_WIRE_COMPARATOR = register("redstone_wire_comparator", new RedstoneWireComparatorBlock(FabricBlockSettings.copyOf(COMPARATOR).sounds(EtceteraSoundEvents.RUBBER)));
+    public static final Block REDSTONE_WIRE_REPEATER = register("redstone_wire_repeater", new RedstoneWireRepeaterBlock(FabricBlockSettings.copyOf(REPEATER).sounds(EtceteraSoundEvents.RUBBER)));
 
     private static Block register(String id, Block block) { return Registry.register(Registries.BLOCK, new Identifier(MOD_ID, id), block); }
     private static boolean never(BlockState state, BlockView world, BlockPos pos) { return false; }
