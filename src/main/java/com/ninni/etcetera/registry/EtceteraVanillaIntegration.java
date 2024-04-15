@@ -2,6 +2,7 @@ package com.ninni.etcetera.registry;
 
 import com.google.common.collect.Maps;
 import com.google.common.reflect.Reflection;
+import com.ninni.etcetera.block.RedstoneWiresBlock;
 import com.ninni.etcetera.client.TidalHelmetHud;
 import com.ninni.etcetera.client.gui.screen.PricklyCanScreen;
 import com.ninni.etcetera.client.particles.GoldenParticle;
@@ -16,6 +17,7 @@ import com.ninni.etcetera.resource.EtceteraProcessResourceManager;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
@@ -32,15 +34,13 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
+import net.minecraft.client.color.block.BlockColorProvider;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
-import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteBillboardParticle;
-import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.item.DyeableItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -49,12 +49,11 @@ import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPointer;
@@ -64,12 +63,8 @@ import net.minecraft.util.math.Position;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.LinkedHashMap;
-
-import static com.ninni.etcetera.registry.EtceteraBlocks.CRUMBLING_STONE;
-import static com.ninni.etcetera.registry.EtceteraBlocks.WAXED_CRUMBLING_STONE;
+import static com.ninni.etcetera.registry.EtceteraBlocks.*;
 
 public class EtceteraVanillaIntegration {
 
@@ -88,19 +83,6 @@ public class EtceteraVanillaIntegration {
         registerCompostables();
     }
 
-    public static void clientInit() {
-        registerBlockEntityRenderer();
-        registerArmor();
-        registerBlockRenderLayers();
-        registerScreens();
-        registerEntityModelLayers();
-        registerModelPredicates();
-        registerColorProviders();
-        registerParticles();
-    }
-
-    //server
-
     private static void flattenableBlockRegistry(){
         FlattenableBlockRegistry.register(Blocks.SAND, EtceteraBlocks.SAND_PATH.getDefaultState());
         FlattenableBlockRegistry.register(Blocks.RED_SAND, EtceteraBlocks.RED_SAND_PATH.getDefaultState());
@@ -110,22 +92,21 @@ public class EtceteraVanillaIntegration {
 
     private static void itemTooltipCallback(){
 
-        //TODO this crashes SERVERS
+        //TODO this might not work on servers idk why also make it able to be washed off with a cauldron
+        ItemTooltipCallback.EVENT.register((stack, context1, lines) ->{
+            int color = 0x959595;
+            switch (stack.getRarity()){
+                case COMMON -> color=0x959595;
+                case UNCOMMON -> color=0xbb7d2b;
+                case RARE -> color= Formatting.DARK_AQUA.getColorValue();
+                case EPIC -> color= Formatting.DARK_PURPLE.getColorValue();
+            }
+            Style style = Style.EMPTY.withColor(color).withItalic(true);
 
-        //ItemTooltipCallback.EVENT.register((stack, context1, lines) ->{
-        //    int color = 0x959595;
-        //    switch (stack.getRarity()){
-        //        case COMMON -> color=0x959595;
-        //        case UNCOMMON -> color=0xbb7d2b;
-        //        case RARE -> color=Formatting.DARK_AQUA.getColorValue();
-        //        case EPIC -> color= Formatting.DARK_PURPLE.getColorValue();
-        //    }
-        //    Style style = Style.EMPTY.withColor(color).withItalic(true);
-//
-        //    for (int row = 1; row < 5; row++) {
-        //        if (stack.hasNbt() && stack.getNbt().contains("Label" + row)) lines.add(row, Text.literal(stack.getNbt().getString("Label" + row)).setStyle(style));
-        //    }
-        //});
+            for (int row = 1; row < 5; row++) {
+                if (stack.hasNbt() && stack.getNbt().contains("Label" + row)) lines.add(row, Text.literal(stack.getNbt().getString("Label" + row)).setStyle(style));
+            }
+        });
     }
 
     private static void registerDispenserBehavior() {
@@ -253,123 +234,149 @@ public class EtceteraVanillaIntegration {
         TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add((entity, random) -> new TradeOffer(new ItemStack(Items.EMERALD, 20), ItemStack.EMPTY, new ItemStack(EtceteraItems.TRADER_HOOD), 1, 10, 0.05f)));
     }
 
-    //client
-
-    private static void registerParticles() {
-        ParticleFactoryRegistry instance = ParticleFactoryRegistry.getInstance();
-        instance.register(EtceteraParticleTypes.GOLDEN_HEART, GoldenParticle.Factory::new);
-        instance.register(EtceteraParticleTypes.GOLDEN_SHEEN, GoldenParticle.Factory::new);
-        instance.register(EtceteraParticleTypes.DRIPPING_RUBBER, sprites -> (type, world, x, y, z, xSpeed, ySpeed, zSpeed) -> {
-            SpriteBillboardParticle drippingRubber = RubberParticle.createDrippingRubber(world, x, y, z, xSpeed, ySpeed, zSpeed);
-            drippingRubber.setSprite(sprites);
-            return drippingRubber;
-        });
-        instance.register(EtceteraParticleTypes.FALLING_RUBBER, sprites -> (type, world, x, y, z, xSpeed, ySpeed, zSpeed) -> {
-            SpriteBillboardParticle fallingRubber = RubberParticle.createFallingRubber(world, x, y, z, xSpeed, ySpeed, zSpeed);
-            fallingRubber.setSprite(sprites);
-            return fallingRubber;
-        });
-        instance.register(EtceteraParticleTypes.LANDING_RUBBER, sprites -> (type, world, x, y, z, xSpeed, ySpeed, zSpeed) -> {
-            SpriteBillboardParticle landingRubber = RubberParticle.createLandingRubber(world, x, y, z, xSpeed, ySpeed, zSpeed);
-            landingRubber.setSprite(sprites);
-            return landingRubber;
-        });
-    }
-
-    private static void registerModelPredicates() {
-        ModelPredicateProviderRegistry.register(EtceteraItems.GOLDEN_GOLEM, new Identifier("broken"), (stack, world, entity, seed) -> {
-            if (stack.hasNbt() && stack.getNbt().contains("Broken") && stack.getNbt().getBoolean("Broken")) return 1;
-            return 0;
-        });
-
-    }
-
-    @SuppressWarnings("deprecation")
-    private static void registerBlockEntityRenderer() {
-        BlockEntityRendererRegistry.register(EtceteraBlockEntityType.ITEM_STAND, ItemStandBlockEntityRenderer::new);
-    }
-
-    private static void registerBlockRenderLayers() {
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
-                EtceteraBlocks.IRIDESCENT_GLASS,
-                EtceteraBlocks.IRIDESCENT_GLASS_PANE,
-                EtceteraBlocks.LIGHT_BULB,
-                EtceteraBlocks.TINTED_LIGHT_BULB,
-                EtceteraBlocks.FOOTSTEPS
-        );
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
-                EtceteraBlocks.BISMUTH_BARS,
-                EtceteraBlocks.BOUQUET,
-                EtceteraBlocks.COTTON,
-                EtceteraBlocks.POTTED_BOUQUET,
-                EtceteraBlocks.ITEM_STAND,
-                EtceteraBlocks.GLOW_ITEM_STAND,
-                EtceteraBlocks.FRAME,
-                EtceteraBlocks.DREAM_CATCHER,
-                EtceteraBlocks.PRICKLY_CAN,
-                EtceteraBlocks.COPPER_TAP
-        );
-    }
 
     @Environment(EnvType.CLIENT)
-    private static void registerArmor() {
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.WHITE_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_GRAY_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GRAY_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLACK_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BROWN_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.RED_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.ORANGE_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.YELLOW_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIME_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GREEN_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.CYAN_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_BLUE_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLUE_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PURPLE_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.MAGENTA_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PINK_SWEATER);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.TRADER_ROBE);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.WHITE_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_GRAY_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GRAY_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLACK_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BROWN_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.RED_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.ORANGE_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.YELLOW_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIME_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GREEN_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.CYAN_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_BLUE_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLUE_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PURPLE_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.MAGENTA_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PINK_HAT);
-        ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.TRADER_HOOD);
-        ArmorRenderer.register(new TidalArmorRenderer(), EtceteraItems.TIDAL_HELMET);
-        ArmorRenderer.register(new SilkArmorRenderer(), EtceteraItems.SILKEN_SLACKS);
-        ArmorRenderer.register(new AdventurerArmorRenderer(), EtceteraItems.ADVENTURERS_BOOTS);
-        TidalHelmetHud.init();
-    }
+    public static class Client {
 
-    private static void registerScreens() {
-        HandledScreens.register(EtceteraScreenHandlerType.PRICKLY_CAN, PricklyCanScreen::new);
-    }
+        public static void clientInit() {
+            registerBlockEntityRenderer();
+            registerArmor();
+            registerBlockRenderLayers();
+            registerScreens();
+            registerEntityModelLayers();
+            registerModelPredicates();
+            registerColorProviders();
+            registerParticles();
+        }
 
-    private static void registerEntityModelLayers() {
-        Reflection.initialize(EtceteraEntityModelLayers.class);
-        EntityRendererRegistry.register(EtceteraEntityType.TURTLE_RAFT, TurtleRaftRenderer::new);
-        EntityRendererRegistry.register(EtceteraEntityType.CHAPPLE, ChappleRenderer::new);
-        EntityRendererRegistry.register(EtceteraEntityType.EGGPLE, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(EtceteraEntityType.WEAVER, WeaverRenderer::new);
-        EntityRendererRegistry.register(EtceteraEntityType.COBWEB, CobwebProjectileEntityRenderer::new);
-        EntityRendererRegistry.register(EtceteraEntityType.GOLDEN_GOLEM, GoldenGolemRenderer::new);
-        EntityRendererRegistry.register(EtceteraEntityType.THROWN_GOLDEN_GOLEM, FlyingItemEntityRenderer::new);
-        EntityRendererRegistry.register(EtceteraEntityType.RUBBER_CHICKEN, RubberChickenRenderer::new);
-    }
+        private static void registerParticles() {
+            ParticleFactoryRegistry instance = ParticleFactoryRegistry.getInstance();
+            instance.register(EtceteraParticleTypes.GOLDEN_HEART, GoldenParticle.Factory::new);
+            instance.register(EtceteraParticleTypes.GOLDEN_SHEEN, GoldenParticle.Factory::new);
+            instance.register(EtceteraParticleTypes.DRIPPING_RUBBER, sprites -> (type, world, x, y, z, xSpeed, ySpeed, zSpeed) -> {
+                SpriteBillboardParticle drippingRubber = RubberParticle.createDrippingRubber(world, x, y, z, xSpeed, ySpeed, zSpeed);
+                drippingRubber.setSprite(sprites);
+                return drippingRubber;
+            });
+            instance.register(EtceteraParticleTypes.FALLING_RUBBER, sprites -> (type, world, x, y, z, xSpeed, ySpeed, zSpeed) -> {
+                SpriteBillboardParticle fallingRubber = RubberParticle.createFallingRubber(world, x, y, z, xSpeed, ySpeed, zSpeed);
+                fallingRubber.setSprite(sprites);
+                return fallingRubber;
+            });
+            instance.register(EtceteraParticleTypes.LANDING_RUBBER, sprites -> (type, world, x, y, z, xSpeed, ySpeed, zSpeed) -> {
+                SpriteBillboardParticle landingRubber = RubberParticle.createLandingRubber(world, x, y, z, xSpeed, ySpeed, zSpeed);
+                landingRubber.setSprite(sprites);
+                return landingRubber;
+            });
+        }
 
-    private static void registerColorProviders() {
-        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem)stack.getItem()).getColor(stack), EtceteraItems.TURTLE_RAFT);
+        private static void registerModelPredicates() {
+            ModelPredicateProviderRegistry.register(EtceteraItems.GOLDEN_GOLEM, new Identifier("broken"), (stack, world, entity, seed) -> {
+                if (stack.hasNbt() && stack.getNbt().contains("Broken") && stack.getNbt().getBoolean("Broken")) return 1;
+                return 0;
+            });
+
+        }
+
+        @SuppressWarnings("deprecation")
+        private static void registerBlockEntityRenderer() {
+            BlockEntityRendererRegistry.register(EtceteraBlockEntityType.ITEM_STAND, ItemStandBlockEntityRenderer::new);
+        }
+
+        private static void registerBlockRenderLayers() {
+
+
+            ColorProviderRegistry<Block, BlockColorProvider> blockColor = ColorProviderRegistry.BLOCK;
+
+            blockColor.register((state, world, pos, tintIndex) -> RedstoneWiresBlock.getWireColor(state.get(RedstoneWiresBlock.POWER)), EtceteraBlocks.REDSTONE_WIRES);
+
+
+            BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(),
+                    IRIDESCENT_GLASS,
+                    IRIDESCENT_GLASS_PANE,
+                    LIGHT_BULB,
+                    TINTED_LIGHT_BULB,
+                    FOOTSTEPS
+            );
+            BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(),
+                    REDSTONE_WIRES,
+                    REDSTONE_WIRE_TORCH,
+                    REDSTONE_WIRE_COMPARATOR,
+                    REDSTONE_WIRE_REPEATER,
+                    REDSTONE_WIRE_WALL_TORCH,
+                    BISMUTH_BARS,
+                    BOUQUET,
+                    COTTON,
+                    POTTED_BOUQUET,
+                    ITEM_STAND,
+                    GLOW_ITEM_STAND,
+                    FRAME,
+                    DREAM_CATCHER,
+                    PRICKLY_CAN,
+                    COPPER_TAP
+            );
+        }
+
+        @Environment(EnvType.CLIENT)
+        private static void registerArmor() {
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.WHITE_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_GRAY_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GRAY_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLACK_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BROWN_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.RED_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.ORANGE_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.YELLOW_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIME_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GREEN_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.CYAN_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_BLUE_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLUE_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PURPLE_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.MAGENTA_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PINK_SWEATER);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.TRADER_ROBE);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.WHITE_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_GRAY_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GRAY_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLACK_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BROWN_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.RED_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.ORANGE_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.YELLOW_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIME_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.GREEN_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.CYAN_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.LIGHT_BLUE_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.BLUE_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PURPLE_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.MAGENTA_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.PINK_HAT);
+            ArmorRenderer.register(new CottonArmorRenderer(), EtceteraItems.TRADER_HOOD);
+            ArmorRenderer.register(new TidalArmorRenderer(), EtceteraItems.TIDAL_HELMET);
+            ArmorRenderer.register(new SilkArmorRenderer(), EtceteraItems.SILKEN_SLACKS);
+            ArmorRenderer.register(new AdventurerArmorRenderer(), EtceteraItems.ADVENTURERS_BOOTS);
+            TidalHelmetHud.init();
+        }
+
+        private static void registerScreens() {
+            HandledScreens.register(EtceteraScreenHandlerType.PRICKLY_CAN, PricklyCanScreen::new);
+        }
+
+        private static void registerEntityModelLayers() {
+            Reflection.initialize(EtceteraEntityModelLayers.class);
+            EntityRendererRegistry.register(EtceteraEntityType.TURTLE_RAFT, TurtleRaftRenderer::new);
+            EntityRendererRegistry.register(EtceteraEntityType.CHAPPLE, ChappleRenderer::new);
+            EntityRendererRegistry.register(EtceteraEntityType.EGGPLE, FlyingItemEntityRenderer::new);
+            EntityRendererRegistry.register(EtceteraEntityType.WEAVER, WeaverRenderer::new);
+            EntityRendererRegistry.register(EtceteraEntityType.COBWEB, CobwebProjectileEntityRenderer::new);
+            EntityRendererRegistry.register(EtceteraEntityType.GOLDEN_GOLEM, GoldenGolemRenderer::new);
+            EntityRendererRegistry.register(EtceteraEntityType.THROWN_GOLDEN_GOLEM, FlyingItemEntityRenderer::new);
+            EntityRendererRegistry.register(EtceteraEntityType.RUBBER_CHICKEN, RubberChickenRenderer::new);
+        }
+
+        private static void registerColorProviders() {
+            ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : ((DyeableItem)stack.getItem()).getColor(stack), EtceteraItems.TURTLE_RAFT);
+        }
     }
 }

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "etcetera:rubber"
+    },
+    {
+      "item": "etcetera:rubber"
+    }
+  ],
+  "result": {
+    "item": "etcetera:redstone_wires",
+    "count": 6
+  }
+}

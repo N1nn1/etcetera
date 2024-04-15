@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "etcetera:block/redstone_wire_torch_off"
+    },
+    "lit=true": {
+      "model": "etcetera:block/redstone_wire_torch"
+    }
+  }
+}

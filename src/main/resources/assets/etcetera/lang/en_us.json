@@ -131,10 +131,16 @@
 
   "block.etcetera.copper_tap": "Copper Tap",
   "block.etcetera.rubber_cauldron": "Rubber Cauldron",
-  "block.etcetera.rubber_block": "Rubber Block",
   "item.etcetera.rubber": "Rubber",
+  "block.etcetera.rubber_block": "Rubber Block",
+  "block.etcetera.rubber_button": "Rubber Button",
   "entity.etcetera.rubber_chicken": "Rubber Chicken",
   "item.etcetera.rubber_chicken": "Rubber Chicken",
+  "block.etcetera.redstone_wires": "Redstone Wires",
+  "block.etcetera.redstone_wire_torch": "Redstone Wire Torch",
+  "block.etcetera.redstone_wire_wall_torch": "Redstone Wire Torch",
+  "block.etcetera.redstone_wire_comparator": "Redstone Wire Comparator",
+  "block.etcetera.redstone_wire_repeater": "Redstone Wire Repeater",
   "subtitles.entity.etcetera.rubber_chicken.squeeze": "Rubber Chicken is squeezed",
 
   "subtitles.entity.chapple.convert": "Chapple transforms",

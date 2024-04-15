@@ -1,0 +1,28 @@
+{
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "etcetera:block/redstone_wires_dot",
+		"line": "etcetera:block/redstone_wires_dot",
+		"overlay": "etcetera:block/redstone_wires_dot_overlay"
+	},
+	"elements": [
+		{
+			"from": [0, 0.06, 0],
+			"to": [16, 0.06, 16],
+			"shade": false,
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "texture": "#line", "tintindex": 0},
+				"down": {"uv": [0, 16, 16, 0], "texture": "#line", "tintindex": 0}
+			}
+		},
+		{
+			"from": [0, 0.08, 0],
+			"to": [16, 0.08, 16],
+			"shade": false,
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "texture": "#overlay"},
+				"down": {"uv": [0, 16, 16, 0], "texture": "#overlay"}
+			}
+		}
+	]
+}

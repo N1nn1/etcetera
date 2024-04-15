@@ -1,0 +1,6 @@
+{
+    "parent": "etcetera:block/redstone_wires_side",
+    "textures": {
+        "line": "etcetera:block/redstone_wires"
+    }
+}

@@ -98,9 +98,14 @@ public class EtceteraCreativeModeTab {
 
                 output.add(COPPER_TAP);
 
-                output.add(RUBBER_BLOCK);
                 output.add(RUBBER);
+                output.add(RUBBER_BLOCK);
+                output.add(RUBBER_BUTTON);
                 output.add(RUBBER_CHICKEN);
+                output.add(REDSTONE_WIRES);
+                output.add(REDSTONE_WIRE_TORCH);
+                output.add(REDSTONE_WIRE_COMPARATOR);
+                output.add(REDSTONE_WIRE_REPEATER);
 
                 output.add(COTTON_SEEDS);
                 output.add(COTTON_FLOWER);
@@ -144,7 +149,6 @@ public class EtceteraCreativeModeTab {
     );
 
     static {
-
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(entries -> {
             entries.addAfter(Items.SMOOTH_QUARTZ_SLAB,
                     BISMUTH_BLOCK,
@@ -157,7 +161,12 @@ public class EtceteraCreativeModeTab {
                     LEVELED_STONE_STAIRS,
                     LEVELED_STONE_SLAB
             );
+            entries.addAfter(Items.MUD_BRICK_WALL,
+                    RUBBER_BLOCK,
+                    RUBBER_BUTTON
+            );
         });
+
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(entries -> {
             entries.addAfter(Items.SOUL_LANTERN, LIGHT_BULB, TINTED_LIGHT_BULB);
@@ -170,12 +179,16 @@ public class EtceteraCreativeModeTab {
             entries.addAfter(Items.ENDER_CHEST, PRICKLY_CAN);
             entries.addAfter(Items.SUSPICIOUS_GRAVEL, CRUMBLING_STONE, WAXED_CRUMBLING_STONE);
             entries.addAfter(Items.BELL, DREAM_CATCHER);
+            entries.addAfter(Items.CAULDRON, COPPER_TAP);
+            entries.addBefore(Items.SKELETON_SKULL, RUBBER_CHICKEN);
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(entries -> {
+            entries.addAfter(Items.COMPARATOR, REDSTONE_WIRES, REDSTONE_WIRE_TORCH, REDSTONE_WIRE_REPEATER, REDSTONE_WIRE_COMPARATOR);
             entries.addAfter(Items.HEAVY_WEIGHTED_PRESSURE_PLATE, DRUM);
             entries.addAfter(Items.WHITE_WOOL, DICE);
             entries.addAfter(Items.BARREL, PRICKLY_CAN);
+            entries.addAfter(Items.STONE_BUTTON, RUBBER_BUTTON);
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> {
@@ -265,6 +278,7 @@ public class EtceteraCreativeModeTab {
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(entries -> {
+            entries.addAfter(Items.NETHERITE_INGOT, RUBBER);
             entries.addAfter(Items.EGG, EGGPLE, GOLDEN_EGGPLE);
             entries.addAfter(Items.RAW_GOLD, RAW_BISMUTH);
             entries.addAfter(Items.GOLD_INGOT, BISMUTH_INGOT);

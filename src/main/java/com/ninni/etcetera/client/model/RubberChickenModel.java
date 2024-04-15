@@ -6,7 +6,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 
@@ -40,7 +39,6 @@ public class RubberChickenModel<T extends RubberChickenEntity> extends SinglePar
 
         this.root.getChild(BODY).yaw = (float)Math.PI / 180 * entity.getYaw() + (float)Math.PI;
 
-        //TODO this is not working
         this.updateAnimation(entity.squeezingAnimationState, RubberChickenAnimations.SQUEEZE, animationProgress);
     }
 

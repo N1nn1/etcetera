@@ -88,9 +88,14 @@ public class EtceteraItems {
 
     public static final Item COPPER_TAP = register("copper_tap", new BlockItem(EtceteraBlocks.COPPER_TAP, new FabricItemSettings()));
 
-    public static final Item RUBBER_BLOCK = register("rubber_block", new BlockItem(EtceteraBlocks.RUBBER_BLOCK, new FabricItemSettings()));
     public static final Item RUBBER = register("rubber", new Item(new FabricItemSettings()));
     public static final Item RUBBER_CHICKEN = register("rubber_chicken", new RubberChickenItem(new FabricItemSettings().maxCount(16)));
+    public static final Item RUBBER_BLOCK = register("rubber_block", new BlockItem(EtceteraBlocks.RUBBER_BLOCK, new FabricItemSettings()));
+    public static final Item RUBBER_BUTTON = register("rubber_button", new BlockItem(EtceteraBlocks.RUBBER_BUTTON, new FabricItemSettings()));
+    public static final Item REDSTONE_WIRES = register("redstone_wires", new BlockItem(EtceteraBlocks.REDSTONE_WIRES, new FabricItemSettings()));
+    public static final Item REDSTONE_WIRE_TORCH = register("redstone_wire_torch", new VerticallyAttachableBlockItem(EtceteraBlocks.REDSTONE_WIRE_TORCH, EtceteraBlocks.REDSTONE_WIRE_WALL_TORCH, new FabricItemSettings(), Direction.DOWN));
+    public static final Item REDSTONE_WIRE_COMPARATOR = register("redstone_wire_comparator", new BlockItem(EtceteraBlocks.REDSTONE_WIRE_COMPARATOR, new FabricItemSettings()));
+    public static final Item REDSTONE_WIRE_REPEATER = register("redstone_wire_repeater", new BlockItem(EtceteraBlocks.REDSTONE_WIRE_REPEATER, new FabricItemSettings()));
 
     public static final Item COTTON_SEEDS = register("cotton_seeds", new AliasedBlockItem(EtceteraBlocks.COTTON, new FabricItemSettings()));
     public static final Item COTTON_FLOWER = register("cotton_flower", new Item(new FabricItemSettings()));

@@ -10,6 +10,6 @@ public class EtceteraClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
-		EtceteraVanillaIntegration.clientInit();
+		EtceteraVanillaIntegration.Client.clientInit();
 	}
 }

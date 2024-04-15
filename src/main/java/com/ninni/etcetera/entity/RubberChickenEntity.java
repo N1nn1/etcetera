@@ -19,12 +19,14 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 
 public class RubberChickenEntity extends LivingEntity {
     public long lastHitTime;
-    public AnimationState squeezingAnimationState = new AnimationState();
+    public final AnimationState squeezingAnimationState = new AnimationState();
+    public int squeezePoseTick = 20;
 
     public RubberChickenEntity(EntityType<? extends RubberChickenEntity> entityType, World world) {
         super(entityType, world);
@@ -56,13 +58,30 @@ public class RubberChickenEntity extends LivingEntity {
     @Override
     public void tickMovement() {
         super.tickMovement();
+
+        if (squeezePoseTick > 0) {
+            if (!this.getWorld().isClient) squeezePoseTick--;
+        }
+
+    }
+
+    @Nullable
+    @Override
+    public ItemStack getPickBlockStack() {
+        return EtceteraItems.RUBBER_CHICKEN.getDefaultStack();
+    }
+
+    @Override
+    public void onTrackedDataSet(TrackedData<?> data) {
+        super.onTrackedDataSet(data);
     }
 
     @Override
     public ActionResult interactAt(PlayerEntity player, Vec3d hitPos, Hand hand) {
-        this.getWorld().sendEntityStatus(this, (byte) 4);
-        this.playSound(EtceteraSoundEvents.ENTITY_RUBBER_CHICKEN_SQUEEZE, 1, 1);
-        return ActionResult.SUCCESS;
+            this.squeezingAnimationState.start(this.age);
+            this.playSound(EtceteraSoundEvents.ENTITY_RUBBER_CHICKEN_SQUEEZE, 1, 1);
+            squeezePoseTick = 20;
+            return ActionResult.SUCCESS;
     }
 
     @Override
@@ -145,9 +164,7 @@ public class RubberChickenEntity extends LivingEntity {
 
     @Override
     public void handleStatus(byte status) {
-        if (status == 4) {
-          this.squeezingAnimationState.start(this.age);
-        } else if (status == 32) {
+        if (status == 32) {
             if (this.getWorld().isClient) {
                 this.getWorld().playSound(this.getX(), this.getY(), this.getZ(), EtceteraBlocks.RUBBER_BLOCK.getSoundGroup(EtceteraBlocks.RUBBER_BLOCK.getDefaultState()).getHitSound(), this.getSoundCategory(), 0.3f, 1.0f, false);
                 this.lastHitTime = this.getWorld().getTime();

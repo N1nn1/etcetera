@@ -12,8 +12,10 @@
     "ItemGroupsAccessor",
     "LivingEntityMixin",
     "PlayerEntityMixin",
+    "RedstoneWireBlockMixin",
     "SmithingTableBlockMixin",
-    "VillagerEntityMixin"
+    "VillagerEntityMixin",
+    "WorldMixin"
   ],
   "client": [
     "client.ItemEntityRendererMixin",

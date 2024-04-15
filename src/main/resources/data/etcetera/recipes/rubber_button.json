@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "etcetera:rubber"
+    }
+  ],
+  "result": {
+    "item": "etcetera:rubber_button"
+  }
+}

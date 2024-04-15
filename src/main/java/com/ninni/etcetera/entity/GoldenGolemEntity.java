@@ -234,6 +234,12 @@ public class GoldenGolemEntity extends PathAwareEntity {
         return birdNavigation;
     }
 
+    @Nullable
+    @Override
+    public ItemStack getPickBlockStack() {
+        return EtceteraItems.GOLDEN_GOLEM.getDefaultStack();
+    }
+
     @Override
     public boolean damage(DamageSource source, float amount) {
         Entity entity = source.getAttacker();

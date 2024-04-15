@@ -64,7 +64,7 @@ public class PathBlock extends Block {
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockState blockState = world.getBlockState(pos.up());
         BlockState blockState2 = world.getBlockState(pos.down());
-        if (this.fallingBlock && blockState2.isAir()) {
+        if (this.fallingBlock && (blockState2.isAir() || !blockState2.getFluidState().isEmpty())) {
             return false;
         }
         return !blockState.isSolid() || blockState.getBlock() instanceof FenceGateBlock;

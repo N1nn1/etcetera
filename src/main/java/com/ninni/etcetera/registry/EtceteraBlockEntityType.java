@@ -1,10 +1,7 @@
 package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.Etcetera;
-import com.ninni.etcetera.block.entity.DreamCatcherBlockEntity;
-import com.ninni.etcetera.block.entity.ItemStandBlockEntity;
-import com.ninni.etcetera.block.entity.PricklyCanBlockEntity;
-import com.ninni.etcetera.block.entity.TintedLightBulbBlockEntity;
+import com.ninni.etcetera.block.entity.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
@@ -35,6 +32,12 @@ public class EtceteraBlockEntityType {
             Registries.BLOCK_ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, "dream_catcher"),
             FabricBlockEntityTypeBuilder.create(DreamCatcherBlockEntity::new,
                     EtceteraBlocks.DREAM_CATCHER
+            ).build(null)
+    );
+    public static final BlockEntityType<RedstoneWireComparatorBlockEntity> REDSTONE_WIRE_COMPARATOR = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, "redstone_wire_comparator"),
+            FabricBlockEntityTypeBuilder.create(RedstoneWireComparatorBlockEntity::new,
+                    EtceteraBlocks.REDSTONE_WIRE_COMPARATOR
             ).build(null)
     );
 }

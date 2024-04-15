@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "etcetera:rubber_block",
     "etcetera:iridescent_wool"
   ]
 }
