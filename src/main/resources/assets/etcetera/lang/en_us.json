@@ -191,5 +191,7 @@
   "advancements.etcetera.story.obtain_trader_armor.title": "Trading with Style!",
   "advancements.etcetera.story.obtain_trader_armor.description": "Trade with a Wandering Trader and acquire some exclusive clothing",
   "advancements.etcetera.husbandry.plant_cotton.title": "A Seedy Soft Spot",
-  "advancements.etcetera.husbandry.plant_cotton.description": "Plant a Cotton seed"
+  "advancements.etcetera.husbandry.plant_cotton.description": "Plant a Cotton seed",
+
+  "trim_material.etcetera.bismuth": "Bismuth Material"
 }
