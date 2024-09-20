@@ -50,27 +50,42 @@ public class DrumBlock extends Block implements Waterloggable {
         setDefaultState(stateManager.getDefaultState().with(WATERLOGGED, false).with(POWERED, false).with(TYPE, DrumType.DJEMBE));
     }
 
-    public void playDrumSound(BlockState state, World world, BlockPos pos, Entity player, Vec3d hit) {
+    public void playDrumSound(BlockState state, World world, BlockPos pos, Entity player, boolean isHit, Vec3d hit, int signal) {
         world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
         world.setBlockState(pos, state.with(POWERED, true), 3);
         world.scheduleBlockTick(pos, this, getPressTicks());
-        int power = calculatePower(hit);
-        if (power >= 1 && 5 >= power) {
-            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 16 / 24.0, 0.0, 0.0);
-            world.playSound(null, pos, getType(state).getHighSound(), SoundCategory.RECORDS, 2, 1);
-        }
-        if (power > 5 && 11 >= power) {
-            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 8 / 24.0, 0.0, 0.0);
-            world.playSound(null, pos, getType(state).getMediumSound(), SoundCategory.RECORDS, 2, 1);
-        }
-        if (power > 11) {
-            world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 1 / 24.0, 0.0, 0.0);
-            world.playSound(null, pos, getType(state).getLowSound(), SoundCategory.RECORDS, 2, 1);
+        if (isHit) {
+            int power = calculatePower(hit);
+            if (power >= 1 && 5 >= power) {
+                world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 16 / 24.0, 0.0, 0.0);
+                world.playSound(null, pos, getType(state).getHighSound(), SoundCategory.RECORDS, 2, 1);
+            }
+            if (power > 5 && 11 >= power) {
+                world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 8 / 24.0, 0.0, 0.0);
+                world.playSound(null, pos, getType(state).getMediumSound(), SoundCategory.RECORDS, 2, 1);
+            }
+            if (power > 11) {
+                world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 1 / 24.0, 0.0, 0.0);
+                world.playSound(null, pos, getType(state).getLowSound(), SoundCategory.RECORDS, 2, 1);
+            }
+        } else {
+            if (signal == 15) {
+                world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 16 / 24.0, 0.0, 0.0);
+                world.playSound(null, pos, getType(state).getHighSound(), SoundCategory.RECORDS, 2, 1);
+            }
+            if (signal == 14) {
+                world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 8 / 24.0, 0.0, 0.0);
+                world.playSound(null, pos, getType(state).getMediumSound(), SoundCategory.RECORDS, 2, 1);
+            }
+            if (signal < 14) {
+                world.addParticle(ParticleTypes.NOTE, (double) pos.getX() + 0.5, (double) pos.getY() + 1.2, (double) pos.getZ() + 0.5, 1 / 24.0, 0.0, 0.0);
+                world.playSound(null, pos, getType(state).getLowSound(), SoundCategory.RECORDS, 2, 1);
+            }
         }
     }
 
     private int getPressTicks() {
-        return 3;
+        return 6;
     }
 
     private DrumType getType(BlockState state) {
@@ -83,19 +98,19 @@ public class DrumBlock extends Block implements Waterloggable {
 
     @Override
     public void onProjectileHit(World world, BlockState state, BlockHitResult hit, ProjectileEntity projectile) {
-        if (hit.getSide() == Direction.UP) playDrumSound(state, world, hit.getBlockPos(), projectile.getOwner(), hit.getPos());
+        if (hit.getSide() == Direction.UP) playDrumSound(state, world, hit.getBlockPos(), projectile.getOwner(), true, hit.getPos(), 0);
     }
 
     @Override
     public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
-        playDrumSound(state, world, pos, entity, entity.getPos());
+        playDrumSound(state, world, pos, entity, true, entity.getPos(), 0);
         super.onLandedUpon(world, state, pos, entity, fallDistance);
     }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (hit.getSide() == Direction.UP && world.getBlockState(pos.up()).isAir()) {
-            playDrumSound(state, world, pos, player, hit.getPos());
+            playDrumSound(state, world, pos, player, true, hit.getPos(), 0);
             return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
@@ -115,14 +130,18 @@ public class DrumBlock extends Block implements Waterloggable {
         if (state.get(POWERED)) world.setBlockState(pos, state.with(POWERED, false), 3);
     }
 
-    @Override
-    public boolean emitsRedstonePower(BlockState state) {
-        return true;
+    public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
+        boolean bl = world.isReceivingRedstonePower(pos);
+        if (bl != state.get(POWERED)) {
+            if (bl) {
+                playDrumSound(state, world, pos, null, false, Vec3d.ZERO, world.getReceivedRedstonePower(pos));
+            }
+        }
     }
 
     @Override
-    public int getWeakRedstonePower(BlockState state, BlockView world, BlockPos pos, Direction direction) {
-        return state.get(POWERED) ? 3 : 0;
+    public boolean emitsRedstonePower(BlockState state) {
+        return true;
     }
 
     @Override

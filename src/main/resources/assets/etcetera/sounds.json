@@ -107,6 +107,42 @@
 		],
 		"subtitle": "subtitles.block.etcetera.dice.roll"
 	},
+	"block.drum.drumset.high": {
+		"sounds": [
+			"etcetera:block/drum/drumset/high"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.drumset.low": {
+		"sounds": [
+			"etcetera:block/drum/drumset/low"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.drumset.medium": {
+		"sounds": [
+			"etcetera:block/drum/drumset/medium"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.chiptune.high": {
+		"sounds": [
+			"etcetera:block/drum/chiptune/high"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.chiptune.low": {
+		"sounds": [
+			"etcetera:block/drum/chiptune/low"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.chiptune.medium": {
+		"sounds": [
+			"etcetera:block/drum/chiptune/medium"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
 	"block.drum.beatbox.high": {
 		"sounds": [
 			"etcetera:block/drum/beatbox/high"
@@ -122,6 +158,27 @@
 	"block.drum.beatbox.medium": {
 		"sounds": [
 			"etcetera:block/drum/beatbox/medium"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.cajon.high": {
+		"sounds": [
+			"etcetera:block/drum/cajon/high1",
+			"etcetera:block/drum/cajon/high2"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.cajon.low": {
+		"sounds": [
+			"etcetera:block/drum/cajon/low1",
+			"etcetera:block/drum/cajon/low2"
+		],
+		"subtitle": "subtitles.block.etcetera.drum"
+	},
+	"block.drum.cajon.medium": {
+		"sounds": [
+			"etcetera:block/drum/cajon/medium1",
+			"etcetera:block/drum/cajon/medium2"
 		],
 		"subtitle": "subtitles.block.etcetera.drum"
 	},

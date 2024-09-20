@@ -41,8 +41,8 @@ public class CobwebProjectileEntity extends ThrownItemEntity {
         super.onEntityHit(entityHitResult);
 
 
-        if (!this.getWorld().isClient) this.getWorld().setBlockState(entityHitResult.getEntity().getBlockPos(), Blocks.COBWEB.getDefaultState());
-        entityHitResult.getEntity().damage(this.getDamageSources().thrown(this, this.getOwner()), 2.0f);
+        if (!this.getWorld().isClient && this.getWorld().getBlockState(entityHitResult.getEntity().getBlockPos()).isReplaceable()) this.getWorld().setBlockState(entityHitResult.getEntity().getBlockPos(), Blocks.COBWEB.getDefaultState());
+        entityHitResult.getEntity().damage(this.getDamageSources().thrown(this, this.getOwner()), 5.0f);
         this.discard();
     }
 
