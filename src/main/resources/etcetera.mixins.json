@@ -10,6 +10,7 @@
     "EntityMixin",
     "HostileEntityMixin",
     "ItemGroupsAccessor",
+    "LeveledCauldronBlockMixin",
     "LivingEntityMixin",
     "PlayerEntityMixin",
     "RedstoneWireBlockMixin",

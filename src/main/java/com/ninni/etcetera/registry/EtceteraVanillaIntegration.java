@@ -32,6 +32,8 @@ import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.LeveledCauldronBlock;
+import net.minecraft.block.cauldron.CauldronBehavior;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
 import net.minecraft.client.color.block.BlockColorProvider;
@@ -42,6 +44,7 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.DyeableItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
@@ -49,10 +52,13 @@ import net.minecraft.loot.LootTables;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.resource.ResourceType;
+import net.minecraft.stat.Stats;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -67,13 +73,12 @@ import java.util.LinkedHashMap;
 import static com.ninni.etcetera.registry.EtceteraBlocks.*;
 
 public class EtceteraVanillaIntegration {
-
     public static final EtceteraProcessResourceManager CHISELLING_MANAGER = new EtceteraProcessResourceManager("chiselling");
     public static final EtceteraProcessResourceManager HAMMERING_MANAGER = new EtceteraProcessResourceManager("hammering");
 
+
     public static void serverInit() {
         EtceteraNetwork.initCommon();
-        itemTooltipCallback();
         flattenableBlockRegistry();
         registerDispenserBehavior();
         registerReloadListeners();
@@ -88,25 +93,6 @@ public class EtceteraVanillaIntegration {
         FlattenableBlockRegistry.register(Blocks.RED_SAND, EtceteraBlocks.RED_SAND_PATH.getDefaultState());
         FlattenableBlockRegistry.register(Blocks.SNOW_BLOCK, EtceteraBlocks.SNOW_PATH.getDefaultState());
         FlattenableBlockRegistry.register(Blocks.GRAVEL, EtceteraBlocks.GRAVEL_PATH.getDefaultState());
-    }
-
-    private static void itemTooltipCallback(){
-
-        //TODO this might not work on servers idk why also make it able to be washed off with a cauldron
-        ItemTooltipCallback.EVENT.register((stack, context1, lines) ->{
-            int color = 0x959595;
-            switch (stack.getRarity()){
-                case COMMON -> color=0x959595;
-                case UNCOMMON -> color=0xbb7d2b;
-                case RARE -> color= Formatting.DARK_AQUA.getColorValue();
-                case EPIC -> color= Formatting.DARK_PURPLE.getColorValue();
-            }
-            Style style = Style.EMPTY.withColor(color).withItalic(true);
-
-            for (int row = 1; row < 5; row++) {
-                if (stack.hasNbt() && stack.getNbt().contains("Label" + row)) lines.add(row, Text.literal(stack.getNbt().getString("Label" + row)).setStyle(style));
-            }
-        });
     }
 
     private static void registerDispenserBehavior() {
@@ -168,6 +154,8 @@ public class EtceteraVanillaIntegration {
     }
 
     private static void registerReloadListeners() {
+        CauldronBehavior.registerBehavior();
+
         ResourceManagerHelper resourceManager = ResourceManagerHelper.get(ResourceType.SERVER_DATA);
         resourceManager.registerReloadListener(CHISELLING_MANAGER);
         resourceManager.registerReloadListener(HAMMERING_MANAGER);
@@ -247,6 +235,25 @@ public class EtceteraVanillaIntegration {
             registerModelPredicates();
             registerColorProviders();
             registerParticles();
+            itemTooltipCallback();
+        }
+
+        private static void itemTooltipCallback(){
+            //TODO make it able to be washed off with a cauldron
+            ItemTooltipCallback.EVENT.register((stack, context1, lines) ->{
+                int color = 0x959595;
+                switch (stack.getRarity()){
+                    case COMMON -> color=0x959595;
+                    case UNCOMMON -> color=0xbb7d2b;
+                    case RARE -> color= Formatting.DARK_AQUA.getColorValue();
+                    case EPIC -> color= Formatting.DARK_PURPLE.getColorValue();
+                }
+                Style style = Style.EMPTY.withColor(color).withItalic(true);
+
+                for (int row = 1; row < 5; row++) {
+                    if (stack.hasNbt() && stack.getNbt().contains("Label" + row)) lines.add(row, Text.literal(stack.getNbt().getString("Label" + row)).setStyle(style));
+                }
+            });
         }
 
         private static void registerParticles() {

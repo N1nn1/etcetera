@@ -2,6 +2,8 @@ package com.ninni.etcetera.registry;
 
 import com.ninni.etcetera.Etcetera;
 import com.ninni.etcetera.entity.*;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.*;
 import net.minecraft.entity.mob.HostileEntity;
@@ -97,5 +99,9 @@ public class EtceteraEntityType {
 
     private static <T extends Entity> EntityType<T> register(String id, FabricEntityTypeBuilder<T> entityType) {
         return Registry.register(Registries.ENTITY_TYPE, new Identifier(Etcetera.MOD_ID, id), entityType.build());
+    }
+
+    static {
+        BiomeModifications.addSpawn(BiomeSelectors.foundInOverworld(), SpawnGroup.MONSTER, EtceteraEntityType.WEAVER, 50, 1, 1);
     }
 }

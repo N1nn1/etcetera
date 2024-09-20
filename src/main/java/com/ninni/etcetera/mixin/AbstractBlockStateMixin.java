@@ -16,11 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class AbstractBlockStateMixin {
     @Inject(method = "getModelOffset", at = @At("HEAD"), cancellable = true)
     private void removeModelOffset(net.minecraft.world.BlockView world, BlockPos pos, CallbackInfoReturnable<Vec3d> cir) {
-        AbstractBlock.AbstractBlockState that = AbstractBlock.AbstractBlockState.class.cast(this);
-        if (that.getBlock() instanceof PlantBlock) {
-            if (world.getBlockState(pos.down(1)).isIn(EtceteraTags.OFFSET_REMOVER)
-                || (that.getBlock() instanceof TallPlantBlock && world.getBlockState(pos.down(2)).isIn(EtceteraTags.OFFSET_REMOVER))
-            ) cir.setReturnValue(Vec3d.ZERO);
-        }
+        //AbstractBlock.AbstractBlockState that = AbstractBlock.AbstractBlockState.class.cast(this);
+        //if (that.getBlock() instanceof PlantBlock) {
+        //    if (world.getBlockState(pos.down(1)).isIn(EtceteraTags.OFFSET_REMOVER)
+        //        || (that.getBlock() instanceof TallPlantBlock && world.getBlockState(pos.down(2)).isIn(EtceteraTags.OFFSET_REMOVER))
+        //    ) cir.setReturnValue(Vec3d.ZERO);
+        //}
     }
 }
