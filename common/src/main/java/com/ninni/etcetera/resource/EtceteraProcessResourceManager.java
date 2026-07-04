@@ -14,6 +14,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.Map;
@@ -33,7 +34,7 @@ public class EtceteraProcessResourceManager extends SimpleJsonResourceReloadList
     }
 
     @Override
-    protected void apply(Map<ResourceLocation, JsonElement> prepared, ResourceManager manager, ProfilerFiller profiler) {
+    protected void apply(@NotNull Map<ResourceLocation, JsonElement> prepared, @NotNull ResourceManager manager, @NotNull ProfilerFiller profiler) {
         try {
             if (prepared.get(ResourceLocation.fromNamespaceAndPath(MOD_ID, this.id)) instanceof JsonObject jsonObject) {
                 this.data = Data.CODEC.parse(JsonOps.INSTANCE, jsonObject).result().orElseThrow();

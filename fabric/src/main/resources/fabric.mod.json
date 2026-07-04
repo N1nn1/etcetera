@@ -23,6 +23,9 @@
     ],
     "modmenu": [
       "com.ninni.etcetera.compat.ModMenuIntegration"
+    ],
+    "emi": [
+      "com.ninni.etcetera.compat.emi.EtceteraEmiPlugin"
     ]
   },
   "mixins": [

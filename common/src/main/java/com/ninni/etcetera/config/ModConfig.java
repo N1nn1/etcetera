@@ -6,14 +6,14 @@ import com.ninni.etcetera.Constants;
 import com.ninni.etcetera.platform.Services;
 import dev.isxander.yacl3.api.ConfigCategory;
 import dev.isxander.yacl3.api.Option;
+import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.YetAnotherConfigLib;
+import dev.isxander.yacl3.api.controller.DoubleFieldControllerBuilder;
+import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 
-import dev.isxander.yacl3.api.OptionDescription;
-import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
-import dev.isxander.yacl3.api.controller.DoubleFieldControllerBuilder;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -118,7 +118,6 @@ public class ModConfig {
 
         ModConfig config = get();
 
-        // Integrations Category
         ConfigCategory.Builder integrations = ConfigCategory.createBuilder()
                 .name(Component.translatable("config.etcetera.category.integrations"));
         integrations.option(createBoolOption("enableVillagerTrades", true, () -> config.enableVillagerTrades, v -> config.enableVillagerTrades = v));
@@ -126,7 +125,6 @@ public class ModConfig {
         integrations.option(createBoolOption("enableFlattenableBlocks", true, () -> config.enableFlattenableBlocks, v -> config.enableFlattenableBlocks = v));
         integrations.option(createBoolOption("enableCompostables", true, () -> config.enableCompostables, v -> config.enableCompostables = v));
 
-        // Mobs Category
         ConfigCategory.Builder mobs = ConfigCategory.createBuilder()
                 .name(Component.translatable("config.etcetera.category.mobs"));
 
@@ -161,7 +159,6 @@ public class ModConfig {
                 .option(createIntOption("goldenGolemAbsorptionAmplifier", 1, () -> config.goldenGolemAbsorptionAmplifier, v -> config.goldenGolemAbsorptionAmplifier = v, 0, 255))
                 .build());
 
-        // Items & Blocks Category
         ConfigCategory.Builder itemsBlocks = ConfigCategory.createBuilder()
                 .name(Component.translatable("config.etcetera.category.items_blocks"));
 

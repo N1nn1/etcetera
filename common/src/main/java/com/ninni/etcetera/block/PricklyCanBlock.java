@@ -37,12 +37,14 @@ import org.jetbrains.annotations.Nullable;
 public class PricklyCanBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+
     public static final MapCodec<PricklyCanBlock> CODEC = simpleCodec(PricklyCanBlock::new);
     protected static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 15, 15);
 
     public PricklyCanBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(OPEN, false).setValue(POWERED, false));
     }
 
     @Override
@@ -60,7 +62,6 @@ public class PricklyCanBlock extends BaseEntityBlock {
                 player.openMenu(pricklyCanBlockEntity);
                 player.awardStat(EtceteraStats.OPEN_PRICKLY_CAN.get());
             }
-
             return InteractionResult.CONSUME;
         }
     }
@@ -78,12 +79,29 @@ public class PricklyCanBlock extends BaseEntityBlock {
     }
 
     @Override
+    public void neighborChanged(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull Block sourceBlock, @NotNull BlockPos sourcePos, boolean notify) {
+        if (!world.isClientSide) {
+            boolean isPowered = world.hasNeighborSignal(pos);
+            boolean wasPowered = state.getValue(POWERED);
+
+            if (isPowered && !wasPowered) {
+                BlockEntity blockEntity = world.getBlockEntity(pos);
+                if (blockEntity instanceof PricklyCanBlockEntity pricklyCanBlockEntity) {
+                    pricklyCanBlockEntity.clearContent();
+                }
+                world.setBlock(pos, state.setValue(POWERED, true), 3);
+            } else if (!isPowered && wasPowered) {
+                world.setBlock(pos, state.setValue(POWERED, false), 3);
+            }
+        }
+    }
+
+    @Override
     public void tick(@NotNull BlockState state, ServerLevel world, @NotNull BlockPos pos, @NotNull RandomSource random) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof PricklyCanBlockEntity pricklyCanBlockEntity) {
             pricklyCanBlockEntity.tick();
         }
-
     }
 
     @Nullable
@@ -105,7 +123,6 @@ public class PricklyCanBlock extends BaseEntityBlock {
                 pricklyCanBlockEntity.setCustomName(itemStack.getHoverName());
             }
         }
-
     }
 
     @Override
@@ -120,12 +137,12 @@ public class PricklyCanBlock extends BaseEntityBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, OPEN);
+        builder.add(FACING, OPEN, POWERED);
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
+        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite()).setValue(POWERED, ctx.getLevel().hasNeighborSignal(ctx.getClickedPos()));
     }
 
     @Override

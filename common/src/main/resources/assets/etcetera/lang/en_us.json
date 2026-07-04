@@ -2,6 +2,9 @@
   "etcetera.item_group": "Etcetera",
   "mod.etcetera.contact.discord": "Discord",
 
+  "emi.category.etcetera.chiseling": "Chiseling",
+  "emi.category.etcetera.hammering": "Hammering",
+
   "item.etcetera.etcetera": "Etcetera",
 
   "item.etcetera.item_label": "Item Label",
@@ -258,9 +261,9 @@
   "config.etcetera.option.goldenGolemAbsorptionAmplifier.desc": "The amplifier level of the Absorption effect (default 1, which means Absorption II).",
 
   "config.etcetera.option.handbellRange": "Handbell Range",
-  "config.etcetera.option.handbellRange.desc": "The radius in blocks within which the Handbell detects and summons friends (default 48.0).",
+  "config.etcetera.option.handbellRange.desc": "The radius in blocks within which the Handbell detects and summons pets (default 48.0).",
   "config.etcetera.option.handbellGlowDuration": "Handbell Glow Duration",
-  "config.etcetera.option.handbellGlowDuration.desc": "The duration in ticks of the Glowing effect applied to summoned friends (default 120).",
+  "config.etcetera.option.handbellGlowDuration.desc": "The duration in ticks of the Glowing effect applied to summoned pets (default 120).",
 
   "config.etcetera.option.dreamCatcherRangeX": "Dream Catcher Range X",
   "config.etcetera.option.dreamCatcherRangeX.desc": "The horizontal X-axis search range of the Dream Catcher (default 8.0).",
