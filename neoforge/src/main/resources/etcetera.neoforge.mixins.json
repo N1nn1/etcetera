@@ -4,9 +4,10 @@
   "package": "com.ninni.etcetera.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BeaconBlockEntityMixin"
   ],
   "client": [
-    "client.client.NeoForgeItemRendererMixin"
+    "client.ItemRendererMixin"
   ],
   "server": [
   ],

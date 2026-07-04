@@ -1,1 +1,3 @@
-- Initial 1.21 port.
+### Added
+
+- Iridescent Glass now makes beacon beams rainbow.

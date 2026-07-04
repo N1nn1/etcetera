@@ -26,8 +26,7 @@ public class EtceteraBlocks {
     public static final RegistryObject<Block> BISMUTH_BARS = register("bismuth_bars", () -> new PublicPaneBlock(BlockBehaviour.Properties.ofFullCopy(BISMUTH_BLOCK.get())));
     public static final RegistryObject<Block> NETHER_BISMUTH_ORE = register("nether_bismuth_ore", () -> new DropExperienceBlock(UniformInt.of(1, 8), BlockBehaviour.Properties.of().requiresCorrectToolForDrops().mapColor(MapColor.NETHER).strength(3.0f, 3.0f).sound(EtceteraSoundEvents.NETHER_BISMUTH_ORE)));
 
-    public static final RegistryObject<Block> IRIDESCENT_GLASS = register("iridescent_glass", () -> new TransparentBlock(BlockBehaviour.Properties.ofFullCopy(GLASS).friction(1.0F)) {
-    });
+    public static final RegistryObject<Block> IRIDESCENT_GLASS = register("iridescent_glass", () -> new IridescentGlassBlock(BlockBehaviour.Properties.ofFullCopy(GLASS).friction(1.0F)));
     public static final RegistryObject<Block> IRIDESCENT_GLASS_PANE = register("iridescent_glass_pane", () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(LIGHT_GRAY_STAINED_GLASS_PANE).friction(1.0F)) {
     });
     public static final RegistryObject<Block> IRIDESCENT_TERRACOTTA = register("iridescent_terracotta", () -> new Block(BlockBehaviour.Properties.ofFullCopy(TERRACOTTA)));

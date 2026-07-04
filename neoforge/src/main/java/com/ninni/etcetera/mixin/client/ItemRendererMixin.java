@@ -1,4 +1,4 @@
-package com.ninni.etcetera.mixin.client.client;
+package com.ninni.etcetera.mixin.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.ninni.etcetera.client.gui.HandbellItemRenderer;
@@ -15,12 +15,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(ItemRenderer.class)
-public abstract class NeoForgeItemRendererMixin {
+public abstract class ItemRendererMixin {
     @ModifyVariable(method = "render", at = @At("HEAD"), argsOnly = true)
-    private BakedModel createModel(BakedModel value, ItemStack stack, ItemDisplayContext displayContext, boolean leftHanded, PoseStack poseStack, MultiBufferSource bufferSource, int light, int overlay) {
-        if (stack.getItem() instanceof HandbellItem) {
+    private BakedModel createModel(BakedModel value, ItemStack itemStack, ItemDisplayContext displayContext, boolean leftHand, PoseStack poseStack, MultiBufferSource bufferSource, int combinedLight, int combinedOverlay) {
+        if (itemStack.getItem() instanceof HandbellItem) {
             ModelManager manager = Minecraft.getInstance().getModelManager();
-            if (!HandbellItemRenderer.isInventory(stack, displayContext)) {
+            if (!HandbellItemRenderer.isInventory(itemStack, displayContext)) {
                 return manager.getModel(HandbellItemRenderer.INVENTORY_IN_HAND_MODEL_ID);
             } else {
                 return manager.getModel(HandbellItemRenderer.INVENTORY_MODEL_ID);

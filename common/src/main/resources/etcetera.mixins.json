@@ -18,6 +18,7 @@
     "VillagerMixin"
   ],
   "client": [
+    "BeaconRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
