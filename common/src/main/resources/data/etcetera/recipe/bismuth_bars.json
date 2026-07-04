@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "etcetera:bismuth_ingot"
+        }
+    },
+    "result": {
+        "count": 16,
+        "id": "etcetera:bismuth_bars"
+    }
+}

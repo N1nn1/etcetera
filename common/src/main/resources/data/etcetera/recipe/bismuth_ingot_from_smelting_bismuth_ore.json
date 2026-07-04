@@ -1,0 +1,11 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "etcetera:nether_bismuth_ore"
+    },
+    "result": {
+        "id": "etcetera:bismuth_ingot"
+    },
+    "experience": 0.7,
+    "cookingtime": 150
+}

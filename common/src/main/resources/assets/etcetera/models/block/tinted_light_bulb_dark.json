@@ -1,0 +1,7 @@
+{
+  "parent": "etcetera:block/template_light_bulb",
+  "textures": {
+    "all": "etcetera:block/tinted_light_bulb_dark"
+  },
+  "render_type": "minecraft:translucent"
+}

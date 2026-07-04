@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#S#",
+        "S S",
+        "#S#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:feather"
+        },
+        "S": {
+            "item": "etcetera:cotton_flower"
+        }
+    },
+    "result": {
+        "count": 1,
+        "id": "etcetera:dream_catcher"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " #",
+        "cc",
+        "c "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:redstone"
+        },
+        "c": {
+            "item": "minecraft:copper_ingot"
+        }
+    },
+    "result": {
+        "count": 1,
+        "id": "etcetera:copper_tap"
+    }
+}

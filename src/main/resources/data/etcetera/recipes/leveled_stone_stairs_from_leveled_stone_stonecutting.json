@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "etcetera:leveled_stone"
-  },
-  "result": "etcetera:leveled_stone_stairs",
-  "count": 1
-}

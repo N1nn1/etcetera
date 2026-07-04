@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_glass_pane_noside",
+  "textures": {
+    "pane": "etcetera:block/iridescent_glass"
+  },
+  "render_type": "minecraft:translucent"
+}

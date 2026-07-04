@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:smooth_stone"
+    },
+    "result": {
+        "id": "etcetera:leveled_stone"
+    },
+    "count": 2
+}

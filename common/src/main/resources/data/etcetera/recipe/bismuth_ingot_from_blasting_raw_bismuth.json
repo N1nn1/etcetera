@@ -1,0 +1,11 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "etcetera:raw_bismuth"
+    },
+    "result": {
+        "id": "etcetera:bismuth_ingot"
+    },
+    "experience": 0.7,
+    "cookingtime": 75
+}

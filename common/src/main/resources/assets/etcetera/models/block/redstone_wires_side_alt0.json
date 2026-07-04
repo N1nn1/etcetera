@@ -1,0 +1,7 @@
+{
+  "parent": "etcetera:block/redstone_wires_side_alt",
+  "textures": {
+    "line": "etcetera:block/redstone_wires"
+  },
+  "render_type": "minecraft:cutout"
+}

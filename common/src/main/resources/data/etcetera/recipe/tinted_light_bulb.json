@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#G#",
+        " i "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:tinted_glass"
+        },
+        "G": {
+            "item": "minecraft:glowstone"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "count": 4,
+        "id": "etcetera:tinted_light_bulb"
+    }
+}

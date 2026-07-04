@@ -1,0 +1,8 @@
+{
+  "sound_event": "etcetera:music_disc.squall",
+  "description": {
+    "translate": "item.etcetera.music_disc_squall.desc"
+  },
+  "length_in_seconds": 155,
+  "comparator_output": 1
+}

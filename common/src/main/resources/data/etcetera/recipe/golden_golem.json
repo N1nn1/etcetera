@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "G"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:carved_pumpkin"
+        },
+        "G": {
+            "item": "minecraft:gold_block"
+        }
+    },
+    "result": {
+        "count": 1,
+        "id": "etcetera:golden_golem"
+    }
+}

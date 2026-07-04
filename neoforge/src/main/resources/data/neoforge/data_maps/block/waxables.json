@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": {
+    "etcetera:crumbling_stone": {
+      "waxed": "etcetera:waxed_crumbling_stone"
+    }
+  }
+}

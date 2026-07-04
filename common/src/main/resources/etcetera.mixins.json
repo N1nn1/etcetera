@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.ninni.etcetera.mixin",
+  "compatibilityLevel": "JAVA_18",
+  "mixins": [
+    "AbstractCauldronBlockMixin",
+    "AnvilBlockMixin",
+    "AnvilMenuMixin",
+    "EntityMixin",
+    "LevelMixin",
+    "LivingEntityMixin",
+    "LootTableAccessor",
+    "MonsterMixin",
+    "PlayerMixin",
+    "RedstoneWireBlockMixin",
+    "SmithingTableBlockMixin",
+    "VillagerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

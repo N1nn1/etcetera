@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "#W#",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "tag": "c:glass_panes"
+        },
+        "W": {
+            "item": "etcetera:bismuth_ingot"
+        }
+    },
+    "result": {
+        "count": 4,
+        "id": "etcetera:iridescent_glass_pane"
+    }
+}

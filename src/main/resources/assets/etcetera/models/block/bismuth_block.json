@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "etcetera:block/bismuth_block_top",
-    "side": "etcetera:block/bismuth_block"
-  }
-}
