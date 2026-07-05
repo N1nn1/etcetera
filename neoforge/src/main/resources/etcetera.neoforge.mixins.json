@@ -3,11 +3,13 @@
   "minVersion": "0.8",
   "package": "com.ninni.etcetera.mixin",
   "compatibilityLevel": "JAVA_21",
+  "plugin": "com.ninni.etcetera.mixin.EtceteraNeoForgeMixinPlugin",
   "mixins": [
     "BeaconBlockEntityMixin"
   ],
   "client": [
-    "client.ItemRendererMixin"
+    "client.ItemRendererMixin",
+    "quark.client.QuarkBeaconRendererMixin"
   ],
   "server": [
   ],

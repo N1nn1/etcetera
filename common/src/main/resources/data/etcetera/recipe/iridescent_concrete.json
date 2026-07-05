@@ -7,7 +7,7 @@
     ],
     "key": {
         "#": {
-            "tag": "etcetera:concrete"
+            "tag": "c:concrete"
         },
         "W": {
             "item": "etcetera:bismuth_ingot"

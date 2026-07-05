@@ -25,6 +25,9 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
 import org.jetbrains.annotations.NotNull;
 
 public class TurtleRaftEntity extends Boat {
@@ -150,5 +153,10 @@ public class TurtleRaftEntity extends Boat {
     @Override
     protected int getMaxPassengers() {
         return 1;
+    }
+
+    @Override
+    protected @NotNull Vec3 getPassengerAttachmentPoint(Entity passenger, EntityDimensions dimensions, float partialTick) {
+        return super.getPassengerAttachmentPoint(passenger, dimensions, partialTick).add(0.0, 0.375, 0.0);
     }
 }

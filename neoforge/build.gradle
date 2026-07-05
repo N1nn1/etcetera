@@ -43,6 +43,9 @@ dependencies {
 
     // YACL
     implementation "maven.modrinth:yacl:${yacl_version}-neoforge"
+
+    // Compatibility
+    compileOnly "maven.modrinth:quark:${quark_version}"
 }
 
 publishMods {
