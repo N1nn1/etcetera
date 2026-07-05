@@ -1,4 +1,3 @@
 ### Fixed
 
-- Fixed issues with C2ME.
-- Improved redstone wire performance.
+- Fixed Iridescent Glass item models not being translucent on NeoForge.

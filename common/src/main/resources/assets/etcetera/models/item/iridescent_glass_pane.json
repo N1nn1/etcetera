@@ -2,5 +2,6 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "etcetera:block/iridescent_glass"
-  }
+  },
+  "render_type": "minecraft:translucent"
 }
