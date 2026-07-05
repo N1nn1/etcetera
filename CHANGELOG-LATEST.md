@@ -1,3 +1,4 @@
 ### Fixed
 
-- Fixed Iridescent Glass item models not being translucent on NeoForge.
+- Improve Redstone Wire Comparator mod compatibility.
+- Performance improvements.

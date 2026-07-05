@@ -9,7 +9,6 @@
     "AnvilMenuMixin",
     "BlockStateBaseMixin",
     "EntityMixin",
-    "LevelMixin",
     "LivingEntityMixin",
     "LootTableAccessor",
     "MonsterMixin",

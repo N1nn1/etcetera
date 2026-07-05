@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_21",
   "plugin": "com.ninni.etcetera.mixin.EtceteraNeoForgeMixinPlugin",
   "mixins": [
-    "BeaconBlockEntityMixin"
+    "BeaconBlockEntityMixin",
+    "NeoRedstoneWireComparatorBlockMixin"
   ],
   "client": [
     "client.ItemRendererMixin",
