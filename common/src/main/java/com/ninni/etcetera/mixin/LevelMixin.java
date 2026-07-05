@@ -15,20 +15,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Level.class)
 public class LevelMixin {
 
-    @Inject(method = "updateNeighbourForOutputSignal", at = @At("HEAD"))
+    @Inject(method = "updateNeighbourForOutputSignal", at = @At("HEAD"), cancellable = true)
     private void e$updateNeighbourForOutputSignal(BlockPos pos, Block block, CallbackInfo ci) {
         Level that = Level.class.cast(this);
         for (Direction direction : Direction.Plane.HORIZONTAL) {
             BlockPos blockPos = pos.relative(direction);
             if (!that.hasChunkAt(blockPos)) continue;
             BlockState blockState = that.getBlockState(blockPos);
-            if (blockState.is(EtceteraBlocks.REDSTONE_WIRE_COMPARATOR.get())) {
+
+            if (blockState.is(EtceteraBlocks.REDSTONE_WIRE_COMPARATOR.get()) || blockState.is(Blocks.COMPARATOR)) {
                 that.neighborChanged(blockState, blockPos, block, pos, false);
-                continue;
+            } else if (blockState.isRedstoneConductor(that, blockPos)) {
+                blockPos = blockPos.relative(direction);
+                blockState = that.getBlockState(blockPos);
+                if (blockState.is(EtceteraBlocks.REDSTONE_WIRE_COMPARATOR.get()) || blockState.is(Blocks.COMPARATOR)) {
+                    that.neighborChanged(blockState, blockPos, block, pos, false);
+                }
             }
-            if (!blockState.isRedstoneConductor(that, blockPos) || !(blockState = that.getBlockState(blockPos = blockPos.relative(direction))).is(Blocks.COMPARATOR))
-                continue;
-            that.neighborChanged(blockState, blockPos, block, pos, false);
         }
+        ci.cancel();
     }
 }

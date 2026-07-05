@@ -4,6 +4,7 @@ import com.ninni.etcetera.registry.EtceteraTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,6 +17,8 @@ public abstract class BlockStateBaseMixin {
 
     @Inject(method = "getOffset", at = @At("HEAD"), cancellable = true)
     private void etcetera$getOffset(BlockGetter level, BlockPos pos, CallbackInfoReturnable<Vec3> cir) {
+        if (!(level instanceof Level)) return;
+
         BlockPos.MutableBlockPos mutablePos = pos.mutable();
         int limit = 16;
         while (limit-- > 0 && level.getBlockState(mutablePos).hasOffsetFunction()) {
