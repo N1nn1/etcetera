@@ -72,6 +72,7 @@ public class ModConfig {
     public int dreamCatcherDrowsyDuration = 10;
 
     // Eggple
+    public int eggpleHatchChance = 1;
     public int eggpleFourHatchChance = 160;
 
     // Blocks
@@ -182,6 +183,7 @@ public class ModConfig {
 
         itemsBlocks.group(dev.isxander.yacl3.api.OptionGroup.createBuilder()
                 .name(Component.translatable("config.etcetera.group.eggple"))
+                .option(createIntOption("eggpleHatchChance", 1, () -> config.eggpleHatchChance, v -> config.eggpleHatchChance = v, 1, 10000))
                 .option(createIntOption("eggpleFourHatchChance", 160, () -> config.eggpleFourHatchChance, v -> config.eggpleFourHatchChance = v, 1, 10000))
                 .build());
 

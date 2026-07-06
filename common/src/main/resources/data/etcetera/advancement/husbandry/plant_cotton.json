@@ -2,15 +2,17 @@
   "parent": "minecraft:husbandry/plant_seed",
   "criteria": {
     "cotton": {
+      "trigger": "minecraft:placed_block",
       "conditions": {
         "location": [
           {
-            "block": "etcetera:cotton",
-            "condition": "minecraft:block_state_property"
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": "etcetera:cotton_seeds"
+            }
           }
         ]
-      },
-      "trigger": "minecraft:placed_block"
+      }
     }
   },
   "display": {
@@ -28,10 +30,5 @@
       "translate": "advancements.etcetera.husbandry.plant_cotton.title"
     }
   },
-  "requirements": [
-    [
-      "cotton"
-    ]
-  ],
   "sends_telemetry_event": true
 }

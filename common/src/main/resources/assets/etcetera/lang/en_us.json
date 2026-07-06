@@ -284,6 +284,8 @@
   "config.etcetera.option.dreamCatcherDrowsyDuration": "Dream Catcher Drowsy Duration",
   "config.etcetera.option.dreamCatcherDrowsyDuration.desc": "The duration in ticks of the Drowsy effect applied continually during sleep (default 10).",
 
+  "config.etcetera.option.eggpleHatchChance": "Eggple Hatch Chance",
+  "config.etcetera.option.eggpleHatchChance.desc": "The 1-in-N chance of an Eggple hatching at all when thrown (default 1).",
   "config.etcetera.option.eggpleFourHatchChance": "Eggple Quad Hatch Chance",
   "config.etcetera.option.eggpleFourHatchChance.desc": "The 1-in-N chance of an Eggple hatching four Chapples instead of one when thrown (default 160).",
 

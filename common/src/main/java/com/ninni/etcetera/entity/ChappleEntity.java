@@ -12,6 +12,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Chicken;
@@ -181,6 +182,11 @@ public class ChappleEntity extends Chicken implements Shearable {
             chapple.setType(this.chooseBabyType((ChappleEntity) passiveEntity));
         }
         return chapple;
+    }
+
+    @Override
+    public boolean causeFallDamage(float fallDistance, float damageMultiplier, @NotNull DamageSource damageSource) {
+        return false;
     }
 
     private Type chooseBabyType(ChappleEntity chapple) {

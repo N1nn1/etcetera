@@ -2,24 +2,24 @@
   "parent": "etcetera:husbandry/plant_cotton",
   "criteria": {
     "sweater": {
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "etcetera:sweaters"
+            "items": "#etcetera:sweaters"
           }
         ]
-      },
-      "trigger": "minecraft:inventory_changed"
+      }
     },
     "hat": {
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "etcetera:hats"
+            "items": "#etcetera:hats"
           }
         ]
-      },
-      "trigger": "minecraft:inventory_changed"
+      }
     }
   },
   "display": {

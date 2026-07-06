@@ -1,5 +1,6 @@
 package com.ninni.etcetera.entity;
 
+import com.ninni.etcetera.config.ModConfig;
 import com.ninni.etcetera.item.EggpleItem;
 import com.ninni.etcetera.registry.EtceteraEntityType;
 import com.ninni.etcetera.registry.EtceteraItems;
@@ -47,18 +48,21 @@ public class EggpleEntity extends ThrowableItemProjectile {
     protected void onHit(@NotNull HitResult hitResult) {
         super.onHit(hitResult);
         if (!this.level().isClientSide) {
-            int i = 1;
-            if (this.random.nextInt(com.ninni.etcetera.config.ModConfig.get().eggpleFourHatchChance) == 0) {
-                i = 4;
-            }
-            for (int j = 0; j < i; ++j) {
-                ChappleEntity chapple = EtceteraEntityType.CHAPPLE.get().create(this.level());
-                if (chapple != null) {
-                    chapple.setAge(-24000);
-                    if (this.getItem().getItem() instanceof EggpleItem eggpleItem && eggpleItem.isGolden)
-                        chapple.setType(ChappleEntity.Type.GOLDEN);
-                    chapple.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0f);
-                    this.level().addFreshEntity(chapple);
+            if (this.random.nextInt(ModConfig.get().eggpleHatchChance) == 0) {
+                int i = 1;
+                if (this.random.nextInt(ModConfig.get().eggpleFourHatchChance) == 0) {
+                    i = 4;
+                }
+                for (int j = 0; j < i; ++j) {
+                    ChappleEntity chapple = EtceteraEntityType.CHAPPLE.get().create(this.level());
+                    if (chapple != null) {
+                        chapple.setAge(-24000);
+                        if (this.getItem().getItem() instanceof EggpleItem eggpleItem && eggpleItem.isGolden) {
+                            chapple.setType(ChappleEntity.Type.GOLDEN);
+                        }
+                        chapple.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0f);
+                        this.level().addFreshEntity(chapple);
+                    }
                 }
             }
             this.level().broadcastEntityEvent(this, (byte) 3);

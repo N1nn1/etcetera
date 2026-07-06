@@ -197,4 +197,9 @@ public class RubberChickenEntity extends LivingEntity {
     public @NotNull HumanoidArm getMainArm() {
         return HumanoidArm.RIGHT;
     }
+
+    @Override
+    public boolean causeFallDamage(float fallDistance, float damageMultiplier, @NotNull DamageSource damageSource) {
+        return false;
+    }
 }
