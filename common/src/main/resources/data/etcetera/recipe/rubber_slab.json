@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "etcetera:rubber_block"
+        }
+    },
+    "result": {
+        "count": 6,
+        "id": "etcetera:rubber_slab"
+    }
+}

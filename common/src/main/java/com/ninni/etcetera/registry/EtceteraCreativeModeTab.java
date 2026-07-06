@@ -99,6 +99,8 @@ public class EtceteraCreativeModeTab {
 
                 output.accept(RUBBER.get());
                 output.accept(RUBBER_BLOCK.get());
+                output.accept(RUBBER_STAIRS.get());
+                output.accept(RUBBER_SLAB.get());
                 output.accept(RUBBER_BUTTON.get());
                 output.accept(RUBBER_CHICKEN.get());
                 output.accept(REDSTONE_WIRES.get());

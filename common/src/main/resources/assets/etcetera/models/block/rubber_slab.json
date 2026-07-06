@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "etcetera:block/rubber_block",
+    "top": "etcetera:block/rubber_block",
+    "side": "etcetera:block/rubber_block"
+  }
+}

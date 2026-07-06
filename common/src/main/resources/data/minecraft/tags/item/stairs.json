@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "etcetera:leveled_stone_stairs"
+    "etcetera:leveled_stone_stairs",
+    "etcetera:rubber_stairs"
   ]
 }

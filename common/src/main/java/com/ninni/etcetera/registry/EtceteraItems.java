@@ -40,7 +40,7 @@ public class EtceteraItems {
     public static final RegistryObject<Item> HAMMER = register("hammer", () -> new HammerItem(EtceteraToolMaterials.BISMUTH, (int) 7.5, -3.6F, HAMMERING_MANAGER::getMap, new Item.Properties().stacksTo(1).durability(80), EtceteraSoundEvents.ITEM_HAMMER_USE, EtceteraTags.HAMMERABLE));
     public static final RegistryObject<Item> HANDBELL = register("handbell", () -> new HandbellItem(new Item.Properties().stacksTo(1)));
 
-    public static final RegistryObject<Item> ITEM_LABEL = register("item_label", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> ITEM_LABEL = register("item_label", () -> new ItemLabelItem(new Item.Properties()));
 
     public static final RegistryObject<Item> DRUM = register("drum", () -> new BlockItem(EtceteraBlocks.DRUM.get(), new Item.Properties()));
 
@@ -94,6 +94,8 @@ public class EtceteraItems {
     public static final RegistryObject<Item> RUBBER = register("rubber", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> RUBBER_CHICKEN = register("rubber_chicken", () -> new RubberChickenItem(new Item.Properties().stacksTo(16)));
     public static final RegistryObject<Item> RUBBER_BLOCK = register("rubber_block", () -> new BlockItem(EtceteraBlocks.RUBBER_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> RUBBER_STAIRS = register("rubber_stairs", () -> new BlockItem(EtceteraBlocks.RUBBER_STAIRS.get(), new Item.Properties()));
+    public static final RegistryObject<Item> RUBBER_SLAB = register("rubber_slab", () -> new BlockItem(EtceteraBlocks.RUBBER_SLAB.get(), new Item.Properties()));
     public static final RegistryObject<Item> RUBBER_BUTTON = register("rubber_button", () -> new BlockItem(EtceteraBlocks.RUBBER_BUTTON.get(), new Item.Properties()));
     public static final RegistryObject<Item> REDSTONE_WIRES = register("redstone_wires", () -> new BlockItem(EtceteraBlocks.REDSTONE_WIRES.get(), new Item.Properties()));
     public static final RegistryObject<Item> REDSTONE_WIRE_TORCH = register("redstone_wire_torch", () -> new StandingAndWallBlockItem(EtceteraBlocks.REDSTONE_WIRE_TORCH.get(), EtceteraBlocks.REDSTONE_WIRE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));

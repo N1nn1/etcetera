@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "etcetera:block/rubber_slab"
+    },
+    "type=double": {
+      "model": "etcetera:block/rubber_block"
+    },
+    "type=top": {
+      "model": "etcetera:block/rubber_slab_top"
+    }
+  }
+}

@@ -44,8 +44,14 @@ dependencies {
     // YACL
     implementation "maven.modrinth:yacl:${yacl_version}-neoforge"
 
-    // Compatibility
+    // Quark
     compileOnly "maven.modrinth:quark:${quark_version}"
+
+    // Easy Anvils
+    compileOnly "maven.modrinth:easy-anvils:${easy_anvils_version}-NeoForge"
+    runtimeOnly "maven.modrinth:easy-anvils:${easy_anvils_version}-NeoForge"
+    compileOnly "maven.modrinth:puzzles-lib:v21.1.52-1.21.1-NeoForge"
+    runtimeOnly "maven.modrinth:puzzles-lib:v21.1.52-1.21.1-NeoForge"
 }
 
 publishMods {

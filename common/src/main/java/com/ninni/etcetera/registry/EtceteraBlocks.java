@@ -77,6 +77,8 @@ public class EtceteraBlocks {
     public static final RegistryObject<Block> COPPER_TAP = register("copper_tap", () -> new CoppertapBlock(BlockBehaviour.Properties.ofFullCopy(COPPER_BLOCK).randomTicks().pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<Block> RUBBER_CAULDRON = register("rubber_cauldron", () -> new RubberCauldronBlock(BlockBehaviour.Properties.ofFullCopy(CAULDRON).randomTicks()));
     public static final RegistryObject<Block> RUBBER_BLOCK = register("rubber_block", () -> new RubberBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(2, 2).sound(EtceteraSoundEvents.RUBBER)));
+    public static final RegistryObject<Block> RUBBER_STAIRS = register("rubber_stairs", () -> new RubberStairsBlock(RUBBER_BLOCK.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(RUBBER_BLOCK.get())));
+    public static final RegistryObject<Block> RUBBER_SLAB = register("rubber_slab", () -> new RubberSlabBlock(BlockBehaviour.Properties.ofFullCopy(RUBBER_BLOCK.get())));
     public static final RegistryObject<Block> RUBBER_BUTTON = register("rubber_button", () -> new RubberButtonBlock(BlockBehaviour.Properties.ofFullCopy(RUBBER_BLOCK.get()).noCollission().strength(0.5f).pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<Block> REDSTONE_WIRES = register("redstone_wires", () -> new RedstoneWiresBlock(BlockBehaviour.Properties.ofFullCopy(REDSTONE_WIRE).sound(EtceteraSoundEvents.RUBBER)));
     public static final RegistryObject<Block> REDSTONE_WIRE_TORCH = register("redstone_wire_torch", () -> new RedstoneWireTorchBlock(BlockBehaviour.Properties.ofFullCopy(REDSTONE_TORCH)));

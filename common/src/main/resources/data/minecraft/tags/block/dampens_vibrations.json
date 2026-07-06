@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "etcetera:rubber_block",
+    "etcetera:rubber_stairs",
+    "etcetera:rubber_slab",
     "etcetera:iridescent_wool"
   ]
 }

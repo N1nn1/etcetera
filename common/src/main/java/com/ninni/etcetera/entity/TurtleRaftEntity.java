@@ -142,11 +142,14 @@ public class TurtleRaftEntity extends Boat {
 
     @Override
     protected void destroy(@NotNull DamageSource source) {
-        ItemStack stack = new ItemStack(EtceteraItems.TURTLE_RAFT.get());
-        stack.set(DataComponents.DYED_COLOR, new DyedItemColor(this.getColor(), true));
-        this.spawnAtLocation(stack);
-        if (!this.getBanner().isEmpty()) {
-            this.spawnAtLocation(this.getBanner());
+        this.kill();
+        if (this.level().getGameRules().getBoolean(net.minecraft.world.level.GameRules.RULE_DOENTITYDROPS)) {
+            ItemStack stack = new ItemStack(EtceteraItems.TURTLE_RAFT.get());
+            stack.set(DataComponents.DYED_COLOR, new DyedItemColor(this.getColor(), true));
+            this.spawnAtLocation(stack);
+            if (!this.getBanner().isEmpty()) {
+                this.spawnAtLocation(this.getBanner());
+            }
         }
     }
 
@@ -156,7 +159,7 @@ public class TurtleRaftEntity extends Boat {
     }
 
     @Override
-    protected @NotNull Vec3 getPassengerAttachmentPoint(Entity passenger, EntityDimensions dimensions, float partialTick) {
+    protected @NotNull Vec3 getPassengerAttachmentPoint(@NotNull Entity passenger, @NotNull EntityDimensions dimensions, float partialTick) {
         return super.getPassengerAttachmentPoint(passenger, dimensions, partialTick).add(0.0, 0.375, 0.0);
     }
 }

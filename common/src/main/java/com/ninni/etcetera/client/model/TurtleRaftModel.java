@@ -60,7 +60,7 @@ public class TurtleRaftModel extends ListModel<TurtleRaftEntity> {
 
     private static void setPaddleAngle(Boat entity, int sigma, ModelPart part, float angle) {
         float f = entity.getRowingTime(sigma, angle);
-        part.xRot = Mth.clampedLerp(-1.0471976f, -0.2617994f, (Mth.sin(-f) + 1.0f) / 2.0f);
+        part.xRot = Mth.clampedLerp(-1.3962634f, -0.6108652f, (Mth.sin(-f) + 1.0f) / 2.0f);
         part.yRot = Mth.clampedLerp(-0.7853982f, 0.7853982f, (Mth.sin(-f + 1.0f) + 1.0f) / 2.0f);
         if (sigma == 1) {
             part.yRot = (float) Math.PI - part.yRot;

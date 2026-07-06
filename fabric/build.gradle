@@ -21,6 +21,10 @@ dependencies {
     include "org.quiltmc.parsers:gson:0.3.0"
     modImplementation "com.terraformersmc:modmenu:${mod_menu_version}"
 
+    // Easy Anvils
+    modCompileOnly "maven.modrinth:easy-anvils:${easy_anvils_version}-Fabric"
+    modCompileOnly "maven.modrinth:puzzles-lib:v21.1.52-1.21.1-Fabric"
+
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 }

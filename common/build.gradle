@@ -20,6 +20,8 @@ neoForge {
 dependencies {
     compileOnly "maven.modrinth:yacl:${yacl_version}-neoforge"
     compileOnly "dev.emi:emi-neoforge:${emi_version}"
+    compileOnly "maven.modrinth:easy-anvils:${easy_anvils_version}-NeoForge"
+    compileOnly "maven.modrinth:puzzles-lib:v21.1.52-1.21.1-NeoForge"
 
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     compileOnly group: 'org.ow2.asm', name: 'asm-tree', version: '9.6'

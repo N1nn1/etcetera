@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-07-05
+
+### Added
+
+- Added Easy Anvils compat for Item Labels.
+- Added additional Rubber blocks to round out the blockset.
+
+## Changed
+
+- Adjusted Turtle Raft rowing model.
+
+### Fixed
+
+- Fixed Turtle Rafts not properly being removed when broken.
+
 ## [2.1.4] - 2026-07-05
 
 ### Fixed

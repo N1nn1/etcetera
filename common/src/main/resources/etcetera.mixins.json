@@ -3,9 +3,11 @@
   "minVersion": "0.8",
   "package": "com.ninni.etcetera.mixin",
   "compatibilityLevel": "JAVA_18",
+  "plugin": "com.ninni.etcetera.mixin.compat.EtceteraCommonMixinPlugin",
   "mixins": [
     "AbstractCauldronBlockMixin",
     "AnvilBlockMixin",
+    "AnvilMenuAccessor",
     "AnvilMenuMixin",
     "BlockStateBaseMixin",
     "EntityMixin",
@@ -15,10 +17,13 @@
     "PlayerMixin",
     "RedstoneWireBlockMixin",
     "SmithingTableBlockMixin",
-    "VillagerMixin"
+    "VillagerMixin",
+    "easyanvils.C2SNameTagUpdateMessageMixin",
+    "easyanvils.EasyAnvilsCompatMixin"
   ],
   "client": [
-    "BeaconRendererMixin"
+    "BeaconRendererMixin",
+    "easyanvils.NameTagEditScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
