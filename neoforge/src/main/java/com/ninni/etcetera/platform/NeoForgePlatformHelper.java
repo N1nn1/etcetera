@@ -6,6 +6,7 @@ import com.ninni.etcetera.platform.services.IPlatformHelper;
 import com.ninni.etcetera.platform.services.RegistrationProvider;
 import com.ninni.etcetera.platform.services.RegistryObject;
 import com.ninni.etcetera.registry.EtceteraScreenHandlerType;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -252,6 +253,12 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
                 public I get() {
                     return holder.get();
                 }
+
+                @SuppressWarnings("unchecked")
+                @Override
+                public Holder<I> asHolder() {
+                    return (Holder<I>) holder;
+                }
             };
         }
 
@@ -267,6 +274,11 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
                         @Override
                         public T get() {
                             return holder.value();
+                        }
+
+                        @Override
+                        public Holder<T> asHolder() {
+                            return holder;
                         }
                     })
                     .collect(Collectors.toList());

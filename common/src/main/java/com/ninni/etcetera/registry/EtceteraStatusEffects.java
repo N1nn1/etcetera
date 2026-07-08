@@ -4,7 +4,6 @@ import com.ninni.etcetera.Constants;
 import com.ninni.etcetera.entity.effect.EtceteraStatusEffect;
 import com.ninni.etcetera.platform.services.RegistrationProvider;
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -15,8 +14,7 @@ public class EtceteraStatusEffects {
     public static final Holder<MobEffect> DROWSY = register("drowsy", new EtceteraStatusEffect(MobEffectCategory.BENEFICIAL, 0x7D7D7D));
 
     private static Holder<MobEffect> register(String id, MobEffect effect) {
-        MOB_EFFECTS.register(id, () -> effect);
-        return BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect);
+        return MOB_EFFECTS.register(id, () -> effect).asHolder();
     }
 
     public static void init() {

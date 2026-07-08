@@ -15,11 +15,11 @@ import com.ninni.etcetera.registry.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -127,6 +127,28 @@ public class NeoForgeClientEvents {
                 }
                 return 0.0f;
             });
+
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.IRIDESCENT_GLASS.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.IRIDESCENT_GLASS_PANE.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.LIGHT_BULB.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.TINTED_LIGHT_BULB.get(), RenderType.translucent());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.FOOTSTEPS.get(), RenderType.translucent());
+
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.REDSTONE_WIRES.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.REDSTONE_WIRE_TORCH.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.REDSTONE_WIRE_COMPARATOR.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.REDSTONE_WIRE_REPEATER.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.REDSTONE_WIRE_WALL_TORCH.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.BISMUTH_BARS.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.BOUQUET.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.COTTON.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.POTTED_BOUQUET.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.ITEM_STAND.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.GLOW_ITEM_STAND.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.FRAME.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.DREAM_CATCHER.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.PRICKLY_CAN.get(), RenderType.cutout());
+            ItemBlockRenderTypes.setRenderLayer(EtceteraBlocks.COPPER_TAP.get(), RenderType.cutout());
         });
     }
 

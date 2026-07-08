@@ -15,6 +15,7 @@ import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -196,6 +197,12 @@ public class FabricPlatformHelper implements IPlatformHelper {
                 @Override
                 public I get() {
                     return value;
+                }
+
+                @SuppressWarnings("unchecked")
+                @Override
+                public Holder<I> asHolder() {
+                    return (Holder<I>) registry.wrapAsHolder(value);
                 }
             };
             entries.add((RegistryObject<T>) obj);
