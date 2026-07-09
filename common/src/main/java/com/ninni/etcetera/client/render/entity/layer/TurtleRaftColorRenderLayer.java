@@ -24,12 +24,11 @@ public class TurtleRaftColorRenderLayer extends net.minecraft.client.renderer.en
         this.model = new TurtleRaftModel(loader.bakeLayer(EtceteraEntityModelLayers.TURTLE_RAFT));
     }
 
-@Override
+    @Override
     public void render(@NotNull PoseStack matrixStack, MultiBufferSource vertexConsumerProvider, int i, @NotNull TurtleRaftEntity raft, float f, float g, float h, float j, float k, float l) {
         this.getParentModel().copyPropertiesTo(this.model);
         this.model.prepareMobModel(raft, f, g, h);
         this.model.setupAnim(raft, h, g, j, k, l);
-        int m = raft.getColor();;
 
         int m = raft.getColor();
         int packedColor = 0xFF000000 | m;
