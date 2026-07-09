@@ -22,6 +22,7 @@ public class EtceteraEntityType {
             () -> EntityType.Builder.<TurtleRaftEntity>of(TurtleRaftEntity::new, MobCategory.MISC)
                     .sized(0.8f, 0.5625f)
                     .clientTrackingRange(10)
+                    .updateInterval(1)
     );
 
     public static final RegistryObject<EntityType<ChappleEntity>> CHAPPLE = register(
