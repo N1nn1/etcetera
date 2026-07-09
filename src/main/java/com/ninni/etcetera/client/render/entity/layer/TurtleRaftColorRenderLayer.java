@@ -28,10 +28,10 @@ public class TurtleRaftColorRenderLayer extends FeatureRenderer<TurtleRaftEntity
     }
 
     @Override
-    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, TurtleRaftEntity raft, float f, float g, float h, float j, float k, float l) {
-        this.getContextModel().copyStateTo(this.model);
-        this.model.animateModel(raft, f, g, h);
-        this.model.setAngles(raft, f, g, j, k, l);
+    public void render(@NotNull PoseStack matrixStack, MultiBufferSource vertexConsumerProvider, int i, @NotNull TurtleRaftEntity raft, float f, float g, float h, float j, float k, float l) {
+        this.getParentModel().copyPropertiesTo(this.model);
+        this.model.prepareMobModel(raft, f, g, h);
+        this.model.setupAnim(raft, h, g, j, k, l);
         int m = raft.getColor();
         float n = (float)(m >> 16 & 0xFF) / 255.0f;
         float o = (float)(m >> 8 & 0xFF) / 255.0f;
