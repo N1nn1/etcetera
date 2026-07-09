@@ -11,6 +11,7 @@ import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -84,6 +85,8 @@ public interface IPlatformHelper {
     );
 
     void registerWaxableBlock(Supplier<Block> unwaxed, Supplier<Block> waxed);
+
+    void registerCompostable(Supplier<Item> item, float chance);
 
     void registerLootTableModifier(
             BiConsumer<ResourceKey<LootTable>, LootTable.Builder> modifier

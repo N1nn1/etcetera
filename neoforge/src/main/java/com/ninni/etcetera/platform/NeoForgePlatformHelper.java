@@ -156,7 +156,10 @@ public class NeoForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public void registerWaxableBlock(Supplier<Block> unwaxed, Supplier<Block> waxed) {
-        // No-op: handled by data maps
+    }
+
+    @Override
+    public void registerCompostable(Supplier<net.minecraft.world.item.Item> item, float chance) {
     }
 
     @Override

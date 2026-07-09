@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": {
+    "etcetera:bouquet": {
+      "chance": 0.85
+    },
+    "etcetera:cotton_seeds": {
+      "chance": 0.3
+    },
+    "etcetera:cotton_flower": {
+      "chance": 0.65
+    }
+  }
+}

@@ -10,6 +10,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry;
 import net.fabricmc.fabric.api.registry.OxidizableBlocksRegistry;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
@@ -31,6 +32,7 @@ import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -166,6 +168,11 @@ public class FabricPlatformHelper implements IPlatformHelper {
     @Override
     public void registerWaxableBlock(Supplier<Block> unwaxed, Supplier<Block> waxed) {
         OxidizableBlocksRegistry.registerWaxableBlockPair(unwaxed.get(), waxed.get());
+    }
+
+    @Override
+    public void registerCompostable(Supplier<Item> item, float chance) {
+        CompostingChanceRegistry.INSTANCE.add(item.get(), chance);
     }
 
     private static class FabricRegistrationProvider<T> implements RegistrationProvider<T> {

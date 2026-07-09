@@ -82,7 +82,7 @@ public class EtceteraBlocks {
     public static final RegistryObject<Block> RUBBER_BUTTON = register("rubber_button", () -> new RubberButtonBlock(BlockBehaviour.Properties.ofFullCopy(RUBBER_BLOCK.get()).noCollission().strength(0.5f).pushReaction(PushReaction.DESTROY)));
     public static final RegistryObject<Block> REDSTONE_WIRES = register("redstone_wires", () -> new RedstoneWiresBlock(BlockBehaviour.Properties.ofFullCopy(REDSTONE_WIRE).sound(EtceteraSoundEvents.RUBBER)));
     public static final RegistryObject<Block> REDSTONE_WIRE_TORCH = register("redstone_wire_torch", () -> new RedstoneWireTorchBlock(BlockBehaviour.Properties.ofFullCopy(REDSTONE_TORCH)));
-    public static final RegistryObject<Block> REDSTONE_WIRE_WALL_TORCH = register("redstone_wire_wall_torch", () -> new WallRedstoneWireTorchBlock(BlockBehaviour.Properties.ofFullCopy(REDSTONE_WALL_TORCH)));
+    public static final RegistryObject<Block> REDSTONE_WIRE_WALL_TORCH = register("redstone_wire_wall_torch", () -> new WallRedstoneWireTorchBlock(BlockBehaviour.Properties.ofFullCopy(REDSTONE_WALL_TORCH).dropsLike(REDSTONE_WIRE_TORCH.get())));
     public static final RegistryObject<Block> REDSTONE_WIRE_COMPARATOR = register("redstone_wire_comparator", () -> new RedstoneWireComparatorBlock(BlockBehaviour.Properties.ofFullCopy(COMPARATOR).sound(EtceteraSoundEvents.RUBBER)));
     public static final RegistryObject<Block> REDSTONE_WIRE_REPEATER = register("redstone_wire_repeater", () -> new RedstoneWireRepeaterBlock(BlockBehaviour.Properties.ofFullCopy(REPEATER).sound(EtceteraSoundEvents.RUBBER)));
 

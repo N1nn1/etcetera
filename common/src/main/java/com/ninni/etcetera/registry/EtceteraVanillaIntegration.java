@@ -18,7 +18,6 @@ import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -113,9 +112,9 @@ public class EtceteraVanillaIntegration {
     }
 
     private static void registerCompostables() {
-        ComposterBlock.COMPOSTABLES.put(EtceteraItems.BOUQUET.get(), 0.85f);
-        ComposterBlock.COMPOSTABLES.put(EtceteraItems.COTTON_SEEDS.get(), 0.3f);
-        ComposterBlock.COMPOSTABLES.put(EtceteraItems.COTTON_FLOWER.get(), 0.65f);
+        Services.PLATFORM.registerCompostable(EtceteraItems.BOUQUET, 0.85f);
+        Services.PLATFORM.registerCompostable(EtceteraItems.COTTON_SEEDS, 0.3f);
+        Services.PLATFORM.registerCompostable(EtceteraItems.COTTON_FLOWER, 0.65f);
     }
 
     private static void registerLootTableEvents() {

@@ -270,7 +270,17 @@ public class RedstoneWiresBlock extends Block implements SimpleWaterloggedBlock 
 
     private int getBestNeighborSignal(Level world, BlockPos pos) {
         this.wiresGivePower = false;
-        int i = world.getBestNeighborSignal(pos);
+        int i = 0;
+        for (Direction direction : Direction.values()) {
+            BlockPos neighborPos = pos.relative(direction);
+            if (world.getBlockState(neighborPos).is(Blocks.REDSTONE_WIRE)) continue;
+            int signal = world.getSignal(neighborPos, direction);
+            if (signal >= 15) {
+                i = 15;
+                break;
+            }
+            if (signal > i) i = signal;
+        }
         this.wiresGivePower = true;
         int j = 0;
         if (i < 15) {
@@ -368,6 +378,7 @@ public class RedstoneWiresBlock extends Block implements SimpleWaterloggedBlock 
     @Override
     public int getSignal(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull Direction direction) {
         if (!this.wiresGivePower || direction == Direction.DOWN) return 0;
+        if (world.getBlockState(pos.relative(direction.getOpposite())).is(Blocks.REDSTONE_WIRE)) return 0;
         int i = state.getValue(POWER);
         if (i == 0) {
             return 0;
