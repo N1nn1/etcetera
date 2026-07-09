@@ -17,13 +17,12 @@ import net.minecraft.world.Heightmap;
 
 public class EtceteraEntityType {
 
-    public static final EntityType<TurtleRaftEntity> TURTLE_RAFT = register(
+    public static final RegistryObject<EntityType<TurtleRaftEntity>> TURTLE_RAFT = register(
             "turtle_raft",
-            FabricEntityTypeBuilder.create()
-                    .<TurtleRaftEntity>entityFactory(TurtleRaftEntity::new)
-                    .spawnGroup(SpawnGroup.MISC)
-                    .dimensions(EntityDimensions.fixed(0.8f, 0.5625f))
-                    .trackRangeChunks(10)
+            () -> EntityType.Builder.<TurtleRaftEntity>of(TurtleRaftEntity::new, MobCategory.MISC)
+                    .sized(0.8f, 0.5625f)
+                    .clientTrackingRange(10)
+                    .updateInterval(1)
     );
 
     public static final EntityType<ChappleEntity> CHAPPLE = register(
