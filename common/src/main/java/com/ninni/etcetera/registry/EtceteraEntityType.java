@@ -17,11 +17,12 @@ import java.util.function.Supplier;
 public class EtceteraEntityType {
     public static final RegistrationProvider<EntityType<?>> ENTITY_TYPES = RegistrationProvider.get(Registries.ENTITY_TYPE, Constants.MOD_ID);
 
-    public static final RegistryObject<EntityType<TurtleRaftEntity>> TURTLE_RAFT = register(
+public static final RegistryObject<EntityType<TurtleRaftEntity>> TURTLE_RAFT = register(
             "turtle_raft",
             () -> EntityType.Builder.<TurtleRaftEntity>of(TurtleRaftEntity::new, MobCategory.MISC)
                     .sized(0.8f, 0.5625f)
                     .clientTrackingRange(10)
+                    .updateInterval(1)
     );
 
     public static final RegistryObject<EntityType<ChappleEntity>> CHAPPLE = register(
