@@ -32,7 +32,6 @@ public class WeaverModel<T extends WeaverEntity> extends HierarchicalModel<T> {
 
     public WeaverModel(ModelPart root) {
         this.root = root;
-
         this.neck = root.getChild(NECK);
         this.leftFrontLeg = root.getChild(LEFT_FRONT_LEG);
         this.rightFrontLeg = root.getChild(RIGHT_FRONT_LEG);
@@ -42,7 +41,6 @@ public class WeaverModel<T extends WeaverEntity> extends HierarchicalModel<T> {
         this.rightMiddleHindLeg = root.getChild(RIGHT_MIDDLE_HIND_LEG);
         this.leftHindLeg = root.getChild(LEFT_HIND_LEG);
         this.rightHindLeg = root.getChild(RIGHT_HIND_LEG);
-
         this.head = this.neck.getChild(HEAD);
         this.body = this.neck.getChild(BODY);
     }
@@ -68,7 +66,7 @@ public class WeaverModel<T extends WeaverEntity> extends HierarchicalModel<T> {
                         .texOffs(60, 36)
                         .addBox(-7.0F, -5.0F, -8.0F, 14.0F, 8.0F, 8.0F, new CubeDeformation(0.5F))
                         .texOffs(60, 52)
-                        .addBox(-4.0F, -5.0F, 1.0F, 8.0F, 1.0F, 1.0F, new CubeDeformation(0.5F)),
+                        .addBox(-4.1F, -5.0F, 1.0F, 8.0F, 1.0F, 1.0F, new CubeDeformation(0.5F)),
                 PartPose.offset(0.0F, -0.5F, -4.0F)
         );
 
@@ -174,15 +172,14 @@ public class WeaverModel<T extends WeaverEntity> extends HierarchicalModel<T> {
 
     @Override
     public void setupAnim(@NotNull T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-        head.xRot = headPitch * ((float) Math.PI / 180);
-        head.yRot = headYaw * ((float) Math.PI / 180);
+        this.head.xRot = headPitch * ((float) Math.PI / 180);
+        this.head.yRot = headYaw * ((float) Math.PI / 180);
 
         this.neck.y = (float) (Math.cos(animationProgress * 0.075F) * 0.5f + 15.75F);
         this.head.y = (float) (Math.cos(animationProgress * 0.075F - 0.5f) * -0.5f - 0.25F);
         this.body.y = (float) (Math.cos(animationProgress * 0.075F + 0.25f) * -0.2f + 0.75F);
         this.body.zRot = (float) (Math.cos(animationProgress * 2F + 0.5f) * 0.0075f);
 
-        float f = 0.7853982F;
         this.rightHindLeg.zRot = -0.7853982F;
         this.leftHindLeg.zRot = 0.7853982F;
         this.rightMiddleHindLeg.zRot = -0.58119464F;
@@ -191,8 +188,7 @@ public class WeaverModel<T extends WeaverEntity> extends HierarchicalModel<T> {
         this.leftMiddleFrontLeg.zRot = 0.58119464F;
         this.rightFrontLeg.zRot = -0.7853982F;
         this.leftFrontLeg.zRot = 0.7853982F;
-        float g = -0.0F;
-        float h = 0.3926991F;
+
         this.rightHindLeg.yRot = 0.7853982F;
         this.leftHindLeg.yRot = -0.7853982F;
         this.rightMiddleHindLeg.yRot = 0.3926991F;
@@ -201,6 +197,7 @@ public class WeaverModel<T extends WeaverEntity> extends HierarchicalModel<T> {
         this.leftMiddleFrontLeg.yRot = 0.3926991F;
         this.rightFrontLeg.yRot = -0.7853982F;
         this.leftFrontLeg.yRot = 0.7853982F;
+
         float i = -(Mth.cos(limbAngle * 0.6662F * 2.0F + 0.0F) * 0.4F) * limbDistance;
         float j = -(Mth.cos(limbAngle * 0.6662F * 2.0F + 3.1415927F) * 0.4F) * limbDistance;
         float k = -(Mth.cos(limbAngle * 0.6662F * 2.0F + 1.5707964F) * 0.4F) * limbDistance;
@@ -210,38 +207,22 @@ public class WeaverModel<T extends WeaverEntity> extends HierarchicalModel<T> {
         float o = Math.abs(Mth.sin(limbAngle * 0.6662F + 1.5707964F) * 0.4F) * limbDistance;
         float p = Math.abs(Mth.sin(limbAngle * 0.6662F + 4.712389F) * 0.4F) * limbDistance;
 
-        ModelPart var10000 = this.rightHindLeg;
-        var10000.yRot += i;
-        var10000 = this.leftHindLeg;
-        var10000.yRot -= i;
-        var10000 = this.rightMiddleHindLeg;
-        var10000.yRot += j;
-        var10000 = this.leftMiddleHindLeg;
-        var10000.yRot -= j;
-        var10000 = this.rightMiddleFrontLeg;
-        var10000.yRot += k;
-        var10000 = this.leftMiddleFrontLeg;
-        var10000.yRot -= k;
-        var10000 = this.rightFrontLeg;
-        var10000.yRot += l;
-        var10000 = this.leftFrontLeg;
-        var10000.yRot -= l;
-        var10000 = this.rightHindLeg;
-        var10000.zRot += m;
-        var10000 = this.leftHindLeg;
-        var10000.zRot -= m;
-        var10000 = this.rightMiddleHindLeg;
-        var10000.zRot += n;
-        var10000 = this.leftMiddleHindLeg;
-        var10000.zRot -= n;
-        var10000 = this.rightMiddleFrontLeg;
-        var10000.zRot += o;
-        var10000 = this.leftMiddleFrontLeg;
-        var10000.zRot -= o;
-        var10000 = this.rightFrontLeg;
-        var10000.zRot += p;
-        var10000 = this.leftFrontLeg;
-        var10000.zRot -= p;
+        this.rightHindLeg.yRot += i;
+        this.leftHindLeg.yRot -= i;
+        this.rightMiddleHindLeg.yRot += j;
+        this.leftMiddleHindLeg.yRot -= j;
+        this.rightMiddleFrontLeg.yRot += k;
+        this.leftMiddleFrontLeg.yRot -= k;
+        this.rightFrontLeg.yRot += l;
+        this.leftFrontLeg.yRot -= l;
+        this.rightHindLeg.zRot += m;
+        this.leftHindLeg.zRot -= m;
+        this.rightMiddleHindLeg.zRot += n;
+        this.leftMiddleHindLeg.zRot -= n;
+        this.rightMiddleFrontLeg.zRot += o;
+        this.leftMiddleFrontLeg.zRot -= o;
+        this.rightFrontLeg.zRot += p;
+        this.leftFrontLeg.zRot -= p;
     }
 
     @Override
