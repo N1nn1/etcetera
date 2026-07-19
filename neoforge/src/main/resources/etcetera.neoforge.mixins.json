@@ -6,7 +6,8 @@
   "plugin": "com.ninni.etcetera.mixin.EtceteraNeoForgeMixinPlugin",
   "mixins": [
     "BeaconBlockEntityMixin",
-    "NeoRedstoneWireComparatorBlockMixin"
+    "NeoRedstoneWireComparatorBlockMixin",
+    "NeoRedstoneWiresBlockMixin"
   ],
   "client": [
     "client.ItemRendererMixin",

@@ -13,6 +13,8 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.levelgen.GenerationStep;
 
+import net.minecraft.world.level.biome.Biomes;
+
 import static com.ninni.etcetera.registry.EtceteraItems.*;
 
 public class Etcetera implements ModInitializer {
@@ -28,7 +30,7 @@ public class Etcetera implements ModInitializer {
                 ResourceKey.create(Registries.PLACED_FEATURE, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "nether_bismuth_ore"))
         );
         BiomeModifications.addSpawn(
-                BiomeSelectors.foundInOverworld(),
+                BiomeSelectors.foundInOverworld().and(BiomeSelectors.excludeByKey(Biomes.MUSHROOM_FIELDS, Biomes.DEEP_DARK)),
                 MobCategory.MONSTER,
                 EtceteraEntityType.WEAVER.get(),
                 20, 1, 2
