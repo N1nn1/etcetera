@@ -120,7 +120,10 @@ cetera. All these additions are made while keeping Minecraft's gameplay in mind 
 
 ## License
 
-![Code license (ARR)](https://img.shields.io/badge/code%20license-ARR-red.svg?style=flat-square)
+![License (ARR)](https://img.shields.io/badge/license-ARR-red.svg?style=flat-square)
 
-This project's code is licensed under [ARR](LICENSE). If you would like clarification or explicit permission, contact
-Ninni on Discord.
+This project's code and assets are [All Rights Reserved](LICENSE). If you would like clarification or explicit
+permission, contact Ninni on Discord.
+
+The Rubber block sounds are provided courtesy of [Raspmary](https://www.curseforge.com/members/raspmary/projects) and
+are from her modpack [Raspberry Flavoured](https://www.curseforge.com/minecraft/modpacks/raspberry-flavoured).
