@@ -108,7 +108,9 @@ public class WrenchItem extends Item {
         if (state.is(EtceteraTags.NON_MODIFIABLE)) {
             player.getCooldowns().addCooldown(this, 15);
             player.playSound(EtceteraSoundEvents.ITEM_WRENCH_FAIL, 1, 1);
-            player.displayClientMessage(Component.translatable(this.getDescriptionId() + ".block.invalid", block.getName()), true);
+            if (!world.isClientSide()) {
+                player.displayClientMessage(Component.translatable(this.getDescriptionId() + ".block.invalid", block.getName()), true);
+            }
         } else if (collection.contains(BlockStateProperties.AXIS)
                 || collection.contains(BlockStateProperties.HORIZONTAL_FACING)
                 || collection.contains(BlockStateProperties.HORIZONTAL_AXIS)
@@ -141,16 +143,20 @@ public class WrenchItem extends Item {
 
                 player.playSound(EtceteraSoundEvents.ITEM_WRENCH_SELECT, 1, 1);
 
-                if (isInvalidProperty(property)) {
-                    player.displayClientMessage(Component.translatable(this.getDescriptionId() + ".invalid", property.getName()), true);
-                } else {
-                    player.displayClientMessage(Component.translatable(this.getDescriptionId() + ".select", property.getName()), true);
+                if (!world.isClientSide()) {
+                    if (isInvalidProperty(property)) {
+                        player.displayClientMessage(Component.translatable(this.getDescriptionId() + ".invalid", property.getName()), true);
+                    } else {
+                        player.displayClientMessage(Component.translatable(this.getDescriptionId() + ".select", property.getName()), true);
+                    }
                 }
             }
         } else {
             player.getCooldowns().addCooldown(this, 15);
             player.playSound(EtceteraSoundEvents.ITEM_WRENCH_FAIL, 1, 1);
-            player.displayClientMessage(Component.translatable(this.getDescriptionId() + ".block.invalid"), true);
+            if (!world.isClientSide()) {
+                player.displayClientMessage(Component.translatable(this.getDescriptionId() + ".block.invalid"), true);
+            }
         }
     }
 }
