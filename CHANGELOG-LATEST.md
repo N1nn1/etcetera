@@ -1,3 +1,3 @@
 ### Fixed
 
-- Fixed Wrench messages sending twice.
+- Fixed Bolt and Flow armor trims.
