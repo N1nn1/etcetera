@@ -252,7 +252,7 @@
   "config.etcetera.option.goldenGolemFollowRange": "Área de rastreio",
   "config.etcetera.option.goldenGolemFollowRange.desc": "Determina a distância máxima, em blocos, em que o alvo ou dono precisa estar para um Golem de Ouro seguí-lo (padrão: 48.0).",
   "config.etcetera.option.goldenGolemHealingCharges": "Cargas de cura",
-  "config.etcetera.option.goldenGolemHealingCharges.desc": "Determina a quantidade inicial de vezes em que um Golem de Ouro pode fornecer curas antes de quebrar (padrão: 10).",
+  "config.etcetera.option.goldenGolemHealingCharges.desc": "Determina a quantidade inicial de vezes que um Golem de Ouro pode fornecer curas antes de quebrar (padrão: 10).",
   "config.etcetera.option.goldenGolemHealingCooldown": "Tempo de recarga das curas",
   "config.etcetera.option.goldenGolemHealingCooldown.desc": "Determina o tempo de recarga, em ticks, entre as curas de um Golem de Ouro (padrão: 2400).",
   "config.etcetera.option.goldenGolemHealingAmount": "Intensidade das curas",
