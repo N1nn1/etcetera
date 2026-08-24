@@ -32,9 +32,9 @@
   "block.etcetera.potted_bouquet": "Buquê Envasado",
   "block.etcetera.terracotta_vase": "Vaso de Terracota",
 
-  "block.etcetera.item_stand": "Suporte de Itens",
-  "block.etcetera.glow_item_stand": "Suporte de Itens Brilhante",
-  "stat.minecraft.interact_with_item_stand": "Interações com o Suporte de Itens",
+  "block.etcetera.item_stand": "Suporte de Item",
+  "block.etcetera.glow_item_stand": "Suporte de Item Brilhante",
+  "stat.minecraft.interact_with_item_stand": "Interações com Suportes de Item",
 
   "item.etcetera.raw_bismuth": "Bismuto Bruto",
   "item.etcetera.bismuth_ingot": "Lingote de Bismuto",
@@ -264,7 +264,7 @@
 
   "config.etcetera.option.handbellRange": "Alcance",
   "config.etcetera.option.handbellRange.desc": "Determina o raio, em blocos, do qual o Sino de Mão detecta e invoca pets (padrão: 48.0).",
-  "config.etcetera.option.handbellGlowDuration": "Duração do Brilho fornecido",
+  "config.etcetera.option.handbellGlowDuration": "Duração do Brilho aplicado em pets",
   "config.etcetera.option.handbellGlowDuration.desc": "Determina a duração, em ticks, do efeito Brilho aplicado aos pets invocados (padrão: 120).",
 
   "config.etcetera.option.dreamCatcherRangeX": "Alcance horizontal (eixo X)",
