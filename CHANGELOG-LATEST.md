@@ -1,3 +1,3 @@
 ### Fixed
 
-- Fixed Bolt and Flow armor trims.
+- Bismuth armor trims can now be used with any other modded materials/armors.

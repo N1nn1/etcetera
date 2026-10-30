@@ -23,7 +23,10 @@
   ],
   "client": [
     "BeaconRendererMixin",
-    "easyanvils.NameTagEditScreenMixin"
+    "easyanvils.NameTagEditScreenMixin",
+    "PalettedPermutationsInvoker",
+    "SpriteSourceListAccessor",
+    "SpriteSourceListMixin"
   ],
   "injectors": {
     "defaultRequire": 1
