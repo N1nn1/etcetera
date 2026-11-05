@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2026-11-05
+
+### Added
+
+- Added Portuguese translation (@Brun333rp).
+- Add Spanish (es_es), German (de_de), and French (fr_fr) localizations (@Llama303)
+
+### Changed
+
+- Mini model tweaks for weaver (@DOOMvenom).
+
+### Fixed
+
+- Item labels, Adventurer's Boots, the Squall music disc, and cotton seeds no longer appear in every chest they
+  were added to.
+
 ## [2.2.8] - 2026-10-30
 
 ### Fixed

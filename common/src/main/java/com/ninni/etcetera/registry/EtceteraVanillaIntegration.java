@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import org.jetbrains.annotations.NotNull;
@@ -130,20 +131,20 @@ public class EtceteraVanillaIntegration {
             }
             if (id.equals(BuiltInLootTables.VILLAGE_PLAINS_HOUSE)) {
                 tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.EGGPLE.get()).setWeight(1).apply(SetItemCountFunction.setCount(UniformGenerator.between(0, 1)))));
-                tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.COTTON_SEEDS.get()).setWeight(3).apply(SetItemCountFunction.setCount(UniformGenerator.between(3, 5)))));
+                tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.COTTON_SEEDS.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(3, 5)))).when(LootItemRandomChanceCondition.randomChance(0.3F)));
             }
             if (id.equals(BuiltInLootTables.ABANDONED_MINESHAFT)) {
-                tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.ITEM_LABEL.get()).setWeight(3)));
+                tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.ITEM_LABEL.get())).when(LootItemRandomChanceCondition.randomChance(0.15F)));
             }
             if (id.equals(BuiltInLootTables.SIMPLE_DUNGEON) || id.equals(BuiltInLootTables.WOODLAND_MANSION)) {
-                tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.ITEM_LABEL.get()).setWeight(2)));
-                tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.ADVENTURERS_BOOTS.get()).setWeight(4)));
+                tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.ITEM_LABEL.get())).when(LootItemRandomChanceCondition.randomChance(0.1F)));
+                tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.ADVENTURERS_BOOTS.get())).when(LootItemRandomChanceCondition.randomChance(0.1F)));
             }
             if (id.equals(BuiltInLootTables.ANCIENT_CITY) || id.equals(BuiltInLootTables.ANCIENT_CITY_ICE_BOX)) {
-                tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.ITEM_LABEL.get()).setWeight(2)));
+                tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.ITEM_LABEL.get())).when(LootItemRandomChanceCondition.randomChance(0.1F)));
             }
             if (id.equals(BuiltInLootTables.UNDERWATER_RUIN_BIG)) {
-                tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.MUSIC_DISC_SQUALL.get()).setWeight(2)));
+                tableBuilder.withPool(LootPool.lootPool().add(LootItem.lootTableItem(EtceteraItems.MUSIC_DISC_SQUALL.get())).when(LootItemRandomChanceCondition.randomChance(0.25F)));
             }
         });
     }
